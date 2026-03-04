@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mohamed Sayid Lotfy – Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=IBM+Plex+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=IBM+Plex+Mono:wght@300;400;500;700&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
@@ -24,7 +24,7 @@
   --bar-bg:rgba(30,106,154,.09);--card-shadow:rgba(30,106,154,.07);
   --cli-bg:#f5f8fc;--cli-border:#c5d2de;--cli-txt:#0a1a28;
 }
-:root{--mono:'IBM Plex Mono',monospace;--dis:'Playfair Display',serif;--r:10px}
+:root{--mono:'IBM Plex Mono',monospace;--dis:'Playfair Display',serif;--orb:'Orbitron',sans-serif;--tech:'Share Tech Mono',monospace;--r:10px}
 
 html,body{height:100%;overflow:hidden}
 body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;transition:background .35s,color .35s}
@@ -34,12 +34,37 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
 #cur{width:7px;height:7px;background:var(--acc);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;mix-blend-mode:difference;transform:translate(-50%,-50%)}
 #cur-r{width:26px;height:26px;border:1px solid var(--acc);opacity:.35;border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
 
-#loader{position:fixed;inset:0;z-index:9500;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
-.ld-brand{font-size:10px;letter-spacing:.4em;color:var(--mut);text-transform:uppercase;font-family:var(--mono)}
-.ld-p{font-family:var(--dis);font-size:52px;font-weight:800;color:var(--acc);letter-spacing:-.02em;line-height:1}
-.ld-bw{width:200px;height:1px;background:var(--brd);overflow:hidden}
-.ld-b{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));width:0}
-.ld-t{font-size:10px;color:var(--mut);letter-spacing:.22em;text-transform:uppercase;font-family:var(--mono)}
+/* ══ LOADER — Orbitron font, cyberpunk style ══ */
+#loader{position:fixed;inset:0;z-index:9500;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.ld-brand{
+  font-family:var(--orb);
+  font-size:9px;
+  letter-spacing:.55em;
+  color:var(--mut);
+  text-transform:uppercase;
+}
+.ld-p{
+  font-family:var(--orb);
+  font-size:68px;
+  font-weight:900;
+  color:var(--acc);
+  letter-spacing:-.01em;
+  line-height:1;
+  text-shadow:0 0 40px rgba(74,144,184,.6),0 0 80px rgba(74,144,184,.2);
+}
+.ld-bw{width:240px;height:2px;background:var(--brd);overflow:hidden;border-radius:2px;position:relative}
+.ld-bw::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(74,144,184,.15),transparent);animation:shimmer 1.5s infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.ld-b{height:100%;background:linear-gradient(90deg,var(--acc),#00d4ff,var(--acc2));width:0;box-shadow:0 0 12px rgba(74,144,184,.8);border-radius:2px}
+.ld-t{
+  font-family:var(--tech);
+  font-size:11px;
+  color:var(--mut);
+  letter-spacing:.3em;
+  text-transform:uppercase;
+}
+.ld-scan{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--acc),transparent);animation:scan 2.5s linear infinite;opacity:.4}
+@keyframes scan{0%{top:0}100%{top:100%}}
 
 #bar{position:fixed;top:0;left:0;right:0;z-index:800;background:rgba(4,10,15,.9);border-bottom:1px solid var(--brd);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:52px;transition:background .35s,border-color .35s}
 [data-theme="light"] #bar{background:rgba(242,245,248,.93)}
@@ -58,7 +83,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
 #prog{position:fixed;top:52px;left:0;right:0;height:1px;background:var(--brd);z-index:700}
 #prog-b{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));width:0;transition:width .08s}
 
-#soc{position:fixed;left:16px;top:0;bottom:0;z-index:900;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+#soc{position:fixed;left:14px;top:0;bottom:0;z-index:900;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;transition:opacity .3s}
 .soc-ln{width:1px;height:44px;background:linear-gradient(to bottom,transparent,var(--brd));flex-shrink:0}
 .soc-ln-b{background:linear-gradient(to top,transparent,var(--brd))}
 .si{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:var(--mut);text-decoration:none;border-radius:6px;transition:color .2s,background .2s,transform .2s;position:relative;flex-shrink:0;cursor:none}
@@ -71,7 +96,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
 
 /* ══ HOME ══ */
 #pg-home{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:0 clamp(60px,9vw,140px) 80px clamp(80px,12vw,180px);scrollbar-width:thin;scrollbar-color:var(--brd) transparent}
-.home-hero{min-height:calc(100vh - 56px);display:flex;align-items:center}
+.home-hero{min-height:auto;display:flex;align-items:center;padding:16px 0 8px}
 .home-content{flex:1;max-width:660px}
 .eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:20px}
 .ey-line{width:0;height:1px;background:linear-gradient(90deg,var(--acc),transparent)}
@@ -84,6 +109,8 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
 .home-meta{display:flex;flex-wrap:wrap;gap:10px 22px;opacity:0;margin-bottom:36px}
 .hm{font-size:11px;color:var(--mut);display:flex;align-items:center;gap:7px;font-family:var(--mono)}
 .hml{color:var(--acc);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.hm a{color:var(--mut);text-decoration:none;transition:color .2s}
+.hm a:hover{color:var(--acc)}
 .status-chip{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(46,204,113,.2);border-radius:4px;padding:6px 14px;background:rgba(46,204,113,.04);font-size:10px;color:var(--grn);letter-spacing:.14em;text-transform:uppercase;opacity:0;margin-bottom:22px;font-family:var(--mono)}
 .sdot{width:6px;height:6px;border-radius:50%;background:var(--grn);animation:sg 2s infinite}
 @keyframes sg{0%,100%{box-shadow:0 0 5px var(--grn)}50%{box-shadow:0 0 14px var(--grn)}}
@@ -92,25 +119,34 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
 .hbtn-p{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;font-weight:700;box-shadow:0 0 18px rgba(74,144,184,.15)}
 .hbtn-p:hover{box-shadow:0 0 30px rgba(74,144,184,.32);transform:translateY(-2px)}
 .hbtn-s{border:1px solid var(--brd);color:var(--txt2)}
-.hbtn-s:hover{border-color:var(--acc);color:var(--acc);background:var(--bar-bg)}
-.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:50px;padding-top:38px;border-top:1px solid var(--brd)}
+.hbtn-s:hover{background:var(--bar-bg)}
+.hbtn-li:hover{border-color:rgba(91,164,227,.6) !important;color:#5ba4e3 !important;box-shadow:0 0 18px rgba(91,164,227,.15)}
+.hbtn-wa:hover{border-color:rgba(37,211,102,.6) !important;color:#25d366 !important;box-shadow:0 0 18px rgba(37,211,102,.15)}
+.hbtn-an:hover{border-color:rgba(155,89,182,.6) !important;color:#9b59b6 !important;box-shadow:0 0 18px rgba(155,89,182,.15)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px;padding-top:20px;border-top:1px solid var(--brd)}
 .hstat{text-align:center}
-.hstat-n{font-family:var(--dis);font-size:26px;font-weight:800;color:var(--acc);line-height:1}
-.hstat-l{font-size:9px;color:var(--mut);letter-spacing:.1em;text-transform:uppercase;margin-top:3px;font-family:var(--mono)}
+.hstat-n{font-family:var(--orb);font-size:22px;font-weight:700;color:var(--acc);line-height:1;letter-spacing:.02em}
+.hstat-l{font-size:9px;color:var(--mut);letter-spacing:.14em;text-transform:uppercase;margin-top:5px;font-family:var(--mono)}
 
 /* ══ NAV CARDS ══ */
-.nav-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:12px;margin-top:52px}
-.nc{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r);padding:20px 17px;cursor:none;position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .3s,background .35s;user-select:none}
+.nav-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:12px;margin-top:24px}
+.nc{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r);padding:20px 17px;cursor:none;position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .3s,background .35s;user-select:none;will-change:transform}
 .nc::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;background:radial-gradient(circle at 30% 40%,var(--bar-bg),transparent 70%)}
 .nc::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.22,1,.36,1)}
-.nc:hover{transform:translateY(-6px)}.nc:hover::before{opacity:1}.nc:hover::after{transform:scaleX(1)}
-.nc-0::after{background:linear-gradient(90deg,var(--acc),#2a7aaa)}.nc-1::after{background:linear-gradient(90deg,#4a90b8,#2a5c7a)}
-.nc-2::after{background:linear-gradient(90deg,var(--grn),#1a9e4e)}.nc-3::after{background:linear-gradient(90deg,var(--ylw),var(--org))}
-.nc-4::after{background:linear-gradient(90deg,var(--org),var(--red))}.nc-5::after{background:linear-gradient(90deg,var(--acc),var(--acc2))}
-.nc-0:hover{border-color:rgba(74,144,184,.35);box-shadow:0 18px 36px var(--card-shadow)}
-.nc-1:hover{border-color:rgba(74,144,184,.3)}.nc-2:hover{border-color:rgba(46,204,113,.3)}
-.nc-3:hover{border-color:rgba(243,156,18,.28)}.nc-4:hover{border-color:rgba(230,126,34,.28)}
-.nc-5:hover{border-color:rgba(74,144,184,.35)}
+.nc:hover::after{transform:scaleX(1)}
+.nc:hover{transform:translateY(-6px)}.nc:hover::before{opacity:1}
+.nc-0::after{background:linear-gradient(90deg,#9b59b6,#6c3483)}
+.nc-1::after{background:linear-gradient(90deg,#a0522d,#7b3f1e)}
+.nc-2::after{background:linear-gradient(90deg,#2ecc71,#1a9e4e)}
+.nc-3::after{background:linear-gradient(90deg,#ffd700,#b8960c)}
+.nc-4::after{background:linear-gradient(90deg,#ff6b00,#e05500)}
+.nc-5::after{background:linear-gradient(90deg,#1abc9c,#16a085)}
+.nc-0:hover{border-color:rgba(155,89,182,.45);box-shadow:0 18px 36px rgba(155,89,182,.08)}
+.nc-1:hover{border-color:rgba(160,82,45,.45);box-shadow:0 18px 36px rgba(160,82,45,.08)}
+.nc-2:hover{border-color:rgba(46,204,113,.45);box-shadow:0 18px 36px rgba(46,204,113,.08)}
+.nc-3:hover{border-color:rgba(255,215,0,.45);box-shadow:0 18px 36px rgba(255,215,0,.08)}
+.nc-4:hover{border-color:rgba(255,107,0,.45);box-shadow:0 18px 36px rgba(255,107,0,.08)}
+.nc-5:hover{border-color:rgba(26,188,156,.45);box-shadow:0 18px 36px rgba(26,188,156,.08)}
 .nc-ico{font-size:20px;margin-bottom:11px}.nc-num{font-size:9px;color:var(--mut);letter-spacing:.2em;margin-bottom:4px;font-family:var(--mono)}
 .nc-name{font-family:var(--dis);font-size:14px;font-weight:700;margin-bottom:4px;color:var(--txt)}
 .nc-hint{font-size:10px;color:var(--mut);line-height:1.5;font-family:var(--mono)}
@@ -136,7 +172,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
 .stat-card{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r);padding:15px 17px;text-align:center;transition:all .25s,background .35s;position:relative;overflow:hidden}
 .stat-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--acc),var(--acc2));transform:scaleX(0);transition:transform .3s}
 .stat-card:hover{border-color:rgba(74,144,184,.3);transform:translateY(-3px)}.stat-card:hover::before{transform:scaleX(1)}
-.stat-n{font-family:var(--dis);font-size:27px;font-weight:800;color:var(--acc);line-height:1}
+.stat-n{font-family:var(--orb);font-size:24px;font-weight:700;color:var(--acc);line-height:1;letter-spacing:.02em}
 .stat-l{font-size:9px;color:var(--mut);letter-spacing:.1em;margin-top:3px;font-family:var(--mono)}
 
 /* ══ EXPERIENCE ══ */
@@ -188,9 +224,9 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
 .proj-c{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r);padding:22px;position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s,background .35s;cursor:none}
 .proj-c::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--acc),var(--acc2));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.22,1,.36,1)}
 .proj-c:hover{transform:translateY(-7px);border-color:rgba(74,144,184,.2);box-shadow:0 20px 40px rgba(0,0,0,.35)}.proj-c:hover::before{transform:scaleX(1)}
-.proj-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:11px}
+.proj-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px}
 .proj-ico{font-size:22px}
-.pn{font-family:var(--dis);font-size:13px;font-weight:700;margin-bottom:5px;color:var(--txt)}
+.pn{font-family:var(--orb);font-size:12px;font-weight:700;margin-bottom:5px;color:var(--txt);letter-spacing:.02em}
 .pd{font-size:11px;color:var(--txt2);line-height:1.7;margin-bottom:13px;font-family:var(--mono)}
 .ps{display:flex;flex-wrap:wrap;gap:5px}
 .pt{font-size:9px;padding:2px 8px;background:var(--bar-bg);border:1px solid rgba(74,144,184,.1);color:rgba(74,144,184,.85);border-radius:3px;letter-spacing:.04em;font-family:var(--mono)}
@@ -262,6 +298,8 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
 .cinfo{display:flex;flex-direction:column;gap:7px;padding:14px;background:var(--surf);border:1px solid var(--brd);border-radius:var(--r)}
 .ci-row{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--txt2);font-family:var(--mono)}
 .ci-lbl{font-size:9px;color:var(--mut);letter-spacing:.14em;text-transform:uppercase;width:48px;flex-shrink:0}
+.ci-row a{color:var(--txt2);text-decoration:none;transition:color .2s}
+.ci-row a:hover{color:var(--acc)}
 .contact-r{display:flex;flex-direction:column;gap:8px}
 .clc{display:flex;align-items:center;gap:12px;padding:12px 15px;height:62px;box-sizing:border-box;background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r);text-decoration:none;transition:all .25s,background .35s;position:relative;overflow:hidden;cursor:none}
 .clc::after{content:'↗';position:absolute;right:13px;color:var(--acc);font-size:12px;opacity:0;transform:translate(-5px,5px);transition:all .22s}
@@ -300,15 +338,11 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
   #pg-home{padding:0 16px 60px 16px}.pov{padding:28px 16px 100px}
   .hero-stats{grid-template-columns:repeat(2,1fr)}
   .bar-name{width:110px}
-
-  /* Bar */
   #bar{padding:0 12px}
   .brand{font-size:11px}
   .bar-right{gap:4px}
   .bar-btn{font-size:9px;padding:4px 8px;letter-spacing:.06em}
   #page-title{font-size:9px;letter-spacing:.08em;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-
-  /* Back button - floating pill at bottom */
   #back-btn{
     position:fixed !important;
     bottom:20px !important;
@@ -344,6 +378,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
 
 <!-- LOADER -->
 <div id="loader">
+  <div class="ld-scan"></div>
   <div class="ld-brand">Portfolio // MSL.IT</div>
   <div class="ld-p" id="ld-p">0%</div>
   <div class="ld-bw"><div class="ld-b" id="ld-b"></div></div>
@@ -375,7 +410,10 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
   <a class="si" href="tel:+201503333155">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.07 1.18 2 2 0 012.05 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
     <span class="si-tip">Phone</span></a>
-  <a class="si" href="mailto:mohamed-sayid@outlook.com">
+  <a class="si" href="https://wa.me/201503333155" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="si-tip">WhatsApp</span></a>
+  <a class="si" href="/cdn-cgi/l/email-protection#fa9795929b979f9ed7899b83939eba958f8e96959591d4999597">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
     <span class="si-tip">Email</span></a>
   <div class="soc-ln soc-ln-b"></div>
@@ -418,17 +456,18 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
         <p class="home-sub" id="hsub">Network & System Security and Administration specialist with 5+ years of experience managing enterprise IT infrastructure, cloud solutions, and Medical IT environments across Egypt.</p>
         <div class="home-meta" id="hmet">
           <div class="hm"><span class="hml">Loc</span>Cairo, Egypt</div>
-          <div class="hm"><span class="hml">Tel</span>+201503333155</div>
-          <div class="hm"><span class="hml">Mail</span><a href="/mailto:mohamed-sayid@outlook.com"">[mohamed-sayid@outlook.com"]</a></div>
+          <div class="hm"><span class="hml">Tel</span><a href="tel:+201503333155">+201503333155</a></div>
+          <div class="hm"><span class="hml">Mail</span><a href="/cdn-cgi/l/email-protection#c0adafa8a1ada5a4edb3a1b9a9a480afb5b4acafafabeea3afad"><span class="__cf_email__" data-cfemail="0f6260676e626a6b227c6e76666b4f607a7b63606064216c6062">[email&#160;protected]</span></a></div>
         </div>
         <div class="hero-btns" id="hbtns">
-          <a class="hbtn hbtn-p" href="/cdn-cgi/l/email-protection#503d3f38313d35347d2331293934103f25243c3f3f3b7e333f3d">
+          <a class="hbtn hbtn-p" href="/cdn-cgi/l/email-protection#6e0301060f030b0a431d0f17070a2e011b1a02010105400d0103">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Hire Me
           </a>
-          <a class="hbtn hbtn-s" href="https://www.linkedin.com/in/mohamedelsayid" target="_blank" rel="noopener">LinkedIn ↗</a>
-          <a class="hbtn hbtn-s" href="#" onclick="goPage('analysis');return false">Analysis ↗</a>
+          <a class="hbtn hbtn-s hbtn-li" href="https://www.linkedin.com/in/mohamedelsayid" target="_blank" rel="noopener" style="border-color:rgba(10,102,194,.35);color:#5ba4e3">LinkedIn ↗</a>
+          <a class="hbtn hbtn-s hbtn-wa" href="https://wa.me/201503333155" target="_blank" rel="noopener" style="border-color:rgba(37,211,102,.35);color:#25d366"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp ↗</a>
+          <a class="hbtn hbtn-s hbtn-an" href="#" onclick="goPage('analysis');return false" style="border-color:rgba(100,80,180,.35);color:#9b8fd4">Analysis ↗</a>
         </div>
-        <div class="hero-stats" id="hstats">
+        <div class="hero-stats" id="hstats" style="opacity:0">
           <div class="hstat"><div class="hstat-n">5+</div><div class="hstat-l">Yrs Experience</div></div>
           <div class="hstat"><div class="hstat-n">75%</div><div class="hstat-l">Network Boost</div></div>
           <div class="hstat"><div class="hstat-n">90%</div><div class="hstat-l">Incidents Reduced</div></div>
@@ -436,7 +475,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
         </div>
       </div>
     </div>
-    <div class="nav-grid" id="nav-cards">
+    <div class="nav-grid" id="nav-cards" style="opacity:0">
       <div class="nc nc-0" onclick="goPage('summary')"><div class="nc-ico">👤</div><div class="nc-num">01</div><div class="nc-name">Summary</div><div class="nc-hint">Professional overview</div><div class="nc-arr">↗</div></div>
       <div class="nc nc-1" onclick="goPage('experience')"><div class="nc-ico">💼</div><div class="nc-num">02</div><div class="nc-name">Experience</div><div class="nc-hint">Work history &amp; roles</div><div class="nc-arr">↗</div></div>
       <div class="nc nc-2" onclick="goPage('education')"><div class="nc-ico">🎓</div><div class="nc-num">03</div><div class="nc-name">Education</div><div class="nc-hint">Academic background</div><div class="nc-arr">↗</div></div>
@@ -689,28 +728,35 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
         <h3>Open to<br><span class="c">Opportunities</span></h3>
         <p>Open to new opportunities in Network Administration, System Administration, IT Infrastructure, Medical IT, HIS, or Cloud roles. Available immediately.</p>
         <div class="ctab">
-          <a class="cta" href="mailto:mohamed-sayid@outlook.com"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Send Email</a>
-          <a class="cta cta-s" href="https://www.linkedin.com/in/mohamedelsayid" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="cta" href="/cdn-cgi/l/email-protection#2d4042454c404849005e4c5444496d42585941424246034e4240">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Send Email
+          </a>
+          <a class="cta cta-s" href="https://www.linkedin.com/in/mohamedelsayid" target="_blank" rel="noopener" style="border-color:rgba(10,102,194,.35);color:#5ba4e3">LinkedIn ↗</a>
+          <a class="cta cta-s" href="https://wa.me/201503333155" target="_blank" rel="noopener" style="border-color:rgba(37,211,102,.35);color:#25d366"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp ↗</a>
         </div>
         <div class="cinfo">
-          <div class="ci-row"><span class="ci-lbl">Phone</span>+201503333155</div>
-          <div class="ci-row"><span class="ci-lbl">Email</span><a href="mailto:mohamed-sayid@outlook.com">[mohamed-sayid@outlook.com]</a></div>
+          <div class="ci-row"><span class="ci-lbl">Phone</span><a href="tel:+201503333155">+201503333155</a></div>
+          <div class="ci-row"><span class="ci-lbl">Email</span><a href="/cdn-cgi/l/email-protection#127f7d7a737f77763f61736b7b76527d67667e7d7d793c717d7f"><span class="__cf_email__" data-cfemail="3a5755525b575f5e17495b43535e7a554f4e5655555114595557">[email&#160;protected]</span></a></div>
           <div class="ci-row"><span class="ci-lbl">Location</span>Cairo, Egypt</div>
           <div class="ci-row"><span class="ci-lbl">Status</span><span style="color:var(--grn)">● Available Now</span></div>
         </div>
       </div>
       <div class="contact-r">
-        <a class="clc" href="https://www.linkedin.com/in/mohamedelsayid" target="_blank" rel="noopener">
+        <a class="clc" href="https://www.linkedin.com/in/mohamedelsayid" target="_blank" rel="noopener" style="border-color:rgba(10,102,194,.3)">
           <div class="clic li"><svg width="17" height="17" viewBox="0 0 24 24" fill="#5ba4e3"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
           <div class="cl-inf"><div class="cl-p li">LinkedIn</div><div class="cl-h">Mohamed Sayid Lotfy</div></div>
         </a>
-        <a class="clc" href="tel:+201503333155">
-          <div class="clic ph"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#4a90b8" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.07 1.18 2 2 0 012.05 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
-          <div class="cl-inf"><div class="cl-p ph">Phone</div><div class="cl-h">+20 150 333 3155</div></div>
+        <a class="clc" href="https://wa.me/201503333155" target="_blank" rel="noopener" style="border-color:rgba(37,211,102,.25)">
+          <div class="clic" style="background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.2)"><svg width="17" height="17" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+          <div class="cl-inf"><div class="cl-p" style="color:#25d366">WhatsApp</div><div class="cl-h">+20 150 333 3155</div></div>
         </a>
-        <a class="clc" href="/cdn-cgi/l/email-protection#b7dad8dfd6dad2d39ac4d6ceded3f7d8c2c3dbd8d8dc99d4d8da">
-          <div class="clic gm"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ea4335" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-          <div class="cl-inf"><div class="cl-p gm">Email</div><div class="cl-h"><span class="mailto:mohamed-sayid@outlook.com">[mohamed-sayid@outlook.com]</span></div></div>
+        <a class="clc" href="tel:+201503333155" style="border-color:rgba(74,144,184,.3)">
+          <div class="clic" style="background:rgba(74,144,184,.08);border:1px solid rgba(74,144,184,.2)"><svg width="17" height="17" viewBox="0 0 24 24" fill="#4a90b8"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+          <div class="cl-inf"><div class="cl-p" style="color:#4a90b8">Phone</div><div class="cl-h">+20 150 333 3155</div></div>
+        </a>
+        <a class="clc" href="/cdn-cgi/l/email-protection#e28f8d8a838f8786cf91839b8b86a28d97968e8d8d89cc818d8f" style="border-color:rgba(0,120,212,.3)">
+          <div class="clic" style="background:rgba(0,120,212,.1);border:1px solid rgba(0,120,212,.25)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0078d4" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="cl-inf"><div class="cl-p" style="color:#0078d4">Email</div><div class="cl-h"><span class="__cf_email__" data-cfemail="167b797e777b73723b65776f7f72567963627a79797d3875797b">[email&#160;protected]</span></div></div>
         </a>
       </div>
     </div>
@@ -721,34 +767,33 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 gsap.registerPlugin(ScrollTrigger);
 
-/* MATRIX */
-const cv=document.getElementById('mx'),cx=cv.getContext('2d');
-const CHARS='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ</>[]{}';
+const cv=document.getElementById("mx"),cx=cv.getContext("2d");
+const CHARS="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ</>[]{}" ;
 const FS=14;let cols,drops;
 function initMx(){cv.width=innerWidth;cv.height=innerHeight;cols=Math.floor(cv.width/FS);drops=Array(cols).fill(1)}
-initMx();window.addEventListener('resize',initMx);
+initMx();window.addEventListener("resize",initMx);
 setInterval(()=>{
-  const isLight=document.documentElement.getAttribute('data-theme')==='light';
+  const isLight=document.documentElement.getAttribute("data-theme")==="light";
   if(isLight){
-    cx.fillStyle='rgba(242,245,248,.06)';cx.fillRect(0,0,cv.width,cv.height);
+    cx.fillStyle="rgba(242,245,248,.06)";cx.fillRect(0,0,cv.width,cv.height);
     for(let i=0;i<drops.length;i++){
       const r=Math.random();
-      if(r>.97) cx.fillStyle='rgba(10,30,50,1)';
-      else if(r>.85) cx.fillStyle='rgba(20,60,100,.9)';
-      else cx.fillStyle='rgba(30,80,130,.6)';
-      cx.font=FS+'px IBM Plex Mono,monospace';
+      if(r>.97) cx.fillStyle="rgba(10,30,50,1)";
+      else if(r>.85) cx.fillStyle="rgba(20,60,100,.9)";
+      else cx.fillStyle="rgba(30,80,130,.6)";
+      cx.font=FS+"px IBM Plex Mono,monospace";
       cx.fillText(CHARS[Math.floor(Math.random()*CHARS.length)],i*FS,drops[i]*FS);
       if(drops[i]*FS>cv.height&&Math.random()>.976)drops[i]=0;
       drops[i]++;
     }
   } else {
-    cx.fillStyle='rgba(4,10,15,.04)';cx.fillRect(0,0,cv.width,cv.height);
+    cx.fillStyle="rgba(4,10,15,.04)";cx.fillRect(0,0,cv.width,cv.height);
     for(let i=0;i<drops.length;i++){
       const r=Math.random();
-      if(r>.97) cx.fillStyle='rgba(200,235,255,1)';
-      else if(r>.85) cx.fillStyle='rgba(74,144,184,1)';
-      else cx.fillStyle='rgba(74,144,184,.65)';
-      cx.font=FS+'px IBM Plex Mono,monospace';
+      if(r>.97) cx.fillStyle="rgba(200,235,255,1)";
+      else if(r>.85) cx.fillStyle="rgba(74,144,184,1)";
+      else cx.fillStyle="rgba(74,144,184,.65)";
+      cx.font=FS+"px IBM Plex Mono,monospace";
       cx.fillText(CHARS[Math.floor(Math.random()*CHARS.length)],i*FS,drops[i]*FS);
       if(drops[i]*FS>cv.height&&Math.random()>.976)drops[i]=0;
       drops[i]++;
@@ -756,300 +801,260 @@ setInterval(()=>{
   }
 },60);
 
-/* CURSOR */
-const cur=document.getElementById('cur'),cr=document.getElementById('cur-r');
+const cur=document.getElementById("cur"),cr=document.getElementById("cur-r");
 let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
-(function tick(){cur.style.left=mx+'px';cur.style.top=my+'px';rx+=(mx-rx)*.11;ry+=(my-ry)*.11;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(tick)})();
+document.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});
+(function tick(){cur.style.left=mx+"px";cur.style.top=my+"px";rx+=(mx-rx)*.11;ry+=(my-ry)*.11;cr.style.left=rx+"px";cr.style.top=ry+"px";requestAnimationFrame(tick)})();
 
-/* THEME */
 function toggleTheme(){
   const html=document.documentElement;
-  const isDark=html.getAttribute('data-theme')==='dark';
-  html.setAttribute('data-theme',isDark?'light':'dark');
-  document.getElementById('theme-btn').textContent=isDark?'🌙':'☀';
+  const isDark=html.getAttribute("data-theme")==="dark";
+  html.setAttribute("data-theme",isDark?"light":"dark");
+  document.getElementById("theme-btn").textContent=isDark?"🌙":"☀";
 }
 
-/* MODE */
-let currentMode='normal';
+let currentMode="normal";
 function setMode(m){
   currentMode=m;
-  const cli=document.getElementById('cli');
-  const app=document.getElementById('app');
-  if(m==='cli'){
-    cli.style.display='flex';app.style.display='none';
-    document.getElementById('normal-btn').classList.remove('active-mode');
-    document.getElementById('cli-btn').classList.add('active-mode');
-    document.getElementById('cli-in').focus();
+  const cli=document.getElementById("cli");
+  const app=document.getElementById("app");
+  const soc=document.getElementById("soc");
+  if(m==="cli"){
+    cli.style.display="flex";app.style.display="none";
+    soc.style.opacity="0";soc.style.pointerEvents="none";
+    document.getElementById("normal-btn").classList.remove("active-mode");
+    document.getElementById("cli-btn").classList.add("active-mode");
+    document.getElementById("cli-in").focus();
     if(!cliBooted){bootCLI();cliBooted=true;}
   } else {
-    cli.style.display='none';app.style.display='block';
-    document.getElementById('normal-btn').classList.add('active-mode');
-    document.getElementById('cli-btn').classList.remove('active-mode');
+    cli.style.display="none";app.style.display="block";
+    soc.style.opacity="1";soc.style.pointerEvents="auto";
+    document.getElementById("normal-btn").classList.add("active-mode");
+    document.getElementById("cli-btn").classList.remove("active-mode");
   }
 }
 
-/* LOADER */
-const ldMsgs=['Initializing...','Loading modules...','Decrypting assets...','Access granted ✓'];
+const ldMsgs=["Initializing...","Loading modules...","Decrypting assets...","Access granted ✓"];
 let pct=0;
-const pEl=document.getElementById('ld-p'),bEl=document.getElementById('ld-b'),tEl=document.getElementById('ld-t');
+const pEl=document.getElementById("ld-p"),bEl=document.getElementById("ld-b"),tEl=document.getElementById("ld-t");
 const ldT=setInterval(()=>{
   pct+=Math.random()*9+2;if(pct>100)pct=100;
-  pEl.textContent=Math.floor(pct)+'%';bEl.style.width=pct+'%';
+  pEl.textContent=Math.floor(pct)+"%";bEl.style.width=pct+"%";
   tEl.textContent=ldMsgs[Math.min(3,Math.floor(pct/28))];
-  if(pct>=100){clearInterval(ldT);setTimeout(()=>{gsap.to('#loader',{opacity:0,duration:.5,onComplete:()=>{document.getElementById('loader').style.display='none';launchHero()}})},350)}
+  if(pct>=100){clearInterval(ldT);setTimeout(()=>{gsap.to("#loader",{opacity:0,duration:.5,onComplete:()=>{document.getElementById("loader").style.display="none";launchHero()}})},350)}
 },55);
 
 function launchHero(){
-  setMode('normal');
+  setMode("normal");
   const tl=gsap.timeline();
-  tl.to('#schip',{opacity:1,duration:.5,ease:'power3.out'})
-    .to('#eyl',{width:42,duration:.6,ease:'power2.out'},'-=.1')
-    .to('#eyt',{opacity:1,duration:.4},'-=.2')
-    .to('#h1a',{clipPath:'inset(0 0 0% 0)',duration:.75,ease:'power4.out'},'-=.1')
-    .to('#h1b',{clipPath:'inset(0 0 0% 0)',duration:.75,ease:'power4.out'},'-=.55')
-    .to('#hrole',{opacity:1,duration:.5},'-=.3')
-    .to('#hsub',{opacity:1,duration:.55},'-=.2')
-    .to('#hmet',{opacity:1,duration:.5},'-=.2')
-    .to('#hbtns',{opacity:1,duration:.5},'-=.2');
-  gsap.from('.hstat',{opacity:0,y:16,stagger:.09,duration:.5,delay:1.4,ease:'power3.out'});
-  gsap.from('.nc',{opacity:0,y:28,stagger:.07,duration:.5,delay:1.6,ease:'power3.out'});
+  tl.to("#schip",{opacity:1,duration:.5,ease:"power3.out"})
+    .to("#eyl",{width:42,duration:.6,ease:"power2.out"},"-=.1")
+    .to("#eyt",{opacity:1,duration:.4},"-=.2")
+    .to("#h1a",{clipPath:"inset(0 0 0% 0)",duration:.75,ease:"power4.out"},"-=.1")
+    .to("#h1b",{clipPath:"inset(0 0 0% 0)",duration:.75,ease:"power4.out"},"-=.55")
+    .to("#hrole",{opacity:1,duration:.5},"-=.3")
+    .to("#hsub",{opacity:1,duration:.55},"-=.2")
+    .to("#hmet",{opacity:1,duration:.5},"-=.2")
+    .to("#hbtns",{opacity:1,duration:.5},"-=.2");
+  gsap.fromTo(".hstat",{opacity:0,y:16},{opacity:1,y:0,stagger:.09,duration:.5,delay:1.4,ease:"power3.out",onStart:()=>{document.getElementById("hstats").style.opacity="1"}});
+  gsap.fromTo(".nc",{opacity:0,y:28},{opacity:1,y:0,stagger:.07,duration:.5,delay:1.6,ease:"power3.out",clearProps:"transform",onStart:()=>{document.getElementById("nav-cards").style.opacity="1"}});
 }
 
-/* BARS */
 function animateBars(pageId){
-  const bars=document.querySelectorAll('#pg-'+pageId+' .bar-fill, #pg-'+pageId+' .domain-fill');
-  setTimeout(()=>{bars.forEach(b=>{b.style.width=(b.dataset.pct||'0')+'%'})},300);
+  const bars=document.querySelectorAll("#pg-"+pageId+" .bar-fill, #pg-"+pageId+" .domain-fill");
+  setTimeout(()=>{bars.forEach(b=>{b.style.width=(b.dataset.pct||"0")+"%"})},300);
 }
 
-/* NAV */
 let active=null;
-const NAMES={summary:'Summary',experience:'Experience',education:'Education',achievements:'Achievements',skills:'Skills',analysis:'Analysis',contact:'Contact'};
+const NAMES={summary:"Summary",experience:"Experience",education:"Education",achievements:"Achievements",skills:"Skills",analysis:"Analysis",contact:"Contact"};
 
 function goPage(id){
-  const ov=document.getElementById('pg-'+id);
-  const home=document.getElementById('pg-home');
+  const ov=document.getElementById("pg-"+id);
+  const home=document.getElementById("pg-home");
   active=id;
-  gsap.set(ov,{display:'block',opacity:0,x:'4%'});
+  gsap.set(ov,{display:"block",opacity:0,x:"4%"});
   ov.scrollTop=0;
-  document.getElementById('prog-b').style.width='0';
-  const bb=document.getElementById('back-btn');
-  bb.style.display='flex';
-  bb.classList.add('mobile-show');
-  const pt=document.getElementById('page-title');pt.textContent=NAMES[id];
+  document.getElementById("prog-b").style.width="0";
+  const bb=document.getElementById("back-btn");
+  bb.style.display="flex";
+  const pt=document.getElementById("page-title");pt.textContent=NAMES[id];
   gsap.timeline()
-    .to(home,{x:'-6%',opacity:0,duration:.38,ease:'power3.in'})
-    .to(ov,{opacity:1,x:'0%',duration:.42,ease:'power3.out'},'-=.1');
+    .to(home,{x:"-6%",opacity:0,duration:.38,ease:"power3.in"})
+    .to(ov,{opacity:1,x:"0%",duration:.42,ease:"power3.out"},"-=.1");
   gsap.to(pt,{opacity:1,duration:.3,delay:.18});
-  if(id==='skills'||id==='analysis')animateBars(id);
+  if(id==="skills"||id==="analysis")animateBars(id);
 }
 
 function goHome(){
   if(!active)return;
-  const ov=document.getElementById('pg-'+active);
-  const home=document.getElementById('pg-home');
-  const pt=document.getElementById('page-title');
-  gsap.timeline({onComplete:()=>{gsap.set(ov,{display:'none'});gsap.set(ov,{clearProps:'opacity,x'});active=null;document.getElementById('prog-b').style.width='0'}})
-    .to(ov,{opacity:0,x:'4%',duration:.35,ease:'power3.in'})
-    .fromTo(home,{x:'-6%',opacity:0},{x:'0%',opacity:1,duration:.4,ease:'power3.out'},'-=.08');
-  const bb=document.getElementById('back-btn');
-  bb.style.display='none';
-  bb.classList.remove('mobile-show');
+  const ov=document.getElementById("pg-"+active);
+  const home=document.getElementById("pg-home");
+  const pt=document.getElementById("page-title");
+  gsap.timeline({onComplete:()=>{gsap.set(ov,{display:"none"});gsap.set(ov,{clearProps:"opacity,x"});active=null;document.getElementById("prog-b").style.width="0"}})
+    .to(ov,{opacity:0,x:"4%",duration:.35,ease:"power3.in"})
+    .fromTo(home,{x:"-6%",opacity:0},{x:"0%",opacity:1,duration:.4,ease:"power3.out"},"-=.08");
+  document.getElementById("back-btn").style.display="none";
   gsap.to(pt,{opacity:0,duration:.2});
 }
 
-document.querySelectorAll('.pov').forEach(pg=>{pg.addEventListener('scroll',()=>{const p=pg.scrollTop/(pg.scrollHeight-pg.clientHeight)*100;document.getElementById('prog-b').style.width=p+'%'})});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(currentMode==='cli')setMode('normal');else if(active)goHome()}});
+document.querySelectorAll(".pov").forEach(pg=>{pg.addEventListener("scroll",()=>{const p=pg.scrollTop/(pg.scrollHeight-pg.clientHeight)*100;document.getElementById("prog-b").style.width=p+"%"})});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){if(currentMode==="cli")setMode("normal");else if(active)goHome()}
+  if(e.key==="Backspace"&&currentMode!=="cli"&&active&&document.activeElement.tagName!=="INPUT"&&document.activeElement.tagName!=="TEXTAREA"){e.preventDefault();goHome()}
+});
 
-/* CLI */
 let cliBooted=false;
 let cliHistory=[],cliHistIdx=-1;
-const CMDS=['help','whoami','summary','experience','education','achievements','skills','certifications','contact','clear','exit','ls','date'];
+const CMDS=["help","whoismsl","summary","experience","education","achievements","skills","certifications","contact","clear","exit","ls","date"];
 
 const D={
-  whoami:`<span class="cli-grn">Mohamed Sayid Lotfy</span>
-  Role     : Network & System Administrator
-  Location : Cairo, Egypt 🇪🇬
-  Email    : mohamed-sayid@outlook.com
-  Phone    : +201503333155
-  LinkedIn : linkedin.com/in/mohamedelsayid
-  Status   : <span class="cli-grn">● Open to Work — Available Now</span>`,
+  whoismsl:`<span class="cli-h">// WHO IS MSL</span>
 
-  summary:`<span class="cli-h">// PROFESSIONAL SUMMARY</span>
-Detail-oriented IT Specialist and Network Administrator with 5+ years
-of experience managing, securing, and optimizing network infrastructures.
+  <span class="cli-grn">Name     :</span> Mohamed Sayid Lotfy
+  <span class="cli-grn">Title    :</span> Network & System Administrator
+  <span class="cli-grn">Location :</span> Cairo, Egypt 🇪🇬
+  <span class="cli-grn">Email    :</span> mohamed-sayid@outlook.com
+  <span class="cli-grn">Phone    :</span> +201503333155
+  <span class="cli-grn">LinkedIn :</span> linkedin.com/in/mohamedelsayid
+  <span class="cli-grn">Status   :</span> <span class="cli-grn">● Open to Work — Available Now</span>
 
-<span class="cli-ylw">Highlights:</span>
-  → Currently holding dual roles: Viion (Network Admin) + Hospital (SysAdmin)
-  → CCNA Certified (ID: CSCO15040282, valid Nov 2028)
-  → CCNP Enterprise: Core Networking
-  → MCSA 2016 · B.Sc. MIS
-  → 75% network performance improvement achieved
-  → 90% reduction in security incidents`,
+  <span class="cli-ylw">Quick Bio:</span>
+  IT Specialist with 5+ years managing enterprise networks,
+  cloud solutions & Medical IT. Currently holding dual roles
+  at Viion and Main Sharia Association Hospital.
 
-  experience:`<span class="cli-h">// WORK EXPERIENCE</span>
+  <span class="cli-ylw">Certifications:</span>
+  🥇 CCNA (ID: CSCO15040282 · Valid Nov 2028)
+  ⚙️  CCNP Enterprise: Core Networking
+  🖥️  MCSA 2016 (60 Hours)
 
-<span class="cli-grn">Network & System Administrator</span> — Viion  <span class="cli-dim">[Jul 2024 – Present]</span>
-  → Firewalls, Switches, Routers administration
-  → Windows Server: AD, DHCP, DNS, Group Policy
-  → Hyper-V, VMware, VPN · Backup & disaster recovery
-
-<span class="cli-grn">System Administrator</span> — Main Sharia Association Hospital  <span class="cli-dim">[Sep 2024 – Present]</span>
-  → Hospital IT infrastructure, network security
-  → Cloud services & cybersecurity measures
-
-<span class="cli-grn">IT Specialist</span> — Xceed  <span class="cli-dim">[Apr–Aug 2024]</span>
-  → Remote troubleshooting & IT systems support
-
-<span class="cli-grn">Team Leader</span> — Mrsool (Xceed)  <span class="cli-dim">[Nov 2023–Apr 2024]</span>
-  → Courier care supervision & performance tracking
-
-<span class="cli-grn">Customer Excellence</span> — Egyptian Food Bank  <span class="cli-dim">[May–Nov 2023]</span>
-<span class="cli-grn">Customer Service Officer</span> — Vodafone Cash  <span class="cli-dim">[Sep 2021–Jan 2023]</span>
-<span class="cli-grn">Sales Staff & Team Leader</span> — OPPO  <span class="cli-dim">[Feb 2019–Aug 2021]</span>`,
-
-  education:`<span class="cli-h">// EDUCATION</span>
-
-<span class="cli-grn">B.Sc. Management Information Systems</span>
-  Al-Abbasiya Institute for Computer & Commercial Sciences
-  Year: Sep 2019 – Jul 2023
-
-<span class="cli-grn">CCNA Cisco Networking Academy Program</span>
-  SCAL Academy – Cisco Networking Academy | 2024
-  3 Modules: Intro · Switching/Routing · Enterprise Networking
-
-<span class="cli-grn">CCNP Enterprise: Core Networking</span>
-  SCAL Academy – Cisco Networking Academy | Dec 2024
-  OSPF, EIGRP, eBGP, QoS, VPN, Virtualization & Automation
-
-<span class="cli-grn">MCSA 2016 Course (60 Hours)</span>
-  SCAL Academy | Jan 2025 | SN: 1010`,
-
-  achievements:`<span class="cli-h">// KEY ACHIEVEMENTS</span>
-
-  📈  Network Performance +75% via infrastructure optimizations
-  🛡️  Security Incidents –90% through multi-layer firewall policies
-  🖥️  Legacy Server Migration to virtualized environments
-  👥  Team Onboarding & Training across multiple roles
-  🏥  Medical IT Infrastructure at 99%+ uptime
-  💡  Innovative IT Solutions aligned with business strategy`,
-
-  skills:`<span class="cli-h">// TECHNICAL SKILLS</span>
-
-<span class="cli-ylw">Network Administration:</span>
-  LAN/WAN/VLAN, Firewall Config, Routers & Switches
-  VPN, OSPF, Subnetting, Network Security
-
-<span class="cli-ylw">System Administration:</span>
-  Windows Server, Active Directory, DHCP/DNS
-  Group Policy, Hyper-V, VMware, Backup & Recovery
-
-<span class="cli-ylw">IT & Security:</span>
-  Troubleshooting, Cybersecurity, Cloud Services
-  Endpoint Protection, IT Documentation, Data Protection
-
-<span class="cli-ylw">Soft Skills:</span>
-  Leadership, Team Management, Communication
-  Problem-Solving, Negotiation, Customer Service`,
-
-  certifications:`<span class="cli-h">// CERTIFICATIONS</span>
-
-  🥇  CCNA · Cisco · ID: CSCO15040282 · Valid Nov 2028
-  🌐  CCNAv7: Introduction to Networks (Nov 2024)
-  🔀  CCNAv7: Switching, Routing & Wireless (Nov 2024)
-  🏢  CCNAv7: Enterprise Networking & Automation (Nov 2024)
-  ⚙️  CCNP Enterprise: Core Networking (Dec 2024)
-  🖥️  MCSA 2016 — 60 Hours (Jan 2025, SN: 1010)`,
-
-  contact:`<span class="cli-h">// CONTACT INFO</span>
-
-  📧  mohamed-sayid@outlook.com
-  📞  +201503333155
-  📍  Cairo, Egypt
-  💼  linkedin.com/in/mohamedelsayid
-
-  <span class="cli-grn">Status: ● Open to Work · Available Immediately</span>`,
-
-  ls:`<span class="cli-dim">drwxr-xr-x</span>  summary/
-<span class="cli-dim">drwxr-xr-x</span>  experience/
-<span class="cli-dim">drwxr-xr-x</span>  education/
-<span class="cli-dim">drwxr-xr-x</span>  achievements/
-<span class="cli-dim">drwxr-xr-x</span>  skills/
-<span class="cli-dim">drwxr-xr-x</span>  certifications/
-<span class="cli-dim">drwxr-xr-x</span>  contact/
-<span class="cli-dim">-rw-r--r--</span>  profile.txt
-<span class="cli-dim">-rw-r--r--</span>  resume.pdf`,
-
+  <span class="cli-ylw">Languages:</span>  Arabic (Native) · English (Advanced)
+  <span class="cli-ylw">Military :</span>  Permanently Exempt`,
   help:`<span class="cli-h">// AVAILABLE COMMANDS</span>
 
-  <span class="cli-grn">whoami</span>          → Who is Mohamed Sayid?
-  <span class="cli-grn">summary</span>         → Professional overview
-  <span class="cli-grn">experience</span>      → Full work history
-  <span class="cli-grn">education</span>       → Academic background
-  <span class="cli-grn">achievements</span>    → Key wins & milestones
-  <span class="cli-grn">skills</span>          → Technical skills
-  <span class="cli-grn">certifications</span>  → Professional certs
-  <span class="cli-grn">contact</span>         → Contact & social links
-  <span class="cli-grn">ls</span>              → List sections
-  <span class="cli-grn">date</span>            → Current date/time
-  <span class="cli-grn">clear</span>           → Clear terminal
-  <span class="cli-grn">exit</span>            → Back to Normal mode
+  <span class="cli-ylw">Navigation:</span>
+  <span class="cli-grn">1</span> / <span class="cli-grn">whoismsl</span>      → Who is Mohamed Sayid Lotfy?
+  <span class="cli-grn">2</span> / <span class="cli-grn">summary</span>       → Professional overview
+  <span class="cli-grn">3</span> / <span class="cli-grn">experience</span>    → Full work history
+  <span class="cli-grn">4</span> / <span class="cli-grn">education</span>     → Academic background
+  <span class="cli-grn">5</span> / <span class="cli-grn">achievements</span>  → Key wins & milestones
+  <span class="cli-grn">6</span> / <span class="cli-grn">skills</span>        → Technical skills
+  <span class="cli-grn">7</span> / <span class="cli-grn">certifications</span>→ Professional certs
+  <span class="cli-grn">8</span> / <span class="cli-grn">contact</span>       → Contact & social links
 
-  <span class="cli-dim">Tip: Tab=autocomplete · ↑↓=command history</span>`
+  <span class="cli-ylw">Utilities:</span>
+  <span class="cli-grn">ls</span>     → List all sections
+  <span class="cli-grn">date</span>   → Current date & time
+  <span class="cli-grn">menu</span>   → Back to main menu
+  <span class="cli-grn">clear</span>  → Clear terminal
+  <span class="cli-grn">exit</span>   → Back to Normal mode
+
+  <span class="cli-dim">Tab=autocomplete · ↑↓=history · ESC=normal</span>`,
+  summary:`<span class="cli-h">// PROFESSIONAL SUMMARY</span>
+5+ years IT experience · CCNA/CCNP certified
+Dual roles: Viion (Network Admin) + Hospital (SysAdmin)
+75% network performance boost · 90% security incidents reduced`,
+  skills:`<span class="cli-h">// SKILLS</span>
+Network: LAN/WAN/VLAN, Firewall, VPN, OSPF, Cisco IOS
+Systems: Windows Server, AD, DHCP/DNS, Hyper-V, VMware
+Security: Cybersecurity, Cloud Services, Endpoint Protection`,
+  certifications:`<span class="cli-h">// CERTIFICATIONS</span>
+  🥇 CCNA · ID: CSCO15040282 · Valid Nov 2028
+  ⚙️ CCNP Enterprise: Core Networking (Dec 2024)
+  🖥️ MCSA 2016 — 60 Hours (Jan 2025)`,
+  contact:`<span class="cli-h">// CONTACT</span>
+  📧 mohamed-sayid@outlook.com
+  📞 +201503333155
+  💼 linkedin.com/in/mohamedelsayid
+  <span class="cli-grn">● Available Now</span>`,
+  ls:`summary/ experience/ education/ achievements/ skills/ certifications/ contact/`,
+  experience:`<span class="cli-h">// EXPERIENCE</span>
+Network & System Admin — Viion [Jul 2024–Present]
+System Admin — Main Sharia Hospital [Sep 2024–Present]
+IT Specialist — Xceed [Apr–Aug 2024]
+Team Leader — Mrsool [Nov 2023–Apr 2024]`,
+  education:`<span class="cli-h">// EDUCATION</span>
+B.Sc. MIS — Al-Abbasiya Institute [2019–2023]
+CCNA · CCNP Enterprise · MCSA 2016 [2024–2025]`,
+  achievements:`<span class="cli-h">// ACHIEVEMENTS</span>
+📈 Network Performance +75%
+🛡️ Security Incidents –90%
+🖥️ Legacy Server Migration
+🏥 Medical IT 99%+ uptime`
 };
 
-function cliPrint(html,cls='cli-resp'){
-  const el=document.createElement('div');
-  el.className='cli-line '+cls;
+function cliPrint(html,cls="cli-resp"){
+  const el=document.createElement("div");
+  el.className="cli-line "+cls;
   el.innerHTML=html;
-  document.getElementById('cli-output').appendChild(el);
-  document.getElementById('cli-output').scrollTop=document.getElementById('cli-output').scrollHeight;
+  document.getElementById("cli-output").appendChild(el);
+  document.getElementById("cli-output").scrollTop=99999;
 }
 
 function bootCLI(){
-  cliPrint(`<span class="cli-grn">
-███╗   ███╗███████╗██╗
-████╗ ████║██╔════╝██║
-██╔████╔██║███████╗██║
-██║╚██╔╝██║╚════██║██║
-██║ ╚═╝ ██║███████║███████╗
-╚═╝     ╚═╝╚══════╝╚══════╝</span>`);
+  cliPrint(`<span style="color:#1a4a8a">
+ ████████╗███████╗███████╗ █████╗ 
+    ██╔══╝██╔════╝██╔════╝██╔══██╗
+    ██║   █████╗  █████╗  ███████║
+    ██║   ██╔══╝  ██╔══╝  ██╔══██║
+    ██║   ███████╗██║     ██║  ██║
+    ╚═╝   ╚══════╝╚═╝     ╚═╝  ╚═╝</span>`);
   cliPrint(`<span class="cli-h">Mohamed Sayid Lotfy — Network & System Administrator</span>`);
-  cliPrint(`<span class="cli-dim">Portfolio Terminal v2.0 · Type 'help' for commands</span>`);
-  cliPrint('');
+  cliPrint(`<span class="cli-dim">────────────────────────────────────────</span>`);
+  const menuItems = [
+    ["Who is Mohamed Sayid Lotfy?", "1", "whoismsl"],
+    ["Professional Summary",        "2", "summary"],
+    ["Work Experience",             "3", "experience"],
+    ["Education & Certifications",  "4", "education"],
+    ["Key Achievements",            "5", "achievements"],
+    ["Technical Skills",            "6", "skills"],
+    ["Certifications",              "7", "certifications"],
+    ["Contact Info",                "8", "contact"],
+  ];
+  menuItems.forEach(([label, num, cmd]) => {
+    const padded = label.padEnd(30, " ");
+    cliPrint(`<span class="cli-ylw">${padded}</span><span class="cli-dim">→ press</span> <span class="cli-grn">${num}</span> <span class="cli-dim">or type</span> <span class="cli-grn">${cmd}</span>`);
+  });
+  cliPrint(`<span class="cli-dim">────────────────────────────────────────</span>`);
+  cliPrint(`<span class="cli-dim">Tab=autocomplete · ↑↓=history · ESC=normal · clear · exit</span>`);
+  cliPrint(``);
 }
+
+const NUM_MAP={"1":"whoismsl","2":"summary","3":"experience","4":"education","5":"achievements","6":"skills","7":"certifications","8":"contact"};
 
 function runCLI(cmd){
   cmd=cmd.trim().toLowerCase();
   if(!cmd)return;
   cliHistory.unshift(cmd);cliHistIdx=-1;
-  cliPrint(`<span class="cli-cmd">$ ${cmd}</span>`);
-  if(cmd==='clear'){document.getElementById('cli-output').innerHTML='';bootCLI();return}
-  if(cmd==='exit'){setMode('normal');return}
-  if(cmd==='date'){cliPrint(new Date().toString());return}
-  if(D[cmd]){cliPrint(D[cmd]);cliPrint('');}
+  // map numbers to commands
+  const mapped=NUM_MAP[cmd]||cmd;
+  cliPrint(`<span class="cli-cmd">$ ${cmd}${mapped!==cmd?' → '+mapped:''}</span>`);
+  if(mapped==="clear"||cmd==="clear"){document.getElementById("cli-output").innerHTML="";bootCLI();return}
+  if(mapped==="exit"||cmd==="exit"){setMode("normal");return}
+  if(mapped==="date"||cmd==="date"){cliPrint(new Date().toString());return}
+  if(mapped==="menu"||cmd==="menu"){document.getElementById("cli-output").innerHTML="";bootCLI();return}
+  if(D[mapped]){cliPrint(D[mapped]);cliPrint(``);}
   else{
     const matches=CMDS.filter(c=>c.startsWith(cmd));
-    if(matches.length)cliPrint(`<span class="cli-dim">Did you mean: ${matches.join(', ')} ?</span>`);
-    else cliPrint(`<span class="cli-err">command not found: ${cmd} · type 'help'</span>`);
+    if(matches.length)cliPrint(`<span class="cli-dim">Did you mean: ${matches.join(", ")}?</span>`);
+    else cliPrint(`<span class="cli-err">command not found: "${cmd}" · type 'help' or press 1-8</span>`);
   }
 }
 
-const inp=document.getElementById('cli-in');
-inp.addEventListener('keydown',e=>{
-  if(e.key==='Enter'){const v=inp.value;inp.value='';runCLI(v);}
-  else if(e.key==='Tab'){
-   
+const inp=document.getElementById("cli-in");
+inp.addEventListener("keydown",e=>{
+  if(e.key==="Enter"){const v=inp.value;inp.value="";runCLI(v);}
+  else if(e.key==="Tab"){
     e.preventDefault();
     const v=inp.value.trim().toLowerCase();
     const matches=CMDS.filter(c=>c.startsWith(v));
     if(matches.length===1)inp.value=matches[0];
-    else if(matches.length>1)cliPrint(`<span class="cli-dim">→ ${matches.join('  ')}</span>`);
+    else if(matches.length>1)cliPrint('<span class="cli-dim">→ '+matches.join('  ')+'</span>');
   }
-  else if(e.key==='ArrowUp'){e.preventDefault();if(cliHistIdx<cliHistory.length-1){cliHistIdx++;inp.value=cliHistory[cliHistIdx]||''}}
-  else if(e.key==='ArrowDown'){e.preventDefault();if(cliHistIdx>0){cliHistIdx--;inp.value=cliHistory[cliHistIdx]||''}else{cliHistIdx=-1;inp.value=''}}
+  else if(e.key==="ArrowUp"){e.preventDefault();if(cliHistIdx<cliHistory.length-1){cliHistIdx++;inp.value=cliHistory[cliHistIdx]||""}}
+  else if(e.key==="ArrowDown"){e.preventDefault();if(cliHistIdx>0){cliHistIdx--;inp.value=cliHistory[cliHistIdx]||""}else{cliHistIdx=-1;inp.value=""}}
 });
-document.getElementById('cli').addEventListener('click',()=>inp.focus());
+document.getElementById("cli").addEventListener("click",()=>inp.focus());
 </script>
 </body>
 </html>
