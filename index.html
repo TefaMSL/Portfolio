@@ -1082,18 +1082,8 @@ inp.addEventListener("keydown",e=>{
 document.getElementById("cli").addEventListener("click",()=>inp.focus());
 
 function printCV(){
-  // Show summary page for printing
-  const pages = document.querySelectorAll('.pov');
-  pages.forEach(p => p.style.display = 'none');
-  const summary = document.getElementById('pg-summary');
-  if(summary) summary.style.display = 'block';
-  window.print();
-  // Restore after print
-  setTimeout(() => {
-    pages.forEach(p => p.style.display = '');
-    if(active) goPage(active);
-    else goHome();
-  }, 1000);
+  const w = window.open("Mohamed%20Sayid%20Lotfy%20CV.pdf","_blank");
+  if(w) w.addEventListener("load", ()=>w.print());
 }
 
 (function(){
