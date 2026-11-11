@@ -256,7 +256,7 @@ function addBootLine(text, status) {
 
 let lineIdx = 0;
 const ldT = setInterval(() => {
-  pct += Math.random() * 3 + 1;
+  pct += Math.random() * 8 + 4;
   if (pct > 100) pct = 100;
 
   pEl.textContent = Math.floor(pct) + "%";
@@ -1081,3 +1081,98 @@ const EMAILJS_AUTOREPLY_TEMPLATE_ID = "template_qe4l2ug"; // ID الخاص بق�
   }
 })();
 
+
+
+function skipBoot() {
+  if (typeof ldT !== 'undefined') clearInterval(ldT);
+  const loader = document.getElementById("loader");
+  if (loader) loader.style.display = "none";
+  launchHero();
+}
+
+
+/* ══ AI ASSISTANT CONVERSATIONAL ENGINE ══ */
+let aiOpen = false;
+
+function toggleAIAssistant() {
+  aiOpen = !aiOpen;
+  const modal = document.getElementById("ai-modal");
+  if (!modal) return;
+  modal.style.display = aiOpen ? "flex" : "none";
+  if (aiOpen) {
+    const inp = document.getElementById("ai-input");
+    if (inp) inp.focus();
+  }
+}
+
+function askAIClick(query) {
+  const inp = document.getElementById("ai-input");
+  if (inp) {
+    inp.value = query;
+    handleAISubmit(new Event('submit'));
+  }
+}
+
+function handleAISubmit(e) {
+  if (e) e.preventDefault();
+  const inp = document.getElementById("ai-input");
+  if (!inp) return;
+  const query = inp.value.trim();
+  if (!query) return;
+  inp.value = "";
+  
+  const box = document.getElementById("ai-messages");
+  if (!box) return;
+  
+  // User bubble
+  const uMsg = document.createElement("div");
+  uMsg.className = "ai-msg ai-msg-user";
+  uMsg.textContent = query;
+  box.appendChild(uMsg);
+  box.scrollTop = box.scrollHeight;
+  
+  // Thinking bubble
+  const bMsg = document.createElement("div");
+  bMsg.className = "ai-msg ai-msg-bot";
+  bMsg.innerHTML = '<span style="opacity:0.6; font-style:italic;">Querying MSL knowledge base...</span>';
+  box.appendChild(bMsg);
+  box.scrollTop = box.scrollHeight;
+  
+  setTimeout(() => {
+    bMsg.innerHTML = generateAIAnswer(query);
+    box.scrollTop = box.scrollHeight;
+  }, 350);
+}
+
+function generateAIAnswer(q) {
+  const lq = q.toLowerCase();
+  const isAr = /[؀-ۿ]/.test(q);
+  
+  if (lq.includes("bank") || lq.includes("we") || lq.includes("telecom") || lq.includes("بنك") || lq.includes("اتصالات") || lq.includes("عملاء") || lq.includes("client") || lq.includes("canada") || lq.includes("كندا")) {
+    return isAr ?
+      "<strong>أبرز المشاريع المؤسسية لمحمد:</strong><br>• <strong>المصرية للاتصالات (WE):</strong> مشروع تحديث وتطوير خوادم السيرفرات (Server Refresh).<br>• <strong>بنك الإسكندرية (فرع القاهرة):</strong> بناء البنية التحتية للفرع، وتركيب السويتشات والكابلات واختبار الاتصال.<br>• <strong>Art Topia (كندا) + 4 شركات دولية:</strong> دعم فني عن بعد للبنية التحتية والأنظمة.<br>• <strong>شركة بالأرجنتين:</strong> دعم فني للأنظمة عن بعد." :
+      "<strong>Key Enterprise & Global Projects:</strong><br>• <strong>Telecom Egypt (WE):</strong> Server refresh and infrastructure modernization.<br>• <strong>Bank of Alexandria (Cairo Branch):</strong> Built branch IT infrastructure, switch deployment, and cabling connectivity.<br>• <strong>Art Topia (Canada) + 4 Global Companies:</strong> Remote infrastructure, systems & network technical support.<br>• <strong>Argentina Enterprise:</strong> Remote IT systems and server support.";
+  }
+  
+  if (lq.includes("cert") || lq.includes("ccna") || lq.includes("ccnp") || lq.includes("شهادات") || lq.includes("شهادة") || lq.includes("course") || lq.includes("كورس") || lq.includes("devops") || lq.includes("ansible")) {
+    return isAr ?
+      "<strong>الشهادات والكورسات الرسمية لمحمد:</strong><br>• <strong>Cisco CCNA معتمدة:</strong> برقم رسمي (CSCO15040282) صالحة حتى نوفمبر 2028.<br>• <strong>دبلومة DevOps (120 ساعة):</strong> من SCAL Academy.<br>• <strong>CCNP Enterprise Core (ENCOR) & CCNP Security (SCOR):</strong> إتمام المسارات المتقدمة لسيسكو.<br>• <strong>Ansible RH294:</strong> أتمتة الشبكات والأنظمة.<br>• <strong>Linux Administration I & II (64 ساعة):</strong> إدارة خوادم لينكس.<br>• <strong>MCSA 2016 (60 ساعة):</strong> إدارة خوادم ويندوز." :
+      "<strong>Certifications & Verified Courses:</strong><br>• <strong>Cisco Certified Network Associate (CCNA):</strong> Official ID CSCO15040282, valid through Nov 2028.<br>• <strong>DevOps Diploma (120 Hours):</strong> SCAL Academy.<br>• <strong>CCNP Core (ENCOR) & CCNP Security (SCOR):</strong> Advanced enterprise routing, switching & security.<br>• <strong>Ansible RH294 (40 Hours):</strong> Enterprise infrastructure automation.<br>• <strong>Linux Administration I & II (64 Hours):</strong> Enterprise Linux server operations.<br>• <strong>MCSA 2016 (60 Hours):</strong> Windows Server administration.";
+  }
+  
+  if (lq.includes("lab") || lq.includes("homelab") || lq.includes("wazuh") || lq.includes("هوملاب") || lq.includes("لاب") || lq.includes("proxmox") || lq.includes("vmware")) {
+    return isAr ?
+      "<strong>مختبر الـ Homelab الخاص بمحمد:</strong><br>• <strong>الافتراضية:</strong> عنقود VMware ESXi 8.0 و Proxmox يضم 14 نظاماً وهمياً (Active Directory, Linux services).<br>• <strong>مختبر الأمن السيبراني:</strong> Wazuh SIEM مدمج مع Elastic Stack، وفايروول pfSense مع Suricata IDS/IPS و OpenVPN.<br>• <strong>محاكاة الشبكات:</strong> EVE-NG و GNS3 لاختبار بروتوكولات OSPF و EIGRP و BGP و STP على مستوى CCNP.<br>• <strong>التخزين والأتمتة:</strong> خادم TrueNAS ZFS للنسخ الاحتياطي، وحاويات Docker/Portainer مع Ansible playbooks." :
+      "<strong>Mohamed's Homelab Architecture:</strong><br>• <strong>Virtualization:</strong> VMware ESXi 8.0 cluster & Proxmox running 14 active production-like VMs.<br>• <strong>Cybersecurity Lab:</strong> Wazuh SIEM integrated with Elastic Stack, pfSense IDS/IPS, Suricata alerts, and OpenVPN.<br>• <strong>Network Simulation:</strong> EVE-NG and GNS3 environments for testing enterprise OSPF, EIGRP, BGP, and RSTP topologies.<br>• <strong>Storage & Automation:</strong> TrueNAS ZFS pool for immutable VM backups, Ansible playbooks, and Docker/Portainer stacks.";
+  }
+  
+  if (lq.includes("contact") || lq.includes("hire") || lq.includes("email") || lq.includes("phone") || lq.includes("تواصل") || lq.includes("ايميل") || lq.includes("تليفون") || lq.includes("واتس") || lq.includes("شغل")) {
+    return isAr ?
+      "<strong>بيانات التواصل المباشرة مع محمد:</strong><br>• <strong>الهاتف / واتساب:</strong> <a href='https://wa.me/201503333155' target='_blank' style='color:var(--grn); font-weight:bold;'>+20 150 333 3155</a><br>• <strong>البريد الإلكتروني:</strong> <a href='mailto:mohamed-sayid@outlook.com' style='color:var(--acc); font-weight:bold;'>mohamed-sayid@outlook.com</a><br>• <strong>لينكد إن:</strong> <a href='https://www.linkedin.com/in/mohamedelsayid' target='_blank' style='color:var(--acc); font-weight:bold;'>linkedin.com/in/mohamedelsayid</a><br>• <strong>الموقع:</strong> القاهرة، مصر (معافى نهائياً من التجنيد ومتاح للأدوار القيادية والاستشارات)." :
+      "<strong>Direct Contact & Hiring Information:</strong><br>• <strong>Phone / WhatsApp:</strong> <a href='https://wa.me/201503333155' target='_blank' style='color:var(--grn); font-weight:bold;'>+20 150 333 3155</a><br>• <strong>Email:</strong> <a href='mailto:mohamed-sayid@outlook.com' style='color:var(--acc); font-weight:bold;'>mohamed-sayid@outlook.com</a><br>• <strong>LinkedIn:</strong> <a href='https://www.linkedin.com/in/mohamedelsayid' target='_blank' style='color:var(--acc); font-weight:bold;'>linkedin.com/in/mohamedelsayid</a><br>• <strong>Location:</strong> Cairo, Egypt · Permanently Exempt from Military Service · Open to Senior Roles & Consulting.";
+  }
+
+  return isAr ?
+    "<strong>محمد سعيد لطفي</strong> هو مهندس بنية تحتية وأمن معلومات (Infrastructure & Security Engineer) ومدير عمليات تقنية المعلومات في شركة Viion (يدير 5 مواقع وفريقاً من 5 مهندسين)، ولديه 5 سنوات خبرة عملية في شبكات Cisco (حاصل على CCNA)، وأنظمة Windows Server و AD، وبيئات المستشفيات (HIS/PACS)، ومشاريع مع كبرى المؤسسات مثل المصرية للاتصالات WE وبنك الإسكندرية وشركات في كندا.<br><br>هل تود الاستفسار عن شهاداته، أو مشاريعه، أو طريقة التواصل معه؟" :
+    "<strong>Mohamed Sayid Lotfy</strong> is an Infrastructure & Security Engineer and IT Operations Manager at Viion (managing 5 branch sites with a 5-person technical team). He has 5 years of hands-on experience in enterprise Cisco networking (CCNA certified), Windows Server/Active Directory, Hyper-V/VMware, and Fortinet/pfSense security, alongside projects for Telecom Egypt (WE), Bank of Alexandria, and international clients in Canada and Argentina.<br><br>What would you like to know more about? You can ask about his certifications, projects, or direct contact info!";
+}

@@ -31,7 +31,10 @@
 <!-- LOADER -->
 <div id="loader">
   <div class="ld-scan"></div>
-  <div class="ld-brand">MSL_OS v2.0.4 // Kernel: 6.1.0-21-amd64</div>
+  <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+    <div class="ld-brand">MSL_OS v2.0.4 // Kernel: 6.1.0-21-amd64</div>
+    <button class="ld-skip-btn" onclick="skipBoot()" title="Skip Boot Sequence">Skip Boot ➔</button>
+  </div>
   
   <div class="ld-main-wrap">
     <div class="boot-logs" id="boot-logs"></div>
@@ -133,10 +136,22 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 6,2 18,2 18,9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Print CV</a>
         </div>
         <div class="hero-stats" id="hstats" style="opacity:0">
-          <div class="hstat"><div class="hstat-n">5+</div><div class="hstat-l">Yrs Experience</div></div>
-          <div class="hstat"><div class="hstat-n">75%</div><div class="hstat-l">Network Boost</div></div>
+          <div class="hstat"><div class="hstat-n">5</div><div class="hstat-l">Yrs Experience</div></div>
+          <div class="hstat"><div class="hstat-n">5</div><div class="hstat-l">Sites Managed</div></div>
           <div class="hstat"><div class="hstat-n">90%</div><div class="hstat-l">Incidents Reduced</div></div>
-          <div class="hstat"><div class="hstat-n">5</div><div class="hstat-l">Certifications</div></div>
+          <div class="hstat"><div class="hstat-n">99%+</div><div class="hstat-l">Critical Uptime</div></div>
+        </div>
+
+        <!-- ENTERPRISE TRUST BAR -->
+        <div class="enterprise-trust-bar" id="etrust">
+          <div class="etrust-label">// ENTERPRISE CLIENTS &amp; PROJECT HIGHLIGHTS</div>
+          <div class="etrust-list">
+            <div class="et-badge"><span class="et-ico">🏛️</span> <strong>Bank of Alexandria</strong> <span class="et-sub">Branch IT Infrastructure</span></div>
+            <div class="et-badge"><span class="et-ico">📡</span> <strong>Telecom Egypt (WE)</strong> <span class="et-sub">Server Refresh</span></div>
+            <div class="et-badge"><span class="et-ico">🍁</span> <strong>Art Topia (Canada)</strong> <span class="et-sub">Global Remote Support</span></div>
+            <div class="et-badge"><span class="et-ico">⚡</span> <strong>Viion</strong> <span class="et-sub">5 Branch Sites Managed</span></div>
+            <div class="et-badge"><span class="et-ico">🏥</span> <strong>Main Sharia Hospital</strong> <span class="et-sub">Medical HIS/PACS</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1526,6 +1541,42 @@
   </div><!-- /app -->
 
 <script src="script.js"></script>
+
+
+<!-- AI ASSISTANT LAUNCHER -->
+<div id="ai-assistant-btn" onclick="toggleAIAssistant()" title="Ask MSL AI Assistant">
+  <div class="ai-pulse"></div>
+  <span class="ai-btn-icon">🤖</span>
+  <span class="ai-btn-label">Ask MSL AI</span>
+</div>
+
+<!-- AI ASSISTANT CHAT WINDOW -->
+<div id="ai-modal" style="display:none">
+  <div class="ai-header">
+    <div class="ai-header-left">
+      <div class="bdot"></div>
+      <span class="ai-title">MSL_AI // SysAdmin &amp; IT Knowledge Base</span>
+    </div>
+    <button class="ai-close-btn" onclick="toggleAIAssistant()">✕</button>
+  </div>
+  <div class="ai-body" id="ai-messages">
+    <div class="ai-msg ai-msg-bot">
+      Hello! I am Mohamed's AI Assistant. Ask me anything about his 5 years of IT experience, Cisco CCNA, Viion management, homelab setup, or enterprise projects!
+      <br><span style="font-size:10px; color:var(--mut);">يمكنك سؤالي أيضاً بالعربية عن خبرات محمد ومشاريعه.</span>
+    </div>
+  </div>
+  <div class="ai-chips">
+    <button class="ai-chip" onclick="askAIClick('Tell me about Mohamed background and current role')">💼 Background</button>
+    <button class="ai-chip" onclick="askAIClick('Has he worked with banks or telecom like WE and Bank of Alexandria?')">🏦 Banks &amp; Telecom</button>
+    <button class="ai-chip" onclick="askAIClick('What certifications does he hold?')">📜 Certifications</button>
+    <button class="ai-chip" onclick="askAIClick('What is his Homelab and Automation setup?')">🖥️ Homelab</button>
+    <button class="ai-chip" onclick="askAIClick('How can I contact or hire him?')">📞 Contact / Hire</button>
+  </div>
+  <form class="ai-input-row" onsubmit="handleAISubmit(event)">
+    <input type="text" id="ai-input" placeholder="Ask about experience, Cisco, servers..." autocomplete="off">
+    <button type="submit" class="ai-send-btn">Send ↵</button>
+  </form>
+</div>
 
 </body>
 </html>

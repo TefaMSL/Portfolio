@@ -595,3 +595,263 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
   .home-sub{font-size:12px}
   .bar-btn span{display:none}
 }
+
+/* ══ ENTERPRISE TRUST BAR ══ */
+.enterprise-trust-bar {
+  margin-top: 20px;
+  padding: 14px 18px;
+  background: var(--surf);
+  border: 1px solid var(--brd);
+  border-radius: var(--r);
+  backdrop-filter: blur(10px);
+  transition: border-color .3s;
+}
+.enterprise-trust-bar:hover {
+  border-color: rgba(74,144,184,0.4);
+}
+.etrust-label {
+  font-size: 9px;
+  letter-spacing: .16em;
+  color: var(--acc);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-family: var(--mono);
+  font-weight: 700;
+}
+.etrust-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.et-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  background: rgba(74,144,184,0.06);
+  border: 1px solid rgba(74,144,184,0.18);
+  border-radius: 4px;
+  font-size: 11px;
+  color: var(--txt);
+  font-family: var(--mono);
+  transition: all .25s ease;
+}
+.et-badge:hover {
+  border-color: var(--acc);
+  background: var(--bar-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74,144,184,0.15);
+}
+.et-badge .et-sub {
+  font-size: 9px;
+  color: var(--txt2);
+  margin-left: 2px;
+  opacity: 0.85;
+}
+
+/* ══ SKIP BOOT BUTTON ══ */
+.ld-skip-btn {
+  background: rgba(74,144,184,0.1);
+  border: 1px solid rgba(74,144,184,0.35);
+  color: var(--acc);
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+  z-index: 10000;
+}
+.ld-skip-btn:hover {
+  background: var(--acc);
+  color: #fff;
+  border-color: var(--acc);
+  box-shadow: 0 0 12px rgba(74,144,184,0.5);
+}
+
+/* ══ AI ASSISTANT WIDGET ══ */
+#ai-assistant-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, rgba(8,15,24,0.96), rgba(12,22,32,0.96));
+  border: 1px solid var(--acc);
+  border-radius: 30px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 16px rgba(74,144,184,0.35);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  font-family: var(--mono);
+  color: var(--txt);
+}
+[data-theme="light"] #ai-assistant-btn {
+  background: #ffffff;
+  border-color: var(--acc);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12), 0 0 12px rgba(30,106,154,0.25);
+}
+#ai-assistant-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 36px rgba(74,144,184,0.5);
+}
+.ai-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--grn);
+  box-shadow: 0 0 8px var(--grn);
+  animation: pulse 2s infinite;
+}
+.ai-btn-icon { font-size: 15px; }
+.ai-btn-label { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; color: var(--acc); }
+
+/* AI Modal Window */
+#ai-modal {
+  position: fixed;
+  bottom: 84px;
+  right: 24px;
+  width: 400px;
+  max-width: calc(100vw - 32px);
+  height: 520px;
+  max-height: calc(100vh - 120px);
+  z-index: 9100;
+  background: rgba(8, 15, 24, 0.96);
+  border: 1px solid var(--brd);
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 30px rgba(74,144,184,0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  animation: aiSlideUp 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-theme="light"] #ai-modal {
+  background: rgba(255, 255, 255, 0.98);
+}
+@keyframes aiSlideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.ai-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(74,144,184,0.08);
+  border-bottom: 1px solid var(--brd);
+}
+.ai-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ai-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--acc);
+  letter-spacing: 0.05em;
+}
+.ai-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--mut);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px;
+  transition: color 0.2s;
+}
+.ai-close-btn:hover { color: var(--red); }
+.ai-body {
+  flex: 1;
+  padding: 14px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.ai-msg {
+  padding: 10px 14px;
+  border-radius: 8px;
+  max-width: 90%;
+  word-break: break-word;
+}
+.ai-msg-bot {
+  align-self: flex-start;
+  background: var(--surf2);
+  border: 1px solid var(--brd);
+  color: var(--txt);
+}
+.ai-msg-user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, var(--acc), var(--acc2));
+  color: #fff;
+  border: 1px solid var(--acc);
+}
+.ai-chips {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  overflow-x: auto;
+  border-top: 1px solid rgba(74,144,184,0.1);
+  background: rgba(0,0,0,0.1);
+  scrollbar-width: none;
+}
+.ai-chips::-webkit-scrollbar { display: none; }
+.ai-chip {
+  background: transparent;
+  border: 1px solid var(--brd);
+  color: var(--txt2);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.ai-chip:hover {
+  border-color: var(--acc);
+  color: var(--acc);
+  background: var(--bar-bg);
+}
+.ai-input-row {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid var(--brd);
+  gap: 6px;
+  background: var(--surf);
+}
+#ai-input {
+  flex: 1;
+  background: var(--surf2);
+  border: 1px solid var(--brd);
+  border-radius: 4px;
+  padding: 8px 12px;
+  color: var(--txt);
+  font-family: var(--mono);
+  font-size: 11px;
+  outline: none;
+}
+#ai-input:focus { border-color: var(--acc); }
+.ai-send-btn {
+  background: var(--acc);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+.ai-send-btn:hover { background: var(--acc2); }
