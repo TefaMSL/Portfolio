@@ -1212,7 +1212,7 @@ function generateAIAnswer(q) {
   }
 
   return isAr ?
-    "<strong>محمد سعيد لطفي</strong> هو مهندس بنية تحتية وأمن معلومات (Infrastructure & Security Engineer) ومدير عمليات تقنية المعلومات في شركة Viion (يدير 5 مواقع وفريقاً من 5 مهندسين)، ولديه 5 سنوات خبرة عملية في شبكات Cisco (حاصل على CCNA)، وأنظمة Windows Server و AD، وبيئات المستشفيات (HIS/PACS)، ومشاريع مع كبرى المؤسسات مثل المصرية للاتصالات WE وبنك الإسكندرية وشركات في كندا.<br><br>هل تود الاستفسار عن شهاداته، أو مشاريعه، أو طريقة التواصل معه؟" :
+    "<strong>محمد سيد لطفي</strong> هو مهندس بنية تحتية وأمن معلومات (Infrastructure & Security Engineer) ومدير عمليات تقنية المعلومات في شركة Viion (يدير 5 مواقع وفريقاً من 5 مهندسين)، ولديه 5 سنوات خبرة عملية في شبكات Cisco (حاصل على CCNA)، وأنظمة Windows Server و AD، وبيئات المستشفيات (HIS/PACS)، ومشاريع مع كبرى المؤسسات مثل المصرية للاتصالات WE وبنك الإسكندرية وشركات في كندا.<br><br>هل تود الاستفسار عن شهاداته، أو مشاريعه، أو طريقة التواصل معه؟" :
     "<strong>Mohamed Sayid Lotfy</strong> is an Infrastructure & Security Engineer and IT Operations Manager at Viion (managing 5 branch sites with a 5-person technical team). He has 5 years of hands-on experience in enterprise Cisco networking (CCNA certified), Windows Server/Active Directory, Hyper-V/VMware, and Fortinet/pfSense security, alongside projects for Telecom Egypt (WE), Bank of Alexandria, and international clients in Canada and Argentina.<br><br>What would you like to know more about? You can ask about his certifications, projects, or direct contact info!";
 }
 
@@ -1263,6 +1263,17 @@ function setLang(lang) {
   localStorage.setItem("site_lang", lang);
   const html = document.documentElement;
   const langBtn = document.getElementById("lang-btn");
+  const aiBtnLabel = document.querySelector(".ai-btn-label");
+  const aiInput = document.getElementById("ai-input");
+  const aiTitle = document.querySelector(".ai-title");
+  const aiChips = document.getElementById("ai-chips");
+  const aiBody = document.getElementById("ai-body");
+
+  // Hero Buttons
+  const btnSummary = document.querySelector(".hero-btns a.hbtn-p");
+  const btnCV = document.querySelector(".hero-btns a[download]");
+  const btnCLI = document.querySelector(".hero-btns button.hbtn-s");
+  const backBtn = document.getElementById("back-btn");
   
   if (lang === "ar") {
     html.setAttribute("dir", "rtl");
@@ -1279,16 +1290,34 @@ function setLang(lang) {
     const h1a = document.getElementById("h1a");
     if (h1a) h1a.textContent = "محمد";
     const h1b = document.getElementById("h1b");
-    if (h1b) h1b.textContent = "سعيد لطفي";
+    if (h1b) h1b.textContent = "سيد لطفي";
     
     const hrole = document.getElementById("hrole");
-    if (hrole) hrole.textContent = "مهندس بنية تحتية وأمن معلومات · مدير عمليات تقنية المعلومات · شبكات سيسكو · افتراضية";
+    if (hrole) hrole.textContent = "مهندس بنية تحتية وأمن معلومات · مدير عمليات تقنية المعلومات · شبكات سيسكو · أنظمة افتراضية";
     
     const hsub = document.getElementById("hsub");
     if (hsub) hsub.textContent = "مهندس بنية تحتية وأمن معلومات بخبرة 5 سنوات في قطاعات المؤسسات الكبرى، الرعاية الصحية، والقطاع المالي. أدير حالياً العمليات التقنية والأمنية عبر 5 مواقع بفريق من 5 مهندسين في شركة Viion، متخصص في شبكات Cisco (معتمد CCNA)، خوادم Windows Server و Active Directory، والافتراضية Hyper-V/VMware، وأمن Fortinet/pfSense.";
     
+    if (btnSummary) btnSummary.textContent = "عرض الملخص المهني";
+    if (btnCV) btnCV.textContent = "تحميل السيرة الذاتية (CV)";
+    if (btnCLI) btnCLI.textContent = "سطر الأوامر CLI";
+    if (backBtn) backBtn.textContent = "→ العودة للرئيسية";
+
     const etrust = document.querySelector(".etrust-label");
     if (etrust) etrust.textContent = "// أبرز المؤسسات والمشاريع المنجزة";
+
+    // AI Assistant widget
+    if (aiBtnLabel) aiBtnLabel.textContent = "اسأل الذكاء الاصطناعي";
+    if (aiTitle) aiTitle.textContent = "المساعد الذكي // قاعدة بيانات محمد سيد لطفي";
+    if (aiInput) aiInput.placeholder = "اسأل عن خبرات، شهادات، أو مشاريع محمد...";
+    if (aiChips) {
+      aiChips.innerHTML = `
+        <button class="ai-chip" onclick="askAIClick('نبذة عن محمد سيد وخبراته')">💼 نبذة مهنية</button>
+        <button class="ai-chip" onclick="askAIClick('ما هي شهادات محمد المعتمدة؟')">📜 الشهادات</button>
+        <button class="ai-chip" onclick="askAIClick('أبرز مشاريع المؤسسات والبنوك')">🏢 المشاريع</button>
+        <button class="ai-chip" onclick="askAIClick('معلومات التواصل والتوظيف')">📞 تواصل معي</button>
+      `;
+    }
     
     // Nav cards
     const cards = document.querySelectorAll(".nc");
@@ -1328,9 +1357,27 @@ function setLang(lang) {
     const hsub = document.getElementById("hsub");
     if (hsub) hsub.textContent = "Infrastructure & Security Engineer with 5 years of hands-on experience across enterprise, healthcare, and financial-sector IT. Currently leading IT operations across 5 branch sites with a 5-person team, specializing in Cisco networking (CCNA), Windows Server/Active Directory, Hyper-V/VMware, and Fortinet/pfSense security.";
     
+    if (btnSummary) btnSummary.textContent = "View Summary";
+    if (btnCV) btnCV.textContent = "Download CV";
+    if (btnCLI) btnCLI.textContent = "Terminal Mode";
+    if (backBtn) backBtn.textContent = "← Back to Dashboard";
+
     const etrust = document.querySelector(".etrust-label");
     if (etrust) etrust.textContent = "// ENTERPRISE CLIENTS & KEY PROJECTS";
-    
+
+    // AI Assistant widget
+    if (aiBtnLabel) aiBtnLabel.textContent = "Ask MSL AI";
+    if (aiTitle) aiTitle.textContent = "MSL_AI // SysAdmin & IT Knowledge Base";
+    if (aiInput) aiInput.placeholder = "Ask about Mohamed's experience, certs, projects...";
+    if (aiChips) {
+      aiChips.innerHTML = `
+        <button class="ai-chip" onclick="askAIClick('Tell me about Mohamed background and current role')">💼 Background</button>
+        <button class="ai-chip" onclick="askAIClick('What certifications does Mohamed hold?')">📜 Certifications</button>
+        <button class="ai-chip" onclick="askAIClick('Key enterprise projects and clients')">🏢 Projects</button>
+        <button class="ai-chip" onclick="askAIClick('How can I contact or hire Mohamed?')">📞 Contact & Hire</button>
+      `;
+    }
+
     const cards = document.querySelectorAll(".nc");
     const EN_NAV = [
       { name: "Summary", hint: "Professional overview" },
