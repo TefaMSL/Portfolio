@@ -947,6 +947,57 @@ html[dir="rtl"] .ai-msg-bot {
 html[dir="rtl"] .ai-msg-user {
   align-self: flex-end;
 }
+html[dir="rtl"] .pov {
+  text-align: right;
+  direction: rtl;
+}
+html[dir="rtl"] .sum-box {
+  border-left: 1px solid var(--brd);
+  border-right: 3px solid var(--acc);
+  border-radius: var(--r) 0 0 var(--r);
+  text-align: right;
+}
+html[dir="rtl"] .sum-box::after {
+  right: auto;
+  left: 14px;
+}
+html[dir="rtl"] .skills-grid,
+html[dir="rtl"] .sg,
+html[dir="rtl"] .skills-bars-wrap,
+html[dir="rtl"] .certs-grid,
+html[dir="rtl"] .edu-c,
+html[dir="rtl"] .proj-c,
+html[dir="rtl"] .cs-card,
+html[dir="rtl"] .sp-tcard,
+html[dir="rtl"] .contact-layout {
+  direction: rtl;
+  text-align: right;
+}
+html[dir="rtl"] .tl-ul li,
+html[dir="rtl"] .cs-results-list li {
+  padding-left: 0;
+  padding-right: 16px;
+  text-align: right;
+}
+html[dir="rtl"] .tl-ul li::before,
+html[dir="rtl"] .cs-results-list li::before {
+  left: auto;
+  right: 0;
+  transform: rotate(180deg);
+}
+html[dir="rtl"] .bar-row {
+  flex-direction: row;
+}
+html[dir="rtl"] .bar-pct {
+  text-align: left;
+}
+html[dir="rtl"] .edu-c::before,
+html[dir="rtl"] .cs-card::before,
+html[dir="rtl"] .cci::before,
+html[dir="rtl"] .sp-cred::before {
+  left: auto;
+  right: 0;
+}
 
 
 /* ══ 2-COLUMN HERO WITH SIDE ACTIONS ══ */

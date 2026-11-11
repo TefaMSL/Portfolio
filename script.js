@@ -434,7 +434,7 @@ function goPage(id, pushHash = true) {
   const bb = document.getElementById("back-btn");
   bb.style.display = "flex";
   const pt = document.getElementById("page-title"); 
-  pt.textContent = NAMES[id] || id.toUpperCase();
+  pt.textContent = (currentLang === "ar" && AR_NAMES[id]) ? AR_NAMES[id] : (NAMES[id] || id.toUpperCase());
   gsap.timeline({ onComplete: () => { gsap.set([home, ov], { clearProps: "filter" }) } })
     .to(home, { x: "-4%", opacity: 0, filter: "blur(4px)", duration: .35, ease: "power2.inOut" })
     .fromTo(ov, { filter: "blur(4px)" }, { opacity: 1, x: "0%", filter: "blur(0px)", duration: .4, ease: "power2.out" }, "-=.1");
@@ -1629,13 +1629,27 @@ function setLang(lang) {
       if (pt) pt.textContent = NAMES[active];
     }
   }
+
+  // Apply complete translation across all 14 internal pages
+  if (typeof applyAllPageTranslations === "function") {
+    applyAllPageTranslations(lang);
+  }
+
+  // If a subpage is currently open, update its title immediately
+  if (active) {
+    const pt = document.getElementById("page-title");
+    if (pt) {
+      pt.textContent = (lang === "ar" && AR_NAMES[active]) ? AR_NAMES[active] : (NAMES[active] || active.toUpperCase());
+    }
+    if (active === "skills" || active === "analysis") {
+      animateBars(active);
+    }
+  }
 }
 
 // Auto-apply saved language on load
 window.addEventListener("DOMContentLoaded", () => {
-  if (currentLang === "ar") {
-    setLang("ar");
-  }
+  setLang(currentLang);
 });
 
 
