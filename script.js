@@ -1367,6 +1367,13 @@ function setLang(lang) {
     const etN5 = document.getElementById("et-name5"); if (etN5) etN5.textContent = "مستشفى الشريعة الرئيسي";
     const etS5 = document.getElementById("et-sub5"); if (etS5) etS5.textContent = "عزل وحماية أنظمة HIS/PACS الطبية";
 
+    // Social Proof Typing Card
+    const spTypLbl = document.getElementById("sp-typing-lbl"); if (spTypLbl) spTypLbl.textContent = "جارٍ تدوين توصية جديدة...";
+    const spTypQuote = document.getElementById("sp-typing-quote"); if (spTypQuote) spTypQuote.textContent = "يتم حالياً جمع وتدقيق التوصيات والتقييمات الفصلية من الشركاء والمشرفين التقنيين حول أحدث مشاريع البنية التحتية والأنظمة الطبية والبنكية...";
+    const spTypAuth = document.getElementById("sp-typing-author"); if (spTypAuth) spTypAuth.textContent = "شريك ومسؤول تقني";
+    const spTypRole = document.getElementById("sp-typing-role"); if (spTypRole) spTypRole.textContent = "تقييم أداء فني · جارٍ التدقيق والاعتماد";
+    const spTypBadge = document.getElementById("sp-typing-badge"); if (spTypBadge) spTypBadge.textContent = "⏳ قيد المراجعة";
+
     // AI Assistant widget
     if (aiBtnLabel) aiBtnLabel.textContent = "اسأل الذكاء الاصطناعي";
     if (aiTitle) aiTitle.textContent = "المساعد الذكي // قاعدة بيانات محمد سيد لطفي";
@@ -1488,6 +1495,13 @@ function setLang(lang) {
     const etS4 = document.getElementById("et-sub4"); if (etS4) etS4.textContent = "5 Branch Sites Managed";
     const etN5 = document.getElementById("et-name5"); if (etN5) etN5.textContent = "Main Sharia Hospital";
     const etS5 = document.getElementById("et-sub5"); if (etS5) etS5.textContent = "Medical HIS/PACS";
+
+    // Social Proof Typing Card
+    const spTypLbl = document.getElementById("sp-typing-lbl"); if (spTypLbl) spTypLbl.textContent = "Incoming Endorsement...";
+    const spTypQuote = document.getElementById("sp-typing-quote"); if (spTypQuote) spTypQuote.textContent = "Currently gathering and verifying quarterly peer reviews and stakeholder endorsements from ongoing enterprise, banking, and healthcare IT deployments...";
+    const spTypAuth = document.getElementById("sp-typing-author"); if (spTypAuth) spTypAuth.textContent = "Enterprise Stakeholder";
+    const spTypRole = document.getElementById("sp-typing-role"); if (spTypRole) spTypRole.textContent = "Peer Review · Verification in Progress";
+    const spTypBadge = document.getElementById("sp-typing-badge"); if (spTypBadge) spTypBadge.textContent = "⏳ In Review";
 
     // AI Assistant widget
     if (aiBtnLabel) aiBtnLabel.textContent = "Ask MSL AI";
