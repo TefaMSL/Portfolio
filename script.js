@@ -1304,9 +1304,7 @@ function setLang(lang) {
     if (backBtn) backBtn.textContent = "→ العودة للرئيسية";
 
     const etrust = document.querySelector(".etrust-label");
-        if (etrust) etrust.textContent = "// أبرز المؤسسات والمشاريع المنجزة";
-
-
+    if (etrust) etrust.textContent = "// أبرز المؤسسات والمشاريع المنجزة";
 
     // AI Assistant widget
     if (aiBtnLabel) aiBtnLabel.textContent = "اسأل الذكاء الاصطناعي";
@@ -1365,9 +1363,7 @@ function setLang(lang) {
     if (backBtn) backBtn.textContent = "← Back to Dashboard";
 
     const etrust = document.querySelector(".etrust-label");
-        if (etrust) etrust.textContent = "// ENTERPRISE CLIENTS & KEY PROJECTS";
-
-
+    if (etrust) etrust.textContent = "// ENTERPRISE CLIENTS & KEY PROJECTS";
 
     // AI Assistant widget
     if (aiBtnLabel) aiBtnLabel.textContent = "Ask MSL AI";
