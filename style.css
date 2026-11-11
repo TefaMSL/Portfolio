@@ -1260,7 +1260,7 @@ html[dir="rtl"] .home-actions-col .hero-btns { justify-content: flex-start; }
   color: var(--txt) !important;
 }
 .home-meta {
-  margin-bottom: 0 !important;
+  margin-bottom: 16px !important;
   gap: 10px 22px !important;
 }
 .home-meta .hm {
@@ -1268,6 +1268,23 @@ html[dir="rtl"] .home-actions-col .hero-btns { justify-content: flex-start; }
 }
 .home-meta .hml {
   font-size: 11px !important;
+}
+.hero-btns {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 16px !important;
+  margin-bottom: 0 !important;
+}
+.hbtn {
+  padding: 10px 16px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  border-radius: 5px !important;
+}
+.hbtn svg {
+  width: 14px !important;
+  height: 14px !important;
 }
 .home-noc-panel {
   border-radius: 8px !important;
@@ -1324,22 +1341,8 @@ html[dir="rtl"] .home-actions-col .hero-btns { justify-content: flex-start; }
   font-size: 12px !important;
   padding: 7px 10px !important;
 }
-.home-actions-col .hero-btns {
-  gap: 8px !important;
-  margin-bottom: 0 !important;
-}
-.home-actions-col .hbtn {
-  padding: 10px 16px !important;
-  font-size: 12px !important;
-  font-weight: 700 !important;
-  border-radius: 5px !important;
-}
-.home-actions-col .hbtn svg {
-  width: 14px !important;
-  height: 14px !important;
-}
 .home-actions-col .hero-stats {
-  margin-top: 0 !important;
+  margin-top: 12px !important;
   padding-top: 14px !important;
   gap: 10px !important;
 }
