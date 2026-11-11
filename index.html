@@ -156,188 +156,23 @@
         </div>
       </div>
 
-      <!-- CYBER NOC & TOPOLOGY VISUALIZER -->
-      <div class="home-noc-panel" id="home-noc">
-        <!-- Top bar with tabs -->
-        <div class="noc-header">
-          <div class="noc-title-wrap">
-            <span class="noc-pulse-dot"></span>
-            <span class="noc-title" id="noc-hdr-title">MSL_NOC // INFRASTRUCTURE MONITOR</span>
-          </div>
-          <div class="noc-tabs">
-            <button class="noc-tab active" id="noc-tab-telemetry" onclick="switchNocTab('telemetry')">
-              <span class="noc-tab-ico">📊</span> <span id="noc-tab-telemetry-txt">Telemetry</span>
-            </button>
-            <button class="noc-tab" id="noc-tab-topology" onclick="switchNocTab('topology')">
-              <span class="noc-tab-ico">🌐</span> <span id="noc-tab-topology-txt">Topology</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- TAB 1: LIVE TELEMETRY & PING -->
-        <div class="noc-tab-body" id="noc-body-telemetry">
-          <div class="noc-grid">
-            <div class="noc-card">
-              <div class="noc-card-hdr">
-                <span class="noc-kpi-lbl" id="noc-kpi-1-lbl">Cisco Enterprise Core</span>
-                <span class="noc-badge green">● ONLINE</span>
-              </div>
-              <div class="noc-val" id="noc-kpi-1-val">5 Sites · 200+ Nodes</div>
-              <div class="noc-sub" id="noc-kpi-1-sub">OSPF Area 0 · L3 Routing · 12ms</div>
-            </div>
-            <div class="noc-card">
-              <div class="noc-card-hdr">
-                <span class="noc-kpi-lbl" id="noc-kpi-2-lbl">Virtualization Farm</span>
-                <span class="noc-badge cyan">● HEALTHY</span>
-              </div>
-              <div class="noc-val" id="noc-kpi-2-val">14 Active VMs</div>
-              <div class="noc-sub" id="noc-kpi-2-sub">VMware ESXi 8.0 &amp; Proxmox</div>
-            </div>
-            <div class="noc-card">
-              <div class="noc-card-hdr">
-                <span class="noc-kpi-lbl" id="noc-kpi-3-lbl">Security Defense</span>
-                <span class="noc-badge purple">● ACTIVE</span>
-              </div>
-              <div class="noc-val" id="noc-kpi-3-val">Wazuh + Suricata IDS</div>
-              <div class="noc-sub" id="noc-kpi-3-sub">pfSense Firewall · 0 Breaches</div>
-            </div>
-            <div class="noc-card">
-              <div class="noc-card-hdr">
-                <span class="noc-kpi-lbl" id="noc-kpi-4-lbl">Disaster Recovery</span>
-                <span class="noc-badge amber">● IMMUTABLE</span>
-              </div>
-              <div class="noc-val" id="noc-kpi-4-val">Veeam Backup (ZFS)</div>
-              <div class="noc-sub" id="noc-kpi-4-sub">RTO &lt; 2h · RPO 15min</div>
-            </div>
-          </div>
-
-          <!-- Interactive Ping Console -->
-          <div class="noc-console-wrap">
-            <div class="noc-con-hdr">
-              <span class="noc-con-title"><span class="terminal-dot"></span> LIVE ICMP PING</span>
-              <span class="noc-con-hint" id="noc-con-hint">Click a node to test:</span>
-            </div>
-            <div class="noc-ping-actions">
-              <button class="noc-ping-btn" onclick="runNocPing('cisco')">⚡ Cisco Core (Viion)</button>
-              <button class="noc-ping-btn" onclick="runNocPing('wazuh')">🛡️ Wazuh SIEM</button>
-              <button class="noc-ping-btn" onclick="runNocPing('alex')">🏛️ Alex Bank Branch</button>
-              <button class="noc-ping-btn" onclick="runNocPing('we')">📡 Telecom Egypt (WE)</button>
-            </div>
-            <div class="noc-term-out" id="noc-term-out">
-              <div class="noc-t-line green">msl@noc:~$ ping -c 2 10.0.1.1 (Cisco-Core)</div>
-              <div class="noc-t-line">64 bytes from 10.0.1.1: icmp_seq=1 ttl=64 time=1.24 ms</div>
-              <div class="noc-t-line cyan">64 bytes from 10.0.1.1: icmp_seq=2 ttl=64 time=1.18 ms [OK - 0% LOSS]</div>
-            </div>
-          </div>
-
-          <!-- Verified Badges -->
-          <div class="noc-cred-bar">
-            <span class="noc-cbadge">🏆 Cisco CCNA (#CSCO15040282)</span>
-            <span class="noc-cbadge">⚙️ Ansible &amp; DevOps</span>
-            <span class="noc-cbadge">🎖️ Military Exempt</span>
-          </div>
-        </div>
-
-        <!-- TAB 2: INTERACTIVE NETWORK TOPOLOGY -->
-        <div class="noc-tab-body" id="noc-body-topology" style="display:none;">
-          <div class="noc-topo-wrap">
-            <svg class="noc-topo-svg" viewBox="0 0 460 210">
-              <defs>
-                <linearGradient id="coreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#4a90b8"/>
-                  <stop offset="100%" stop-color="#00ff9d"/>
-                </linearGradient>
-                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="3" result="glow"/>
-                  <feComposite in="SourceGraphic" in2="glow" operator="over"/>
-                </filter>
-              </defs>
-
-              <!-- Connection Lines -->
-              <!-- Core to 5 Branches -->
-              <line x1="230" y1="105" x2="60" y2="40" class="topo-line" />
-              <!-- Core to Hospital -->
-              <line x1="230" y1="105" x2="60" y2="170" class="topo-line" />
-              <!-- Core to Wazuh -->
-              <line x1="230" y1="105" x2="230" y2="25" class="topo-line active-line" />
-              <!-- Core to Virtualization -->
-              <line x1="230" y1="105" x2="400" y2="40" class="topo-line" />
-              <!-- Core to Veeam -->
-              <line x1="230" y1="105" x2="400" y2="170" class="topo-line" />
-
-              <!-- Central Node: Viion HQ Cisco Core -->
-              <g class="topo-node central" onclick="showNodeDetails('core')">
-                <circle cx="230" cy="105" r="26" fill="#04121d" stroke="url(#coreGrad)" stroke-width="2.5" filter="url(#glow)"/>
-                <circle cx="230" cy="105" r="32" fill="none" stroke="#4a90b8" stroke-width="1" stroke-dasharray="3 3" class="topo-spin"/>
-                <text x="230" y="103" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold" font-family="monospace">CISCO</text>
-                <text x="230" y="115" text-anchor="middle" fill="#00ff9d" font-size="8" font-family="monospace">CORE L3</text>
-              </g>
-
-              <!-- Node 1: 5 Branches -->
-              <g class="topo-node" onclick="showNodeDetails('branches')">
-                <circle cx="60" cy="40" r="18" fill="#071b26" stroke="#4a90b8" stroke-width="1.8"/>
-                <text x="60" y="38" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold" font-family="monospace">5 SITES</text>
-                <text x="60" y="48" text-anchor="middle" fill="#4a90b8" font-size="7" font-family="monospace">IPsec</text>
-              </g>
-
-              <!-- Node 2: Hospital HIS/PACS -->
-              <g class="topo-node" onclick="showNodeDetails('hospital')">
-                <circle cx="60" cy="170" r="18" fill="#071b26" stroke="#e74c3c" stroke-width="1.8"/>
-                <text x="60" y="168" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold" font-family="monospace">HOSPITAL</text>
-                <text x="60" y="178" text-anchor="middle" fill="#e74c3c" font-size="7" font-family="monospace">HIS/PACS</text>
-              </g>
-
-              <!-- Node 3: Wazuh SIEM -->
-              <g class="topo-node" onclick="showNodeDetails('wazuh')">
-                <circle cx="230" cy="25" r="18" fill="#071b26" stroke="#9b59b6" stroke-width="1.8"/>
-                <text x="230" y="23" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold" font-family="monospace">WAZUH</text>
-                <text x="230" y="33" text-anchor="middle" fill="#9b59b6" font-size="7" font-family="monospace">SIEM/IDS</text>
-              </g>
-
-              <!-- Node 4: Virtualization Cluster -->
-              <g class="topo-node" onclick="showNodeDetails('vms')">
-                <circle cx="400" cy="40" r="18" fill="#071b26" stroke="#00c9ff" stroke-width="1.8"/>
-                <text x="400" y="38" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold" font-family="monospace">14 VMs</text>
-                <text x="400" y="48" text-anchor="middle" fill="#00c9ff" font-size="7" font-family="monospace">ESXi/PVE</text>
-              </g>
-
-              <!-- Node 5: Veeam Immutable Backup -->
-              <g class="topo-node" onclick="showNodeDetails('veeam')">
-                <circle cx="400" cy="170" r="18" fill="#071b26" stroke="#f39c12" stroke-width="1.8"/>
-                <text x="400" y="168" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold" font-family="monospace">VEEAM</text>
-                <text x="400" y="178" text-anchor="middle" fill="#f39c12" font-size="7" font-family="monospace">ZFS/RTO</text>
-              </g>
-            </svg>
-
-            <!-- Topology Node Details Dynamic Card -->
-            <div class="topo-detail-box" id="topo-detail-box">
-              <div class="topo-d-hdr">
-                <span class="topo-d-tag" id="topo-d-tag">NODE: CISCO CORE L3 (VIIION HQ)</span>
-                <span class="topo-d-ip" id="topo-d-ip">10.0.0.1/24 · VLAN 10,20,30</span>
-              </div>
-              <p class="topo-d-txt" id="topo-d-txt">
-                Automated multi-site network core orchestrating 200+ Cisco network devices across 5 branch locations with Layer 3 OSPF routing and sub-second failover.
-              </p>
-            </div>
-          </div>
-        </div>
+      <!-- NAV GRID (IN PLACE OF EMPTY SPACE IN HERO) -->
+      <div class="nav-grid" id="nav-cards" style="opacity:0">
+        <div class="nc nc-0" onclick="goPage('summary')"><div class="nc-ico">👤</div><div class="nc-name">Summary</div><div class="nc-hint">Professional overview</div><div class="nc-arr">↗</div></div>
+        <div class="nc nc-1" onclick="goPage('experience')"><div class="nc-ico">💼</div><div class="nc-name">Experience</div><div class="nc-hint">Work history &amp; roles</div><div class="nc-arr">↗</div></div>
+        <div class="nc nc-2" onclick="goPage('skills')"><div class="nc-ico">⚡</div><div class="nc-name">Skills</div><div class="nc-hint">Technical arsenal</div><div class="nc-arr">↗</div></div>
+        <div class="nc nc-3" onclick="goPage('projects')"><div class="nc-ico">🚀</div><div class="nc-name">Projects</div><div class="nc-hint">Executed IT initiatives</div><div class="nc-arr">↗</div></div>
+        <div class="nc nc-4" onclick="goPage('homelab')"><div class="nc-ico">🖥️</div><div class="nc-name">Homelab</div><div class="nc-hint">Virtualization &amp; testing</div><div class="nc-arr">↗</div></div>
+        <div class="nc nc-5" onclick="goPage('services')"><div class="nc-ico">🛠️</div><div class="nc-name">IT Services</div><div class="nc-hint">Consulting &amp; freelance</div><div class="nc-arr">↗</div></div>
+        <div class="nc nc-6" onclick="goPage('casestudies')"><div class="nc-ico">💡</div><div class="nc-name">Case Studies</div><div class="nc-hint">Real-world solutions</div><div class="nc-arr">↗</div></div>
+        <div class="nc nc-7" onclick="goPage('education')"><div class="nc-ico">🎓</div><div class="nc-name">Education</div><div class="nc-hint">Academic background</div><div class="nc-arr">↗</div></div>
+        <div class="nc nc-8" onclick="goPage('certgallery')"><div class="nc-ico">📜</div><div class="nc-name">Cert Gallery</div><div class="nc-hint">Verified certificates</div><div class="nc-arr">↗</div></div>
+        <div class="nc nc-9" onclick="goPage('achievements')"><div class="nc-ico">🏆</div><div class="nc-name">Achievements</div><div class="nc-hint">Key wins &amp; milestones</div><div class="nc-arr">↗</div></div>
+        <div class="nc nc-10" onclick="goPage('techlibrary')"><div class="nc-ico">📚</div><div class="nc-name">Tech Library</div><div class="nc-hint">Knowledge base</div><div class="nc-arr">↗</div></div>
+        <div class="nc nc-11" onclick="goPage('analysis')"><div class="nc-ico">📊</div><div class="nc-name">Analysis</div><div class="nc-hint">Visual skill insights</div><div class="nc-arr">↗</div></div>
+        <div class="nc nc-12" onclick="goPage('socialproof')"><div class="nc-ico">⭐</div><div class="nc-name">Social Proof</div><div class="nc-hint">Testimonials &amp; trust</div><div class="nc-arr">↗</div></div>
+        <div class="nc nc-13" onclick="goPage('contact')"><div class="nc-ico">📡</div><div class="nc-name">Contact</div><div class="nc-hint">Reach out · social</div><div class="nc-arr">↗</div></div>
       </div>
-    </div>
-    <div class="nav-grid" id="nav-cards" style="opacity:0">
-      <div class="nc nc-0" onclick="goPage('summary')"><div class="nc-ico">👤</div><div class="nc-num">01</div><div class="nc-name">Summary</div><div class="nc-hint">Professional overview</div><div class="nc-arr">↗</div></div>
-      <div class="nc nc-1" onclick="goPage('experience')"><div class="nc-ico">💼</div><div class="nc-num">02</div><div class="nc-name">Experience</div><div class="nc-hint">Work history &amp; roles</div><div class="nc-arr">↗</div></div>
-      <div class="nc nc-2" onclick="goPage('skills')"><div class="nc-ico">⚡</div><div class="nc-num">03</div><div class="nc-name">Skills</div><div class="nc-hint">Technical arsenal</div><div class="nc-arr">↗</div></div>
-      <div class="nc nc-3" onclick="goPage('projects')"><div class="nc-ico">🚀</div><div class="nc-num">04</div><div class="nc-name">Projects</div><div class="nc-hint">Executed IT initiatives</div><div class="nc-arr">↗</div></div>
-      <div class="nc nc-4" onclick="goPage('homelab')"><div class="nc-ico">🖥️</div><div class="nc-num">05</div><div class="nc-name">Homelab</div><div class="nc-hint">Virtualization &amp; testing</div><div class="nc-arr">↗</div></div>
-      <div class="nc nc-5" onclick="goPage('services')"><div class="nc-ico">🛠️</div><div class="nc-num">06</div><div class="nc-name">IT Services</div><div class="nc-hint">Consulting &amp; freelance</div><div class="nc-arr">↗</div></div>
-      <div class="nc nc-6" onclick="goPage('casestudies')"><div class="nc-ico">💡</div><div class="nc-num">07</div><div class="nc-name">Case Studies</div><div class="nc-hint">Real-world solutions</div><div class="nc-arr">↗</div></div>
-      <div class="nc nc-7" onclick="goPage('education')"><div class="nc-ico">🎓</div><div class="nc-num">08</div><div class="nc-name">Education</div><div class="nc-hint">Academic background</div><div class="nc-arr">↗</div></div>
-      <div class="nc nc-8" onclick="goPage('certgallery')"><div class="nc-ico">📜</div><div class="nc-num">09</div><div class="nc-name">Cert Gallery</div><div class="nc-hint">Verified certificates</div><div class="nc-arr">↗</div></div>
-      <div class="nc nc-9" onclick="goPage('achievements')"><div class="nc-ico">🏆</div><div class="nc-num">10</div><div class="nc-name">Achievements</div><div class="nc-hint">Key wins &amp; milestones</div><div class="nc-arr">↗</div></div>
-      <div class="nc nc-10" onclick="goPage('techlibrary')"><div class="nc-ico">📚</div><div class="nc-num">11</div><div class="nc-name">Tech Library</div><div class="nc-hint">Knowledge base</div><div class="nc-arr">↗</div></div>
-      <div class="nc nc-11" onclick="goPage('analysis')"><div class="nc-ico">📊</div><div class="nc-num">12</div><div class="nc-name">Analysis</div><div class="nc-hint">Visual skill insights</div><div class="nc-arr">↗</div></div>
-      <div class="nc nc-12" onclick="goPage('socialproof')"><div class="nc-ico">⭐</div><div class="nc-num">13</div><div class="nc-name">Social Proof</div><div class="nc-hint">Testimonials &amp; trust</div><div class="nc-arr">↗</div></div>
-      <div class="nc nc-13" onclick="goPage('contact')"><div class="nc-ico">📡</div><div class="nc-num">14</div><div class="nc-name">Contact</div><div class="nc-hint">Reach out · social</div><div class="nc-arr">↗</div></div>
     </div>
   </div>
 
