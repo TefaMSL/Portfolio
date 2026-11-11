@@ -1630,3 +1630,161 @@ function showNodeDetails(nodeKey) {
   if (ipEl) ipEl.textContent = item.ip;
   if (txtEl) txtEl.textContent = item.txt;
 }
+
+
+/* ══ VCARD DOWNLOAD ENGINE ══ */
+function downloadVCard() {
+  const vcard = 
+`BEGIN:VCARD
+VERSION:3.0
+N:Lotfy;Mohamed;Sayid;;
+FN:Mohamed Sayid Lotfy
+ORG:Viion;IT Operations
+TITLE:Infrastructure & Security Engineer | IT Operations Lead
+TEL;TYPE=WORK,VOICE,CELL:+201503333155
+EMAIL;TYPE=PREF,INTERNET:mohamed-sayid@outlook.com
+URL:https://tefamsl.github.io/Portfolio/
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/mohamedelsayid
+NOTE:Cisco CCNA Certified (CSCO15040282) · 5 Years Enterprise IT Experience · Military Permanently Exempt
+END:VCARD`;
+
+  const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "Mohamed_Sayid_Lotfy.vcf";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+/* ══ COMMAND PALETTE ENGINE ══ */
+const CMD_ITEMS = [
+  { id: "summary", nameEn: "Summary & Bio", nameAr: "الملخص المهني والنبذة", ico: "👤", action: () => goPage("summary") },
+  { id: "experience", nameEn: "Work Experience", nameAr: "سجل الخبرات العملية", ico: "💼", action: () => goPage("experience") },
+  { id: "skills", nameEn: "Technical Skills", nameAr: "المهارات والترسانة التقنية", ico: "⚡", action: () => goPage("skills") },
+  { id: "projects", nameEn: "IT Projects", nameAr: "مشاريع البنية التحتية", ico: "🚀", action: () => goPage("projects") },
+  { id: "homelab", nameEn: "Virtualization & Homelab", nameAr: "المختبر الافتراضي والسيرفرات", ico: "🖥️", action: () => goPage("homelab") },
+  { id: "certgallery", nameEn: "12 Official Certificates", nameAr: "معرض الشهادات المعتمدة", ico: "📜", action: () => goPage("certgallery") },
+  { id: "casestudies", nameEn: "Architecture Case Studies", nameAr: "دراسات الحالة المعمارية", ico: "💡", action: () => goPage("casestudies") },
+  { id: "education", nameEn: "Education & Degrees", nameAr: "الخلفية الأكاديمية والشهادات", ico: "🎓", action: () => goPage("education") },
+  { id: "achievements", nameEn: "Key Milestones & Wins", nameAr: "أبرز الإنجازات والنجاحات", ico: "🏆", action: () => goPage("achievements") },
+  { id: "contact", nameEn: "Contact & Reach Out", nameAr: "تواصل معي مباشرة", ico: "📡", action: () => goPage("contact") },
+  { id: "cv", nameEn: "Download Official CV (PDF)", nameAr: "تحميل السيرة الذاتية (CV)", ico: "📄", action: () => { window.open("Mohamed%20Sayid%20Lotfy%20CV.pdf", "_blank"); } },
+  { id: "certs-pdf", nameEn: "Download Certificates Booklet (PDF)", nameAr: "تحميل كتيب الشهادات (PDF)", ico: "📜", action: () => { window.open("Certificates.pdf", "_blank"); } },
+  { id: "vcard", nameEn: "Save Contact to Phone (.vcf)", nameAr: "حفظ جهة الاتصال في الهاتف (.vcf)", ico: "📲", action: () => downloadVCard() },
+  { id: "ai", nameEn: "Ask MSL AI Assistant", nameAr: "سؤال المساعد الذكي MSL", ico: "🤖", action: () => toggleAIAssistant() },
+  { id: "cli", nameEn: "Open CLI Terminal Mode", nameAr: "فتح سطر الأوامر (Terminal)", ico: "💻", action: () => openCLI() },
+  { id: "lang", nameEn: "Switch Language (عربي / English)", nameAr: "تبديل اللغة (English / عربي)", ico: "🌐", action: () => toggleLang() }
+];
+
+let selectedCmdIndex = 0;
+
+function openCmdPalette() {
+  const backdrop = document.getElementById("cmd-palette-backdrop");
+  const input = document.getElementById("cmd-input");
+  if (!backdrop || !input) return;
+  backdrop.style.display = "flex";
+  input.value = "";
+  selectedCmdIndex = 0;
+  renderCmdItems(CMD_ITEMS);
+  setTimeout(() => input.focus(), 50);
+}
+
+function closeCmdPalette(e) {
+  const backdrop = document.getElementById("cmd-palette-backdrop");
+  if (backdrop) backdrop.style.display = "none";
+}
+
+function toggleCmdPalette() {
+  const backdrop = document.getElementById("cmd-palette-backdrop");
+  if (backdrop && backdrop.style.display === "flex") {
+    closeCmdPalette();
+  } else {
+    openCmdPalette();
+  }
+}
+
+function renderCmdItems(items) {
+  const list = document.getElementById("cmd-results");
+  if (!list) return;
+  const isAr = (currentLang === "ar");
+  if (items.length === 0) {
+    list.innerHTML = `<div style="padding: 16px; text-align: center; color: var(--mut); font-family: var(--mono); font-size: 11px;">${isAr ? "لم يتم العثور على نتائج..." : "No commands found..."}</div>`;
+    return;
+  }
+  list.innerHTML = items.map((item, idx) => `
+    <div class="cmd-item ${idx === selectedCmdIndex ? "selected" : ""}" onclick="executeCmdItem('${item.id}')" onmouseenter="selectedCmdIndex = ${idx}; highlightCmdItem(${idx});">
+      <div class="cmd-item-left">
+        <span class="cmd-item-ico">${item.ico}</span>
+        <span class="cmd-item-name">${isAr ? item.nameAr : item.nameEn}</span>
+      </div>
+      <span class="cmd-item-badge">ENTER ↵</span>
+    </div>
+  `).join("");
+}
+
+function highlightCmdItem(index) {
+  const items = document.querySelectorAll(".cmd-item");
+  items.forEach((el, idx) => {
+    if (idx === index) el.classList.add("selected");
+    else el.classList.remove("selected");
+  });
+}
+
+function executeCmdItem(id) {
+  const item = CMD_ITEMS.find(c => c.id === id);
+  if (item && item.action) {
+    closeCmdPalette();
+    item.action();
+  }
+}
+
+function filterCmdPalette(query) {
+  const q = query.trim().toLowerCase();
+  selectedCmdIndex = 0;
+  if (!q) {
+    renderCmdItems(CMD_ITEMS);
+    return;
+  }
+  const filtered = CMD_ITEMS.filter(item => 
+    item.nameEn.toLowerCase().includes(q) || 
+    item.nameAr.toLowerCase().includes(q) ||
+    item.id.toLowerCase().includes(q)
+  );
+  renderCmdItems(filtered);
+}
+
+// Keyboard shortcuts for Command Palette
+window.addEventListener("keydown", (e) => {
+  if ((e.ctrlKey || e.metaKey) && (e.key === "k" || e.key === "K")) {
+    e.preventDefault();
+    toggleCmdPalette();
+    return;
+  }
+  const backdrop = document.getElementById("cmd-palette-backdrop");
+  if (backdrop && backdrop.style.display === "flex") {
+    if (e.key === "Escape") {
+      closeCmdPalette();
+      return;
+    }
+    const items = document.querySelectorAll(".cmd-item");
+    if (items.length === 0) return;
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      selectedCmdIndex = (selectedCmdIndex + 1) % items.length;
+      highlightCmdItem(selectedCmdIndex);
+      items[selectedCmdIndex].scrollIntoView({ block: "nearest" });
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      selectedCmdIndex = (selectedCmdIndex - 1 + items.length) % items.length;
+      highlightCmdItem(selectedCmdIndex);
+      items[selectedCmdIndex].scrollIntoView({ block: "nearest" });
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      const currentSelected = items[selectedCmdIndex];
+      if (currentSelected) currentSelected.click();
+    }
+  }
+});
