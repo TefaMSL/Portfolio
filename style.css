@@ -10,7 +10,12 @@
   initial-value: #2a5c7a;
 }
 
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;scrollbar-width:thin;scrollbar-color:var(--acc) transparent}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--acc);border-radius:4px;transition:background .2s}
+::-webkit-scrollbar-thumb:hover{background:var(--acc2)}
+::-webkit-scrollbar-corner{background:transparent}
 
 [data-theme="dark"]{
   --bg:#040a0f;--surf:#080f18;--surf2:#0c1620;--brd:#162030;
@@ -1562,6 +1567,21 @@ html[dir="rtl"] .hero-btns {
   max-height: 340px;
   overflow-y: auto;
   padding: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--acc) transparent;
+}
+.cmd-list::-webkit-scrollbar {
+  width: 4px;
+}
+.cmd-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.cmd-list::-webkit-scrollbar-thumb {
+  background: var(--acc);
+  border-radius: 4px;
+}
+.cmd-list::-webkit-scrollbar-thumb:hover {
+  background: var(--acc2);
 }
 .cmd-item {
   display: flex;
