@@ -947,3 +947,58 @@ html[dir="rtl"] .ai-msg-bot {
 html[dir="rtl"] .ai-msg-user {
   align-self: flex-end;
 }
+
+
+/* ══ 2-COLUMN HERO WITH SIDE ACTIONS ══ */
+.home-hero {
+  min-height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(24px, 4vw, 56px);
+  padding: 16px 0 16px;
+}
+.home-bio-col {
+  flex: 1.1;
+  max-width: 600px;
+}
+.home-actions-col {
+  flex: 0.95;
+  max-width: 530px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+.home-actions-col .hero-btns {
+  margin-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.home-actions-col .hero-stats {
+  margin-top: 0;
+  padding-top: 14px;
+}
+.home-actions-col .enterprise-trust-bar {
+  margin-top: 0;
+}
+
+@media (max-width: 991px) {
+  .home-hero {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+  .home-bio-col, .home-actions-col {
+    max-width: 100%;
+  }
+}
+
+/* RTL Support */
+html[dir="rtl"] .home-actions-col {
+  text-align: right;
+}
+html[dir="rtl"] .home-actions-col .hero-btns {
+  justify-content: flex-start;
+}
