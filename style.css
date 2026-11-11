@@ -157,6 +157,7 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
 .hbtn-li:hover{border-color:rgba(91,164,227,.6) !important;color:#5ba4e3 !important;box-shadow:0 0 18px rgba(91,164,227,.15)}
 .hbtn-wa:hover{border-color:rgba(37,211,102,.6) !important;color:#25d366 !important;box-shadow:0 0 18px rgba(37,211,102,.15)}
 .hbtn-an:hover{border-color:rgba(155,89,182,.6) !important;color:#9b59b6 !important;box-shadow:0 0 18px rgba(155,89,182,.15)}
+.hbtn-mail:hover{border-color:rgba(74,144,184,.6) !important;color:#6ab8c8 !important;box-shadow:0 0 18px rgba(74,144,184,.15)}
 .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px;padding-top:20px;border-top:1px solid var(--brd)}
 .hstat{text-align:center}
 .hstat-n{font-family:var(--orb);font-size:22px;font-weight:700;color:var(--acc);line-height:1;letter-spacing:.02em}

@@ -1338,10 +1338,11 @@ function setLang(lang) {
     const nb4 = document.getElementById("noc-b4"); if (nb4) nb4.textContent = "● مقاوم للفدية";
 
     // Buttons Under NOC
-    const tbHire = document.getElementById("txt-btn-hire"); if (tbHire) tbHire.textContent = "تواصل للتوظيف";
+    const tbSummary = document.getElementById("txt-btn-summary"); if (tbSummary) tbSummary.textContent = "عرض الملخص المهني";
     const tbCv = document.getElementById("txt-btn-cv"); if (tbCv) tbCv.textContent = "تحميل السيرة الذاتية (CV)";
     const tbCerts = document.getElementById("txt-btn-certs"); if (tbCerts) tbCerts.textContent = "تحميل الشهادات (PDF)";
     const tbLi = document.getElementById("txt-btn-li"); if (tbLi) tbLi.textContent = "لينكد إن ↗";
+    const tbMail = document.getElementById("txt-btn-mail"); if (tbMail) tbMail.textContent = "البريد الإلكتروني ↗";
     const tbWa = document.getElementById("txt-btn-wa"); if (tbWa) tbWa.textContent = "واتساب ↗";
     const tbAn = document.getElementById("txt-btn-an"); if (tbAn) tbAn.textContent = "التحليلات ↗";
     const tbPr = document.getElementById("txt-btn-print"); if (tbPr) tbPr.textContent = "طباعة السيرة الذاتية";
@@ -1459,10 +1460,11 @@ function setLang(lang) {
     const nb4 = document.getElementById("noc-b4"); if (nb4) nb4.textContent = "● IMMUTABLE";
 
     // Buttons Under NOC
-    const tbHire = document.getElementById("txt-btn-hire"); if (tbHire) tbHire.textContent = "Hire Me";
-    const tbCv = document.getElementById("txt-btn-cv"); if (tbCv) tbCv.textContent = "CV ↓";
+    const tbSummary = document.getElementById("txt-btn-summary"); if (tbSummary) tbSummary.textContent = "View Summary";
+    const tbCv = document.getElementById("txt-btn-cv"); if (tbCv) tbCv.textContent = "Download CV";
     const tbCerts = document.getElementById("txt-btn-certs"); if (tbCerts) tbCerts.textContent = "Certificates ↓";
     const tbLi = document.getElementById("txt-btn-li"); if (tbLi) tbLi.textContent = "LinkedIn ↗";
+    const tbMail = document.getElementById("txt-btn-mail"); if (tbMail) tbMail.textContent = "Email ↗";
     const tbWa = document.getElementById("txt-btn-wa"); if (tbWa) tbWa.textContent = "WhatsApp ↗";
     const tbAn = document.getElementById("txt-btn-an"); if (tbAn) tbAn.textContent = "Analysis ↗";
     const tbPr = document.getElementById("txt-btn-print"); if (tbPr) tbPr.textContent = "Print CV";
