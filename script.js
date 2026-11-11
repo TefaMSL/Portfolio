@@ -1417,3 +1417,94 @@ window.addEventListener("DOMContentLoaded", () => {
     setLang("ar");
   }
 });
+
+
+/* ══ NOC & TOPOLOGY INTERACTIVE LOGIC ══ */
+function switchNocTab(tab) {
+  const tBtn = document.getElementById("noc-tab-telemetry");
+  const pBtn = document.getElementById("noc-tab-topology");
+  const tBody = document.getElementById("noc-body-telemetry");
+  const pBody = document.getElementById("noc-body-topology");
+  if (!tBtn || !pBtn || !tBody || !pBody) return;
+
+  if (tab === "telemetry") {
+    tBtn.classList.add("active");
+    pBtn.classList.remove("active");
+    tBody.style.display = "block";
+    pBody.style.display = "none";
+  } else {
+    pBtn.classList.add("active");
+    tBtn.classList.remove("active");
+    pBody.style.display = "block";
+    tBody.style.display = "none";
+  }
+}
+
+const NOC_PINGS = {
+  cisco: [
+    { t: "msl@noc:~$ ping 10.0.1.1 (Cisco-Core-Viion)", c: "green" },
+    { t: "64 bytes from 10.0.1.1: icmp_seq=1 time=1.24ms [200+ NODES UP]", c: "cyan" }
+  ],
+  wazuh: [
+    { t: "msl@noc:~$ ping 10.0.99.10 (Wazuh-SIEM)", c: "green" },
+    { t: "64 bytes from 10.0.99.10: icmp_seq=1 time=2.05ms [0 THREATS]", c: "cyan" }
+  ],
+  alex: [
+    { t: "msl@noc:~$ ping 172.16.20.1 (Bank-Alexandria)", c: "green" },
+    { t: "64 bytes from 172.16.20.1: icmp_seq=1 time=8.42ms [IPSEC STABLE]", c: "cyan" }
+  ],
+  we: [
+    { t: "msl@noc:~$ ping 192.168.100.1 (Telecom-Egypt-WE)", c: "green" },
+    { t: "64 bytes from 192.168.100.1: icmp_seq=1 time=5.12ms [REPLICA OK]", c: "cyan" }
+  ]
+};
+
+function runNocPing(target) {
+  const out = document.getElementById("noc-term-out");
+  if (!out || !NOC_PINGS[target]) return;
+  out.innerHTML = '<div class="noc-t-line green">Transmitting ICMP packets...</div>';
+  setTimeout(() => {
+    const lines = NOC_PINGS[target];
+    out.innerHTML = lines.map(l => `<div class="noc-t-line ${l.c}">${l.t}</div>`).join("");
+  }, 200);
+}
+
+const TOPO_DATA = {
+  core: {
+    en: { tag: "NODE: CISCO CORE L3 (VIION HQ)", ip: "10.0.0.1/24 · VLANs", txt: "Automated network core orchestrating 200+ Cisco network devices across 5 branch locations with Layer 3 OSPF routing." },
+    ar: { tag: "العقدة: محولات سيسكو L3 الرئيسية", ip: "10.0.0.1/24 · شبكات VLAN", txt: "قلب الشبكة المؤتمت لإدارة 200+ جهاز سيسكو عبر 5 فروع باستخدام توجيه OSPF وتحويل الحزم الفوري." }
+  },
+  branches: {
+    en: { tag: "NODE: 5 BRANCH SITES", ip: "172.16.0.0/16 · IPsec Mesh", txt: "Secure encrypted mesh interconnecting 5 branch offices with redundant WAN links and automated daily configuration backups." },
+    ar: { tag: "العقدة: 5 فروع مؤسسية متصلة", ip: "172.16.0.0/16 · أنفاق IPsec", txt: "ربط مشفر آمن لـ 5 فروع مع خطوط اتصال احتياطية ونسخ احتياطي يومي مؤتمت." }
+  },
+  hospital: {
+    en: { tag: "NODE: MAIN SHARIA HOSPITAL", ip: "192.168.50.0/24 · HIS/PACS", txt: "Isolated medical network segment ensuring zero patient data compromise and uninterrupted PACS imaging." },
+    ar: { tag: "العقدة: مستشفى الشريعة الرئيسي", ip: "192.168.50.0/24 · بيئة معزولة", txt: "بيئة طبية معزولة تضمن حماية بيانات المرضى واستمرارية عمل أجهزة الأشعة الرقمية والأنظمة الصحية." }
+  },
+  wazuh: {
+    en: { tag: "NODE: WAZUH SIEM & PFSENSE", ip: "10.0.99.0/24 · IDS/IPS Active", txt: "Centralized threat detection and log analysis monitoring event streams 24/7 across all endpoints." },
+    ar: { tag: "العقدة: نظام Wazuh SIEM والجدار الناري", ip: "10.0.99.0/24 · حماية نشطة", txt: "مراقبة وتحليل التهديدات الأمنية اللحظية وسجلات الأحداث عبر جميع السيرفرات والأجهزة 24/7." }
+  },
+  vms: {
+    en: { tag: "NODE: VIRTUALIZATION CLUSTER", ip: "VMware ESXi 8.0 & Proxmox", txt: "Enterprise virtualization farm running 14 production VMs including Active Directory, DNS, File Services, and Docker." },
+    ar: { tag: "العقدة: مصفوفة الخوادم الافتراضية", ip: "بيئات VMware و Proxmox", txt: "مجموعة خوادم افتراضية تدير 14 نظاماً نشطاً تشمل Active Directory و DNS وحاويات Docker." }
+  },
+  veeam: {
+    en: { tag: "NODE: VEEAM IMMUTABLE BACKUP", ip: "TrueNAS ZFS · Air-Gapped", txt: "Ransomware-proof immutable backup repository guaranteeing recovery time objective (RTO) under 2 hours." },
+    ar: { tag: "العقدة: النسخ الاحتياطي غير القابل للتعديل", ip: "نظام Veeam مع ZFS", txt: "خزينة نسخ احتياطي مقاومة لهجمات الفدية تضمن استعادة قواعد البيانات في أقل من ساعتين (RTO < 2h)." }
+  }
+};
+
+function showNodeDetails(nodeKey) {
+  const data = TOPO_DATA[nodeKey];
+  if (!data) return;
+  const lang = currentLang || "en";
+  const item = data[lang] || data.en;
+  const tagEl = document.getElementById("topo-d-tag");
+  const ipEl = document.getElementById("topo-d-ip");
+  const txtEl = document.getElementById("topo-d-txt");
+  if (tagEl) tagEl.textContent = item.tag;
+  if (ipEl) ipEl.textContent = item.ip;
+  if (txtEl) txtEl.textContent = item.txt;
+}
