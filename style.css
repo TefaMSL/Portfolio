@@ -1205,127 +1205,131 @@ html[dir="rtl"] .topo-detail-box { border-left: 1px solid rgba(74, 144, 184, 0.2
 html[dir="rtl"] .home-actions-col .hero-btns { justify-content: flex-start; }
 
 
-/* ══ TIGHTENED COMPACT SPACING (ELIMINATE DEAD EMPTY VOIDS) ══ */
+/* ══ PROMINENT SCALE & BALANCED TIGHT CONTAINER SPACING (NO DEAD VOIDS) ══ */
 #pg-home {
-  padding: 8px clamp(18px, 3vw, 44px) 20px !important;
+  padding: 14px clamp(28px, 4.5vw, 64px) 36px !important;
 }
 .home-hero {
-  padding: 4px 0 8px !important;
-  gap: clamp(16px, 2.5vw, 32px) !important;
+  padding: 8px 0 16px !important;
+  gap: clamp(20px, 3.2vw, 44px) !important;
   align-items: stretch !important;
 }
 .home-bio-col {
-  flex: 1.05 !important;
-  max-width: 580px !important;
+  flex: 1.08 !important;
+  max-width: 620px !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: flex-start !important;
 }
 .home-actions-col {
-  flex: 0.95 !important;
-  max-width: 530px !important;
-  gap: 8px !important;
+  flex: 0.92 !important;
+  max-width: 540px !important;
+  gap: 10px !important;
 }
 .home-h1 {
-  font-size: clamp(34px, 4.2vw, 56px) !important;
-  line-height: .92 !important;
-  margin-bottom: 6px !important;
+  font-size: clamp(42px, 6.2vw, 84px) !important;
+  line-height: .9 !important;
+  font-weight: 800 !important;
+  margin-bottom: 12px !important;
 }
 .status-chip {
-  margin-bottom: 8px !important;
-  padding: 4px 10px !important;
+  margin-bottom: 14px !important;
+  padding: 6px 14px !important;
+  font-size: 10px !important;
 }
 .eyebrow {
-  margin-bottom: 6px !important;
+  margin-bottom: 12px !important;
 }
 .home-role {
-  margin-bottom: 8px !important;
-  font-size: 11px !important;
-  letter-spacing: .14em !important;
+  margin-bottom: 16px !important;
+  font-size: clamp(10px, 1vw, 12px) !important;
+  letter-spacing: .2em !important;
 }
 .home-sub {
-  margin-bottom: 10px !important;
-  font-size: 12px !important;
-  line-height: 1.65 !important;
-  padding-left: 12px !important;
+  margin-bottom: 20px !important;
+  font-size: 13px !important;
+  line-height: 1.85 !important;
+  padding-left: 14px !important;
 }
 .home-meta {
   margin-bottom: 0 !important;
-  gap: 6px 14px !important;
+  gap: 8px 20px !important;
 }
 .home-noc-panel {
   border-radius: 6px !important;
 }
 .noc-header {
-  padding: 6px 10px !important;
+  padding: 7px 11px !important;
 }
 .noc-tab-body {
-  padding: 8px 10px !important;
+  padding: 9px 11px !important;
 }
 .noc-grid {
-  gap: 6px !important;
-  margin-bottom: 6px !important;
+  gap: 7px !important;
+  margin-bottom: 7px !important;
 }
 .noc-card {
-  padding: 5px 8px !important;
+  padding: 6px 9px !important;
 }
 .noc-val {
-  font-size: 11.5px !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
 }
 .noc-sub {
-  font-size: 8px !important;
+  font-size: 8.5px !important;
 }
 .noc-console-wrap {
-  padding: 5px 8px !important;
+  padding: 6px 9px !important;
 }
 .home-actions-col .hero-btns {
-  gap: 5px !important;
+  gap: 6px !important;
   margin-bottom: 0 !important;
 }
 .home-actions-col .hbtn {
-  padding: 5px 10px !important;
-  font-size: 9.5px !important;
+  padding: 7px 13px !important;
+  font-size: 10.5px !important;
 }
 .home-actions-col .hero-stats {
   margin-top: 0 !important;
-  padding-top: 8px !important;
-  gap: 6px !important;
+  padding-top: 10px !important;
+  gap: 8px !important;
 }
 .home-actions-col .hstat-n {
-  font-size: 17px !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
 }
 .home-actions-col .hstat-l {
-  font-size: 8px !important;
+  font-size: 8.5px !important;
 }
 .home-actions-col .enterprise-trust-bar {
   margin-top: 0 !important;
-  padding: 5px 8px !important;
+  padding: 6px 10px !important;
 }
 .home-actions-col .etrust-label {
-  font-size: 8px !important;
-  margin-bottom: 3px !important;
+  font-size: 8.5px !important;
+  margin-bottom: 4px !important;
 }
 .home-actions-col .et-badge {
-  font-size: 9px !important;
-  padding: 2px 6px !important;
+  font-size: 9.5px !important;
+  padding: 3px 8px !important;
 }
 .nav-grid {
-  margin-top: 10px !important;
-  gap: 8px 10px !important;
+  margin-top: 16px !important;
+  gap: 12px !important;
 }
 .nc {
-  padding: 12px 14px !important;
+  padding: 18px 16px !important;
 }
 .nc-ico {
-  font-size: 18px !important;
-  margin-bottom: 6px !important;
+  font-size: 20px !important;
+  margin-bottom: 8px !important;
 }
 .nc-name {
-  font-size: 12.5px !important;
-  margin-bottom: 2px !important;
+  font-size: 14px !important;
+  margin-bottom: 3px !important;
 }
 .nc-hint {
-  font-size: 9.5px !important;
+  font-size: 10px !important;
 }
 
 /* BiDi isolation & RTL polish */
