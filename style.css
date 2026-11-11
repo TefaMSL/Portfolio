@@ -2385,3 +2385,153 @@ html[dir="rtl"] .cmd-footer {
     padding: 10px !important;
   }
 }
+
+/* ══ LIGHT THEME STYLING FOR CYBER NOC MONITOR ══ */
+[data-theme="light"] .home-noc-panel {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(30, 106, 154, 0.28) !important;
+  box-shadow: 0 12px 30px rgba(30, 106, 154, 0.08), inset 0 0 20px rgba(30, 106, 154, 0.03) !important;
+}
+[data-theme="light"] .home-noc-panel:hover {
+  border-color: rgba(30, 106, 154, 0.48) !important;
+  box-shadow: 0 14px 34px rgba(30, 106, 154, 0.12), inset 0 0 20px rgba(30, 106, 154, 0.05) !important;
+}
+[data-theme="light"] .home-noc-panel::before {
+  background: linear-gradient(90deg, transparent, #1a9e4e, #1e6a9a, transparent) !important;
+  opacity: 0.8 !important;
+}
+[data-theme="light"] .noc-header {
+  background: rgba(232, 237, 244, 0.88) !important;
+  border-bottom-color: rgba(197, 210, 222, 0.9) !important;
+}
+[data-theme="light"] .noc-pulse-dot {
+  background: #1a9e4e !important;
+  box-shadow: 0 0 8px rgba(26, 158, 78, 0.7) !important;
+}
+[data-theme="light"] .noc-title {
+  color: #0a1a28 !important;
+}
+[data-theme="light"] .noc-tab {
+  background: #ffffff !important;
+  border-color: rgba(197, 210, 222, 0.9) !important;
+  color: #1e3a52 !important;
+}
+[data-theme="light"] .noc-tab:hover {
+  background: rgba(30, 106, 154, 0.1) !important;
+  border-color: #1e6a9a !important;
+  color: #1e6a9a !important;
+}
+[data-theme="light"] .noc-tab.active {
+  background: #1e6a9a !important;
+  border-color: #1e6a9a !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(30, 106, 154, 0.25) !important;
+}
+
+[data-theme="light"] .noc-card {
+  background: #ffffff !important;
+  border-color: rgba(197, 210, 222, 0.95) !important;
+  box-shadow: 0 2px 8px rgba(30, 106, 154, 0.05) !important;
+}
+[data-theme="light"] .noc-kpi-lbl {
+  color: #5a7a92 !important;
+}
+[data-theme="light"] .noc-val {
+  color: #0a1a28 !important;
+}
+[data-theme="light"] .noc-sub {
+  color: #5a7a92 !important;
+}
+
+[data-theme="light"] .noc-badge.green {
+  background: rgba(26, 158, 78, 0.12) !important;
+  color: #147a3d !important;
+  border: 1px solid rgba(26, 158, 78, 0.25) !important;
+}
+[data-theme="light"] .noc-badge.cyan {
+  background: rgba(30, 106, 154, 0.12) !important;
+  color: #155882 !important;
+  border: 1px solid rgba(30, 106, 154, 0.25) !important;
+}
+[data-theme="light"] .noc-badge.purple {
+  background: rgba(142, 68, 173, 0.12) !important;
+  color: #6e2d8b !important;
+  border: 1px solid rgba(142, 68, 173, 0.25) !important;
+}
+[data-theme="light"] .noc-badge.amber {
+  background: rgba(176, 120, 0, 0.12) !important;
+  color: #825700 !important;
+  border: 1px solid rgba(176, 120, 0, 0.25) !important;
+}
+
+[data-theme="light"] .noc-console-wrap {
+  background: #f4f7fa !important;
+  border-color: rgba(197, 210, 222, 0.95) !important;
+}
+[data-theme="light"] .noc-con-title {
+  color: #147a3d !important;
+}
+[data-theme="light"] .terminal-dot {
+  background: #1a9e4e !important;
+}
+[data-theme="light"] .noc-con-hint {
+  color: #5a7a92 !important;
+}
+[data-theme="light"] .noc-ping-btn {
+  background: #ffffff !important;
+  border-color: rgba(197, 210, 222, 0.95) !important;
+  color: #1e3a52 !important;
+}
+[data-theme="light"] .noc-ping-btn:hover {
+  background: rgba(26, 158, 78, 0.1) !important;
+  border-color: #1a9e4e !important;
+  color: #147a3d !important;
+}
+[data-theme="light"] .noc-term-out {
+  background: #08121a !important;
+  border-color: rgba(30, 106, 154, 0.28) !important;
+  color: #00ff9d !important;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35) !important;
+}
+[data-theme="light"] .noc-t-line.green {
+  color: #00ff9d !important;
+}
+[data-theme="light"] .noc-t-line.cyan {
+  color: #00c9ff !important;
+}
+
+[data-theme="light"] .noc-topo-svg {
+  background: #f4f7fa !important;
+  border-color: rgba(197, 210, 222, 0.9) !important;
+}
+[data-theme="light"] .topo-line {
+  stroke: rgba(30, 106, 154, 0.35) !important;
+}
+[data-theme="light"] .topo-line.active-line {
+  stroke: #1a9e4e !important;
+}
+[data-theme="light"] .topo-node circle {
+  fill: #ffffff !important;
+}
+[data-theme="light"] .topo-node text[fill="#fff"] {
+  fill: #0a1a28 !important;
+}
+[data-theme="light"] .topo-detail-box {
+  background: #ffffff !important;
+  border-color: rgba(197, 210, 222, 0.9) !important;
+  border-left-color: #1a9e4e !important;
+}
+[data-theme="light"] html[dir="rtl"] .topo-detail-box {
+  border-left-color: rgba(197, 210, 222, 0.9) !important;
+  border-right-color: #1a9e4e !important;
+}
+[data-theme="light"] .topo-d-tag {
+  color: #147a3d !important;
+}
+[data-theme="light"] .topo-d-ip {
+  color: #5a7a92 !important;
+}
+[data-theme="light"] .topo-d-txt {
+  color: #0a1a28 !important;
+}
+
