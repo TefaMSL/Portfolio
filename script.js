@@ -1304,7 +1304,33 @@ function setLang(lang) {
     if (backBtn) backBtn.textContent = "→ العودة للرئيسية";
 
     const etrust = document.querySelector(".etrust-label");
-    if (etrust) etrust.textContent = "// أبرز المؤسسات والمشاريع المنجزة";
+        if (etrust) etrust.textContent = "// أبرز المؤسسات والمشاريع المنجزة";
+
+    // NOC translations
+    const nocHdr = document.getElementById("noc-hdr-title");
+    if (nocHdr) nocHdr.textContent = "مركز العمليات MSL_NOC // مراقبة البنية التحتية";
+    const nocT1 = document.getElementById("noc-tab-telemetry-txt");
+    if (nocT1) nocT1.textContent = "المراقبة الحية";
+    const nocT2 = document.getElementById("noc-tab-topology-txt");
+    if (nocT2) nocT2.textContent = "مخطط الشبكة";
+    const nocHint = document.getElementById("noc-con-hint");
+    if (nocHint) nocHint.textContent = "اضغط لاختبار الاستجابة:";
+    
+    const k1l = document.getElementById("noc-kpi-1-lbl"); if (k1l) k1l.textContent = "شبكات سيسكو المؤسسية";
+    const k1v = document.getElementById("noc-kpi-1-val"); if (k1v) k1v.textContent = "5 مواقع · 200+ جهاز";
+    const k1s = document.getElementById("noc-kpi-1-sub"); if (k1s) k1s.textContent = "توجيه L3 OSPF · استجابة 12ms";
+    
+    const k2l = document.getElementById("noc-kpi-2-lbl"); if (k2l) k2l.textContent = "الخوادم الافتراضية";
+    const k2v = document.getElementById("noc-kpi-2-val"); if (k2v) k2v.textContent = "14 سيرفر افتراضي نشط";
+    const k2s = document.getElementById("noc-kpi-2-sub"); if (k2s) k2s.textContent = "بيئات VMware ESXi و Proxmox";
+
+    const k3l = document.getElementById("noc-kpi-3-lbl"); if (k3l) k3l.textContent = "الدفاع السيبراني والـ SIEM";
+    const k3v = document.getElementById("noc-kpi-3-val"); if (k3v) k3v.textContent = "حماية Wazuh و Suricata";
+    const k3s = document.getElementById("noc-kpi-3-sub"); if (k3s) k3s.textContent = "جدار ناري pfSense · 0 اختراق";
+
+    const k4l = document.getElementById("noc-kpi-4-lbl"); if (k4l) k4l.textContent = "النسخ والتعافي من الكوارث";
+    const k4v = document.getElementById("noc-kpi-4-val"); if (k4v) k4v.textContent = "نسخ غير قابل للتعديل (ZFS)";
+    const k4s = document.getElementById("noc-kpi-4-sub"); if (k4s) k4s.textContent = "استعادة RTO أقل من ساعتين";
 
     // AI Assistant widget
     if (aiBtnLabel) aiBtnLabel.textContent = "اسأل الذكاء الاصطناعي";
@@ -1363,7 +1389,33 @@ function setLang(lang) {
     if (backBtn) backBtn.textContent = "← Back to Dashboard";
 
     const etrust = document.querySelector(".etrust-label");
-    if (etrust) etrust.textContent = "// ENTERPRISE CLIENTS & KEY PROJECTS";
+        if (etrust) etrust.textContent = "// ENTERPRISE CLIENTS & KEY PROJECTS";
+
+    // NOC translations
+    const nocHdr = document.getElementById("noc-hdr-title");
+    if (nocHdr) nocHdr.textContent = "MSL_NOC // INFRASTRUCTURE MONITOR";
+    const nocT1 = document.getElementById("noc-tab-telemetry-txt");
+    if (nocT1) nocT1.textContent = "Telemetry";
+    const nocT2 = document.getElementById("noc-tab-topology-txt");
+    if (nocT2) nocT2.textContent = "Topology";
+    const nocHint = document.getElementById("noc-con-hint");
+    if (nocHint) nocHint.textContent = "Click a node to test:";
+
+    const k1l = document.getElementById("noc-kpi-1-lbl"); if (k1l) k1l.textContent = "Cisco Enterprise Core";
+    const k1v = document.getElementById("noc-kpi-1-val"); if (k1v) k1v.textContent = "5 Sites · 200+ Nodes";
+    const k1s = document.getElementById("noc-kpi-1-sub"); if (k1s) k1s.textContent = "OSPF Area 0 · L3 Routing · 12ms";
+    
+    const k2l = document.getElementById("noc-kpi-2-lbl"); if (k2l) k2l.textContent = "Virtualization Farm";
+    const k2v = document.getElementById("noc-kpi-2-val"); if (k2v) k2v.textContent = "14 Active VMs";
+    const k2s = document.getElementById("noc-kpi-2-sub"); if (k2s) k2s.textContent = "VMware ESXi 8.0 & Proxmox";
+
+    const k3l = document.getElementById("noc-kpi-3-lbl"); if (k3l) k3l.textContent = "Security Defense";
+    const k3v = document.getElementById("noc-kpi-3-val"); if (k3v) k3v.textContent = "Wazuh + Suricata IDS";
+    const k3s = document.getElementById("noc-kpi-3-sub"); if (k3s) k3s.textContent = "pfSense Firewall · 0 Breaches";
+
+    const k4l = document.getElementById("noc-kpi-4-lbl"); if (k4l) k4l.textContent = "Disaster Recovery";
+    const k4v = document.getElementById("noc-kpi-4-val"); if (k4v) k4v.textContent = "Veeam Backup (ZFS)";
+    const k4s = document.getElementById("noc-kpi-4-sub"); if (k4s) k4s.textContent = "RTO < 2h · RPO 15min";
 
     // AI Assistant widget
     if (aiBtnLabel) aiBtnLabel.textContent = "Ask MSL AI";
@@ -1417,3 +1469,102 @@ window.addEventListener("DOMContentLoaded", () => {
     setLang("ar");
   }
 });
+
+
+/* ══ NOC & TOPOLOGY INTERACTIVE LOGIC ══ */
+function switchNocTab(tab) {
+  const tBtn = document.getElementById("noc-tab-telemetry");
+  const pBtn = document.getElementById("noc-tab-topology");
+  const tBody = document.getElementById("noc-body-telemetry");
+  const pBody = document.getElementById("noc-body-topology");
+
+  if (!tBtn || !pBtn || !tBody || !pBody) return;
+
+  if (tab === "telemetry") {
+    tBtn.classList.add("active");
+    pBtn.classList.remove("active");
+    tBody.style.display = "block";
+    pBody.style.display = "none";
+  } else {
+    pBtn.classList.add("active");
+    tBtn.classList.remove("active");
+    pBody.style.display = "block";
+    tBody.style.display = "none";
+  }
+}
+
+const NOC_PINGS = {
+  cisco: [
+    { t: "msl@noc:~$ ping -c 2 10.0.1.1 (Cisco-Core-Viion)", c: "green" },
+    { t: "64 bytes from 10.0.1.1: icmp_seq=1 ttl=64 time=1.24 ms", c: "" },
+    { t: "64 bytes from 10.0.1.1: icmp_seq=2 ttl=64 time=1.18 ms [OK - 200+ NODES UP]", c: "cyan" }
+  ],
+  wazuh: [
+    { t: "msl@noc:~$ ping -c 2 10.0.99.10 (Wazuh-SIEM-Cluster)", c: "green" },
+    { t: "64 bytes from 10.0.99.10: icmp_seq=1 ttl=64 time=2.05 ms", c: "" },
+    { t: "64 bytes from 10.0.99.10: icmp_seq=2 ttl=64 time=1.98 ms [SIEM ACTIVE - 0 THREATS]", c: "cyan" }
+  ],
+  alex: [
+    { t: "msl@noc:~$ ping -c 2 172.16.20.1 (Bank-Alexandria-Branch)", c: "green" },
+    { t: "64 bytes from 172.16.20.1: icmp_seq=1 ttl=64 time=8.42 ms", c: "" },
+    { t: "64 bytes from 172.16.20.1: icmp_seq=2 ttl=64 time=8.35 ms [IPSEC TUNNEL STABLE]", c: "cyan" }
+  ],
+  we: [
+    { t: "msl@noc:~$ ping -c 2 192.168.100.1 (Telecom-Egypt-WE-DC)", c: "green" },
+    { t: "64 bytes from 192.168.100.1: icmp_seq=1 ttl=64 time=5.12 ms", c: "" },
+    { t: "64 bytes from 192.168.100.1: icmp_seq=2 ttl=64 time=5.08 ms [SERVER REFRESH REPLICA OK]", c: "cyan" }
+  ]
+};
+
+function runNocPing(target) {
+  const out = document.getElementById("noc-term-out");
+  if (!out || !NOC_PINGS[target]) return;
+  
+  out.innerHTML = '<div class="noc-t-line green">Transmitting ICMP packets...</div>';
+  setTimeout(() => {
+    const lines = NOC_PINGS[target];
+    out.innerHTML = lines.map(l => `<div class="noc-t-line ${l.c}">${l.t}</div>`).join("");
+  }, 250);
+}
+
+const TOPO_DATA = {
+  core: {
+    en: { tag: "NODE: CISCO CORE L3 (VIION HQ)", ip: "10.0.0.1/24 · VLAN 10,20,30", txt: "Automated multi-site network core orchestrating 200+ Cisco network devices across 5 branch locations with Layer 3 OSPF routing and sub-second failover." },
+    ar: { tag: "العقدة الرئيسية: محولات سيسكو L3 (المقر الرئيسي)", ip: "10.0.0.1/24 · شبكات افتراضية VLANs", txt: "قلب الشبكة المؤتمت الذي يدير أكثر من 200 جهاز سيسكو عبر 5 فروع باستخدام توجيه OSPF وتحويل الحزم الفوري." }
+  },
+  branches: {
+    en: { tag: "NODE: 5 BRANCH SITES", ip: "172.16.0.0/16 · IPsec Site-to-Site", txt: "Secure encrypted mesh interconnecting 5 branch offices with redundant WAN links and automated daily configuration backups." },
+    ar: { tag: "العقدة: 5 فروع مؤسسية متصلة", ip: "172.16.0.0/16 · أنفاق IPsec VPN", txt: "ربط مشفر آمن لـ 5 فروع مع خطوط اتصال احتياطية ونسخ احتياطي يومي مؤتمت لجميع الإعدادات." }
+  },
+  hospital: {
+    en: { tag: "NODE: MAIN SHARIA HOSPITAL", ip: "192.168.50.0/24 · HIS/PACS VLAN", txt: "Isolated medical network segment ensuring zero patient data compromise, uninterrupted PACS imaging, and medical equipment reliability." },
+    ar: { tag: "العقدة: مستشفى الشريعة الرئيسي", ip: "192.168.50.0/24 · شبكة HIS/PACS معزولة", txt: "بيئة طبية معزولة تضمن حماية بيانات المرضى واستمرارية عمل أجهزة الأشعة الرقمية والأنظمة الصحية." }
+  },
+  wazuh: {
+    en: { tag: "NODE: WAZUH SIEM & PFSENSE", ip: "10.0.99.0/24 · IDS/IPS Active", txt: "Centralized threat detection and log analysis integrated with Suricata IDS/IPS, monitoring event streams 24/7 across all endpoints." },
+    ar: { tag: "العقدة: نظام Wazuh SIEM والجدار الناري", ip: "10.0.99.0/24 · كشف الاختراق لايف", txt: "مراقبة وتحليل التهديدات الأمنية اللحظية وسجلات الأحداث عبر جميع السيرفرات والأجهزة 24/7." }
+  },
+  vms: {
+    en: { tag: "NODE: VIRTUALIZATION CLUSTER", ip: "VMware ESXi 8.0 & Proxmox", txt: "High-density enterprise virtualization farm running 14 production VMs including Active Directory, DNS, File Services, and Docker containers." },
+    ar: { tag: "العقدة: مصفوفة الخوادم الافتراضية", ip: "بيئات VMware ESXi و Proxmox", txt: "مجموعة خوادم افتراضية تدير 14 نظاماً نشطاً تشمل Active Directory و DNS وخدمات الملفات وحاويات Docker." }
+  },
+  veeam: {
+    en: { tag: "NODE: VEEAM IMMUTABLE BACKUP", ip: "TrueNAS ZFS · Air-Gapped", txt: "Ransomware-proof immutable backup repository guaranteeing recovery time objective (RTO) under 2 hours for critical hospital and company databases." },
+    ar: { tag: "العقدة: النسخ الاحتياطي غير القابل للتعديل", ip: "نظام Veeam مع TrueNAS ZFS", txt: "خزينة نسخ احتياطي مقاومة لهجمات الفدية تضمن استعادة قواعد البيانات الحرجة في أقل من ساعتين (RTO < 2h)." }
+  }
+};
+
+function showNodeDetails(nodeKey) {
+  const data = TOPO_DATA[nodeKey];
+  if (!data) return;
+  const lang = currentLang || "en";
+  const item = data[lang] || data.en;
+  
+  const tagEl = document.getElementById("topo-d-tag");
+  const ipEl = document.getElementById("topo-d-ip");
+  const txtEl = document.getElementById("topo-d-txt");
+
+  if (tagEl) tagEl.textContent = item.tag;
+  if (ipEl) ipEl.textContent = item.ip;
+  if (txtEl) txtEl.textContent = item.txt;
+}
