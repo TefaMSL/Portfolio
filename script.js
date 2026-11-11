@@ -340,8 +340,9 @@ function resetPageColor() {
   r.style.setProperty("--bar-bg", dark ? "rgba(30,106,154,.09)" : "rgba(74,144,184,.08)");
 }
 
-function goPage(id) {
+function goPage(id, pushHash = true) {
   const ov = document.getElementById("pg-" + id);
+  if (!ov) return;
   const home = document.getElementById("pg-home");
   active = id;
   applyPageColor(id);
@@ -350,15 +351,24 @@ function goPage(id) {
   document.getElementById("prog-b").style.width = "0";
   const bb = document.getElementById("back-btn");
   bb.style.display = "flex";
-  const pt = document.getElementById("page-title"); pt.textContent = NAMES[id];
+  const pt = document.getElementById("page-title"); 
+  pt.textContent = NAMES[id] || id.toUpperCase();
   gsap.timeline({ onComplete: () => { gsap.set([home, ov], { clearProps: "filter" }) } })
     .to(home, { x: "-4%", opacity: 0, filter: "blur(4px)", duration: .35, ease: "power2.inOut" })
     .fromTo(ov, { filter: "blur(4px)" }, { opacity: 1, x: "0%", filter: "blur(0px)", duration: .4, ease: "power2.out" }, "-=.1");
   gsap.to(pt, { opacity: 1, duration: .3, delay: .18 });
   if (id === "skills" || id === "analysis") animateBars(id);
+
+  if (pushHash && window.location.hash !== "#" + id) {
+    try {
+      history.pushState({ page: id }, "", "#" + id);
+    } catch(e) {
+      window.location.hash = id;
+    }
+  }
 }
 
-function goHome() {
+function goHome(pushHash = true) {
   if (!active) return;
   const ov = document.getElementById("pg-" + active);
   const home = document.getElementById("pg-home");
@@ -369,7 +379,36 @@ function goHome() {
   document.getElementById("back-btn").style.display = "none";
   gsap.to(pt, { opacity: 0, duration: .2 });
   resetPageColor();
+
+  if (pushHash && window.location.hash) {
+    try {
+      history.pushState({ page: "home" }, "", window.location.pathname + window.location.search);
+    } catch(e) {
+      window.location.hash = "";
+    }
+  }
 }
+
+// Handle Browser Back / Forward Buttons
+window.addEventListener("popstate", () => {
+  const hash = window.location.hash.replace("#", "");
+  if (hash && document.getElementById("pg-" + hash)) {
+    goPage(hash, false);
+  } else {
+    goHome(false);
+  }
+});
+
+// Auto-route on initial page load if URL has hash (e.g. #casestudies)
+window.addEventListener("load", () => {
+  const hash = window.location.hash.replace("#", "");
+  if (hash && document.getElementById("pg-" + hash)) {
+    skipBoot();
+    setTimeout(() => {
+      goPage(hash, false);
+    }, 100);
+  }
+});
 
 document.querySelectorAll(".pov").forEach(pg => { pg.addEventListener("scroll", () => { const p = pg.scrollTop / (pg.scrollHeight - pg.clientHeight) * 100; document.getElementById("prog-b").style.width = p + "%" }) });
 document.addEventListener("keydown", e => {
