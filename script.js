@@ -1215,3 +1215,158 @@ function generateAIAnswer(q) {
     "<strong>محمد سعيد لطفي</strong> هو مهندس بنية تحتية وأمن معلومات (Infrastructure & Security Engineer) ومدير عمليات تقنية المعلومات في شركة Viion (يدير 5 مواقع وفريقاً من 5 مهندسين)، ولديه 5 سنوات خبرة عملية في شبكات Cisco (حاصل على CCNA)، وأنظمة Windows Server و AD، وبيئات المستشفيات (HIS/PACS)، ومشاريع مع كبرى المؤسسات مثل المصرية للاتصالات WE وبنك الإسكندرية وشركات في كندا.<br><br>هل تود الاستفسار عن شهاداته، أو مشاريعه، أو طريقة التواصل معه؟" :
     "<strong>Mohamed Sayid Lotfy</strong> is an Infrastructure & Security Engineer and IT Operations Manager at Viion (managing 5 branch sites with a 5-person technical team). He has 5 years of hands-on experience in enterprise Cisco networking (CCNA certified), Windows Server/Active Directory, Hyper-V/VMware, and Fortinet/pfSense security, alongside projects for Telecom Egypt (WE), Bank of Alexandria, and international clients in Canada and Argentina.<br><br>What would you like to know more about? You can ask about his certifications, projects, or direct contact info!";
 }
+
+
+/* ══ MULTI-LANGUAGE ARABIC / ENGLISH ENGINE ══ */
+let currentLang = localStorage.getItem("site_lang") || "en";
+
+const AR_NAMES = {
+  summary: "نبذة عني",
+  experience: "الخبرات العملية",
+  education: "التعليم والشهادات",
+  achievements: "الإنجازات",
+  skills: "المهارات التقنية",
+  analysis: "التحليلات",
+  contact: "تواصل معي",
+  casestudies: "دراسات الحالة",
+  socialproof: "شركاء النجاح",
+  projects: "المشاريع",
+  homelab: "المختبر الافتراضي",
+  services: "الخدمات التقنية",
+  certgallery: "معرض الشهادات",
+  techlibrary: "المكتبة التقنية"
+};
+
+const AR_NAV_CARDS = [
+  { name: "نبذة عني", hint: "نظرة مهنية عامة" },
+  { name: "الخبرات العملية", hint: "سجل المناصب والمواقع" },
+  { name: "المهارات", hint: "الترسانة التكنولوجية" },
+  { name: "المشاريع", hint: "مبادرات البنية التحتية" },
+  { name: "المختبر الافتراضي", hint: "الافتراضية والأنظمة" },
+  { name: "الخدمات", hint: "الاستشارات والدعم" },
+  { name: "دراسات الحالة", hint: "حلول واقعية موثقة" },
+  { name: "التعليم", hint: "الخلفية الأكاديمية" },
+  { name: "معرض الشهادات", hint: "12 شهادة معتمدة" },
+  { name: "الإنجازات", hint: "مؤشرات النجاح والتميز" },
+  { name: "المكتبة التقنية", hint: "الأوامر والتوثيق" },
+  { name: "التحليل", hint: "رسوم بيانية للمهارات" },
+  { name: "شركاء النجاح", hint: "التوصيات والتوثيق" },
+  { name: "تواصل معي", hint: "الهاتف وروابط التواصل" }
+];
+
+function toggleLang() {
+  setLang(currentLang === "en" ? "ar" : "en");
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem("site_lang", lang);
+  const html = document.documentElement;
+  const langBtn = document.getElementById("lang-btn");
+  
+  if (lang === "ar") {
+    html.setAttribute("dir", "rtl");
+    html.setAttribute("lang", "ar");
+    if (langBtn) langBtn.textContent = "🌐 English";
+    
+    // Hero translations
+    const schip = document.getElementById("schip");
+    if (schip) schip.innerHTML = '<div class="sdot"></div>متاح للفرص القيادية والاستشارات التقنية';
+    
+    const eyt = document.getElementById("eyt");
+    if (eyt) eyt.textContent = "مهندس بنية تحتية وأمن معلومات";
+    
+    const h1a = document.getElementById("h1a");
+    if (h1a) h1a.textContent = "محمد";
+    const h1b = document.getElementById("h1b");
+    if (h1b) h1b.textContent = "سعيد لطفي";
+    
+    const hrole = document.getElementById("hrole");
+    if (hrole) hrole.textContent = "مهندس بنية تحتية وأمن معلومات · مدير عمليات تقنية المعلومات · شبكات سيسكو · افتراضية";
+    
+    const hsub = document.getElementById("hsub");
+    if (hsub) hsub.textContent = "مهندس بنية تحتية وأمن معلومات بخبرة 5 سنوات في قطاعات المؤسسات الكبرى، الرعاية الصحية، والقطاع المالي. أدير حالياً العمليات التقنية والأمنية عبر 5 مواقع بفريق من 5 مهندسين في شركة Viion، متخصص في شبكات Cisco (معتمد CCNA)، خوادم Windows Server و Active Directory، والافتراضية Hyper-V/VMware، وأمن Fortinet/pfSense.";
+    
+    const etrust = document.querySelector(".etrust-label");
+    if (etrust) etrust.textContent = "// أبرز المؤسسات والمشاريع المنجزة";
+    
+    // Nav cards
+    const cards = document.querySelectorAll(".nc");
+    cards.forEach((card, idx) => {
+      if (AR_NAV_CARDS[idx]) {
+        const nameEl = card.querySelector(".nc-name");
+        const hintEl = card.querySelector(".nc-hint");
+        if (nameEl) nameEl.textContent = AR_NAV_CARDS[idx].name;
+        if (hintEl) hintEl.textContent = AR_NAV_CARDS[idx].hint;
+      }
+    });
+
+    // Update active page title if open
+    if (active && AR_NAMES[active]) {
+      const pt = document.getElementById("page-title");
+      if (pt) pt.textContent = AR_NAMES[active];
+    }
+  } else {
+    html.removeAttribute("dir");
+    html.setAttribute("lang", "en");
+    if (langBtn) langBtn.textContent = "🌐 عربي";
+    
+    const schip = document.getElementById("schip");
+    if (schip) schip.innerHTML = '<div class="sdot"></div>Open to Opportunities · Systems, Security & IT Operations Roles';
+    
+    const eyt = document.getElementById("eyt");
+    if (eyt) eyt.textContent = "Infrastructure & Security Engineer";
+    
+    const h1a = document.getElementById("h1a");
+    if (h1a) h1a.textContent = "MOHAMED";
+    const h1b = document.getElementById("h1b");
+    if (h1b) h1b.textContent = "SAYID LOTFY";
+    
+    const hrole = document.getElementById("hrole");
+    if (hrole) hrole.textContent = "Infrastructure & Security Engineer · IT Operations Lead · Cisco Networking · Virtualization";
+    
+    const hsub = document.getElementById("hsub");
+    if (hsub) hsub.textContent = "Infrastructure & Security Engineer with 5 years of hands-on experience across enterprise, healthcare, and financial-sector IT. Currently leading IT operations across 5 branch sites with a 5-person team, specializing in Cisco networking (CCNA), Windows Server/Active Directory, Hyper-V/VMware, and Fortinet/pfSense security.";
+    
+    const etrust = document.querySelector(".etrust-label");
+    if (etrust) etrust.textContent = "// ENTERPRISE CLIENTS & KEY PROJECTS";
+    
+    const cards = document.querySelectorAll(".nc");
+    const EN_NAV = [
+      { name: "Summary", hint: "Professional overview" },
+      { name: "Experience", hint: "Work history & roles" },
+      { name: "Skills", hint: "Technical arsenal" },
+      { name: "Projects", hint: "Executed IT initiatives" },
+      { name: "Homelab", hint: "Virtualization & testing" },
+      { name: "IT Services", hint: "Consulting & freelance" },
+      { name: "Case Studies", hint: "Real-world solutions" },
+      { name: "Education", hint: "Academic background" },
+      { name: "Cert Gallery", hint: "Verified certificates" },
+      { name: "Achievements", hint: "Key wins & milestones" },
+      { name: "Tech Library", hint: "Knowledge base" },
+      { name: "Analysis", hint: "Visual skill insights" },
+      { name: "Social Proof", hint: "Testimonials & trust" },
+      { name: "Contact", hint: "Reach out · social" }
+    ];
+    cards.forEach((card, idx) => {
+      if (EN_NAV[idx]) {
+        const nameEl = card.querySelector(".nc-name");
+        const hintEl = card.querySelector(".nc-hint");
+        if (nameEl) nameEl.textContent = EN_NAV[idx].name;
+        if (hintEl) hintEl.textContent = EN_NAV[idx].hint;
+      }
+    });
+
+    if (active && NAMES[active]) {
+      const pt = document.getElementById("page-title");
+      if (pt) pt.textContent = NAMES[active];
+    }
+  }
+}
+
+// Auto-apply saved language on load
+window.addEventListener("DOMContentLoaded", () => {
+  if (currentLang === "ar") {
+    setLang("ar");
+  }
+});

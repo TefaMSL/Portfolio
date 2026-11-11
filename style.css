@@ -855,3 +855,95 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
   transition: background 0.2s;
 }
 .ai-send-btn:hover { background: var(--acc2); }
+
+
+/* ══ GLOBAL NO-SELECT & NO HAND CURSOR (Pure Cyber Custom Cursor) ══ */
+*, *::before, *::after {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  cursor: none !important;
+}
+
+/* Allow text selection & typing cursor only in inputs */
+input, textarea, [contenteditable="true"] {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  cursor: text !important;
+}
+
+::selection {
+  background: transparent !important;
+  color: inherit !important;
+}
+::-moz-selection {
+  background: transparent !important;
+  color: inherit !important;
+}
+
+/* ══ RTL ARABIC SUPPORT ══ */
+html[dir="rtl"], html[dir="rtl"] body {
+  font-family: 'Cairo', var(--mono), sans-serif;
+}
+html[dir="rtl"] .bar-right {
+  direction: ltr;
+}
+html[dir="rtl"] #soc {
+  left: auto;
+  right: 14px;
+}
+html[dir="rtl"] #ai-assistant-btn {
+  right: auto;
+  left: 24px;
+}
+html[dir="rtl"] #ai-modal {
+  right: auto;
+  left: 24px;
+}
+html[dir="rtl"] .home-content {
+  text-align: right;
+}
+html[dir="rtl"] .eyebrow {
+  justify-content: flex-start;
+}
+html[dir="rtl"] .hero-btns {
+  justify-content: flex-start;
+}
+html[dir="rtl"] .home-meta {
+  justify-content: flex-start;
+}
+html[dir="rtl"] .tl-line {
+  left: auto;
+  right: 120px;
+}
+html[dir="rtl"] .tli {
+  padding-left: 0;
+  padding-right: 150px;
+}
+html[dir="rtl"] .tl-date {
+  left: auto;
+  right: 0;
+  text-align: left;
+}
+html[dir="rtl"] .tl-body::before {
+  left: auto;
+  right: -36px;
+}
+html[dir="rtl"] .ph {
+  text-align: right;
+}
+html[dir="rtl"] .ph-div {
+  margin-left: 0;
+  margin-right: 0;
+}
+html[dir="rtl"] .ai-body {
+  text-align: right;
+  direction: rtl;
+}
+html[dir="rtl"] .ai-msg-bot {
+  align-self: flex-start;
+}
+html[dir="rtl"] .ai-msg-user {
+  align-self: flex-end;
+}

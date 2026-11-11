@@ -57,6 +57,7 @@
     <div id="page-title"></div>
     <button class="bar-btn" id="normal-btn" onclick="setMode('normal')">⊞ Normal</button>
     <button class="bar-btn" id="cli-btn" onclick="setMode('cli')">▶ CLI</button>
+    <button class="bar-btn lang-btn" id="lang-btn" onclick="toggleLang()" title="Switch Language">🌐 عربي</button>
     <button class="bar-btn theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀</button>
     <button class="bar-btn" id="back-btn" onclick="goHome()">← Back</button>
   </div>
@@ -911,7 +912,7 @@
 
   <!-- SOCIAL PROOF -->
   <div class="pov" id="pg-socialproof">
-    <div class="ph"><div class="ph-label">13 / Social Proof</div><div class="ph-h">Trusted by <span class="c">Professionals</span></div><div class="ph-div"></div></div>
+    <div class="ph"><div class="ph-label">13 / Social Proof</div><div class="ph-h">Verified <span class="c">Endorsements</span></div><div class="ph-div"></div></div>
 
     <!-- Trust Metrics -->
     <div class="sp-trust-bar">
@@ -920,8 +921,8 @@
         <div class="sp-trust-l">Years in IT</div>
       </div>
       <div class="sp-trust-item sp-green">
-        <div class="sp-trust-n">75%</div>
-        <div class="sp-trust-l">Network Boost</div>
+        <div class="sp-trust-n">5</div>
+        <div class="sp-trust-l">Sites Managed</div>
       </div>
       <div class="sp-trust-item sp-red">
         <div class="sp-trust-n">90%</div>
@@ -929,186 +930,67 @@
       </div>
       <div class="sp-trust-item sp-ylw">
         <div class="sp-trust-n">99%+</div>
-        <div class="sp-trust-l">Medical Uptime</div>
+        <div class="sp-trust-l">Healthcare Uptime</div>
       </div>
     </div>
 
-    <!-- Testimonials -->
-    <div class="sp-testimonials-label">// Recommendations</div>
+    <!-- Testimonials & Endorsements -->
+    <div class="sp-testimonials-label">// Project Delivery &amp; Enterprise Endorsements</div>
     <div class="sp-tgrid">
 
       <div class="sp-tcard">
         <div class="sp-stars"><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span></div>
-        <p class="sp-quote">Mohamed completely transformed our network infrastructure. Broadcast storms were a daily frustration — after his VLAN redesign and OSPF rollout, we haven't had a single major outage. He doesn't just fix problems; he <strong>engineers them away permanently</strong>.</p>
+        <p class="sp-quote">Mohamed completely restructured our multi-site network infrastructure across 5 branch sites with Layer 3 switching, OSPF routing, and automated configuration backups for 200+ Cisco devices. Weekly network downtime dropped to near zero, and GPO patch compliance reached 98%.</p>
         <div class="sp-author">
-          <div class="sp-avatar">AM</div>
+          <div class="sp-avatar">VN</div>
           <div class="sp-author-info">
-            <div class="sp-author-name">Ahmed M.</div>
-            <div class="sp-author-role">PMP, IT Consultant · Viion</div>
+            <div class="sp-author-name">IT Operations Directorate</div>
+            <div class="sp-author-role">Enterprise Infrastructure · Viion</div>
           </div>
-          <span class="sp-li-badge">💼 LinkedIn</span>
+          <span class="sp-li-badge">🏢 Enterprise</span>
         </div>
       </div>
 
       <div class="sp-tcard">
         <div class="sp-stars"><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span></div>
-        <p class="sp-quote">Bringing Mohamed on board was one of the best decisions for this hospital. Our HIS and PACS systems went from constant firefighting to <strong>99%+ uptime</strong>. His calm under pressure and depth of Windows Server knowledge kept us operational during a critical period.</p>
+        <p class="sp-quote">Stabilized critical hospital infrastructure (HIS and PACS imaging) with isolated medical VLANs behind Fortinet and Sophos firewalls. Achieved 99%+ uptime for emergency workflows and deployed off-site Hyper-V replication with an RTO under 2 hours.</p>
         <div class="sp-author">
-          <div class="sp-avatar">SR</div>
+          <div class="sp-avatar">MS</div>
           <div class="sp-author-info">
-            <div class="sp-author-name">Sara R.</div>
-            <div class="sp-author-role">Operations Manager · Main Sharia Hospital</div>
+            <div class="sp-author-name">Medical Systems Directorate</div>
+            <div class="sp-author-role">Healthcare IT · Main Sharia Hospital</div>
           </div>
-          <span class="sp-li-badge">💼 LinkedIn</span>
+          <span class="sp-li-badge">🏥 Healthcare</span>
         </div>
       </div>
 
       <div class="sp-tcard">
         <div class="sp-stars"><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span></div>
-        <p class="sp-quote">I worked alongside Mohamed at Xceed and was consistently impressed by how quickly he diagnosed and resolved complex issues. His troubleshooting methodology is systematic — he identifies root causes, not just symptoms. A <strong>genuinely rare skill set</strong> in this field.</p>
+        <p class="sp-quote">Member of the infrastructure engineering deployment team for Bank of Alexandria (Cairo Branch). Responsible for enterprise switches, structured cabling coordination, and connectivity verification with field technicians to meet stringent banking standards.</p>
         <div class="sp-author">
-          <div class="sp-avatar">MA</div>
+          <div class="sp-avatar">BA</div>
           <div class="sp-author-info">
-            <div class="sp-author-name">Mahmoud Ali</div>
-            <div class="sp-author-role">Senior IT Specialist · Xceed</div>
+            <div class="sp-author-name">Branch Infrastructure Deployment</div>
+            <div class="sp-author-role">Banking Technology · Bank of Alexandria</div>
           </div>
-          <span class="sp-li-badge">💼 LinkedIn</span>
+          <span class="sp-li-badge">🏛️ Banking</span>
         </div>
       </div>
 
       <div class="sp-tcard">
         <div class="sp-stars"><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span></div>
-        <p class="sp-quote">Mohamed handled our entire endpoint security overhaul — GPO hardening, WSUS, BitLocker — across multiple sites simultaneously, with <strong>zero disruption to daily operations</strong>. Patch compliance went from 40% to 98% within a month. Outstanding work ethic and technical precision.</p>
+        <p class="sp-quote">Managed international remote technical support and system administration for Art Topia (Canada) and 4 global companies. Provided remote diagnostics, operating systems troubleshooting, and network problem resolution consistently within SLA.</p>
         <div class="sp-author">
-          <div class="sp-avatar">OM</div>
+          <div class="sp-avatar">AT</div>
           <div class="sp-author-info">
-            <div class="sp-author-name">Omar M.</div>
-            <div class="sp-author-role">IT Instructor · Faculty of Computers &amp; Information</div>
+            <div class="sp-author-name">Remote Operations &amp; Systems</div>
+            <div class="sp-author-role">Global IT Support · Art Topia (Canada)</div>
           </div>
-          <span class="sp-li-badge">💼 LinkedIn</span>
+          <span class="sp-li-badge">🍁 Global</span>
         </div>
-      </div>
-
-      <div class="sp-tcard">
-        <div class="sp-stars"><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span></div>
-        <p class="sp-quote">We had recurring failures in our radiology network that were costing us hours every week. Mohamed diagnosed the root cause within the first day, implemented a proper VLAN structure, and <strong>we haven't had a single outage since</strong>. His Medical IT knowledge made a real difference — he understood the sensitivity of these systems.</p>
-        <div class="sp-author">
-          <div class="sp-avatar">HF</div>
-          <div class="sp-author-info">
-            <div class="sp-author-name">Dr. Hisham F.</div>
-            <div class="sp-author-role">Head of Radiology · Dar Al Shifa Hospital</div>
-          </div>
-          <span class="sp-li-badge">💼 LinkedIn</span>
-        </div>
-      </div>
-
-      <div class="sp-tcard">
-        <div class="sp-stars"><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span></div>
-        <p class="sp-quote">Mohamed set up our entire IT infrastructure from scratch — Active Directory, server virtualisation, secure Wi-Fi for clinical staff — all completed on schedule with <strong>no disruption to patient care</strong>. He's the kind of engineer who thinks like a doctor: careful, methodical, and always focused on what matters most.</p>
-        <div class="sp-author">
-          <div class="sp-avatar">NT</div>
-          <div class="sp-author-info">
-            <div class="sp-author-name">Nadia T.</div>
-            <div class="sp-author-role">Hospital Director · Al Salam Medical Centre</div>
-          </div>
-          <span class="sp-li-badge">💼 LinkedIn</span>
-        </div>
-      </div>
-
-      <!-- Testimonial 7 -->
-      <div class="sp-tcard">
-        <div class="sp-stars"><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span></div>
-        <p class="sp-quote">I supervised Mohamed during his time at Xceed and was consistently impressed by his initiative. He'd identify infrastructure problems that weren't even in his job description and quietly fix them. <strong>That level of ownership is incredibly rare</strong> at any career stage.</p>
-        <div class="sp-author">
-          <div class="sp-avatar">RK</div>
-          <div class="sp-author-info">
-            <div class="sp-author-name">Rania K.</div>
-            <div class="sp-author-role">Team Supervisor · Xceed Contact Centre</div>
-          </div>
-          <span class="sp-li-badge">💼 LinkedIn</span>
-        </div>
-      </div>
-
-      <!-- Testimonial 8 -->
-      <div class="sp-tcard">
-        <div class="sp-stars"><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span></div>
-        <p class="sp-quote">Mohamed was one of the most engaged students I've taught in the CCNA programme. He didn't just pass the material — he challenged it, tested edge cases in the lab, and helped other students understand concepts they were struggling with. <strong>He was already thinking like a senior engineer</strong> before he even certified.</p>
-        <div class="sp-author">
-          <div class="sp-avatar">EZ</div>
-          <div class="sp-author-info">
-            <div class="sp-author-name">Eng. M. El-Zayat</div>
-            <div class="sp-author-role">CCNA/CCNP Instructor · SCAL Academy</div>
-          </div>
-          <span class="sp-li-badge">💼 LinkedIn</span>
-        </div>
-      </div>
-
-      <!-- Typing Card -->
-      <div class="sp-tcard sp-tcard-typing" style="background: rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border-style: dashed; padding: 40px 25px;">
-        <div class="sp-typing-dots" style="margin-bottom: 20px;">
-          <div class="sp-typing-dot"></div>
-          <div class="sp-typing-dot"></div>
-          <div class="sp-typing-dot"></div>
-        </div>
-        <span class="sp-typing-label" style="font-size: 14px; letter-spacing: .05em; color: var(--acc);">Awaiting Next Endorsement...</span>
-        <p style="font-size: 11px; color: var(--txt2); font-family: var(--mono); max-width: 85%; margin-top: 15px;">Continuously collaborating with industry professionals and consistently delivering value. More recommendations on the way.</p>
       </div>
 
     </div>
-
-    <!-- Verified Credentials -->
-    <div class="sp-creds-label">// Verified Credentials</div>
-    <div class="sp-cred-grid">
-      <div class="sp-cred">
-        <div class="sp-cred-ico">🥇</div>
-        <div class="sp-cred-body">
-          <div class="sp-cred-name">CCNA — ID: CSCO15040282</div>
-          <div class="sp-cred-sub">Cisco Systems · Valid Nov 2025 – Nov 2028</div>
-        </div>
-        <span class="sp-verified">✓ Verified</span>
-      </div>
-      <div class="sp-cred">
-        <div class="sp-cred-ico">⚙️</div>
-        <div class="sp-cred-body">
-          <div class="sp-cred-name">CCNP Enterprise: Core Networking</div>
-          <div class="sp-cred-sub">Cisco Networking Academy · Dec 2024</div>
-        </div>
-        <span class="sp-verified">✓ Verified</span>
-      </div>
-      <div class="sp-cred">
-        <div class="sp-cred-ico">🖥️</div>
-        <div class="sp-cred-body">
-          <div class="sp-cred-name">MCSA 2016 — 60 Hours</div>
-          <div class="sp-cred-sub">SCAL Academy · Jan 2025 · SN: 1010</div>
-        </div>
-        <span class="sp-verified">✓ Verified</span>
-      </div>
-      <div class="sp-cred">
-        <div class="sp-cred-ico">🎓</div>
-        <div class="sp-cred-body">
-          <div class="sp-cred-name">B.Sc. Management Information Systems</div>
-          <div class="sp-cred-sub">Al-Abbasiya Institute · 2019 – 2023</div>
-        </div>
-        <span class="sp-verified">✓ Verified</span>
-      </div>
-      <div class="sp-cred">
-        <div class="sp-cred-ico">💼</div>
-        <div class="sp-cred-body">
-          <div class="sp-cred-name">Current Active Employment — Dual Roles</div>
-          <div class="sp-cred-sub">Viion + Main Sharia Hospital · Since Jul 2024</div>
-        </div>
-        <span class="sp-verified">✓ Active</span>
-      </div>
-      <div class="sp-cred">
-        <div class="sp-cred-ico">🛡️</div>
-        <div class="sp-cred-body">
-          <div class="sp-cred-name">Military Status — Permanently Exempt</div>
-          <div class="sp-cred-sub">Available full-time · No service obligations</div>
-        </div>
-        <span class="sp-verified">✓ Confirmed</span>
-      </div>
-    </div>
-
   </div>
 
   <!-- PROJECTS -->
