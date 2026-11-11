@@ -1263,22 +1263,22 @@ function setLang(lang) {
   localStorage.setItem("site_lang", lang);
   const html = document.documentElement;
   const langBtn = document.getElementById("lang-btn");
+  const barBrand = document.getElementById("bar-brand");
+  const btnNorm = document.getElementById("btn-mode-norm");
+  const btnCli = document.getElementById("btn-mode-cli");
   const aiBtnLabel = document.querySelector(".ai-btn-label");
   const aiInput = document.getElementById("ai-input");
   const aiTitle = document.querySelector(".ai-title");
   const aiChips = document.getElementById("ai-chips");
-  const aiBody = document.getElementById("ai-body");
-
-  // Hero Buttons
-  const btnSummary = document.querySelector(".hero-btns a.hbtn-p");
-  const btnCV = document.querySelector(".hero-btns a[download]");
-  const btnCLI = document.querySelector(".hero-btns button.hbtn-s");
   const backBtn = document.getElementById("back-btn");
-  
+
   if (lang === "ar") {
     html.setAttribute("dir", "rtl");
     html.setAttribute("lang", "ar");
     if (langBtn) langBtn.textContent = "🌐 English";
+    if (barBrand) barBrand.innerHTML = 'ملف الأعمال // <span class="c">MSL.IT</span>';
+    if (btnNorm) btnNorm.textContent = "الوضع الافتراضي";
+    if (btnCli) btnCli.textContent = "سطر الأوامر CLI";
     
     // Hero translations
     const schip = document.getElementById("schip");
@@ -1298,13 +1298,73 @@ function setLang(lang) {
     const hsub = document.getElementById("hsub");
     if (hsub) hsub.textContent = "مهندس بنية تحتية وأمن معلومات بخبرة 5 سنوات في قطاعات المؤسسات الكبرى، الرعاية الصحية، والقطاع المالي. أدير حالياً العمليات التقنية والأمنية عبر 5 مواقع بفريق من 5 مهندسين في شركة Viion، متخصص في شبكات Cisco (معتمد CCNA)، خوادم Windows Server و Active Directory، والافتراضية Hyper-V/VMware، وأمن Fortinet/pfSense.";
     
-    if (btnSummary) btnSummary.textContent = "عرض الملخص المهني";
-    if (btnCV) btnCV.textContent = "تحميل السيرة الذاتية (CV)";
-    if (btnCLI) btnCLI.textContent = "سطر الأوامر CLI";
+    // Meta items
+    const hmLoc = document.getElementById("hm-loc");
+    if (hmLoc) hmLoc.innerHTML = '<span class="hml">الموقع:</span> <span class="hm-v">القاهرة، مصر</span>';
+    const hmTel = document.getElementById("hm-tel");
+    if (hmTel) hmTel.innerHTML = '<span class="hml">الهاتف:</span> <a href="tel:+20 150 333 3155" dir="ltr">+20 150 333 3155</a>';
+    const hmMail = document.getElementById("hm-mail");
+    if (hmMail) hmMail.innerHTML = '<span class="hml">البريد:</span> <a href="mailto:mohamed-sayid@outlook.com">mohamed-sayid@outlook.com</a>';
+
+    // NOC translations
+    const nocHdr = document.getElementById("noc-hdr-title");
+    if (nocHdr) nocHdr.textContent = "مركز العمليات MSL // مراقبة البنية التحتية";
+    const nocT1 = document.getElementById("noc-tab-telemetry-txt");
+    if (nocT1) nocT1.textContent = "المراقبة الحية";
+    const nocT2 = document.getElementById("noc-tab-topology-txt");
+    if (nocT2) nocT2.textContent = "مخطط الشبكة";
+    const nocHint = document.getElementById("noc-con-hint");
+    if (nocHint) nocHint.textContent = "اضغط لاختبار الاستجابة:";
+
+    // NOC Cards
+    const k1l = document.getElementById("noc-kpi-1-lbl"); if (k1l) k1l.textContent = "شبكات سيسكو المؤسسية";
+    const k1v = document.getElementById("noc-kpi-1-val"); if (k1v) k1v.textContent = "5 مواقع · 200+ جهاز";
+    const k1s = document.getElementById("noc-kpi-1-sub"); if (k1s) k1s.textContent = "توجيه L3 OSPF · استجابة 12ms";
+    const nb1 = document.getElementById("noc-b1"); if (nb1) nb1.textContent = "● متصل";
+
+    const k2l = document.getElementById("noc-kpi-2-lbl"); if (k2l) k2l.textContent = "الخوادم الافتراضية";
+    const k2v = document.getElementById("noc-kpi-2-val"); if (k2v) k2v.textContent = "14 سيرفر افتراضي نشط";
+    const k2s = document.getElementById("noc-kpi-2-sub"); if (k2s) k2s.textContent = "بيئات VMware ESXi و Proxmox ZFS";
+    const nb2 = document.getElementById("noc-b2"); if (nb2) nb2.textContent = "● سليم";
+
+    const k3l = document.getElementById("noc-kpi-3-lbl"); if (k3l) k3l.textContent = "الدفاع والأمن السيبراني";
+    const k3v = document.getElementById("noc-kpi-3-val"); if (k3v) k3v.textContent = "حماية Wazuh و Suricata";
+    const k3s = document.getElementById("noc-kpi-3-sub"); if (k3s) k3s.textContent = "جدار ناري pfSense · بدون أي اختراق";
+    const nb3 = document.getElementById("noc-b3"); if (nb3) nb3.textContent = "● نشط";
+
+    const k4l = document.getElementById("noc-kpi-4-lbl"); if (k4l) k4l.textContent = "التعافي والنسخ الاحتياطي";
+    const k4v = document.getElementById("noc-kpi-4-val"); if (k4v) k4v.textContent = "نسخ احتياطي Veeam ZFS";
+    const k4s = document.getElementById("noc-kpi-4-sub"); if (k4s) k4s.textContent = "استعادة كاملة RTO أقل من ساعتين";
+    const nb4 = document.getElementById("noc-b4"); if (nb4) nb4.textContent = "● مقاوم للفدية";
+
+    // Buttons Under NOC
+    const tbHire = document.getElementById("txt-btn-hire"); if (tbHire) tbHire.textContent = "تواصل للتوظيف";
+    const tbCv = document.getElementById("txt-btn-cv"); if (tbCv) tbCv.textContent = "تحميل السيرة الذاتية (CV)";
+    const tbCerts = document.getElementById("txt-btn-certs"); if (tbCerts) tbCerts.textContent = "تحميل الشهادات (PDF)";
+    const tbLi = document.getElementById("txt-btn-li"); if (tbLi) tbLi.textContent = "لينكد إن ↗";
+    const tbWa = document.getElementById("txt-btn-wa"); if (tbWa) tbWa.textContent = "واتساب ↗";
+    const tbAn = document.getElementById("txt-btn-an"); if (tbAn) tbAn.textContent = "التحليلات ↗";
+    const tbPr = document.getElementById("txt-btn-print"); if (tbPr) tbPr.textContent = "طباعة السيرة الذاتية";
     if (backBtn) backBtn.textContent = "→ العودة للرئيسية";
 
-    const etrust = document.querySelector(".etrust-label");
-    if (etrust) etrust.textContent = "// أبرز المؤسسات والمشاريع المنجزة";
+    // Stats Labels
+    const sl1 = document.getElementById("hstat-l1"); if (sl1) sl1.textContent = "سنوات خبرة";
+    const sl2 = document.getElementById("hstat-l2"); if (sl2) sl2.textContent = "مواقع مدارة";
+    const sl3 = document.getElementById("hstat-l3"); if (sl3) sl3.textContent = "خفض الأعطال";
+    const sl4 = document.getElementById("hstat-l4"); if (sl4) sl4.textContent = "استقرار الأنظمة";
+
+    // Trust Bar
+    const etLbl = document.getElementById("etrust-lbl"); if (etLbl) etLbl.textContent = "// أبرز المؤسسات والمشاريع المنجزة";
+    const etN1 = document.getElementById("et-name1"); if (etN1) etN1.textContent = "بنك الإسكندرية";
+    const etS1 = document.getElementById("et-sub1"); if (etS1) etS1.textContent = "تجهيز البنية التحتية للفروع";
+    const etN2 = document.getElementById("et-name2"); if (etN2) etN2.textContent = "المصرية للاتصالات (WE)";
+    const etS2 = document.getElementById("et-sub2"); if (etS2) etS2.textContent = "تحديث وتطوير الخوادم";
+    const etN3 = document.getElementById("et-name3"); if (etN3) etN3.textContent = "Art Topia (كندا)";
+    const etS3 = document.getElementById("et-sub3"); if (etS3) etS3.textContent = "دعم تقني دولي عن بُعد";
+    const etN4 = document.getElementById("et-name4"); if (etN4) etN4.textContent = "شركة Viion";
+    const etS4 = document.getElementById("et-sub4"); if (etS4) etS4.textContent = "إدارة البنية التحتية لـ 5 مواقع";
+    const etN5 = document.getElementById("et-name5"); if (etN5) etN5.textContent = "مستشفى الشريعة الرئيسي";
+    const etS5 = document.getElementById("et-sub5"); if (etS5) etS5.textContent = "عزل وحماية أنظمة HIS/PACS الطبية";
 
     // AI Assistant widget
     if (aiBtnLabel) aiBtnLabel.textContent = "اسأل الذكاء الاصطناعي";
@@ -1330,7 +1390,6 @@ function setLang(lang) {
       }
     });
 
-    // Update active page title if open
     if (active && AR_NAMES[active]) {
       const pt = document.getElementById("page-title");
       if (pt) pt.textContent = AR_NAMES[active];
@@ -1339,6 +1398,9 @@ function setLang(lang) {
     html.removeAttribute("dir");
     html.setAttribute("lang", "en");
     if (langBtn) langBtn.textContent = "🌐 عربي";
+    if (barBrand) barBrand.innerHTML = 'PORTFOLIO // <span class="c">MSL.IT</span>';
+    if (btnNorm) btnNorm.textContent = "Normal";
+    if (btnCli) btnCli.textContent = "CLI";
     
     const schip = document.getElementById("schip");
     if (schip) schip.innerHTML = '<div class="sdot"></div>Open to Opportunities · Systems, Security & IT Operations Roles';
@@ -1357,13 +1419,73 @@ function setLang(lang) {
     const hsub = document.getElementById("hsub");
     if (hsub) hsub.textContent = "Infrastructure & Security Engineer with 5 years of hands-on experience across enterprise, healthcare, and financial-sector IT. Currently leading IT operations across 5 branch sites with a 5-person team, specializing in Cisco networking (CCNA), Windows Server/Active Directory, Hyper-V/VMware, and Fortinet/pfSense security.";
     
-    if (btnSummary) btnSummary.textContent = "View Summary";
-    if (btnCV) btnCV.textContent = "Download CV";
-    if (btnCLI) btnCLI.textContent = "Terminal Mode";
+    // Meta items
+    const hmLoc = document.getElementById("hm-loc");
+    if (hmLoc) hmLoc.innerHTML = '<span class="hml">Loc</span><span class="hm-v">Cairo, Egypt</span>';
+    const hmTel = document.getElementById("hm-tel");
+    if (hmTel) hmTel.innerHTML = '<span class="hml">Tel</span><a href="tel:+20 150 333 3155" dir="ltr">+20 150 333 3155</a>';
+    const hmMail = document.getElementById("hm-mail");
+    if (hmMail) hmMail.innerHTML = '<span class="hml">Mail</span><a href="mailto:mohamed-sayid@outlook.com">mohamed-sayid@outlook.com</a>';
+
+    // NOC translations
+    const nocHdr = document.getElementById("noc-hdr-title");
+    if (nocHdr) nocHdr.textContent = "MSL_NOC // INFRASTRUCTURE MONITOR";
+    const nocT1 = document.getElementById("noc-tab-telemetry-txt");
+    if (nocT1) nocT1.textContent = "Telemetry";
+    const nocT2 = document.getElementById("noc-tab-topology-txt");
+    if (nocT2) nocT2.textContent = "Topology";
+    const nocHint = document.getElementById("noc-con-hint");
+    if (nocHint) nocHint.textContent = "Click to test:";
+
+    // NOC Cards
+    const k1l = document.getElementById("noc-kpi-1-lbl"); if (k1l) k1l.textContent = "Cisco Enterprise Core";
+    const k1v = document.getElementById("noc-kpi-1-val"); if (k1v) k1v.textContent = "5 Sites · 200+ Nodes";
+    const k1s = document.getElementById("noc-kpi-1-sub"); if (k1s) k1s.textContent = "OSPF Area 0 · L3 · 12ms";
+    const nb1 = document.getElementById("noc-b1"); if (nb1) nb1.textContent = "● ONLINE";
+
+    const k2l = document.getElementById("noc-kpi-2-lbl"); if (k2l) k2l.textContent = "Virtualization Farm";
+    const k2v = document.getElementById("noc-kpi-2-val"); if (k2v) k2v.textContent = "14 Active VMs";
+    const k2s = document.getElementById("noc-kpi-2-sub"); if (k2s) k2s.textContent = "ESXi 8.0 & Proxmox ZFS";
+    const nb2 = document.getElementById("noc-b2"); if (nb2) nb2.textContent = "● HEALTHY";
+
+    const k3l = document.getElementById("noc-kpi-3-lbl"); if (k3l) k3l.textContent = "Security Defense";
+    const k3v = document.getElementById("noc-kpi-3-val"); if (k3v) k3v.textContent = "Wazuh + Suricata IDS";
+    const k3s = document.getElementById("noc-kpi-3-sub"); if (k3s) k3s.textContent = "pfSense · 0 Breaches";
+    const nb3 = document.getElementById("noc-b3"); if (nb3) nb3.textContent = "● ACTIVE";
+
+    const k4l = document.getElementById("noc-kpi-4-lbl"); if (k4l) k4l.textContent = "Disaster Recovery";
+    const k4v = document.getElementById("noc-kpi-4-val"); if (k4v) k4v.textContent = "Veeam Backup (ZFS)";
+    const k4s = document.getElementById("noc-kpi-4-sub"); if (k4s) k4s.textContent = "RTO < 2h · RPO 15m";
+    const nb4 = document.getElementById("noc-b4"); if (nb4) nb4.textContent = "● IMMUTABLE";
+
+    // Buttons Under NOC
+    const tbHire = document.getElementById("txt-btn-hire"); if (tbHire) tbHire.textContent = "Hire Me";
+    const tbCv = document.getElementById("txt-btn-cv"); if (tbCv) tbCv.textContent = "CV ↓";
+    const tbCerts = document.getElementById("txt-btn-certs"); if (tbCerts) tbCerts.textContent = "Certificates ↓";
+    const tbLi = document.getElementById("txt-btn-li"); if (tbLi) tbLi.textContent = "LinkedIn ↗";
+    const tbWa = document.getElementById("txt-btn-wa"); if (tbWa) tbWa.textContent = "WhatsApp ↗";
+    const tbAn = document.getElementById("txt-btn-an"); if (tbAn) tbAn.textContent = "Analysis ↗";
+    const tbPr = document.getElementById("txt-btn-print"); if (tbPr) tbPr.textContent = "Print CV";
     if (backBtn) backBtn.textContent = "← Back to Dashboard";
 
-    const etrust = document.querySelector(".etrust-label");
-    if (etrust) etrust.textContent = "// ENTERPRISE CLIENTS & KEY PROJECTS";
+    // Stats Labels
+    const sl1 = document.getElementById("hstat-l1"); if (sl1) sl1.textContent = "Yrs Experience";
+    const sl2 = document.getElementById("hstat-l2"); if (sl2) sl2.textContent = "Sites Managed";
+    const sl3 = document.getElementById("hstat-l3"); if (sl3) sl3.textContent = "Incidents Reduced";
+    const sl4 = document.getElementById("hstat-l4"); if (sl4) sl4.textContent = "Critical Uptime";
+
+    // Trust Bar
+    const etLbl = document.getElementById("etrust-lbl"); if (etLbl) etLbl.textContent = "// ENTERPRISE CLIENTS & PROJECT HIGHLIGHTS";
+    const etN1 = document.getElementById("et-name1"); if (etN1) etN1.textContent = "Bank of Alexandria";
+    const etS1 = document.getElementById("et-sub1"); if (etS1) etS1.textContent = "Branch IT Infrastructure";
+    const etN2 = document.getElementById("et-name2"); if (etN2) etN2.textContent = "Telecom Egypt (WE)";
+    const etS2 = document.getElementById("et-sub2"); if (etS2) etS2.textContent = "Server Refresh";
+    const etN3 = document.getElementById("et-name3"); if (etN3) etN3.textContent = "Art Topia (Canada)";
+    const etS3 = document.getElementById("et-sub3"); if (etS3) etS3.textContent = "Global Remote Support";
+    const etN4 = document.getElementById("et-name4"); if (etN4) etN4.textContent = "Viion";
+    const etS4 = document.getElementById("et-sub4"); if (etS4) etS4.textContent = "5 Branch Sites Managed";
+    const etN5 = document.getElementById("et-name5"); if (etN5) etN5.textContent = "Main Sharia Hospital";
+    const etS5 = document.getElementById("et-sub5"); if (etS5) etS5.textContent = "Medical HIS/PACS";
 
     // AI Assistant widget
     if (aiBtnLabel) aiBtnLabel.textContent = "Ask MSL AI";

@@ -1203,3 +1203,148 @@ html[dir="rtl"] .noc-con-hdr { flex-direction: row-reverse; }
 html[dir="rtl"] .noc-term-out { direction: ltr; text-align: left; }
 html[dir="rtl"] .topo-detail-box { border-left: 1px solid rgba(74, 144, 184, 0.22); border-right: 2px solid #00ff9d; }
 html[dir="rtl"] .home-actions-col .hero-btns { justify-content: flex-start; }
+
+
+/* ══ TIGHTENED COMPACT SPACING (ELIMINATE DEAD EMPTY VOIDS) ══ */
+#pg-home {
+  padding: 8px clamp(18px, 3vw, 44px) 20px !important;
+}
+.home-hero {
+  padding: 4px 0 8px !important;
+  gap: clamp(16px, 2.5vw, 32px) !important;
+  align-items: stretch !important;
+}
+.home-bio-col {
+  flex: 1.05 !important;
+  max-width: 580px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+}
+.home-actions-col {
+  flex: 0.95 !important;
+  max-width: 530px !important;
+  gap: 8px !important;
+}
+.home-h1 {
+  font-size: clamp(34px, 4.2vw, 56px) !important;
+  line-height: .92 !important;
+  margin-bottom: 6px !important;
+}
+.status-chip {
+  margin-bottom: 8px !important;
+  padding: 4px 10px !important;
+}
+.eyebrow {
+  margin-bottom: 6px !important;
+}
+.home-role {
+  margin-bottom: 8px !important;
+  font-size: 11px !important;
+  letter-spacing: .14em !important;
+}
+.home-sub {
+  margin-bottom: 10px !important;
+  font-size: 12px !important;
+  line-height: 1.65 !important;
+  padding-left: 12px !important;
+}
+.home-meta {
+  margin-bottom: 0 !important;
+  gap: 6px 14px !important;
+}
+.home-noc-panel {
+  border-radius: 6px !important;
+}
+.noc-header {
+  padding: 6px 10px !important;
+}
+.noc-tab-body {
+  padding: 8px 10px !important;
+}
+.noc-grid {
+  gap: 6px !important;
+  margin-bottom: 6px !important;
+}
+.noc-card {
+  padding: 5px 8px !important;
+}
+.noc-val {
+  font-size: 11.5px !important;
+}
+.noc-sub {
+  font-size: 8px !important;
+}
+.noc-console-wrap {
+  padding: 5px 8px !important;
+}
+.home-actions-col .hero-btns {
+  gap: 5px !important;
+  margin-bottom: 0 !important;
+}
+.home-actions-col .hbtn {
+  padding: 5px 10px !important;
+  font-size: 9.5px !important;
+}
+.home-actions-col .hero-stats {
+  margin-top: 0 !important;
+  padding-top: 8px !important;
+  gap: 6px !important;
+}
+.home-actions-col .hstat-n {
+  font-size: 17px !important;
+}
+.home-actions-col .hstat-l {
+  font-size: 8px !important;
+}
+.home-actions-col .enterprise-trust-bar {
+  margin-top: 0 !important;
+  padding: 5px 8px !important;
+}
+.home-actions-col .etrust-label {
+  font-size: 8px !important;
+  margin-bottom: 3px !important;
+}
+.home-actions-col .et-badge {
+  font-size: 9px !important;
+  padding: 2px 6px !important;
+}
+.nav-grid {
+  margin-top: 10px !important;
+  gap: 8px 10px !important;
+}
+.nc {
+  padding: 12px 14px !important;
+}
+.nc-ico {
+  font-size: 18px !important;
+  margin-bottom: 6px !important;
+}
+.nc-name {
+  font-size: 12.5px !important;
+  margin-bottom: 2px !important;
+}
+.nc-hint {
+  font-size: 9.5px !important;
+}
+
+/* BiDi isolation & RTL polish */
+html[dir="rtl"] .home-actions-col {
+  text-align: right !important;
+}
+html[dir="rtl"] .noc-card {
+  text-align: right !important;
+}
+html[dir="rtl"] .noc-card-hdr {
+  flex-direction: row-reverse !important;
+}
+html[dir="rtl"] .et-badge {
+  flex-direction: row !important;
+}
+html[dir="rtl"] .home-meta {
+  justify-content: flex-start !important;
+  text-align: right !important;
+}
+html[dir="rtl"] .hero-btns {
+  justify-content: flex-start !important;
+}
