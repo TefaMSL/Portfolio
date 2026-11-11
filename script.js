@@ -294,8 +294,90 @@ function launchHero() {
     .to("#hsub", { opacity: 1, duration: .55 }, "-=.2")
     .to("#hmet", { opacity: 1, duration: .5 }, "-=.2")
     .to("#hbtns", { opacity: 1, duration: .5 }, "-=.2");
-  gsap.fromTo(".hstat", { opacity: 0, y: 16 }, { opacity: 1, y: 0, stagger: .09, duration: .5, delay: 1.4, ease: "power3.out", onStart: () => { document.getElementById("hstats").style.opacity = "1" } });
-  gsap.fromTo(".nc", { opacity: 0, y: 28 }, { opacity: 1, y: 0, stagger: .07, duration: .5, delay: 1.6, ease: "power3.out", clearProps: "transform", onStart: () => { document.getElementById("nav-cards").style.opacity = "1" } });
+
+  // Right Column Cyber NOC Entrance
+  gsap.fromTo("#home-noc",
+    { opacity: 0, y: 24, scale: 0.98 },
+    {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.7,
+      delay: 0.5,
+      ease: "power3.out",
+      onStart: () => {
+        const noc = document.getElementById("home-noc");
+        if (noc) noc.style.opacity = "1";
+      }
+    }
+  );
+
+  // Stagger NOC Cards inside
+  gsap.fromTo(".noc-card",
+    { opacity: 0, y: 12 },
+    { opacity: 1, y: 0, stagger: 0.08, duration: 0.45, delay: 0.8, ease: "power2.out" }
+  );
+
+  // Reveal Console Terminal Wrap
+  gsap.fromTo(".noc-console-wrap",
+    { opacity: 0, y: 10 },
+    { opacity: 1, y: 0, duration: 0.45, delay: 1.15, ease: "power2.out" }
+  );
+
+  // Stagger Stats Underneath
+  gsap.fromTo(".hstat",
+    { opacity: 0, y: 16 },
+    {
+      opacity: 1,
+      y: 0,
+      stagger: 0.08,
+      duration: 0.5,
+      delay: 1.35,
+      ease: "power3.out",
+      onStart: () => {
+        const hs = document.getElementById("hstats");
+        if (hs) hs.style.opacity = "1";
+      }
+    }
+  );
+
+  // Enterprise Trust Bar Entrance & Badges Stagger
+  gsap.fromTo("#etrust",
+    { opacity: 0, y: 16 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.55,
+      delay: 1.55,
+      ease: "power3.out",
+      onStart: () => {
+        const et = document.getElementById("etrust");
+        if (et) et.style.opacity = "1";
+      }
+    }
+  );
+  gsap.fromTo(".et-badge",
+    { opacity: 0, scale: 0.95 },
+    { opacity: 1, scale: 1, stagger: 0.06, duration: 0.4, delay: 1.7, ease: "power2.out" }
+  );
+
+  // Nav Cards
+  gsap.fromTo(".nc",
+    { opacity: 0, y: 28 },
+    {
+      opacity: 1,
+      y: 0,
+      stagger: 0.07,
+      duration: 0.5,
+      delay: 1.85,
+      ease: "power3.out",
+      clearProps: "transform",
+      onStart: () => {
+        const nc = document.getElementById("nav-cards");
+        if (nc) nc.style.opacity = "1";
+      }
+    }
+  );
 }
 
 function animateBars(pageId) {
