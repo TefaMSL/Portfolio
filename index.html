@@ -856,6 +856,11 @@
           <div>
             <div class="cs-block-label problem">Problem</div>
             <p class="cs-text">Legacy flat network with no segmentation causing broadcast storms, bottlenecks, and security gaps. Devices shared a single VLAN, making lateral movement trivial for any internal threat. Downtime was averaging 3–4 hours per week.</p>
+            <div class="cs-audit-box">
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ SCOPE:</span><span>Flat Layer 2 collision domain with &gt;250 unsegmented nodes.</span></div>
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ RISK:</span><span>Zero isolation between finance, corporate, and guest subnets.</span></div>
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ IMPACT:</span><span>~16 hrs/month lost productivity due to broadcast storms.</span></div>
+            </div>
           </div>
           <div>
             <div class="cs-block-label solution">Solution</div>
@@ -899,6 +904,10 @@
               <li>Lateral movement threats eliminated via VLAN isolation</li>
               <li>Remote access secured with split-tunnel VPN</li>
             </ul>
+            <div class="cs-kpi-row">
+              <div class="cs-kpi-card"><div class="cs-kpi-val">+75%</div><div class="cs-kpi-lbl">Throughput</div></div>
+              <div class="cs-kpi-card"><div class="cs-kpi-val">99.98%</div><div class="cs-kpi-lbl">Core Uptime</div></div>
+            </div>
           </div>
         </div>
         <div class="cs-tags">
@@ -920,6 +929,11 @@
           <div>
             <div class="cs-block-label problem">Problem</div>
             <p class="cs-text">Critical medical systems — including HIS (Hospital Information System), PACS imaging, and lab equipment — were running on unmanaged, unsecured infrastructure. Frequent outages disrupted patient care workflows. No disaster recovery plan existed.</p>
+            <div class="cs-audit-box">
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ PACS/HIS:</span><span>Medical telemetry sharing broadcast domains with guest devices.</span></div>
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ AUDIT:</span><span>Zero access controls or perimeter firewall protection.</span></div>
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ RECOVERY:</span><span>No backup replication, risking irrecoverable patient record loss.</span></div>
+            </div>
           </div>
           <div>
             <div class="cs-block-label solution">Solution</div>
@@ -952,7 +966,7 @@
                 <text x="470" y="77" text-anchor="middle" fill="#f39c12" font-size="7" font-family="monospace">Captive Portal Only</text>
               </svg>
             </div>
-            <p class="cs-text">Deployed Windows Server 2019 with Active Directory for centralised access control. Segmented medical devices on an isolated VLAN with strict firewall ACLs. Implemented Hyper-V virtualisation for critical services and established a backup & disaster recovery plan with off-site replication.</p>
+            <p class="cs-text">Deployed Windows Server 2019 with Active Directory for centralised access control. Segmented medical devices on an isolated VLAN with strict firewall ACLs. Implemented Hyper-V virtualisation for critical services and established a backup &amp; disaster recovery plan with off-site replication.</p>
           </div>
           <div>
             <div class="cs-block-label results">Results</div>
@@ -962,6 +976,10 @@
               <li>Recovery time objective (RTO) reduced to under 2 hours</li>
               <li>Full VLAN isolation for all medical devices</li>
             </ul>
+            <div class="cs-kpi-row">
+              <div class="cs-kpi-card"><div class="cs-kpi-val">99.9%</div><div class="cs-kpi-lbl">Uptime SLA</div></div>
+              <div class="cs-kpi-card"><div class="cs-kpi-val">-90%</div><div class="cs-kpi-lbl">Incidents</div></div>
+            </div>
           </div>
         </div>
         <div class="cs-tags">
@@ -983,6 +1001,11 @@
           <div>
             <div class="cs-block-label problem">Problem</div>
             <p class="cs-text">Workstations across multiple office locations had inconsistent security configurations, outdated OS patches, and no centralised policy enforcement. Shadow IT and unauthorised USB usage were common, creating significant data exfiltration risk.</p>
+            <div class="cs-audit-box">
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ PRIVILEGE:</span><span>Local admin rights unmanaged across corporate endpoints.</span></div>
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ COMPLIANCE:</span><span>Patch compliance &lt;40% with critical unpatched CVEs.</span></div>
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ DATA LEAK:</span><span>Shadow IT and unmonitored USB mass storage exfiltration.</span></div>
+            </div>
           </div>
           <div>
             <div class="cs-block-label solution">Solution</div>
@@ -1028,6 +1051,10 @@
               <li>Patch compliance improved from ~40% to <strong style="color:var(--grn)">98%</strong></li>
               <li>Zero privilege escalation incidents post-deployment</li>
             </ul>
+            <div class="cs-kpi-row">
+              <div class="cs-kpi-card"><div class="cs-kpi-val">98%</div><div class="cs-kpi-lbl">Patch Rate</div></div>
+              <div class="cs-kpi-card"><div class="cs-kpi-val">0</div><div class="cs-kpi-lbl">Breach Incidents</div></div>
+            </div>
           </div>
         </div>
         <div class="cs-tags">
@@ -1049,6 +1076,11 @@
           <div>
             <div class="cs-block-label problem">Problem</div>
             <p class="cs-text">Physical servers running Windows Server 2008 R2 were approaching end-of-support, running on ageing hardware with no redundancy. Single points of failure were risking business continuity. Expanding physical infrastructure was cost-prohibitive.</p>
+            <div class="cs-audit-box">
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ LIFECYCLE:</span><span>6 physical servers on Windows Server 2008 R2 past EOL.</span></div>
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ REDUNDANCY:</span><span>Zero hardware failover; any PSU or disk failure meant downtime.</span></div>
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ DISASTER:</span><span>RTO exceeding 24 hours due to manual tape/external drive recovery.</span></div>
+            </div>
           </div>
           <div>
             <div class="cs-block-label solution">Solution</div>
@@ -1095,6 +1127,10 @@
               <li>High-availability cluster achieved 99.9% uptime SLA</li>
               <li>Simplified backup via VM snapshot automation</li>
             </ul>
+            <div class="cs-kpi-row">
+              <div class="cs-kpi-card"><div class="cs-kpi-val">-60%</div><div class="cs-kpi-lbl">HW Cost</div></div>
+              <div class="cs-kpi-card"><div class="cs-kpi-val">&lt;2h RTO</div><div class="cs-kpi-lbl">Veeam DR</div></div>
+            </div>
           </div>
         </div>
         <div class="cs-tags">
@@ -1116,6 +1152,11 @@
           <div>
             <div class="cs-block-label problem">Problem</div>
             <p class="cs-text">A sprawling flat network was causing massive broadcast storms, leading to daily intermittent connectivity drops and IP conflicts across departments. Frequent network loops were crippling core medical applications.</p>
+            <div class="cs-audit-box">
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ TOPOLOGY:</span><span>Unmanaged access switches lacking 802.1Q trunking isolation.</span></div>
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ LOOP RISK:</span><span>Absence of Spanning-Tree (STP) causing recurrent bridge loops.</span></div>
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ VISIBILITY:</span><span>Zero SNMP telemetry or port error monitoring across floors.</span></div>
+            </div>
           </div>
           <div>
             <div class="cs-block-label solution">Solution</div>
@@ -1153,6 +1194,10 @@
               <li>Improved inter-department routing efficiency</li>
               <li>Future-proofed OSPF base mapping established for future scalability</li>
             </ul>
+            <div class="cs-kpi-row">
+              <div class="cs-kpi-card"><div class="cs-kpi-val">-99%</div><div class="cs-kpi-lbl">Outages</div></div>
+              <div class="cs-kpi-card"><div class="cs-kpi-val">0 Loops</div><div class="cs-kpi-lbl">RSTP Protected</div></div>
+            </div>
           </div>
         </div>
         <div class="cs-tags">
@@ -1174,6 +1219,11 @@
           <div>
             <div class="cs-block-label problem">Problem</div>
             <p class="cs-text">Patients, guests, and administrative staff were connecting to the same unsegmented network. This open ecosystem posed severe security and compliance risks to unencrypted patient records and medical imaging devices (PACS).</p>
+            <div class="cs-audit-box">
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ EXPOSURE:</span><span>Medical PACS databases directly exposed on guest Wi-Fi subnet.</span></div>
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ BANDWIDTH:</span><span>Streaming guest traffic starving critical medical telemetry packets.</span></div>
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ COMPLIANCE:</span><span>Critical failure of health data isolation and privacy mandates.</span></div>
+            </div>
           </div>
           <div>
             <div class="cs-block-label solution">Solution</div>
@@ -1223,6 +1273,10 @@
               <li>Eliminated unauthenticated access to the physical network ports</li>
               <li>Intrusion/Malware blocking via Unified Threat Management (UTM)</li>
             </ul>
+            <div class="cs-kpi-row">
+              <div class="cs-kpi-card"><div class="cs-kpi-val">100%</div><div class="cs-kpi-lbl">Compliance</div></div>
+              <div class="cs-kpi-card"><div class="cs-kpi-val">0 Leaks</div><div class="cs-kpi-lbl">UTM Shielded</div></div>
+            </div>
           </div>
         </div>
         <div class="cs-tags">
@@ -1244,6 +1298,11 @@
           <div>
             <div class="cs-block-label problem">Problem</div>
             <p class="cs-text">A newly opened commercial branch required an ultra-secure, PCI-DSS compliant network setup. Financial teller workstations, guest Wi-Fi, and ATM banking terminals could not share broadcast domains or unauthenticated access ports.</p>
+            <div class="cs-audit-box">
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ PCI RISK:</span><span>ATM transactions and teller machines sharing flat broadcast domains.</span></div>
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ ROGUE PORTS:</span><span>Open unauthenticated RJ45 wall jacks vulnerable to physical tapping.</span></div>
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ LATENCY:</span><span>Unmanaged broadcast chatter causing banking transaction timeouts.</span></div>
+            </div>
           </div>
           <div>
             <div class="cs-block-label solution">Solution</div>
@@ -1290,6 +1349,10 @@
               <li>Branch delivered on-schedule and certified for live banking operations</li>
               <li>Structured cabling certified with zero packet attenuation</li>
             </ul>
+            <div class="cs-kpi-row">
+              <div class="cs-kpi-card"><div class="cs-kpi-val">0 Rogue</div><div class="cs-kpi-lbl">Port Violations</div></div>
+              <div class="cs-kpi-card"><div class="cs-kpi-val">PCI-DSS</div><div class="cs-kpi-lbl">Level 1 Ready</div></div>
+            </div>
           </div>
         </div>
         <div class="cs-tags">
@@ -1311,6 +1374,11 @@
           <div>
             <div class="cs-block-label problem">Problem</div>
             <p class="cs-text">Core enterprise telecom nodes were operating on legacy storage arrays approaching MTBF limits with degrading read/write performance. High drive failure risks and aging firmware posed threats to daily operational metrics.</p>
+            <div class="cs-audit-box">
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ MTBF LIMIT:</span><span>Enterprise 15K SAS drives past 5-year rated lifespan.</span></div>
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ REBUILD RISK:</span><span>Elevated dual-disk failure danger during rebuilds without hot-spares.</span></div>
+              <div class="cs-audit-item"><span class="cs-audit-tag">⚠️ BOTTLENECK:</span><span>Degraded disk IOPS constraining peak telecom billing throughput.</span></div>
+            </div>
           </div>
           <div>
             <div class="cs-block-label solution">Solution</div>
@@ -1357,6 +1425,10 @@
               <li>Zero unplanned downtime during maintenance migration</li>
               <li>Extended server hardware lifecycle by 4+ years</li>
             </ul>
+            <div class="cs-kpi-row">
+              <div class="cs-kpi-card"><div class="cs-kpi-val">+300%</div><div class="cs-kpi-lbl">IOPS Gain</div></div>
+              <div class="cs-kpi-card"><div class="cs-kpi-val">0 Loss</div><div class="cs-kpi-lbl">Hot-Spare Auto</div></div>
+            </div>
           </div>
         </div>
         <div class="cs-tags">

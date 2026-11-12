@@ -548,6 +548,17 @@ html[dir="rtl"] .svc-track-list li::before {
 .cs-results-list li::before{content:'▸';position:absolute;left:0;color:var(--grn);font-size:12px;top:2px}
 .cs-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;padding-top:14px;border-top:1px solid var(--brd)}
 
+/* ══ CASE STUDY ENHANCED PROBLEM AUDIT & KPI METRICS ══ */
+.cs-audit-box{margin-top:12px;background:var(--surf2);border:1px solid rgba(231,76,60,.22);border-left:3px solid var(--red);border-radius:6px;padding:9px 12px;display:flex;flex-direction:column;gap:5px}
+html[dir="rtl"] .cs-audit-box{border-left:1px solid rgba(231,76,60,.22);border-right:3px solid var(--red)}
+.cs-audit-item{display:flex;align-items:flex-start;gap:7px;font-size:11.5px;line-height:1.45;color:var(--txt2);font-family:var(--mono)}
+.cs-audit-tag{color:var(--red);font-weight:700;font-size:11px;flex-shrink:0}
+
+.cs-kpi-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.cs-kpi-card{background:var(--surf2);border:1px solid rgba(46,204,113,.22);border-radius:6px;padding:7px 9px;text-align:center}
+.cs-kpi-val{font-family:var(--mono);font-size:14.5px;font-weight:700;color:var(--grn);line-height:1.2}
+.cs-kpi-lbl{font-size:9.5px;color:var(--txt2);letter-spacing:.05em;text-transform:uppercase;margin-top:3px;font-family:var(--mono);font-weight:500}
+
 /* ══ SOCIAL PROOF ══ */
 .sp-trust-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:34px}
 .sp-trust-item{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r);padding:20px 18px;text-align:center;position:relative;overflow:hidden;transition:all .28s,background .35s}
