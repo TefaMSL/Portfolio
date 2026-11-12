@@ -513,7 +513,7 @@ html[dir="rtl"] .svc-track-list li::before {
 .domain-bar{height:6px;background:var(--brd);border-radius:3px;overflow:hidden}
 .domain-fill{height:100%;border-radius:3px;width:0;transition:width 1.3s cubic-bezier(.22,1,.36,1)}
 .tech-bubbles{display:flex;flex-wrap:wrap;gap:8px}
-.tb{font-size:12px;padding:6px 13px;border-radius:4px;border:1px solid;transition:all .2s;cursor:default;font-family:var(--mono);font-weight:500}
+.tb{font-size:12px;padding:6px 13px;border-radius:4px;border:1px solid;transition:all .2s;cursor:none;font-family:var(--mono);font-weight:500}
 .tb:hover{transform:scale(1.06)}
 .tb-blue{border-color:rgba(74,144,184,.28);color:var(--acc);background:rgba(74,144,184,.05)}
 .tb-green{border-color:rgba(46,204,113,.25);color:var(--grn);background:rgba(46,204,113,.04)}

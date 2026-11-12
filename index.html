@@ -716,10 +716,13 @@
     <div class="ph"><div class="ph-label">12 / Analysis</div><div class="ph-h">Skills <span class="c">Insights</span></div><div class="ph-div"></div></div>
     <div class="analysis-grid">
       <div class="an-card">
-        <style>#chart-toggle-btn { cursor: default !important; transition: all 0.3s; } #chart-toggle-btn:hover { background: rgba(100,100,100,0.1) !important; color: var(--acc) !important; border-color: var(--acc) !important; }</style>
-        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+        <style>
+          #chart-toggle-btn { cursor: none !important; transition: all 0.3s; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; }
+          #chart-toggle-btn:hover { background: rgba(74,144,184,0.15) !important; color: var(--acc) !important; border-color: var(--acc) !important; cursor: none !important; }
+        </style>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
           <div class="an-title" style="margin-bottom: 0; flex: 1; padding-bottom: 0px; border-bottom: none;">Domain Expertise</div>
-          <button id="chart-toggle-btn" class="bar-btn" style="font-size: 10px; padding: 3px 8px; border: 1px solid var(--brd); background: transparent; color: var(--txt); border-radius: var(--r); margin-left: 10px;">CLASSIC VIEW</button>
+          <button id="chart-toggle-btn" class="bar-btn" style="font-size: 11px; padding: 4px 10px; border: 1px solid var(--brd); background: transparent; color: var(--txt); border-radius: var(--r); margin-left: 10px; cursor: none !important;">CLASSIC VIEW</button>
         </div>
         <div id="domain-bars-view" style="display: none;">
           <div class="domain-row"><div class="domain-head"><span class="domain-name">Network Administration</span><span class="domain-pct">92%</span></div><div class="domain-bar"><div class="domain-fill" data-pct="92" style="background:linear-gradient(90deg,#4a90b8,#2a7aaa)"></div></div></div>
@@ -729,7 +732,7 @@
           <div class="domain-row"><div class="domain-head"><span class="domain-name">Virtualization</span><span class="domain-pct">82%</span></div><div class="domain-bar"><div class="domain-fill" data-pct="82" style="background:linear-gradient(90deg,#e67e22,#e74c3c)"></div></div></div>
           <div class="domain-row"><div class="domain-head"><span class="domain-name">Cloud Services</span><span class="domain-pct">75%</span></div><div class="domain-bar"><div class="domain-fill" data-pct="75" style="background:linear-gradient(90deg,#4a90b8,#2a5c7a)"></div></div></div>
         </div>
-        <div id="domain-chart-view" style="width: 100%; height: 280px; margin-top: 20px; display: block;">
+        <div id="domain-chart-view" style="width: 100%; height: 280px; margin-top: 15px; display: block; position: relative;">
           <canvas id="skillsChart"></canvas>
         </div>
       </div>

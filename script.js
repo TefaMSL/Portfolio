@@ -464,6 +464,9 @@ function goPage(id, pushHash = true) {
     .fromTo(ov, { filter: "blur(4px)" }, { opacity: 1, x: "0%", filter: "blur(0px)", duration: .4, ease: "power2.out" }, "-=.1");
   gsap.to(pt, { opacity: 1, duration: .3, delay: .18 });
   if (id === "skills" || id === "analysis") animateBars(id);
+  if (id === "analysis") {
+    setTimeout(initSkillsChart, 150);
+  }
 
   if (pushHash && window.location.hash !== "#" + id) {
     try {
@@ -1247,22 +1250,34 @@ setInterval(() => {
 let skillsChart = null;
 
 function initSkillsChart() {
+  const chartView = document.getElementById('domain-chart-view');
   const ctx = document.getElementById('skillsChart');
-  if (!ctx) return;
+  if (!ctx || !chartView) return;
+
+  // Don't init if chartView is explicitly hidden in classic bars mode
+  if (chartView.style.display === 'none') return;
+
+  // If analysis page is not visible yet, return (it will be called when user visits #analysis)
+  const analysisPage = document.getElementById('pg-analysis');
+  if (analysisPage && window.getComputedStyle(analysisPage).display === 'none') return;
+
   if (typeof Chart === 'undefined') {
     setTimeout(initSkillsChart, 100);
     return;
   }
 
-  if (skillsChart) skillsChart.destroy();
+  if (skillsChart) {
+    try { skillsChart.destroy(); } catch(e){}
+    skillsChart = null;
+  }
 
   const isLight = document.documentElement.getAttribute('data-theme') === 'light';
 
-  const textColor = isLight ? '#333' : '#a0b0c0';
-  const gridColor = isLight ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.1)';
-  const angleLineColor = isLight ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.2)';
-  const primaryColor = isLight ? 'rgba(255, 120, 50, 0.4)' : 'rgba(255, 160, 50, 0.4)';
-  const primaryBorder = isLight ? '#e65c00' : '#ffa032';
+  const textColor = isLight ? '#1e3a52' : '#c0d8e8';
+  const gridColor = isLight ? 'rgba(30,106,154,0.16)' : 'rgba(74,144,184,0.18)';
+  const angleLineColor = isLight ? 'rgba(30,106,154,0.24)' : 'rgba(74,144,184,0.26)';
+  const primaryColor = isLight ? 'rgba(30, 106, 154, 0.28)' : 'rgba(74, 144, 184, 0.28)';
+  const primaryBorder = isLight ? '#1e6a9a' : '#4a90b8';
 
   skillsChart = new Chart(ctx, {
     type: 'radar',
@@ -1284,7 +1299,7 @@ function initSkillsChart() {
       responsive: true,
       maintainAspectRatio: false,
       layout: {
-        padding: { top: 0, bottom: 0, left: 15, right: 15 }
+        padding: { top: 10, bottom: 10, left: 15, right: 15 }
       },
       scales: {
         r: {
@@ -1294,7 +1309,7 @@ function initSkillsChart() {
           grid: { color: gridColor },
           pointLabels: {
             color: textColor,
-            font: { family: 'IBM Plex Mono', size: 10.5 }
+            font: { family: 'IBM Plex Mono', size: 12, weight: '600' }
           },
           ticks: {
             display: false,
@@ -1303,35 +1318,46 @@ function initSkillsChart() {
         }
       },
       animation: {
-        duration: 400,
+        duration: 500,
         easing: 'easeOutQuart'
       },
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: isLight ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.9)',
-          titleColor: isLight ? '#fff' : '#000',
-          bodyColor: isLight ? '#fff' : '#000',
-          titleFont: { family: 'IBM Plex Mono' },
-          bodyFont: { family: 'IBM Plex Mono' },
-          displayColors: false
+          backgroundColor: isLight ? 'rgba(255,255,255,0.96)' : 'rgba(8,15,24,0.96)',
+          titleColor: isLight ? '#0a1a28' : '#d8e8f0',
+          bodyColor: isLight ? '#1e3a52' : '#c0d8e8',
+          borderColor: primaryBorder,
+          borderWidth: 1,
+          titleFont: { family: 'IBM Plex Mono', weight: '600', size: 12 },
+          bodyFont: { family: 'IBM Plex Mono', size: 12 },
+          displayColors: false,
+          callbacks: {
+            label: function (ctx) {
+              return ' Expertise: ' + ctx.raw + '%';
+            }
+          }
         }
       }
     }
   });
 }
 
-// Call initially
-initSkillsChart();
+// Re-init chart when theme changes
+const originalToggleTheme = window.toggleTheme;
+window.toggleTheme = function () {
+  if (typeof originalToggleTheme === 'function') originalToggleTheme();
+  setTimeout(() => {
+    if (active === 'analysis') initSkillsChart();
+  }, 100);
+};
 
-// Re-init chart when theme changes (override the global function or add listener)
-if (typeof toggleTheme === 'function') {
-  const originalToggleTheme = toggleTheme;
-  window.toggleTheme = function () {
-    originalToggleTheme();
-    setTimeout(initSkillsChart, 50);
-  };
-}
+// Re-size chart on window resize
+window.addEventListener('resize', () => {
+  if (skillsChart && active === 'analysis') {
+    skillsChart.resize();
+  }
+});
 
 // View toggle logic
 const chartToggleBtn = document.getElementById('chart-toggle-btn');
@@ -1354,6 +1380,10 @@ if (chartToggleBtn) {
       barsView.style.display = 'none';
       chartView.style.display = 'block';
       chartToggleBtn.textContent = 'CLASSIC VIEW';
+      setTimeout(() => {
+        initSkillsChart();
+        if (skillsChart) skillsChart.resize();
+      }, 50);
     }
   });
 }
