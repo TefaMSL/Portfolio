@@ -189,23 +189,82 @@ function toggleTheme() {
 }
 
 let currentMode = "normal";
+let isTransitioningMode = false;
+
 function setMode(m) {
+  if (currentMode === m || isTransitioningMode) return;
   currentMode = m;
+  isTransitioningMode = true;
+
   const cli = document.getElementById("cli");
   const app = document.getElementById("app");
   const soc = document.getElementById("soc");
+  const normalBtn = document.getElementById("normal-btn");
+  const cliBtn = document.getElementById("cli-btn");
+
   if (m === "cli") {
-    cli.style.display = "flex"; app.style.display = "none";
-    soc.style.opacity = "0"; soc.style.pointerEvents = "none";
-    document.getElementById("normal-btn").classList.remove("active-mode");
-    document.getElementById("cli-btn").classList.add("active-mode");
-    document.getElementById("cli-in").focus();
-    if (!cliBooted) { bootCLI(); cliBooted = true; }
+    normalBtn.classList.remove("active-mode");
+    cliBtn.classList.add("active-mode");
+
+    gsap.timeline({
+      onComplete: () => {
+        app.style.display = "none";
+        soc.style.opacity = "0";
+        soc.style.pointerEvents = "none";
+        document.getElementById("cli-in").focus();
+        if (!cliBooted) { bootCLI(); cliBooted = true; }
+        isTransitioningMode = false;
+      }
+    })
+    .to(app, {
+      opacity: 0,
+      scale: 0.985,
+      filter: "blur(4px)",
+      duration: 0.22,
+      ease: "power2.in"
+    })
+    .call(() => {
+      cli.style.display = "flex";
+      gsap.set(cli, { opacity: 0, scale: 1.015, filter: "brightness(1.5) blur(2px)" });
+    })
+    .to(cli, {
+      opacity: 1,
+      scale: 1,
+      filter: "brightness(1) blur(0px)",
+      duration: 0.26,
+      ease: "power2.out"
+    });
+
   } else {
-    cli.style.display = "none"; app.style.display = "block";
-    soc.style.opacity = "1"; soc.style.pointerEvents = "auto";
-    document.getElementById("normal-btn").classList.add("active-mode");
-    document.getElementById("cli-btn").classList.remove("active-mode");
+    cliBtn.classList.remove("active-mode");
+    normalBtn.classList.add("active-mode");
+
+    gsap.timeline({
+      onComplete: () => {
+        cli.style.display = "none";
+        soc.style.opacity = "1";
+        soc.style.pointerEvents = "auto";
+        isTransitioningMode = false;
+      }
+    })
+    .to(cli, {
+      opacity: 0,
+      scale: 0.985,
+      filter: "brightness(0.6) blur(3px)",
+      duration: 0.2,
+      ease: "power2.in"
+    })
+    .call(() => {
+      app.style.display = "block";
+      gsap.set(app, { opacity: 0, scale: 0.985, filter: "blur(4px)" });
+    })
+    .to(app, {
+      opacity: 1,
+      scale: 1,
+      filter: "blur(0px)",
+      duration: 0.26,
+      ease: "power2.out"
+    });
   }
 }
 
