@@ -983,6 +983,38 @@
           </div>
           <div>
             <div class="cs-block-label solution">Solution</div>
+            <!-- Endpoint Security & GPO Architecture -->
+            <div class="cs-arch-box">
+              <div class="cs-arch-hdr">
+                <span class="cs-arch-t">📐 Enterprise Security: Active Directory GPO Hardening &amp; WSUS Pipeline</span>
+                <span class="cs-arch-tag green">100% Policy Enforced</span>
+              </div>
+              <svg class="cs-arch-svg" viewBox="0 0 540 90">
+                <rect x="15" y="15" width="130" height="60" rx="4" fill="#082236" stroke="#00c9ff" stroke-width="1.8"/>
+                <text x="80" y="38" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold" font-family="monospace">Active Directory</text>
+                <text x="80" y="52" text-anchor="middle" fill="#00c9ff" font-size="8" font-family="monospace">Central GPO Baseline</text>
+                <text x="80" y="65" text-anchor="middle" fill="#74ebd5" font-size="7" font-family="monospace">LAPS · USB Block · BitLocker</text>
+
+                <line x1="145" y1="45" x2="215" y2="45" stroke="#00ff9d" stroke-width="1.5" stroke-dasharray="4 2"/>
+                <text x="180" y="38" text-anchor="middle" fill="#00ff9d" font-size="7" font-family="monospace">Auto Push</text>
+
+                <rect x="215" y="15" width="125" height="60" rx="4" fill="#061826" stroke="#00ff9d" stroke-width="1.8"/>
+                <text x="277" y="38" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold" font-family="monospace">WSUS Server</text>
+                <text x="277" y="52" text-anchor="middle" fill="#00ff9d" font-size="8" font-family="monospace">Automated Ring Patching</text>
+                <text x="277" y="65" text-anchor="middle" fill="#f39c12" font-size="7" font-family="monospace">98% Compliance Target</text>
+
+                <line x1="340" y1="32" x2="415" y2="25" stroke="#4a90b8" stroke-width="1.5"/>
+                <line x1="340" y1="58" x2="415" y2="65" stroke="#4a90b8" stroke-width="1.5"/>
+
+                <rect x="415" y="10" width="115" height="32" rx="4" fill="#061826" stroke="#4a90b8" stroke-width="1.5"/>
+                <text x="472" y="25" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="monospace">HQ Workstations</text>
+                <text x="472" y="36" text-anchor="middle" fill="#4a90b8" font-size="7" font-family="monospace">BitLocker AES-256 Encrypted</text>
+
+                <rect x="415" y="48" width="115" height="32" rx="4" fill="#061826" stroke="#f39c12" stroke-width="1.5"/>
+                <text x="472" y="63" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="monospace">5 Branch Sites</text>
+                <text x="472" y="74" text-anchor="middle" fill="#f39c12" font-size="7" font-family="monospace">Non-Admin · Zero USB Exfil</text>
+              </svg>
+            </div>
             <p class="cs-text">Rolled out a comprehensive Group Policy Object (GPO) baseline across all domain-joined machines — disabling USB storage, enforcing password complexity, enabling BitLocker encryption, and locking down local admin rights. Deployed WSUS for automated Windows Update management across all sites.</p>
           </div>
           <div>
@@ -1017,6 +1049,39 @@
           </div>
           <div>
             <div class="cs-block-label solution">Solution</div>
+            <!-- Virtualisation & HA Cluster Architecture -->
+            <div class="cs-arch-box">
+              <div class="cs-arch-hdr">
+                <span class="cs-arch-t">📐 Virtualisation Cluster: P2V Migration to Hyper-V HA &amp; Live Migration</span>
+                <span class="cs-arch-tag green">99.9% Uptime SLA</span>
+              </div>
+              <svg class="cs-arch-svg" viewBox="0 0 540 90">
+                <rect x="15" y="15" width="125" height="60" rx="4" fill="#061826" stroke="#e74c3c" stroke-width="1.5"/>
+                <text x="77" y="37" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold" font-family="monospace">6x Physical Hosts</text>
+                <text x="77" y="50" text-anchor="middle" fill="#e74c3c" font-size="7.5" font-family="monospace">Windows Server 2008 R2</text>
+                <text x="77" y="64" text-anchor="middle" fill="#e74c3c" font-size="7" font-family="monospace">EOL · Single Point Failure</text>
+
+                <line x1="140" y1="45" x2="205" y2="45" stroke="#f39c12" stroke-width="1.5" stroke-dasharray="4 2"/>
+                <text x="172" y="38" text-anchor="middle" fill="#f39c12" font-size="7.5" font-family="monospace">P2V Mesh</text>
+
+                <rect x="205" y="12" width="145" height="66" rx="4" fill="#082236" stroke="#00ff9d" stroke-width="2"/>
+                <text x="277" y="34" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="bold" font-family="monospace">Hyper-V HA Farm</text>
+                <text x="277" y="48" text-anchor="middle" fill="#00ff9d" font-size="8" font-family="monospace">Failover Clustering</text>
+                <text x="277" y="60" text-anchor="middle" fill="#74ebd5" font-size="7" font-family="monospace">Zero-Downtime Live Migration</text>
+                <text x="277" y="71" text-anchor="middle" fill="#00c9ff" font-size="6.5" font-family="monospace">Upgraded to Windows Server 2019</text>
+
+                <line x1="350" y1="30" x2="415" y2="25" stroke="#4a90b8" stroke-width="1.5"/>
+                <line x1="350" y1="60" x2="415" y2="65" stroke="#4a90b8" stroke-width="1.5"/>
+
+                <rect x="415" y="10" width="115" height="32" rx="4" fill="#061826" stroke="#4a90b8" stroke-width="1.5"/>
+                <text x="472" y="25" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="monospace">TrueNAS / SAN CSV</text>
+                <text x="472" y="36" text-anchor="middle" fill="#4a90b8" font-size="7" font-family="monospace">10GbE iSCSI MPIO</text>
+
+                <rect x="415" y="48" width="115" height="32" rx="4" fill="#061826" stroke="#00c9ff" stroke-width="1.5"/>
+                <text x="472" y="63" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="monospace">Veeam Automated</text>
+                <text x="472" y="74" text-anchor="middle" fill="#00c9ff" font-size="7" font-family="monospace">Application-Aware Snapshots</text>
+              </svg>
+            </div>
             <p class="cs-text">Designed and executed a P2V (Physical-to-Virtual) migration plan using Microsoft Hyper-V and VMware. Migrated 6 physical servers to virtual machines on a high-availability cluster, upgraded all VMs to Windows Server 2019, and configured live migration for zero-downtime maintenance windows.</p>
           </div>
           <div>
@@ -1051,6 +1116,30 @@
           </div>
           <div>
             <div class="cs-block-label solution">Solution</div>
+            <!-- Cisco L3 Core & RSTP Architecture -->
+            <div class="cs-arch-box">
+              <div class="cs-arch-hdr">
+                <span class="cs-arch-t">📐 Cisco L3 Core: Hierarchical Distribution, Inter-VLAN OSPF &amp; RSTP</span>
+                <span class="cs-arch-tag green">Zero Network Loops</span>
+              </div>
+              <svg class="cs-arch-svg" viewBox="0 0 540 90">
+                <rect x="180" y="12" width="180" height="66" rx="4" fill="#082236" stroke="#00ff9d" stroke-width="2"/>
+                <text x="270" y="35" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="monospace">Cisco Catalyst Core L3</text>
+                <text x="270" y="49" text-anchor="middle" fill="#00ff9d" font-size="8.5" font-family="monospace">OSPF Area 0 · Inter-VLAN Routing</text>
+                <text x="270" y="62" text-anchor="middle" fill="#74ebd5" font-size="7" font-family="monospace">RSTP 802.1w Root Bridge (0 Loop Risk)</text>
+                <text x="270" y="72" text-anchor="middle" fill="#00c9ff" font-size="6.5" font-family="monospace">DHCP Snooping &amp; Dynamic ARP Inspection</text>
+
+                <line x1="180" y1="45" x2="135" y2="45" stroke="#4a90b8" stroke-width="1.5"/>
+                <rect x="15" y="22" width="120" height="46" rx="4" fill="#061826" stroke="#4a90b8" stroke-width="1.5"/>
+                <text x="75" y="42" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="monospace">HIS Floor Switch</text>
+                <text x="75" y="55" text-anchor="middle" fill="#4a90b8" font-size="7" font-family="monospace">VLAN 10 · BPDU Guard</text>
+
+                <line x1="360" y1="45" x2="405" y2="45" stroke="#f39c12" stroke-width="1.5"/>
+                <rect x="405" y="22" width="120" height="46" rx="4" fill="#061826" stroke="#f39c12" stroke-width="1.5"/>
+                <text x="465" y="42" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="monospace">Admin Floor Switch</text>
+                <text x="465" y="55" text-anchor="middle" fill="#f39c12" font-size="7" font-family="monospace">VLAN 20 · 802.3ad LACP</text>
+              </svg>
+            </div>
             <p class="cs-text">Redesigned the topology using a hierarchical distribution model. Deployed Cisco L3 core switches, routing between cleanly segmented VLANs via OSPF. Implemented Rapid Spanning Tree Protocol (RSTP) to eliminate loop risks intrinsically.</p>
           </div>
           <div>
@@ -1085,6 +1174,42 @@
           </div>
           <div>
             <div class="cs-block-label solution">Solution</div>
+            <!-- Healthcare Perimeter & UTM Architecture -->
+            <div class="cs-arch-box">
+              <div class="cs-arch-hdr">
+                <span class="cs-arch-t">📐 UTM Security Fabric: Fortinet FortiGate &amp; WPA3 / Captive VLAN Segregation</span>
+                <span class="cs-arch-tag green">100% Data Protection</span>
+              </div>
+              <svg class="cs-arch-svg" viewBox="0 0 540 90">
+                <rect x="15" y="10" width="115" height="32" rx="4" fill="#061826" stroke="#f39c12" stroke-width="1.5"/>
+                <text x="72" y="25" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="monospace">Guest Wi-Fi VLAN 40</text>
+                <text x="72" y="36" text-anchor="middle" fill="#f39c12" font-size="7" font-family="monospace">Captive Portal · Internet Only</text>
+
+                <rect x="15" y="48" width="115" height="32" rx="4" fill="#061826" stroke="#00c9ff" stroke-width="1.5"/>
+                <text x="72" y="63" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="monospace">Clinical VLAN 50</text>
+                <text x="72" y="74" text-anchor="middle" fill="#00c9ff" font-size="7" font-family="monospace">WPA3 Enterprise (802.1X)</text>
+
+                <line x1="130" y1="26" x2="205" y2="35" stroke="#f39c12" stroke-width="1.5"/>
+                <line x1="130" y1="64" x2="205" y2="55" stroke="#00c9ff" stroke-width="1.5"/>
+
+                <rect x="205" y="12" width="145" height="66" rx="4" fill="#082236" stroke="#00ff9d" stroke-width="2"/>
+                <text x="277" y="35" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="bold" font-family="monospace">Fortinet FortiGate UTM</text>
+                <text x="277" y="49" text-anchor="middle" fill="#00ff9d" font-size="8" font-family="monospace">Intrusion Prevention (IPS)</text>
+                <text x="277" y="61" text-anchor="middle" fill="#74ebd5" font-size="7" font-family="monospace">Deep Packet Inspection &amp; QoS</text>
+                <text x="277" y="71" text-anchor="middle" fill="#e74c3c" font-size="6.5" font-family="monospace">Zero Access to PACS Records</text>
+
+                <line x1="350" y1="32" x2="415" y2="25" stroke="#4a90b8" stroke-width="1.5"/>
+                <line x1="350" y1="58" x2="415" y2="65" stroke="#00ff9d" stroke-width="1.5"/>
+
+                <rect x="415" y="10" width="115" height="32" rx="4" fill="#061826" stroke="#e74c3c" stroke-width="1.5"/>
+                <text x="472" y="25" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="monospace">PACS Imaging DB</text>
+                <text x="472" y="36" text-anchor="middle" fill="#e74c3c" font-size="7" font-family="monospace">Strict ACLs · Air-Gapped</text>
+
+                <rect x="415" y="48" width="115" height="32" rx="4" fill="#061826" stroke="#00ff9d" stroke-width="1.5"/>
+                <text x="472" y="63" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="monospace">Secured WAN Link</text>
+                <text x="472" y="74" text-anchor="middle" fill="#00ff9d" font-size="7" font-family="monospace">QoS Priority for Medical Telemetry</text>
+              </svg>
+            </div>
             <p class="cs-text">Deployed and configured Fortinet/Sophos Perimeter Firewalls. Restructured wireless infrastructure enforcing WPA3 Enterprise for doctors and a restricted Captive Portal for patients isolated entirely onto a separate internet-only VLAN.</p>
           </div>
           <div>
@@ -1119,6 +1244,39 @@
           </div>
           <div>
             <div class="cs-block-label solution">Solution</div>
+            <!-- Banking & ATM Isolation Architecture -->
+            <div class="cs-arch-box">
+              <div class="cs-arch-hdr">
+                <span class="cs-arch-t">📐 Banking Security Fabric: 802.1X Port Security &amp; Air-Gapped ATM VLAN</span>
+                <span class="cs-arch-tag green">PCI-DSS Level 1</span>
+              </div>
+              <svg class="cs-arch-svg" viewBox="0 0 540 90">
+                <rect x="15" y="15" width="125" height="60" rx="4" fill="#061826" stroke="#e74c3c" stroke-width="1.8"/>
+                <text x="77" y="36" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold" font-family="monospace">ATM Terminals VLAN 80</text>
+                <text x="77" y="49" text-anchor="middle" fill="#e74c3c" font-size="7.5" font-family="monospace">Air-Gapped Banking Subnet</text>
+                <text x="77" y="63" text-anchor="middle" fill="#e74c3c" font-size="7" font-family="monospace">Static MAC · Zero Inter-VLAN</text>
+
+                <line x1="140" y1="45" x2="205" y2="45" stroke="#00ff9d" stroke-width="1.5"/>
+                <text x="172" y="39" text-anchor="middle" fill="#00ff9d" font-size="7" font-family="monospace">802.1X Auth</text>
+
+                <rect x="205" y="12" width="145" height="66" rx="4" fill="#082236" stroke="#00c9ff" stroke-width="2"/>
+                <text x="277" y="34" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="bold" font-family="monospace">Cisco Catalyst Core</text>
+                <text x="277" y="48" text-anchor="middle" fill="#00c9ff" font-size="8" font-family="monospace">Port Security Violation: Shutdown</text>
+                <text x="277" y="60" text-anchor="middle" fill="#74ebd5" font-size="7" font-family="monospace">Cat6A Dual Uplink Redundancy</text>
+                <text x="277" y="71" text-anchor="middle" fill="#00ff9d" font-size="6.5" font-family="monospace">Zero Loss UPS Power Conditioning</text>
+
+                <line x1="350" y1="30" x2="415" y2="25" stroke="#f39c12" stroke-width="1.5"/>
+                <line x1="350" y1="60" x2="415" y2="65" stroke="#4a90b8" stroke-width="1.5"/>
+
+                <rect x="415" y="10" width="115" height="32" rx="4" fill="#061826" stroke="#f39c12" stroke-width="1.5"/>
+                <text x="472" y="25" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="monospace">Central HQ IPsec</text>
+                <text x="472" y="36" text-anchor="middle" fill="#f39c12" font-size="7" font-family="monospace">AES-256 Hardware Encrypted</text>
+
+                <rect x="415" y="48" width="115" height="32" rx="4" fill="#061826" stroke="#4a90b8" stroke-width="1.5"/>
+                <text x="472" y="63" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="monospace">Teller LAN VLAN 20</text>
+                <text x="472" y="74" text-anchor="middle" fill="#4a90b8" font-size="7" font-family="monospace">Isolated from ATM Traffic</text>
+              </svg>
+            </div>
             <p class="cs-text">Engineered a multi-tier Cisco Catalyst switching architecture. Segregated ATM terminals into a dedicated, air-gapped VLAN with static MAC binding and 802.1X port security. Implemented Cat6A structured cabling, dual redundant uplink trunks, and zero-loss failover power conditioning.</p>
           </div>
           <div>
@@ -1153,6 +1311,39 @@
           </div>
           <div>
             <div class="cs-block-label solution">Solution</div>
+            <!-- Telecom Datacenter & RAID 10 Architecture -->
+            <div class="cs-arch-box">
+              <div class="cs-arch-hdr">
+                <span class="cs-arch-t">📐 Datacenter Storage Architecture: Hardware RAID 10 &amp; Hot-Spare Automation</span>
+                <span class="cs-arch-tag green">+300% IOPS Throughput</span>
+              </div>
+              <svg class="cs-arch-svg" viewBox="0 0 540 90">
+                <rect x="15" y="15" width="130" height="60" rx="4" fill="#082236" stroke="#00c9ff" stroke-width="1.8"/>
+                <text x="80" y="37" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold" font-family="monospace">Dual SAS Controller</text>
+                <text x="80" y="50" text-anchor="middle" fill="#00c9ff" font-size="7.5" font-family="monospace">Hardware RAID Engine 12Gbps</text>
+                <text x="80" y="64" text-anchor="middle" fill="#74ebd5" font-size="7" font-family="monospace">Flash-Backed CacheVault</text>
+
+                <line x1="145" y1="45" x2="215" y2="45" stroke="#00ff9d" stroke-width="1.5"/>
+                <text x="180" y="39" text-anchor="middle" fill="#00ff9d" font-size="7" font-family="monospace">PCIe Bus</text>
+
+                <rect x="215" y="12" width="145" height="66" rx="4" fill="#061826" stroke="#00ff9d" stroke-width="2"/>
+                <text x="287" y="34" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="bold" font-family="monospace">RAID 10 Striped Mirror</text>
+                <text x="287" y="48" text-anchor="middle" fill="#00ff9d" font-size="8" font-family="monospace">8x Enterprise 15K RPM SAS</text>
+                <text x="287" y="60" text-anchor="middle" fill="#74ebd5" font-size="7" font-family="monospace">Sub-Millisecond Read/Write</text>
+                <text x="287" y="71" text-anchor="middle" fill="#00c9ff" font-size="6.5" font-family="monospace">Zero Downtime Telecom Operations</text>
+
+                <line x1="360" y1="30" x2="415" y2="25" stroke="#f39c12" stroke-width="1.5"/>
+                <line x1="360" y1="60" x2="415" y2="65" stroke="#4a90b8" stroke-width="1.5"/>
+
+                <rect x="415" y="10" width="115" height="32" rx="4" fill="#061826" stroke="#f39c12" stroke-width="1.5"/>
+                <text x="472" y="25" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="monospace">Active Hot-Spare</text>
+                <text x="472" y="36" text-anchor="middle" fill="#f39c12" font-size="7" font-family="monospace">Instant Auto-Rebuild</text>
+
+                <rect x="415" y="48" width="115" height="32" rx="4" fill="#061826" stroke="#4a90b8" stroke-width="1.5"/>
+                <text x="472" y="63" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="monospace">ECC Server Memory</text>
+                <text x="472" y="74" text-anchor="middle" fill="#4a90b8" font-size="7" font-family="monospace">Expanded Multi-Channel Banks</text>
+              </svg>
+            </div>
             <p class="cs-text">Executed an in-depth hardware overhaul and memory expansion. Installed enterprise-grade 15K SAS arrays configured in hardware RAID 10 with designated hot-spares, upgraded ECC RAM banks, and flashed validated firmware baselines during scheduled maintenance windows.</p>
           </div>
           <div>

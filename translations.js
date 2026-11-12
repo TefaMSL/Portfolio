@@ -357,6 +357,7 @@ const AR_PAGES_DATA = {
       probText: "أجهزة العمل عبر الفروع كانت تفتقر لسياسات موحدة، وتحديثات نظام التشغيل متأخرة، مع انتشار برامج غير مصرح بها واستخدام عشوائي لوحدات الفلاش ميموري USB مما شكل خطراً كبيراً لتسريب البيانات.",
       solLbl: "الحل الهندسي المنفذ",
       solText: "تطبيق معايير أمنية شاملة عبر سياسات المجموعة (GPO) على جميع الأجهزة: تعطيل منافذ USB، فرض تعقيد كلمات المرور، تفعيل تشفير BitLocker، وسحب صلاحيات المدير المحلي. نشر خادم WSUS لأتمتة التحديثات الأمنية.",
+      archTitle: "📐 البنية الأمنية: تحصين Active Directory GPO مع دورة تحديثات WSUS الآلية",
       resLbl: "النتائج بالأرقام الملموسة",
       results: [
         "امتثال أمني بنسبة 100% عبر <strong style=\"color:var(--grn)\">جميع أجهزة المؤسسة</strong>.",
@@ -372,6 +373,7 @@ const AR_PAGES_DATA = {
       probText: "خوادم فيزيائية قديمة بنظام Windows Server 2008 R2 كانت تقترب من نهاية الدعم الفني، وتعمل على عتاد متهالك دون أي احتياطية عتادية (Redundancy)، مع مخاطر مستمرة لتعطل سير العمل.",
       solLbl: "الحل الهندسي المنفذ",
       solText: "تصميم وتنفيذ خطة ترحيل فيزيائي إلى افتراضي (P2V) باستخدام Hyper-V و VMware. ترحيل 6 خوادم فيزيائية إلى أجهزة افتراضية داخل عنقود فائق التوفر (HA Cluster)، وترقية الخوادم إلى Windows Server 2019 مع تفعيل Live Migration.",
+      archTitle: "📐 عنقود البيئة الافتراضية: ترحيل P2V إلى Hyper-V HA مع الترحيل الحي Live Migration",
       resLbl: "النتائج بالأرقام الملموسة",
       results: [
         "إلغاء 6 خوادم فيزيائية وخفض تكاليف العتاد والطاقة بنسبة <strong style=\"color:var(--grn)\">60%</strong>.",
@@ -387,6 +389,7 @@ const AR_PAGES_DATA = {
       probText: "شبكة مسطحة واسعة النطاق تسببت في عواصف بث هائلة وانقطاعات اتصال يومية وتعارضات في عناوين IP، مما أدى إلى حلقات شبكية (Network Loops) هددت عمل البرامج الطبية الرئيسية.",
       solLbl: "الحل الهندسي المنفذ",
       solText: "إعادة تصميم الطوبولوجيا بنموذج التوزيع الهرمي. نشر سويتشات Cisco Layer 3 Core، والتوجيه بين شبكات الـ VLANs عبر بروتوكول OSPF. تطبيق بروتوكول شجرة الامتداد السريعة RSTP لمنع أي حلقات اتصال تلقائياً.",
+      archTitle: "📐 بنية سيسكو الهرمية: سويتشات Layer 3 Core مع توجيه OSPF وحماية RSTP",
       resLbl: "النتائج بالأرقام الملموسة",
       results: [
         "القضاء تماماً على عواصف البث وعزل الشبكات جغرافياً ومنطقياً.",
@@ -402,6 +405,7 @@ const AR_PAGES_DATA = {
       probText: "كان المرضى والزوار والإداريون يتصلون جميعاً بنفس الشبكة المفتوحة غير المعزولة، مما شكل خطراً أمنياً جسيماً لبيانات المرضى غير المشفرة وأجهزة الأشعة الطبية (PACS).",
       solLbl: "الحل الهندسي المنفذ",
       solText: "نشر وإعداد جدران الحماية Fortinet / Sophos. إعادة هيكلة الشبكة اللاسلكية بفرض تشفير WPA3 Enterprise للأطباء، وإنشاء بوابة دخول معزولة (Captive Portal) للمرضى على شبكة VLAN مخصصة للإنترنت فقط.",
+      archTitle: "📐 جدار الحماية المحيطي: Fortinet UTM مع عزل شبكة المرضى وبوابة الدخول",
       resLbl: "النتائج بالأرقام الملموسة",
       results: [
         "عزل الزوار والمرضى تماماً عن قواعد البيانات السريرية (<strong style=\"color:var(--acc)\">امتثال أمني بنسبة 100%</strong>).",
@@ -417,6 +421,7 @@ const AR_PAGES_DATA = {
       probText: "فرع تجاري جديد تطلب بنية تحتية فائقة الأمان مطابقة لمعايير PCI-DSS؛ حيث يُحظر تماماً مشاركة مسارات البيانات بين موظفي الخزينة، وماكينات الصراف الآلي، والإنترنت العام.",
       solLbl: "الحل الهندسي المنفذ",
       solText: "هندسة طوبولوجيا سويتشات Cisco Catalyst متعددة المستويات. عزل ماكينات الصراف الآلي (ATM) داخل VLAN مستقل ومعزول هوائياً مع ربط ثابت للـ MAC Addresses وتفعيل 802.1X Port Security. تمديد شبكة كابلات Cat6A مع خطوط ربط احتياطية ومصادر طاقة UPS لا تنقطع.",
+      archTitle: "📐 البنية المصرفية الآمنة: منافذ 802.1X وعزل ماكينات الصراف الآلي ATM هوائياً",
       resLbl: "النتائج بالأرقام الملموسة",
       results: [
         "عزل صارم وتام لحركة بيانات ماكينات الصراف الآلي بنسبة 100% (<strong style=\"color:var(--grn)\">Zero Cross-Talk</strong>).",
@@ -432,6 +437,7 @@ const AR_PAGES_DATA = {
       probText: "خوادم تشغيلية رئيسية كانت تعمل على مصفوفات تخزين قديمة اقتربت من حدود العمر الافتراضي MTBF مع تراجع سرعات القراءة والكتابة وارتفاع مخاطر تعطل الأقراص.",
       solLbl: "الحل الهندسي المنفذ",
       solText: "تنفيذ فحص عتادي دقيق وتوسيع الذاكرة العشوائية. تركيب مصفوفات أقراص SAS عالية الكثافة بسرعة 15K RPM بنظام RAID 10 مع أقراص احتياطية فورية (Hot-Spares)، وتحديث الفيرموير المعتمد خلال نوافذ الصيانة المجدولة.",
+      archTitle: "📐 مصفوفة مركز البيانات: أقراص RAID 10 مع أقراص احتياطية فورية Hot-Spare",
       resLbl: "النتائج بالأرقام الملموسة",
       results: [
         "ارتفاع سرعة عمليات الإدخال والإخراج IOPS بنسبة <strong style=\"color:var(--grn)\">300%</strong> دون أي فقد للبيانات.",
@@ -788,6 +794,7 @@ function applyAllPageTranslations(lang) {
       const probL = c.querySelector(".cs-block-label.problem"); if (probL && csData.probLbl) probL.textContent = csData.probLbl;
       const probT = c.querySelector(".cs-sections > div:first-child .cs-text"); if (probT && csData.probText) probT.textContent = csData.probText;
       const solL = c.querySelector(".cs-block-label.solution"); if (solL && csData.solLbl) solL.textContent = csData.solLbl;
+      const archT = c.querySelector(".cs-arch-t"); if (archT && csData.archTitle) archT.textContent = csData.archTitle;
       const solT = c.querySelector(".cs-sections > div:nth-child(2) > p.cs-text"); if (solT && csData.solText) solT.textContent = csData.solText;
       const resL = c.querySelector(".cs-block-label.results"); if (resL && csData.resLbl) resL.textContent = csData.resLbl;
       const resUl = c.querySelector(".cs-results-list");
