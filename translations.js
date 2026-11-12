@@ -134,7 +134,7 @@ const AR_PAGES_DATA = {
   // 04 / PROJECTS
   projects: {
     label: "04 / المشاريع",
-    title: 'أبرز <span class="c">المشاريع</span>',
+    title: 'أبرز <span class="c">المشاريع والمبادرات</span>',
     items: [
       {
         ico: "🏥",
@@ -161,16 +161,94 @@ const AR_PAGES_DATA = {
         tags: ["جدار حماية", "شبكات VPN", "تأمين الشبكات", "اتصال مشفر"]
       },
       {
-        ico: "🤖",
-        title: "أتمتة إدارة ومراقبة الشبكة ببايثون",
-        desc: "تطوير أدوات برمجية مخصصة باستخدام Python ومكتبة Netmiko لأتمتة عمليات أخذ النسخ الاحتياطية وتدقيق الإعدادات عبر 200+ جهاز سيسكو بلحظات.",
-        tags: ["Python", "أتمتة الشبكات", "Netmiko", "Ansible"]
+        ico: "💾",
+        title: "تكامل حلول النسخ الاحتياطي Veeam",
+        desc: "هندسة استراتيجية نسخ احتياطي 3-2-1 متطورة باستخدام Veeam Backup & Replication، مع نسخ تزايدي يومي وتخزين آمن خارج الموقع على وحدات NAS.",
+        tags: ["Veeam", "وحدات NAS", "استعادة الكوارث", "أمان البيانات"]
+      },
+      {
+        ico: "🛡️",
+        title: "نشر منظومة الحماية والاستجابة EDR",
+        desc: "تطبيق حلول الحماية المتقدمة على أكثر من 200 جهاز طرفي بالمؤسسة، وتفعيل العزل الآلي للتهديدات وإدارة السحابة المركزية.",
+        tags: ["حماية الأجهزة", "مكافحة الفيروسات", "إدارة سحابية", "استجابة سريعة"]
+      },
+      {
+        ico: "📶",
+        title: "شبكة لاسلكية آمنة للمؤسسات (WPA3)",
+        desc: "تصميم ونشر شبكة واي فاي مركزية تتيح التجوال السلس عبر أدوار المبنى، مع التحقق الأمني المتقدم عبر خوادم RADIUS و 802.1X.",
+        tags: ["802.1X", "RADIUS", "تحكم لاسلكي", "تشفير WPA3"]
+      },
+      {
+        ico: "⚙️",
+        title: "أتمتة إدارة التحديثات الأمنية WSUS",
+        desc: "نشر خدمات تحديث ويندوز المركزية لتوزيع التحديثات والترقيعات الأمنية على الأجهزة تلقائياً، مع توفير استهلاك الإنترنت وتأمين المنظومة.",
+        tags: ["WSUS", "إدارة التحديثات", "أتمتة", "تحصين ويندوز"]
+      },
+      {
+        ico: "🔌",
+        title: "تأمين منافذ سويتشات سيسكو (Port Security)",
+        desc: "تدقيق منافذ التوزيع وإغلاق المنافذ غير المستخدمة وتفعيل Port Security مع ربط MAC Addresses لمنع توصيل أي أجهزة غير مصرح بها.",
+        tags: ["Cisco L2/L3", "Port Security", "تدقيق الشبكة", "منع الاختراق"]
+      },
+      {
+        ico: "☁️",
+        title: "الربط السحابي الهجين مع Microsoft Azure",
+        desc: "تأسيس وصيانة أنفاق Site-to-Site VPN بين البنية التحتية المحلية وسحابة Azure، وترحيل الخدمات الحيوية لرفع الجاهزية والمرونة.",
+        tags: ["Microsoft Azure", "Cloud VPN", "سحابة هجينة", "مرونة عالية"]
+      },
+      {
+        ico: "🎫",
+        title: "إطلاق نظام التذاكر والدعم بمعايير ITIL",
+        desc: "قيادة إطلاق منصة Service Desk لإدارة البلاغات التقنية، وتحديد اتفاقيات مستوى الخدمة (SLAs)، واستخراج تقارير دورية للإدارة.",
+        tags: ["ITIL", "مكتب الدعم", "إدارة SLA", "تقارير تشغيلية"]
+      },
+      {
+        ico: "🏛️",
+        title: "توسعة التغطية اللاسلكية بالشركات",
+        desc: "مسح ميداني ونشر نقاط وصول Cisco Meraki عالية الكثافة لإتاحة اتصال فائق السرعة ومستقر لمئات الموظفين والزوار.",
+        tags: ["Meraki", "تغطية لاسلكية", "إدارة مركزية", "تحليل التغطية"]
+      },
+      {
+        ico: "🛡️",
+        title: "توحيد سياسات أمان الأجهزة ومنع التسريب",
+        desc: "تطبيق معايير موحدة للتحكم بالتطبيقات، مكافحة البرمجيات، ومنع تسريب البيانات (DLP)، ورفع نسبة الامتثال من 40% إلى 100%.",
+        tags: ["حماية البيانات", "منع التسريب DLP", "امتثال تام", "أمان الشركات"]
+      },
+      {
+        ico: "🤝",
+        title: "ربط وتوثيق الدليل النشط بين مواقع متعددة",
+        desc: "إنشاء علاقات ثقة Cross-Forest Active Directory بين الكيانات المندمجة، مع تفعيل تسجيل الدخول الموحد (SSO) لـ 500+ موظف.",
+        tags: ["AD Trust", "تسجيل موحد SSO", "إدارة الهوية", "ربط الفروع"]
+      },
+      {
+        ico: "🛠️",
+        title: "إعادة تنظيم وتوثيق كبائن مراكز البيانات",
+        desc: "تجديد وتنظيم الكبائن الفيزيائية، وإعادة تنظيم أكثر من 1000 كابل نحاسي وفايبر مع ترقيم دقيق وتوثيق كامل عبر NetBox.",
+        tags: ["مراكز البيانات", "NetBox", "كابلات منظمة", "توثيق شامل"]
       },
       {
         ico: "💾",
-        title: "مستودع النسخ الاحتياطي المقاوم للفدية (Veeam)",
-        desc: "تطبيق بنية نسخ احتياطي غير قابلة للحذف أو التشفير (Immutable Backup Repository) باستخدام نظام ملفات ZFS ونظام Veeam لضمان تعافي فوري ضد هجمات Ransomware.",
-        tags: ["Veeam Backup", "مقاومة الفدية", "نظام ZFS", "RTO < 2h"]
+        title: "مستودع النسخ الاحتياطي المؤسسي المحصن",
+        desc: "تطبيق حلول Veeam عبر 5 مواقع تشغيلية مع بناء مستودعات غير قابلة للتعديل (Immutable) واختبار التعافي خلال زمن أقل من 4 ساعات.",
+        tags: ["Veeam BDR", "تخزين محصن", "استعادة الكوارث", "RTO < 4h"]
+      },
+      {
+        ico: "🐍",
+        title: "أتمتة إدارة الشبكات بسكريبتات بايثون",
+        desc: "برمجة أدوات مخصصة باستخدام Python ومكتبتي Netmiko و Paramiko لأتمتة النسخ الاحتياطي لـ 200+ جهاز سيسكو واكتشاف أي انحراف أمني.",
+        tags: ["Python", "Netmiko", "أتمتة الشبكات", "تدقيق آلي"]
+      },
+      {
+        ico: "🏦",
+        title: "تجهيز شبكة فرع بنك الإسكندرية وعزل ماكينات الصراف ATM",
+        desc: "هندسة شبكة منظمة متكاملة لفرع البنك باستخدام سويتشات Cisco Catalyst 3850/9300 وعزل حركة بيانات الصراف الآلي وشبكات الإدارة تماماً عبر 802.1Q VLANs و 802.1X.",
+        tags: ["Cisco Catalyst", "عزل ATM", "أمان البنوك", "802.1X NAC"]
+      },
+      {
+        ico: "🏢",
+        title: "تحديث خوادم مركز بيانات المصرية للاتصالات (WE) ومصفوفات RAID",
+        desc: "تنفيذ تحديث عتادي شامل للخوادم الحيوية، وتركيب مصفوفات أقراص SAS فائقة السرعة مع إعداد RAID 10 وأقراص Hot-Spare وتوسيع ذاكرة ECC دون أي توقف.",
+        tags: ["المصرية للاتصالات", "RAID 10", "تحديث الخوادم", "أقراص SAS"]
       }
     ]
   },
@@ -179,12 +257,22 @@ const AR_PAGES_DATA = {
   homelab: {
     label: "05 / المختبر الافتراضي",
     title: 'المختبر <span class="c">والأنظمة</span>',
-    desc: "بيئة اختبار ومحاكاة معقدة ومتقدمة على مدار الساعة لتجربة بنى تحتية مؤسسية، جدران حماية متعددة، وتدريب حقيقي على سيناريوهات الهجمات والتعافي.",
+    specs: [
+      { lbl: "معالج الخادم", val: "Intel® Core™ 8C / 16T @ 4.6GHz", desc: "محاكاة العتاد الافتراضي مع تمرير VT-x & VT-d IOMMU" },
+      { lbl: "مصفوفة الذاكرة", val: "64GB DDR4 High-Density RAM", desc: "توزيع ديناميكي عالي الكفاءة عبر 16 خادم افتراضي وحاويات مخصصة" },
+      { lbl: "مصفوفة التخزين", val: "2x 1TB NVMe ZFS Mirror + 4TB SAS", desc: "أقراص افتراضية فائقة السرعة IOPS مع مستودعات TrueNAS ZFS NFS/iSCSI" },
+      { lbl: "الشبكة الافتراضية", val: "EVE-NG Bare-Metal 50+ Cisco Nodes", desc: "مختبرات CCNP Enterprise وبروتوكولات OSPFv3 و BGP و pfSense Multi-VLAN" }
+    ],
+    dashLabels: ["مدة التشغيل المتواصل", "متوسط التحميل", "زمن الاستجابة الحية", "الخوادم الافتراضية النشطة"],
     nodes: [
-      { title: "خادم المحاكاة والافتراضية Proxmox VE", sub: "بيئة KVM/LXC مخصصة لمحاكاة البنى التحتية للمؤسسات واختبار السيناريوهات المعقدة." },
-      { title: "مجموعة محولات سيسكو الافتراضية (EVE-NG)", sub: "طوبولوجيا شبكية متقدمة تحاكي 50+ راوتر وسويتش سيسكو بتقنيات OSPF, BGP, MPLS." },
-      { title: "جدار حماية افتراضي pfSense / OPNsense", sub: "مختبر اختبار سياسات الوصول، عزل الشبكات، كشف التسلل Suricata، والتشفير." },
-      { title: "مختبر المراقبة والتحليل Wazuh SIEM", sub: "نظام تجميع سجلات الأحداث وتحليل التهديدات واختبار استجابة نقاط النهاية للبرمجيات الخبيثة." }
+      { title: "عنقود VMware ESXi 8.0", desc: "خادم افتراضي بنظام Bare-Metal يستضيف العديد من خوادم ويندوز ولينكس لاختبار خدمات الشبكة والدليل النشط." },
+      { title: "جدار ناري Proxmox / pfSense", desc: "جدار حماية افتراضي متطور مجهز بتقسيم الـ VLANs، ونظام كشف التسلل IDS/IPS، وأنفاق VPN مشفرة." },
+      { title: "طوبولوجيا EVE-NG / Cisco Labs", desc: "محاكي شبكات متقدم لاختبار طوبولوجيا OSPF و EIGRP و BGP و STP على راوترات وسويتشات سيسكو قبل الإنتاج." },
+      { title: "خادم التخزين المركزي TrueNAS Scale", desc: "تخزين مركزي بنظام ZFS للنسخ الاحتياطي للأجهزة الافتراضية وتوزيع مساحات التخزين المشتركة عبر SMB/NFS." },
+      { title: "بيئة Docker & Portainer", desc: "منصة حاويات ذاتية الاستضافة تدير خدمات Nextcloud و Pi-hole و Nginx Proxy Manager." },
+      { title: "خادم المراقبة والتحليل PRTG & Grafana", desc: "لوحات تحكم فورية لمتابعة أداء البنية التحتية، استهلاك المعالج، والذاكرة، وحركة البيانات بالشبكة." },
+      { title: "نظام الأمان Wazuh SIEM & IDS", desc: "نظام SIEM متكامل مع Elastic Stack لتجميع وتحليل السجلات واكتشاف محاولات الاختراق عبر Suricata." },
+      { title: "أتمتة الأنظمة عبر Ansible", desc: "كتب تشغيل برمجية (Playbooks) لأتمتة تجهيز خوادم لينكس الجديدة بالكامل والمفاتيح والإعدادات الأمنية." }
     ]
   },
 
@@ -236,28 +324,120 @@ const AR_PAGES_DATA = {
       probLbl: "المشكلة والواقع السابق",
       probText: "شبكة مسطحة قديمة تفتقر لأي عزل أو تقسيم (Flat Network)، مما كان يسبب عواصف بث وبطء شديد وفجوات أمنية خطيرة، وفترات توقف أسبوعية تتراوح بين 3 إلى 4 ساعات.",
       solLbl: "الحل الهندسي المنفذ",
+      solText: "إعادة تصميم طوبولوجيا الشبكة بالكامل باستخدام سويتشات Layer 3 وتوجيه inter-VLAN. نشر راوترات سيسكو وجدران حماية، وضبط بروتوكول OSPF للتوجيه الديناميكي وعزل الأقسام، وتأسيس بوابة VPN آمنة للموظفين.",
       archTitle: "📐 البنية المنفذة: نواة Layer 3 OSPF مع شبكة IPsec مشفرة بين الفروع",
       resLbl: "النتائج بالأرقام الملموسة",
       results: [
+        "ارتفاع سرعة نقل البيانات بالشبكة بنسبة <strong style=\"color:var(--grn)\">75%</strong>.",
         "القضاء التام على فترات التوقف الأسبوعية (صفر دقيقة توقف غير مخطط لها).",
-        "ربط مشفر وفوري بين المقر الرئيسي و5 فروع تشغيلية عبر أنفاق IPsec آمنة.",
-        "أتمتة الفحص والنسخ الاحتياطي لـ 200+ جهاز سيسكو عبر بايثون وAnsible.",
-        "استعادة فورية للخدمات في أقل من ثانية عند انقطاع أي خط رئيسي (Sub-second Failover)."
+        "عزل تهديدات الحركة الجانبية (Lateral Movement) عبر تقسيم الـ VLANs.",
+        "تأمين الوصول عن بُعد لجميع الموظفين بأنفاق VPN مشفرة."
       ]
     },
     cs2: {
-      title: "عزل وتأمين أنظمة مستشفى جمعية الشريعة الرئيسي",
+      title: "تأمين واستقرار البنية التحتية لمستشفى جمعية الشريعة الرئيسي",
       client: "مستشفى الشريعة · ديسمبر 2023 – فبراير 2025",
       probLbl: "المشكلة والواقع السابق",
-      probText: "أجهزة طبية حساسة وأنظمة السجلات الصحية (HIS/PACS) تعمل على نفس شبكة الإنترنت العامة مع أجهزة الإدارة، مما شكل تهديداً خطيراً لخصوصية المرضى وخطر التعرض لبرمجيات الفدية.",
+      probText: "أنظمة طبية بالغة الحساسية تشمل نظام معلومات المستشفى (HIS)، وأجهزة الأشعة الرقمية (PACS)، وأجهزة المختبرات كانت تعمل على بنية غير مُدارة وغير آمنة مع انقطاعات متكررة وغياب خطة تعافي.",
       solLbl: "الحل الهندسي المنفذ",
+      solText: "نشر خوادم Windows Server 2019 مع Active Directory للتحكم المركزي في الصلاحيات. عزل الأجهزة الطبية في شبكة VLAN منفصلة مع سياسات جدار حماية صارمة، وتطبيق بيئة Hyper-V الافتراضية مع نسخ احتياطي خارج الموقع.",
       archTitle: "🏥 البنية المنفذة: عزل ثلاثي الطبقات عبر جدران نارية لحماية بيانات المرضى",
       resLbl: "النتائج بالأرقام الملموسة",
       results: [
-        "انخفاض محاولات الوصول غير المصرح بها للأجهزة الطبية بنسبة 90%.",
-        "تحقيق نسبة استقرار وجاهزية 99.9% للأنظمة الطبية الحرجة دون أي انقطاع.",
-        "بناء بيئة افتراضية متكاملة للأنظمة مع نسخ احتياطي فوري خارج الموقع.",
-        "فصل كامل لشبكات زوار المستشفى عن الشبكات الطبية والإدارية."
+        "تحقيق نسبة استقرار وجاهزية تخطت <strong style=\"color:var(--grn)\">99%+</strong> للأنظمة الحيوية.",
+        "انخفاض محاولات الوصول غير المصرح بها بنسبة <strong style=\"color:var(--grn)\">90%</strong>.",
+        "تقليص زمن الاستعادة بعد الكوارث (RTO) إلى أقل من ساعتين.",
+        "عزل كامل لشبكات الأجهزة الطبية وحمايتها بجدران حماية متطورة."
+      ]
+    },
+    cs3: {
+      title: "تحصين نقاط النهاية وسياسات المجموعة GPO",
+      client: "شركة Viion · نشر متعدد الفروع",
+      probLbl: "المشكلة والواقع السابق",
+      probText: "أجهزة العمل عبر الفروع كانت تفتقر لسياسات موحدة، وتحديثات نظام التشغيل متأخرة، مع انتشار برامج غير مصرح بها واستخدام عشوائي لوحدات الفلاش ميموري USB مما شكل خطراً كبيراً لتسريب البيانات.",
+      solLbl: "الحل الهندسي المنفذ",
+      solText: "تطبيق معايير أمنية شاملة عبر سياسات المجموعة (GPO) على جميع الأجهزة: تعطيل منافذ USB، فرض تعقيد كلمات المرور، تفعيل تشفير BitLocker، وسحب صلاحيات المدير المحلي. نشر خادم WSUS لأتمتة التحديثات الأمنية.",
+      resLbl: "النتائج بالأرقام الملموسة",
+      results: [
+        "امتثال أمني بنسبة 100% عبر <strong style=\"color:var(--grn)\">جميع أجهزة المؤسسة</strong>.",
+        "القضاء تماماً على الحوادث الأمنية الناتجة عن وحدات USB الخارجية.",
+        "رفع نسبة اكتمال التحديثات الأمنية من 40% إلى <strong style=\"color:var(--grn)\">98%</strong>.",
+        "صفر حوادث تصعيد صلاحيات غير مصرح بها بعد التطبيق."
+      ]
+    },
+    cs4: {
+      title: "ترحيل الخوادم القديمة إلى منصة افتراضية متطورة",
+      client: "شركة Viion · تحديث البنية التحتية",
+      probLbl: "المشكلة والواقع السابق",
+      probText: "خوادم فيزيائية قديمة بنظام Windows Server 2008 R2 كانت تقترب من نهاية الدعم الفني، وتعمل على عتاد متهالك دون أي احتياطية عتادية (Redundancy)، مع مخاطر مستمرة لتعطل سير العمل.",
+      solLbl: "الحل الهندسي المنفذ",
+      solText: "تصميم وتنفيذ خطة ترحيل فيزيائي إلى افتراضي (P2V) باستخدام Hyper-V و VMware. ترحيل 6 خوادم فيزيائية إلى أجهزة افتراضية داخل عنقود فائق التوفر (HA Cluster)، وترقية الخوادم إلى Windows Server 2019 مع تفعيل Live Migration.",
+      resLbl: "النتائج بالأرقام الملموسة",
+      results: [
+        "إلغاء 6 خوادم فيزيائية وخفض تكاليف العتاد والطاقة بنسبة <strong style=\"color:var(--grn)\">60%</strong>.",
+        "تقليص وقت تجهيز الخوادم الجديدة من أيام إلى <strong style=\"color:var(--grn)\">دقائق معدودة</strong>.",
+        "تحقيق نسبة استقرار 99.9% عبر عنقود الخوادم الافتراضية فائق التوفر.",
+        "تبسيط النسخ الاحتياطي عبر أخذ لقطات تلقائية للأجهزة الافتراضية Snapshots."
+      ]
+    },
+    cs5: {
+      title: "إعادة بناء شبكة سيسكو الأساسية بالمستشفى",
+      client: "مستشفى الشريعة الرئيسي · أغسطس 2024",
+      probLbl: "المشكلة والواقع السابق",
+      probText: "شبكة مسطحة واسعة النطاق تسببت في عواصف بث هائلة وانقطاعات اتصال يومية وتعارضات في عناوين IP، مما أدى إلى حلقات شبكية (Network Loops) هددت عمل البرامج الطبية الرئيسية.",
+      solLbl: "الحل الهندسي المنفذ",
+      solText: "إعادة تصميم الطوبولوجيا بنموذج التوزيع الهرمي. نشر سويتشات Cisco Layer 3 Core، والتوجيه بين شبكات الـ VLANs عبر بروتوكول OSPF. تطبيق بروتوكول شجرة الامتداد السريعة RSTP لمنع أي حلقات اتصال تلقائياً.",
+      resLbl: "النتائج بالأرقام الملموسة",
+      results: [
+        "القضاء تماماً على عواصف البث وعزل الشبكات جغرافياً ومنطقياً.",
+        "تقليص فترات انقطاع الشبكة بنسبة <strong style=\"color:var(--grn)\">99%</strong>.",
+        "رفع كفاءة وسرعة التوجيه بين الأقسام الطبية المختلفة.",
+        "تأسيس بنية OSPF قابلة للتوسع المستقبلي وربط مبانٍ جديدة بسهولة."
+      ]
+    },
+    cs6: {
+      title: "عزل وتأمين شبكة المنشآت الطبية المتخصصة",
+      client: "مركز السلام الطبي · أكتوبر 2024",
+      probLbl: "المشكلة والواقع السابق",
+      probText: "كان المرضى والزوار والإداريون يتصلون جميعاً بنفس الشبكة المفتوحة غير المعزولة، مما شكل خطراً أمنياً جسيماً لبيانات المرضى غير المشفرة وأجهزة الأشعة الطبية (PACS).",
+      solLbl: "الحل الهندسي المنفذ",
+      solText: "نشر وإعداد جدران الحماية Fortinet / Sophos. إعادة هيكلة الشبكة اللاسلكية بفرض تشفير WPA3 Enterprise للأطباء، وإنشاء بوابة دخول معزولة (Captive Portal) للمرضى على شبكة VLAN مخصصة للإنترنت فقط.",
+      resLbl: "النتائج بالأرقام الملموسة",
+      results: [
+        "عزل الزوار والمرضى تماماً عن قواعد البيانات السريرية (<strong style=\"color:var(--acc)\">امتثال أمني بنسبة 100%</strong>).",
+        "تحديد أولويات مرور البيانات (QoS) لصالح الأجهزة والأنظمة الطبية.",
+        "منع أي توصيل للأجهزة غير المصرح بها على منافذ الشبكة الفيزيائية.",
+        "تفعيل الحماية المتقدمة ضد التسلل والبرمجيات الخبيثة عبر نظام UTM."
+      ]
+    },
+    cs7: {
+      title: "تجهيز البنية التحتية لفرع البنك وعزل ماكينات الصراف الآلي ATM",
+      client: "بنك الإسكندرية · مشروع قطاع البنوك",
+      probLbl: "المشكلة والواقع السابق",
+      probText: "فرع تجاري جديد تطلب بنية تحتية فائقة الأمان مطابقة لمعايير PCI-DSS؛ حيث يُحظر تماماً مشاركة مسارات البيانات بين موظفي الخزينة، وماكينات الصراف الآلي، والإنترنت العام.",
+      solLbl: "الحل الهندسي المنفذ",
+      solText: "هندسة طوبولوجيا سويتشات Cisco Catalyst متعددة المستويات. عزل ماكينات الصراف الآلي (ATM) داخل VLAN مستقل ومعزول هوائياً مع ربط ثابت للـ MAC Addresses وتفعيل 802.1X Port Security. تمديد شبكة كابلات Cat6A مع خطوط ربط احتياطية ومصادر طاقة UPS لا تنقطع.",
+      resLbl: "النتائج بالأرقام الملموسة",
+      results: [
+        "عزل صارم وتام لحركة بيانات ماكينات الصراف الآلي بنسبة 100% (<strong style=\"color:var(--grn)\">Zero Cross-Talk</strong>).",
+        "حجب فوري لأي محاولة توصيل جهاز غريب عبر منافذ السويتش بفضل Port Security.",
+        "تسليم الفرع في الموعد المحدد واعتماده رسمياً للعمليات المصرفية الحية.",
+        "فحص واختبار مسارات الكابلات النحاسية بنسبة فقد وتوهين صفر."
+      ]
+    },
+    cs8: {
+      title: "تحديث خوادم مركز بيانات الاتصالات ومصفوفات التخزين RAID",
+      client: "المصرية للاتصالات (WE) · عمليات البنية التحتية",
+      probLbl: "المشكلة والواقع السابق",
+      probText: "خوادم تشغيلية رئيسية كانت تعمل على مصفوفات تخزين قديمة اقتربت من حدود العمر الافتراضي MTBF مع تراجع سرعات القراءة والكتابة وارتفاع مخاطر تعطل الأقراص.",
+      solLbl: "الحل الهندسي المنفذ",
+      solText: "تنفيذ فحص عتادي دقيق وتوسيع الذاكرة العشوائية. تركيب مصفوفات أقراص SAS عالية الكثافة بسرعة 15K RPM بنظام RAID 10 مع أقراص احتياطية فورية (Hot-Spares)، وتحديث الفيرموير المعتمد خلال نوافذ الصيانة المجدولة.",
+      resLbl: "النتائج بالأرقام الملموسة",
+      results: [
+        "ارتفاع سرعة عمليات الإدخال والإخراج IOPS بنسبة <strong style=\"color:var(--grn)\">300%</strong> دون أي فقد للبيانات.",
+        "توفير اعتمادية عتادية فائقة بمصفوفة RAID 10 مع تعافٍ آلي للأقراص الاحتياطية.",
+        "صفر دقائق توقف غير مخطط لها أثناء عملية الترحيل والصيانة.",
+        "تمديد العمر التشغيلي للخوادم لأكثر من 4 سنوات إضافية بثقة كاملة."
       ]
     }
   },
@@ -551,11 +731,30 @@ function applyAllPageTranslations(lang) {
     const d = AR_PAGES_DATA.homelab;
     const phLabel = elHl.querySelector(".ph-label"); if (phLabel) phLabel.textContent = d.label;
     const phH = elHl.querySelector(".ph-h"); if (phH) phH.innerHTML = d.title;
-    const dWidgets = elHl.querySelectorAll(".dash-widget .dash-l span");
-    const dLabels = ["مدة التشغيل المتواصل", "متوسط التحميل", "زمن الاستجابة الحية", "الخوادم الافتراضية النشطة"];
+    if (d.specs) {
+      const specCards = elHl.querySelectorAll(".hl-specs-grid .dash-widget");
+      d.specs.forEach((s, idx) => {
+        if (specCards[idx]) {
+          const lbl = specCards[idx].querySelector(".hl-spec-lbl"); if (lbl) lbl.textContent = s.lbl;
+          const val = specCards[idx].querySelector(".hl-spec-val"); if (val) val.textContent = s.val;
+          const desc = specCards[idx].querySelector(".hl-spec-desc"); if (desc) desc.textContent = s.desc;
+        }
+      });
+    }
+    const dWidgets = elHl.querySelectorAll("div[style*='grid-template-columns:repeat(auto-fit,minmax(200px,1fr))'] .dash-widget .dash-l span");
+    const dLabels = d.dashLabels || ["مدة التشغيل المتواصل", "متوسط التحميل", "زمن الاستجابة الحية", "الخوادم الافتراضية النشطة"];
     dWidgets.forEach((w, idx) => {
       if (dLabels[idx]) w.textContent = dLabels[idx];
     });
+    if (d.nodes) {
+      const hlCards = elHl.querySelectorAll(".proj-grid .proj-c");
+      d.nodes.forEach((item, idx) => {
+        if (hlCards[idx]) {
+          const pn = hlCards[idx].querySelector(".pn"); if (pn) pn.textContent = item.title;
+          const pd = hlCards[idx].querySelector(".pd"); if (pd) pd.textContent = item.desc;
+        }
+      });
+    }
   }
 
   // 06 / SERVICES
@@ -580,32 +779,22 @@ function applyAllPageTranslations(lang) {
     const phLabel = elCs.querySelector(".ph-label"); if (phLabel) phLabel.textContent = d.label;
     const phH = elCs.querySelector(".ph-h"); if (phH) phH.innerHTML = d.title;
     const cards = elCs.querySelectorAll(".cs-card");
-    if (cards[0] && d.cs1) {
-      const c1 = cards[0];
-      const t = c1.querySelector(".cs-title"); if (t) t.textContent = d.cs1.title;
-      const cl = c1.querySelector(".cs-client"); if (cl) cl.textContent = d.cs1.client;
-      const probL = c1.querySelector(".cs-block-label.problem"); if (probL) probL.textContent = d.cs1.probLbl;
-      const probT = c1.querySelector(".cs-sections > div:first-child .cs-text"); if (probT) probT.textContent = d.cs1.probText;
-      const solL = c1.querySelector(".cs-block-label.solution"); if (solL) solL.textContent = d.cs1.solLbl;
-      const resL = c1.querySelector(".cs-block-label.results"); if (resL) resL.textContent = d.cs1.resLbl;
-      const resUl = c1.querySelector(".cs-results-list");
-      if (resUl && d.cs1.results) {
-        resUl.innerHTML = d.cs1.results.map(r => `<li>${r}</li>`).join("");
+    const csList = [d.cs1, d.cs2, d.cs3, d.cs4, d.cs5, d.cs6, d.cs7, d.cs8].filter(Boolean);
+    csList.forEach((csData, idx) => {
+      const c = cards[idx];
+      if (!c || !csData) return;
+      const t = c.querySelector(".cs-title"); if (t && csData.title) t.textContent = csData.title;
+      const cl = c.querySelector(".cs-client"); if (cl && csData.client) cl.textContent = csData.client;
+      const probL = c.querySelector(".cs-block-label.problem"); if (probL && csData.probLbl) probL.textContent = csData.probLbl;
+      const probT = c.querySelector(".cs-sections > div:first-child .cs-text"); if (probT && csData.probText) probT.textContent = csData.probText;
+      const solL = c.querySelector(".cs-block-label.solution"); if (solL && csData.solLbl) solL.textContent = csData.solLbl;
+      const solT = c.querySelector(".cs-sections > div:nth-child(2) > p.cs-text"); if (solT && csData.solText) solT.textContent = csData.solText;
+      const resL = c.querySelector(".cs-block-label.results"); if (resL && csData.resLbl) resL.textContent = csData.resLbl;
+      const resUl = c.querySelector(".cs-results-list");
+      if (resUl && csData.results) {
+        resUl.innerHTML = csData.results.map(r => `<li>${r}</li>`).join("");
       }
-    }
-    if (cards[1] && d.cs2) {
-      const c2 = cards[1];
-      const t = c2.querySelector(".cs-title"); if (t) t.textContent = d.cs2.title;
-      const cl = c2.querySelector(".cs-client"); if (cl) cl.textContent = d.cs2.client;
-      const probL = c2.querySelector(".cs-block-label.problem"); if (probL) probL.textContent = d.cs2.probLbl;
-      const probT = c2.querySelector(".cs-sections > div:first-child .cs-text"); if (probT) probT.textContent = d.cs2.probText;
-      const solL = c2.querySelector(".cs-block-label.solution"); if (solL) solL.textContent = d.cs2.solLbl;
-      const resL = c2.querySelector(".cs-block-label.results"); if (resL) resL.textContent = d.cs2.resLbl;
-      const resUl = c2.querySelector(".cs-results-list");
-      if (resUl && d.cs2.results) {
-        resUl.innerHTML = d.cs2.results.map(r => `<li>${r}</li>`).join("");
-      }
-    }
+    });
   }
 
   // 08 / EDUCATION

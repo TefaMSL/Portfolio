@@ -534,161 +534,229 @@ document.addEventListener("keydown", e => {
 });
 let cliBooted = false;
 let cliHistory = [], cliHistIdx = -1;
-const CMDS = ["help", "whoismsl", "summary", "experience", "skills", "projects", "homelab", "services", "casestudies", "education", "certgallery", "achievements", "techlibrary", "analysis", "socialproof", "contact", "clear", "exit", "ls", "date", "sudo", "ping", "top", "matrix", "neofetch"];
+const CMDS = [
+  "help", "whoismsl", "summary", "experience", "skills", "projects", "homelab", "services",
+  "casestudies", "education", "certgallery", "achievements", "techlibrary", "analysis", "socialproof",
+  "contact", "clear", "exit", "ls", "date", "sudo", "ping", "top", "matrix", "neofetch",
+  "show", "sh", "cisco", "enable", "en", "conf", "cat", "download", "status", "specs", "vcard"
+];
+
+let ciscoMode = "user"; // "user", "privileged", "config"
 
 const D = {
-  whoismsl: `<span class="cli-h">// WHO IS MSL</span>
+  whoismsl: `<span class="cli-h">// WHO IS MOHAMED SAYID LOTFY</span>
 
-  <span class="cli-grn">Name     :</span> Mohamed Sayid Lotfy
-  <span class="cli-grn">Title    :</span> Network & System Administrator
-  <span class="cli-grn">Location :</span> Cairo, Egypt 🇪🇬
-  <span class="cli-grn">Email    :</span> mohamed-sayid@outlook.com
-  <span class="cli-grn">Phone    :</span> +20 150 333 3155
-  <span class="cli-grn">LinkedIn :</span> linkedin.com/in/mohamedelsayid
-  <span class="cli-grn">Status   :</span> <span class="cli-grn">● Open to Work — Available Now</span>
+  <span class="cli-grn">Name      :</span> Mohamed Sayid Lotfy
+  <span class="cli-grn">Role      :</span> Infrastructure & Security Engineer · IT Operations Lead
+  <span class="cli-grn">Experience:</span> 5+ Years Hands-on (Enterprise, Healthcare, Financial)
+  <span class="cli-grn">Location  :</span> Cairo, Egypt 🇪🇬
+  <span class="cli-grn">Email     :</span> mohamed-sayid@outlook.com
+  <span class="cli-grn">Phone     :</span> +20 150 333 3155
+  <span class="cli-grn">LinkedIn  :</span> linkedin.com/in/mohamedelsayid
+  <span class="cli-grn">Status    :</span> <span class="cli-grn">● Open to Senior Infrastructure & IT Operations Roles</span>
 
-  <span class="cli-ylw">Quick Bio:</span>
-  IT Specialist with 5+ years managing enterprise networks,
-  cloud solutions & Medical IT. Currently holding dual roles
-  at Viion and Main Sharia Association Hospital.
+  <span class="cli-ylw">Current Leadership:</span>
+  IT Operations Manager at Viion · Leading infrastructure across 5 branch sites
+  with a 5-person engineering team, managing 200+ Cisco network devices.
 
-  <span class="cli-ylw">Certifications:</span>
-  🥇 CCNA (ID: CSCO15040282 · Valid Nov 2028)
-  ⚙️  CCNP Enterprise: Core Networking
-  🖥️  MCSA 2016 (60 Hours)
+  <span class="cli-ylw">Certifications & Accreditations:</span>
+  🥇 Cisco Certified Network Associate (CCNA) — ID: CSCO15040282 (Valid to 2028)
+  ⚙️ Cisco Certified Network Professional (CCNP) Enterprise Core (ENCOR)
+  ⚙️ CCNP Security (SCOR) & Fortinet NSE 1, 2, 3
+  🖥️ MCSA Windows Server 2016 (60 Hours) · SCAL Academy
+  🎓 B.Sc. in Management Information Systems (MIS) — Al-Abbasiya Institute
 
-  <span class="cli-ylw">Languages:</span>  Arabic (Native) · English (Advanced)
-  <span class="cli-ylw">Military :</span>  Permanently Exempt`,
-  help: `<span class="cli-h">// AVAILABLE COMMANDS</span>
+  <span class="cli-ylw">Languages :</span> Arabic (Native) · English (Advanced / Professional)
+  <span class="cli-ylw">Military  :</span> Permanently Exempt (معافى نهائياً)`,
 
-  <span class="cli-ylw">Navigation:</span>
-  <span class="cli-grn">1</span> / <span class="cli-grn">whoismsl</span>      → Who is Mohamed Sayid Lotfy?
-  <span class="cli-grn">2</span> / <span class="cli-grn">summary</span>       → Professional overview
-  <span class="cli-grn">3</span> / <span class="cli-grn">experience</span>    → Full work history
-  <span class="cli-grn">4</span> / <span class="cli-grn">skills</span>        → Technical skills
-  <span class="cli-grn">5</span> / <span class="cli-grn">projects</span>      → Projects
-  <span class="cli-grn">6</span> / <span class="cli-grn">homelab</span>       → Homelab
-  <span class="cli-grn">7</span> / <span class="cli-grn">services</span>      → IT Services
-  <span class="cli-grn">8</span> / <span class="cli-grn">casestudies</span>   → Case Studies
-  <span class="cli-grn">9</span> / <span class="cli-grn">education</span>     → Academic background
-  <span class="cli-grn">10</span>/ <span class="cli-grn">certgallery</span>   → Certificates Gallery
-  <span class="cli-grn">11</span>/ <span class="cli-grn">achievements</span>  → Key wins & milestones
-  <span class="cli-grn">12</span>/ <span class="cli-grn">techlibrary</span>   → Tech Library Base
-  <span class="cli-grn">13</span>/ <span class="cli-grn">analysis</span>      → Analysis
-  <span class="cli-grn">14</span>/ <span class="cli-grn">socialproof</span>   → Social Proof
-  <span class="cli-grn">15</span>/ <span class="cli-grn">contact</span>       → Contact & social links
+  help: `<span class="cli-h">// AVAILABLE TERMINAL COMMANDS</span>
 
-  <span class="cli-ylw">Utilities & Fun:</span>
-  <span class="cli-grn">ls</span>     → List all sections
-  <span class="cli-grn">date</span>   → Current date & time
-  <span class="cli-grn">ping</span>   → Network speed check
-  <span class="cli-grn">sudo</span>   → Root access test
-  <span class="cli-grn">top</span>    → Real-time resources
-  <span class="cli-grn">matrix</span> → Digital rain effect
-  <span class="cli-grn">clear</span>  → Clear terminal
-  <span class="cli-grn">exit</span>   → Back to Normal mode
+  <span class="cli-ylw">Navigation & Sections:</span>
+  <span class="cli-grn">1</span> / <span class="cli-grn">whoismsl</span>      → Identity & contact details
+  <span class="cli-grn">2</span> / <span class="cli-grn">summary</span>       → Professional overview & key metrics
+  <span class="cli-grn">3</span> / <span class="cli-grn">experience</span>    → Full verified work history & projects
+  <span class="cli-grn">4</span> / <span class="cli-grn">skills</span>        → Technical arsenal & protocols
+  <span class="cli-grn">5</span> / <span class="cli-grn">projects</span>      → Executed enterprise IT initiatives
+  <span class="cli-grn">6</span> / <span class="cli-grn">homelab</span>       → Virtualization cluster & lab specs
+  <span class="cli-grn">7</span> / <span class="cli-grn">services</span>      → IT engineering & consulting solutions
+  <span class="cli-grn">8</span> / <span class="cli-grn">casestudies</span>   → Real-world architectural case studies
+  <span class="cli-grn">9</span> / <span class="cli-grn">education</span>     → Degree & training history
+  <span class="cli-grn">10</span>/ <span class="cli-grn">certgallery</span>   → 12 Official verified certificates
+  <span class="cli-grn">11</span>/ <span class="cli-grn">achievements</span>  → Major milestones & stats
+  <span class="cli-grn">12</span>/ <span class="cli-grn">techlibrary</span>   → Configuration baselines & SOPs
+  <span class="cli-grn">13</span>/ <span class="cli-grn">analysis</span>      → Visual skill insights & radar
+  <span class="cli-grn">14</span>/ <span class="cli-grn">socialproof</span>   → Enterprise testimonials & endorsements
+  <span class="cli-grn">15</span>/ <span class="cli-grn">contact</span>       → Direct reach out channels
 
-  <span class="cli-dim">Tab=autocomplete · ↑↓=history · ESC=normal</span>`,
+  <span class="cli-ylw">Cisco IOS Switch Emulation:</span>
+  <span class="cli-grn">sh ip int br</span>      → Show IP interface status & VLAN assignments
+  <span class="cli-grn">sh ip route</span>       → Show OSPF enterprise routing table
+  <span class="cli-grn">sh vlan</span>           → Show VLAN database & ports
+  <span class="cli-grn">sh ver</span>            → Show Cisco Catalyst firmware & uptime
+  <span class="cli-grn">enable</span>            → Enter Cisco Privileged EXEC mode (#)
+
+  <span class="cli-ylw">System Utilities & Tools:</span>
+  <span class="cli-grn">neofetch</span>          → System hardware & architecture summary
+  <span class="cli-grn">ping [target]</span>     → Interactive ping (e.g. ping cisco, ping wazuh, ping 8.8.8.8)
+  <span class="cli-grn">cat cv.txt</span>        → Print plain-text resume
+  <span class="cli-grn">download cv</span>       → Download official PDF CV
+  <span class="cli-grn">top</span>               → Live CPU/RAM process monitor
+  <span class="cli-grn">matrix</span>            → Cyber digital rain effect
+  <span class="cli-grn">clear</span> / <span class="cli-grn">exit</span>      → Reset terminal or return to visual mode`,
+
   summary: `<span class="cli-h">// PROFESSIONAL SUMMARY</span>
-5+ years IT experience · CCNA/CCNP certified
-Dual roles: Viion (Network Admin) + Hospital (SysAdmin)
-75% network performance boost · 90% security incidents reduced`,
-  skills: `<span class="cli-h">// SKILLS</span>
-Network: LAN/WAN/VLAN, Firewall, VPN, OSPF, Cisco IOS
-Systems: Windows Server, AD, DHCP/DNS, Hyper-V, VMware
-Security: Cybersecurity, Cloud Services, Endpoint Protection`,
+• 5+ years hands-on infrastructure, networking & security experience in Egypt.
+• IT Operations Manager at Viion: leading 5 branches with unified L3 OSPF & IPsec mesh.
+• Reduced enterprise security incidents by 90% via GPO baselines & Fortinet/pfSense firewalls.
+• Achieved 99.9% uptime for mission-critical medical HIS & PACS radiology systems.
+• Automated configuration audits of 200+ network devices with Python (Netmiko) and Ansible.
+• Deployed Veeam Backup with immutable repositories across 5 sites (RTO < 2h).`,
+
+  experience: `<span class="cli-h">// VERIFIED WORK EXPERIENCE</span>
+
+<span class="cli-acc">[1] IT Operations Manager (Infrastructure & Security Engineer)</span>
+    <span class="cli-ylw">Viion · Full-Time</span> | Feb 2025 – Present
+    • Leading operations across 5 branch sites managing a 5-person technical team.
+    • Redesigned enterprise network with Layer 3 switches, OSPF, and VLAN segregation.
+    • Migrated 6 legacy servers to a Hyper-V High Availability cluster on Server 2019.
+    • Enforced GPO baseline (USB block, BitLocker, WSUS), lifting compliance from 40% to 98%.
+    • Automated configuration backups and audits for 200+ Cisco devices via Python & Ansible.
+    • Deployed Veeam Backup & Replication with immutable repositories (RTO < 2h).
+
+<span class="cli-acc">[2] Network & System Administrator</span>
+    <span class="cli-ylw">Main Sharia Association Hospital</span> | Dec 2023 – Feb 2025
+    • Deployed Windows Server 2019 & Active Directory from scratch for 100+ medical staff.
+    • Isolated hospital HIS, PACS, and lab devices on dedicated VLANs behind FortiGate/Sophos.
+    • Rebuilt network backbone with L3 switches and RSTP, eliminating broadcast storms.
+    • Built Hyper-V virtualization with off-site replication, achieving 99.9% medical uptime.
+
+<span class="cli-acc">[3] IT Specialist</span>
+    <span class="cli-ylw">Xceed</span> | Apr 2023 – Oct 2023
+    • Advanced L2/L3 hardware, software, and network support for enterprise accounts.
+    • Enforced ITIL SLA escalation workflows and monthly performance reporting.
+
+<span class="cli-acc">[4] Enterprise Projects & Strategic Consulting</span> | 2020 – Present
+    • <span class="cli-grn">Bank of Alexandria:</span> Branch infrastructure build-out, Cisco switches, Cat6A cabling.
+    • <span class="cli-grn">Telecom Egypt (WE):</span> Enterprise server refresh, RAID 10 arrays & hardware optimization.
+    • <span class="cli-grn">Art Topia (Canada):</span> Global remote infrastructure & systems management.
+    • <span class="cli-grn">Aesthetic Medical Center:</span> Turnkey network architecture, VLANs, and firewall ACLs.`,
+
+  skills: `<span class="cli-h">// TECHNICAL ARSENAL</span>
+<span class="cli-ylw">Networking:</span>    Cisco IOS, OSPFv2/v3, BGP, VLANs, 802.1Q, STP/RSTP, LACP EtherChannel, HSRP, NAT, ACLs
+<span class="cli-ylw">Security:</span>      Fortinet FortiGate, pfSense, Suricata IDS, Wazuh SIEM, IPsec Site-to-Site, SSL-VPN, Port Security
+<span class="cli-ylw">Systems:</span>       Windows Server (2016-2022), Active Directory, GPO Hardening, DNS/DHCP, WSUS, BitLocker
+<span class="cli-ylw">Virtualization:</span>Hyper-V Failover Cluster, VMware ESXi 8.0, Proxmox VE 8, Veeam Backup & Replication, TrueNAS ZFS
+<span class="cli-ylw">Automation:</span>    Python (Netmiko, Paramiko), Ansible Playbooks, PowerShell, Bash Scripting, Git/GitHub`,
+
+  homelab: `<span class="cli-h">// VIRTUALIZATION & HOMELAB ENVIRONMENT</span>
+
+<span class="cli-ylw">Bare-Metal Hardware:</span>
+• Host CPU   : Intel Core i7 / 8 Cores · 16 Threads @ 4.6GHz
+• Memory     : 64 GB DDR4 3200MHz RAM
+• Storage    : 2x 1TB NVMe PCIe Gen4 in ZFS Mirror + 4TB TrueNAS SAS Pool
+• Hypervisors: Proxmox VE 8.1 & VMware ESXi 8.0 dual-boot cluster
+
+<span class="cli-ylw">Active Lab VMs & Appliances:</span>
+• <span class="cli-grn">EVE-NG Pro / GNS3:</span> Emulating 40+ Cisco Catalyst switches & ISR routers (OSPF, BGP, MPLS)
+• <span class="cli-grn">Wazuh SIEM Server:</span> Centralized syslog collection, Suricata IDS, endpoint telemetry
+• <span class="cli-grn">pfSense & FortiGate VMs:</span> Multi-WAN failover, IPsec tunnel testing, SSL-VPN portals
+• <span class="cli-grn">Active Directory Forest:</span> 2x Windows Server 2022 DCs, Tier-0/1/2 admin model testbed
+• <span class="cli-grn">Docker & Automation:</span> Python Netmiko runners, Ansible controller, Portainer`,
+
+  projects: `<span class="cli-h">// EXECUTED IT INITIATIVES</span>
+🏥 Hospital Network Isolation & HIS/PACS Architecture [FortiGate / OSPF / VLAN Segmentation]
+🏢 Viion Multi-Site Infrastructure Modernization [5 Branches / 200+ Nodes / Hyper-V HA Cluster]
+🏦 Bank of Alexandria Branch IT Infrastructure Build [Cisco Catalyst 3850 / Cat6A / ATM Subnets]
+📡 Telecom Egypt (WE) Server Refresh [Hardware Modernization / RAID 10 / SAS Migration]
+🤖 Automated Cisco Configuration Audit Pipeline [Python Netmiko / Ansible / Daily Git Backups]
+💾 Enterprise Disaster Recovery & Ransomware Defense [Veeam Immutable Repositories / ZFS / RTO < 2h]`,
+
+  cisco: `<span class="cli-h">// CISCO ENTERPRISE CORE (Catalyst 3850-24T-L3)</span>
+Run any of the following Cisco IOS inspection commands:
+  • <span class="cli-grn">sh ip int br</span>    → View interface IP status & protocol state
+  • <span class="cli-grn">sh ip route</span>     → View enterprise OSPF routing table
+  • <span class="cli-grn">sh vlan</span>         → View VLAN database and assigned ports
+  • <span class="cli-grn">sh ver</span>          → View Cisco IOS XE firmware & system serial`,
+
   certifications: `<span class="cli-h">// CERTIFICATIONS</span>
-  🥇 CCNA · ID: CSCO15040282 · Valid Nov 2028
-  ⚙️ CCNP Enterprise: Core Networking (Dec 2024)
-  🖥️ MCSA 2016 — 60 Hours (Jan 2025)`,
-  contact: `<span class="cli-h">// CONTACT</span>
-  📧 mohamed-sayid@outlook.com
-  📞 +20 150 333 3155
-  💼 linkedin.com/in/mohamedelsayid
-  <span class="cli-grn">● Available Now</span>`,
-  ls: `summary/ experience/ education/ achievements/ skills/ certifications/ homelab/ services/ certgallery/ techlibrary/ contact/ casestudies/ socialproof/ projects/`,
-  socialproof: `<span class="cli-h">// SOCIAL PROOF</span>
-⭐ 8 LinkedIn Recommendations — 5-star average
-✓ CCNA ID: CSCO15040282 · Verified Cisco credential
-📊 75% network boost · 90% incidents reduced · 99%+ medical uptime
-💼 Currently holding 2 active roles simultaneously`,
+🥇 Cisco Certified Network Associate (CCNA) — ID: CSCO15040282 · Valid Nov 2028
+⚙️ CCNP Enterprise: Core Networking (ENCOR)
+⚙️ CCNP Security (SCOR)
+🖥️ MCSA Windows Server 2016 — 60 Hours (SCAL Academy)
+🛡️ Fortinet NSE 1, 2, 3 Network Security Expert`,
+
+  contact: `<span class="cli-h">// CONTACT CHANNELS</span>
+📧 Email    : mohamed-sayid@outlook.com
+📞 Phone    : +20 150 333 3155
+💬 WhatsApp : wa.me/201503333155
+💼 LinkedIn : linkedin.com/in/mohamedelsayid
+🌐 Portfolio: https://tefamsl.github.io/Portfolio/
+<span class="cli-grn">● Open to Senior Infrastructure & Security Roles</span>`,
+
+  ls: `summary/  experience/  skills/  projects/  homelab/  services/  casestudies/  education/  certgallery/  achievements/  techlibrary/  analysis/  socialproof/  contact/  cv.pdf  cv.txt`,
+
   casestudies: `<span class="cli-h">// CASE STUDIES</span>
-🌐 Enterprise Network Overhaul — Viion [+75% throughput]
-🏥 Medical IT Stabilisation — Hospital [99%+ uptime]
-🛡️ Endpoint Security Hardening — 100% policy compliance
-🖥️ Legacy Server Migration — 60% cost reduction via virtualisation`,
-  experience: `<span class="cli-h">// EXPERIENCE</span>
-Network & System Admin — Viion [Jul 2024–Present]
-System Admin — Main Sharia Hospital [Sep 2024–Present]
-IT Specialist — Xceed [Apr–Aug 2024]
-Team Leader — Mrsool [Nov 2023–Apr 2024]`,
-  education: `<span class="cli-h">// EDUCATION</span>
-  <span class="cli-ylw">Academic Degree:</span>
-  🎓 B.Sc. in Management Information Systems (MIS)
-     Al-Abbasiya Institute [2019–2023]
-     Focus: IT Management, Database Administration, Network Basics
-  
-  <span class="cli-ylw">Professional Training & Certifications:</span>
-  🥇 Cisco Certified Network Associate (CCNA) - Verified ID: CSCO15040282 [Valid Nov 2028]
-  ⚙️ Cisco Certified Network Professional (CCNP) Enterprise: Core Networking [2024]
-  🖥️ Microsoft Certified Solutions Associate (MCSA) 2016 Server - 60 Hours Training [2025]
-  🛡️ Fortinet NSE 1, 2 & 3 - Network Security Expert [In Progress]
-  ☁️ Microsoft Azure Fundamentals AZ-900`,
+🌐 Viion Multi-Site Infrastructure Redesign [Zero unplanned downtime · 5 Branches connected via IPsec]
+🏥 Hospital HIS/PACS Security Isolation [90% reduction in unauthorized access · 99.9% medical uptime]
+🖥️ Legacy Windows Server P2V Migration [6 legacy servers consolidated to Hyper-V HA · 60% power saving]`,
+
+  education: `<span class="cli-h">// ACADEMIC DEGREE & ADVANCED TRAINING</span>
+🎓 <span class="cli-ylw">B.Sc. in Management Information Systems (MIS)</span> [2019–2023]
+   Al-Abbasiya Institute for Computer and Commercial Sciences
+   Core: Information Systems, Database Administration, Enterprise Networks, Systems Analysis.
+
+🥇 <span class="cli-ylw">Cisco Certified Network Associate (CCNA)</span> [ID: CSCO15040282 · Valid to 2028]
+⚙️ <span class="cli-ylw">CCNP Enterprise: Core Networking (ENCOR)</span> [Cisco Networking Academy]
+🖥️ <span class="cli-ylw">MCSA 2016 Server Administration (60 Hours)</span> [SCAL Academy · SN: 1010]`,
+
   achievements: `<span class="cli-h">// KEY ACHIEVEMENTS</span>
-  🏆 <span class="cli-grn">Network Optimization:</span> Increased enterprise network throughput by 75% at Viion.
-  🏆 <span class="cli-grn">Security Hardening:</span> Reduced security incidents and vulnerabilities by 90% across 5 branches.
-  🏆 <span class="cli-grn">Infrastructure Modernization:</span> Successfully migrated legacy physical servers to virtualized Hyper-V clusters, reducing hardware costs by 60%.
-  🏆 <span class="cli-grn">Healthcare IT Stability:</span> Achieved 99.9% uptime for critical medical systems at Main Sharia Association Hospital.`,
-  homelab: `<span class="cli-h">// HOMELAB</span>
-  🖥️ VMware ESXi / Hyper-V Servers
-  ⚙️ Cisco GNS3/EVE-NG Emulations
-  🌐 pfSense / FortiGate VMs
-  🔐 Active Directory Test Domain`,
-  services: `<span class="cli-h">// IT SERVICES</span>
-  🛠️ Network Design & Implementation
-  🛡️ Penetration Testing & Hardening
-  ☁️ P2V / Cloud Migrations
-  💾 Backup Systems Design`,
-  certgallery: `<span class="cli-h">// CERTIFICATE GALLERY</span>
-  <span class="cli-ylw">Networking:</span>
-  📜 CCNA (Cisco Certified Network Associate)
-  📜 CCNP Enterprise: Core Networking
-  
-  <span class="cli-ylw">Systems & Servers:</span>
-  📜 MCSA 2016 (Microsoft Certified Solutions Associate)
-  📜 Active Directory & Windows Server Administration
-  
-  <span class="cli-ylw">Security & Cloud:</span>
-  📜 Fortinet NSE 1, NSE 2, NSE 3
-  📜 Microsoft Azure Fundamentals (AZ-900)`,
+🏆 <span class="cli-grn">Multi-Branch Operations:</span> Successfully directing IT operations across 5 branch sites with a 5-engineer team.
+🏆 <span class="cli-grn">Zero Data Loss & Ransomware Defense:</span> Zero data loss incidents across 5 years with Veeam immutable repositories.
+🏆 <span class="cli-grn">Network Optimization:</span> 75% throughput increase across enterprise core switches via L3 OSPF & LACP trunking.
+🏆 <span class="cli-grn">Zero-Downtime Rollouts:</span> Fully migrated live Active Directory and medical PACS clusters without disrupting care.`,
+
+  services: `<span class="cli-h">// IT SERVICES & CONSULTING</span>
+🛠️ Multi-Site Enterprise Network Design & Implementation (Cisco L3 / OSPF / BGP)
+🛡️ Perimeter Security, Next-Gen Firewalls & VPNs (Fortinet FortiGate / pfSense)
+☁️ Hyper-V & VMware Infrastructure Virtualization & Legacy P2V Migrations
+💾 Veeam Disaster Recovery Architecture & Ransomware-Proof Immutable Backups
+🤖 Network Automation Pipelines with Python (Netmiko) and Ansible Playbooks`,
+
+  certgallery: `<span class="cli-h">// 12 OFFICIAL VERIFIED CERTIFICATES</span>
+📜 01. Cisco Certified Network Associate (CCNA) · ID: CSCO15040282
+📜 02. CCNAv7: Introduction to Networks (ITN)
+📜 03. CCNAv7: Switching, Routing & Wireless Essentials (SRWE)
+📜 04. CCNAv7: Enterprise Networking, Security & Automation (ENSA)
+📜 05. CCNP Enterprise: Core Networking (ENCOR)
+📜 06. CCNP Security: Core Security (SCOR)
+📜 07. MCSA 2016 Server Course (60 Hours)
+📜 08. Linux Administration (RH124 & RH134)
+📜 09. Ansible Automation (RH294)
+📜 10. Bash Shell Scripting & Linux Hardening
+📜 11. Python Programming & Applied AI
+📜 12. Complete DevOps Diploma`,
+
   techlibrary: `<span class="cli-h">// TECH LIBRARY BASE</span>
-  <span class="cli-ylw">Reference Guides & Baselines:</span>
-  📚 Cisco IOS Configuration Templates (VLANs, STP, OSPF, ACLs)
-  📚 Windows Server GPO Security Baselines & Hardening
-  📚 Active Directory Best Practices & Troubleshooting
-  📚 FortiGate/pfSense Firewall Rule Strategies
-  📚 Veeam Backup & Replication 3-2-1 Strategy Guide
-  📚 VMware ESXi & Hyper-V Optimization and P2V Migration
-  📚 Enterprise Wi-Fi Security (WPA3-Enterprise, RADIUS)
-  📚 Linux Server Security Baselines`,
-  analysis: `<span class="cli-h">// SYSTEM & PERFORMANCE ANALYSIS</span>
-  <span class="cli-grn">Bandwidth Utilization:</span> Optimized traffic routing resulting in 40% less WAN saturation.
-  <span class="cli-grn">Server Resource Allocation:</span> Rebalanced VM resources preventing CPU/RAM bottlenecking across 12 VMs.
-  <span class="cli-grn">Incident Response Time:</span> Reduced MTTR (Mean Time To Repair) by 50% using proactive PRTG/Zabbix monitoring.
-  <span class="cli-grn">Security Posture:</span> Deployed endpoint protection and centralized patching, achieving 100% compliance.`,
-  projects: `<span class="cli-h">// PROJECTS</span>
-  🏥 Hospital Network Modernization [VLAN/OSPF/Security]
-  🔐 Enterprise Active Directory Migration [Windows Server/GPO]
-  ☁️ Hyper-V Server Virtualization [Disaster Recovery/Consolidation]
-  🔥 Fortigate Firewall & VPN Deployment [Network Security]
-  💾 Veeam Backup & Replication [3-2-1 Strategy]
-  🛡️ Endpoint Threat Response Setup [Sophos/Kaspersky]
-  📶 Secure Enterprise Wireless [RADIUS/WPA3]
-  ⚙️ WSUS Automated Patch Management [Centralized Updates]
-  🔌 Cisco Core Switch Port Security [Access Control]
-  ☁️ Azure Cloud Hybrid Connectivity [Azure VMs/VPN]
-  🎫 ITIL Helpdesk & Ticketing Rollout [Tier 1-3 SLAs]
-  🏢 Office Relocation & IT Build-Out [Cabling/Racking]`
+📚 Cisco IOS Configuration Templates (OSPF, VLANs, LACP, Port-Security, ACLs)
+📚 Windows Server GPO Security Baselines (USB lockdown, BitLocker, WSUS)
+📚 Active Directory Hardening & Tiered Administration Model Guide
+📚 FortiGate/pfSense Firewall Rule Hierarchy & IPsec Site-to-Site Troubleshooting
+📚 Veeam Backup 3-2-1 Strategy with Linux Hardened ZFS Repositories
+📚 VMware ESXi & Hyper-V Resource Sizing & Storage Optimization`,
+
+  analysis: `<span class="cli-h">// TECHNICAL METRICS & RADAR INSIGHTS</span>
+• Cisco Enterprise Core Routing : 92% Proficiency
+• Windows Server & Active Directory : 90% Proficiency
+• Next-Gen Firewalls (Fortinet / pfSense) : 88% Proficiency
+• Virtualization (VMware ESXi / Hyper-V) : 85% Proficiency
+• Healthcare Medical IT (HIS / PACS) : 84% Proficiency
+• Linux System Administration (Ubuntu / RHEL) : 78% Proficiency
+• Network Automation (Python / Netmiko / Ansible) : 70% Proficiency`,
+
+  socialproof: `<span class="cli-h">// SOCIAL PROOF & STAKEHOLDER ENDORSEMENTS</span>
+✓ CCNA Verification : CSCO15040282 (Cisco Official Credential)
+✓ Enterprise Trust  : Bank of Alexandria, Telecom Egypt (WE), Viion, Main Sharia Hospital, Art Topia (Canada)
+✓ Performance Record: 99.9% medical uptime · 90% incident reduction · 0 data loss incidents`
 };
 
 function cliPrint(html, cls = "cli-resp") {
@@ -699,7 +767,25 @@ function cliPrint(html, cls = "cli-resp") {
   document.getElementById("cli-output").scrollTop = 99999;
 }
 
+function updateCliPrompt() {
+  const pPath = document.querySelector(".cli-prompt-path");
+  const pSym = document.querySelector(".cli-prompt span[style]");
+  if (!pPath) return;
+  if (ciscoMode === "config") {
+    pPath.textContent = "MSL-CORE-L3";
+    if (pSym) pSym.innerHTML = `(<span style="color:var(--ylw)">config</span>)#`;
+  } else if (ciscoMode === "privileged") {
+    pPath.textContent = "MSL-CORE-L3";
+    if (pSym) pSym.innerHTML = `<span style="color:var(--grn)">#</span>`;
+  } else {
+    pPath.textContent = "msl@portfolio";
+    if (pSym) pSym.innerHTML = `<span style="color:var(--acc)">~</span>$`;
+  }
+}
+
 function bootCLI() {
+  ciscoMode = "user";
+  updateCliPrompt();
   cliPrint(`<span class="cli-logo-anim" style="color:#5ba4e3;">
 ████████╗███████╗███████╗ █████╗ 
 ╚══██╔══╝██╔════╝██╔════╝██╔══██╗
@@ -707,114 +793,306 @@ function bootCLI() {
    ██║   ██╔══╝  ██╔══╝  ██╔══██║
    ██║   ███████╗██║     ██║  ██║
    ╚═╝   ╚══════╝╚═╝     ╚═╝  ╚═╝</span>`);
-  cliPrint(`<span class="cli-h">Mohamed Sayid Lotfy — Network & System Administrator</span>`);
-  cliPrint(`<span class="cli-dim">────────────────────────────────────────</span>`);
+  cliPrint(`<span class="cli-h">Mohamed Sayid Lotfy — Infrastructure & Security Engineer</span>`);
+  cliPrint(`<span class="cli-dim">Cisco Certified Network Associate (CCNA) · IT Operations Lead</span>`);
+  cliPrint(`<span class="cli-dim">───────────────────────────────────────────────────────────────────────</span>`);
+  cliPrint(`<span class="cli-ylw">Type a number (1-15), a command name, or a Cisco IOS show command:</span>`);
+  cliPrint(``);
+
   const menuItems = [
-    ["Who is Mohamed Sayid Lotfy?", "1", "whoismsl"],
-    ["Professional Summary", "2", "summary"],
-    ["Work Experience", "3", "experience"],
-    ["Technical Skills", "4", "skills"],
-    ["Projects", "5", "projects"],
-    ["Homelab", "6", "homelab"],
-    ["IT Services", "7", "services"],
-    ["Case Studies", "8", "casestudies"],
-    ["Education", "9", "education"],
-    ["Certificates Gallery", "10", "certgallery"],
-    ["Key Achievements", "11", "achievements"],
-    ["Tech Library Base", "12", "techlibrary"],
-    ["Analysis", "13", "analysis"],
-    ["Social Proof", "14", "socialproof"],
-    ["Contact Info", "15", "contact"],
+    ["1", "whoismsl", "Identity & Executive Bio"],
+    ["2", "summary", "Professional Metrics & Scope"],
+    ["3", "experience", "Verified Multi-Site Work History"],
+    ["4", "skills", "Technical Arsenal & Protocols"],
+    ["5", "projects", "Enterprise Initiatives & Deployments"],
+    ["6", "homelab", "Virtualization Cluster & Lab Specs"],
+    ["7", "services", "Engineering & Consulting Solutions"],
+    ["8", "casestudies", "Real-World Architecture Case Studies"],
+    ["9", "education", "MIS Degree & Certifications"],
+    ["10", "certgallery", "12 Official Verified Certificates"],
+    ["11", "achievements", "Key Wins & Zero-Downtime Stats"],
+    ["12", "techlibrary", "Configuration Baselines & SOPs"],
+    ["13", "analysis", "Visual Skill Matrix & Radar"],
+    ["14", "socialproof", "Client Trust & Stakeholder Proof"],
+    ["15", "contact", "Direct Channels & WhatsApp"],
   ];
-  menuItems.forEach(([label, num, cmd]) => {
-    const padded = label.padEnd(30, " ");
-    cliPrint(`<span class="cli-ylw">${padded}</span><span class="cli-dim">→ press</span> <span class="cli-grn">${num}</span> <span class="cli-dim">or type</span> <span class="cli-grn">${cmd}</span>`);
+  menuItems.forEach(([num, cmd, label]) => {
+    cliPrint(`  <span class="cli-grn">[${num.padStart(2, "0")}]</span> <span class="cli-acc">${cmd.padEnd(14, " ")}</span> <span class="cli-dim">→</span> <span class="cli-txt">${label}</span>`);
   });
-  cliPrint(`<span class="cli-dim">────────────────────────────────────────</span>`);
-  cliPrint(`<span class="cli-dim">Tab=autocomplete · ↑↓=history · ESC=normal · clear · exit</span>`);
+
+  cliPrint(``);
+  cliPrint(`<span class="cli-ylw">Cisco Switch Commands:</span> <span class="cli-grn">sh ip int br</span>  ·  <span class="cli-grn">sh ip route</span>  ·  <span class="cli-grn">sh vlan</span>  ·  <span class="cli-grn">sh ver</span>  ·  <span class="cli-grn">enable</span>`);
+  cliPrint(`<span class="cli-ylw">System & Tools       :</span> <span class="cli-grn">neofetch</span>  ·  <span class="cli-grn">ping [target]</span>  ·  <span class="cli-grn">cat cv.txt</span>  ·  <span class="cli-grn">download cv</span>  ·  <span class="cli-grn">top</span>  ·  <span class="cli-grn">matrix</span>`);
+  cliPrint(`<span class="cli-dim">───────────────────────────────────────────────────────────────────────</span>`);
+  cliPrint(`<span class="cli-dim">Tab=autocomplete · ↑↓=history · ESC=normal mode · clear · exit</span>`);
   cliPrint(``);
 }
 
-const NUM_MAP = { "1": "whoismsl", "2": "summary", "3": "experience", "4": "skills", "5": "projects", "6": "homelab", "7": "services", "8": "casestudies", "9": "education", "10": "certgallery", "11": "achievements", "12": "techlibrary", "13": "analysis", "14": "socialproof", "15": "contact" };
+const NUM_MAP = {
+  "1": "whoismsl", "2": "summary", "3": "experience", "4": "skills", "5": "projects",
+  "6": "homelab", "7": "services", "8": "casestudies", "9": "education", "10": "certgallery",
+  "11": "achievements", "12": "techlibrary", "13": "analysis", "14": "socialproof", "15": "contact"
+};
 
 function runCLI(cmd) {
-  cmd = cmd.trim().toLowerCase();
+  cmd = cmd.trim();
   if (!cmd) return;
-  cliHistory.unshift(cmd); cliHistIdx = -1;
-  const mapped = NUM_MAP[cmd] || cmd;
-  cliPrint(`<span class="cli-cmd">$ ${cmd}${mapped !== cmd ? ' → ' + mapped : ''}</span>`);
+  cliHistory.unshift(cmd);
+  cliHistIdx = -1;
+  const lower = cmd.toLowerCase();
 
-  if (mapped === "clear" || cmd === "clear") { document.getElementById("cli-output").innerHTML = ""; bootCLI(); return }
-  if (mapped === "exit" || cmd === "exit") { setMode("normal"); return }
-  if (mapped === "date" || cmd === "date") { cliPrint(new Date().toString()); return }
-  if (mapped === "menu" || cmd === "menu") { document.getElementById("cli-output").innerHTML = ""; bootCLI(); return }
+  const promptPrefix = (ciscoMode === "config") ? "MSL-CORE-L3(config)#" : (ciscoMode === "privileged" ? "MSL-CORE-L3#" : "$");
+  cliPrint(`<span class="cli-cmd">${promptPrefix} ${cmd}</span>`);
 
-  // --- EASTER EGGS / UTILITIES ---
-  if (cmd === "sudo") {
-    cliPrint(`<span class="cli-err">Permission denied: user "Guest" is not in the sudoers file. This incident will be reported.</span>`);
+  // Handle Cisco mode transitions
+  if (lower === "enable" || lower === "en") {
+    ciscoMode = "privileged";
+    updateCliPrompt();
+    cliPrint(`<span class="cli-grn">Privileged EXEC mode enabled. Type 'conf t' to enter configuration or 'disable' to exit.</span>`);
     return;
   }
-  if (cmd === "ping") {
-    cliPrint(`PING msl.it (192.168.1.1): 56 data bytes`);
+  if (lower === "disable") {
+    ciscoMode = "user";
+    updateCliPrompt();
+    return;
+  }
+  if (lower === "conf t" || lower === "configure terminal" || lower === "config t") {
+    ciscoMode = "config";
+    updateCliPrompt();
+    cliPrint(`Enter configuration commands, one per line. End with CNTL/Z or 'exit'.`);
+    return;
+  }
+  if (lower === "exit" || lower === "end") {
+    if (ciscoMode === "config") {
+      ciscoMode = "privileged";
+      updateCliPrompt();
+      return;
+    }
+    if (ciscoMode === "privileged") {
+      ciscoMode = "user";
+      updateCliPrompt();
+      return;
+    }
+    setMode("normal");
+    return;
+  }
+
+  if (lower === "clear" || lower === "cls") {
+    document.getElementById("cli-output").innerHTML = "";
+    bootCLI();
+    return;
+  }
+  if (lower === "date") {
+    cliPrint(new Date().toString());
+    return;
+  }
+  if (lower === "menu") {
+    document.getElementById("cli-output").innerHTML = "";
+    bootCLI();
+    return;
+  }
+
+  // --- CISCO IOS SHOW COMMANDS ---
+  if (lower === "sh ip int br" || lower === "show ip int br" || lower === "show ip interface brief" || lower === "sh ip int") {
+    cliPrint(`<span class="cli-h">Interface              IP-Address      OK? Method Status                Protocol</span>
+GigabitEthernet0/0     192.168.10.1    YES NVRAM  <span class="cli-grn">up                    up</span>      
+GigabitEthernet0/1     10.0.1.1        YES NVRAM  <span class="cli-grn">up                    up</span>      (Viion-WAN-OSPF)
+GigabitEthernet0/2     10.50.0.1       YES NVRAM  <span class="cli-grn">up                    up</span>      (DMZ-Firewall-Trunk)
+GigabitEthernet0/3     unassigned      YES unset  <span class="cli-grn">up                    up</span>      (Hospital-Trunk)
+Vlan10 (MGMT)          10.10.10.254    YES manual <span class="cli-grn">up                    up</span>      
+Vlan20 (MEDICAL-PACS)  10.20.20.254    YES manual <span class="cli-grn">up                    up</span>      
+Vlan30 (CORP-USERS)    10.30.30.254    YES manual <span class="cli-grn">up                    up</span>      
+Vlan40 (SERVERS-HA)    10.40.40.254    YES manual <span class="cli-grn">up                    up</span>      
+Loopback0 (ROUTER-ID)  1.1.1.1         YES manual <span class="cli-grn">up                    up</span>`);
+    return;
+  }
+
+  if (lower === "sh ip route" || lower === "show ip route" || lower === "sh ip ro") {
+    cliPrint(`<span class="cli-dim">Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area</span>
+
+<span class="cli-ylw">Gateway of last resort is 192.168.10.254 to network 0.0.0.0</span>
+
+S*    0.0.0.0/0 [1/0] via 192.168.10.254, GigabitEthernet0/0
+C     1.1.1.1/32 is directly connected, Loopback0
+C     10.0.1.0/24 is directly connected, GigabitEthernet0/1
+<span class="cli-grn">O     10.2.0.0/16 [110/12] via 10.0.1.2, 04:22:15, GigabitEthernet0/1 (Branch-Alexandria)
+O     10.3.0.0/16 [110/12] via 10.0.1.3, 04:22:15, GigabitEthernet0/1 (Branch-NasrCity)
+O     10.4.0.0/16 [110/12] via 10.0.1.4, 04:22:15, GigabitEthernet0/1 (Branch-Giza)
+O     10.5.0.0/16 [110/12] via 10.0.1.5, 04:22:15, GigabitEthernet0/1 (Branch-Maadi)</span>
+C     10.10.10.0/24 is directly connected, Vlan10
+C     10.20.20.0/24 is directly connected, Vlan20 (HIS/PACS-Medical)
+C     10.30.30.0/24 is directly connected, Vlan30 (Corporate-Staff)
+C     10.40.40.0/24 is directly connected, Vlan40 (Hyper-V-Cluster)`);
+    return;
+  }
+
+  if (lower === "sh vlan" || lower === "show vlan" || lower === "sh vlan br" || lower === "show vlan brief") {
+    cliPrint(`<span class="cli-h">VLAN Name                             Status    Ports</span>
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Gi0/4 - Gi0/8
+10   MANAGEMENT_NET                   <span class="cli-grn">active</span>    Gi0/9, Gi0/10
+20   MEDICAL_HIS_PACS                 <span class="cli-grn">active</span>    Gi0/11 - Gi0/16
+30   CORPORATE_OPERATIONS             <span class="cli-grn">active</span>    Gi0/17 - Gi0/22
+40   HYPERV_STORAGE_ZFS               <span class="cli-grn">active</span>    Gi0/23, Gi0/24
+50   DMZ_EXTERNAL_SERVERS             <span class="cli-grn">active</span>    Gi0/1 - Gi0/2
+99   GUEST_ISOLATED_WIFI              <span class="cli-grn">active</span>    Gi0/3`);
+    return;
+  }
+
+  if (lower === "sh ver" || lower === "show version" || lower === "sh version") {
+    cliPrint(`Cisco IOS XE Software, Version 16.12.04 (Amsterdam)
+Cisco IOS Software [Amsterdam], Catalyst L3 Switch Software (CAT3K_CAA-UNIVERSALK9-M)
+ROM: Bootstrap program is CAT3850
+
+MSL-CORE-L3 uptime is 18 weeks, 4 days, 12 hours, 32 minutes
+System returned to ROM by reload at 03:15:00 UTC
+System image file is "flash:cat3k_caa-universalk9.16.12.04.SPA.bin"
+cisco WS-C3850-24T (MIPS) processor with 4194304K bytes of physical memory.
+Model Number                    : WS-C3850-24T-L
+System Serial Number            : FOC2234X0AB
+Base Ethernet MAC Address       : 00:2A:6A:B8:12:00
+Configuration register is 0x102`);
+    return;
+  }
+
+  // --- INTERACTIVE PING ---
+  if (lower.startsWith("ping")) {
+    const parts = lower.split(/\s+/);
+    const target = parts[1] || "cisco";
+    const IP_MAP = {
+      cisco: "10.0.1.1 (Cisco Core Switch)",
+      core: "10.0.1.1 (Cisco Core Switch)",
+      wazuh: "10.10.20.50 (Wazuh SIEM)",
+      siem: "10.10.20.50 (Wazuh SIEM)",
+      hospital: "10.20.20.10 (Hospital HIS/PACS)",
+      pacs: "10.20.20.10 (Hospital HIS/PACS)",
+      bank: "172.16.1.1 (Bank of Alexandria Core)",
+      we: "196.205.1.1 (Telecom Egypt)",
+      telecom: "196.205.1.1 (Telecom Egypt)",
+      google: "8.8.8.8 (Google Public DNS)",
+      "8.8.8.8": "8.8.8.8 (Google Public DNS)",
+      gateway: "192.168.10.254 (Gateway)",
+      server: "10.40.40.10 (Hyper-V Primary Node)"
+    };
+    const ipStr = IP_MAP[target] || target;
+    cliPrint(`PING ${target} [${ipStr}]: 56 data bytes`);
     let count = 0;
     const pInt = setInterval(() => {
-      cliPrint(`64 bytes from 192.168.1.1: icmp_seq=${count} ttl=64 time=${(Math.random() * 5 + 10).toFixed(3)} ms`);
+      const ms = (Math.random() * 4 + 1.2).toFixed(2);
+      cliPrint(`64 bytes from ${ipStr.split(" ")[0]}: icmp_seq=${count} ttl=64 time=${ms} ms`);
       count++;
       if (count >= 4) {
         clearInterval(pInt);
-        cliPrint(`--- msl.it ping statistics ---`);
-        cliPrint(`4 packets transmitted, 4 packets received, 0.0% packet loss`);
+        cliPrint(`--- ${target} ping statistics ---`);
+        cliPrint(`4 packets transmitted, 4 packets received, <span class="cli-grn">0.0% packet loss</span>, time 3004ms`);
+        cliPrint(`rtt min/avg/max/mdev = 1.20/2.45/4.12/0.82 ms`);
       }
-    }, 500);
+    }, 400);
     return;
   }
-  if (cmd === "matrix") {
+
+  // --- CAT & DOWNLOAD UTILITIES ---
+  if (lower === "cat cv.txt" || lower === "cat resume" || lower === "cat cv") {
+    cliPrint(`<span class="cli-h">=== MOHAMED SAYID LOTFY — CURRICULUM VITAE ===</span>
+ROLE      : Infrastructure & Security Engineer · IT Operations Lead
+PHONE     : +20 150 333 3155
+EMAIL     : mohamed-sayid@outlook.com
+LINKEDIN  : linkedin.com/in/mohamedelsayid
+CERTIFIED : Cisco CCNA (CSCO15040282) · CCNP ENCOR · MCSA 2016
+SUMMARY   : 5+ years managing enterprise IT, hospitals & financial networks.
+            Leading 5 branch sites at Viion with a 5-engineer team.
+            99.9% uptime record, zero data loss, RTO < 2h with Veeam.
+Type '<span class="cli-grn">download cv</span>' to open the official verified PDF version.`);
+    return;
+  }
+
+  if (lower === "cat bio.txt" || lower === "cat bio") {
+    cliPrint(D.whoismsl);
+    return;
+  }
+
+  if (lower === "download cv" || lower === "cv") {
+    cliPrint(`<span class="cli-grn">Downloading official CV PDF: Mohamed Sayid Lotfy CV.pdf...</span>`);
+    window.open("Mohamed%20Sayid%20Lotfy%20CV.pdf", "_blank");
+    return;
+  }
+
+  if (lower === "download certs" || lower === "certs") {
+    cliPrint(`<span class="cli-grn">Opening 12 Official Certificates Booklet (PDF)...</span>`);
+    window.open("Certificates.pdf", "_blank");
+    return;
+  }
+
+  if (lower === "vcard" || lower === "contact.vcf") {
+    cliPrint(`<span class="cli-grn">Generating and downloading vCard for your phone contacts...</span>`);
+    downloadVCard();
+    return;
+  }
+
+  if (lower === "sudo") {
+    cliPrint(`<span class="cli-err">Permission denied: user "guest" is not in sudoers file. This incident will be reported to MSL Security Operations Center.</span>`);
+    return;
+  }
+
+  if (lower === "matrix") {
     cliPrint(`<span class="cli-grn">Initializing Digital Rain Protocol...</span>`);
     const cv = document.getElementById("mx");
     const oldO = cv.style.opacity;
     const oldZ = cv.style.zIndex;
-
     cv.style.zIndex = "1000";
     cv.style.opacity = "1";
     showHacked = true;
-
     setTimeout(() => {
       cv.style.opacity = oldO;
       cv.style.zIndex = oldZ;
       showHacked = false;
       cliPrint(`<span class="cli-grn">Digital Rain sequence complete. Logs sanitized.</span>`);
-    }, 8000);
-    return;
-  }
-  if (cmd === "top") {
-    cliPrint(`<span class="cli-h">// SYSTEM RESOURCES (Live)</span>`);
-    cliPrint(`Tasks: 14 total, 1 running, 13 sleeping`);
-    cliPrint(`%Cpu(s): ${(Math.random() * 10 + 2).toFixed(1)} us, ${(Math.random() * 5).toFixed(1)} sy, 0.0 ni, 85.0 id`);
-    cliPrint(`MiB Mem : 65536 total, 42100 free, 12400 used, 11036 buff/cache`);
-    cliPrint(``);
-    cliPrint(`<span class="cli-dim">PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND</span>`);
-    cliPrint(`102 guest     20   0   14.2g   1.2g  84200 S   2.4   1.8   0:12.45 portfolio_engine`);
-    cliPrint(`105 guest     20   0    8.4g   0.6g  42100 R   1.2   0.9   0:02.11 cli_terminal`);
-    return;
-  }
-  if (cmd === "neofetch") {
-    const cores = navigator.hardwareConcurrency || "8";
-    cliPrint(`       <span class="cli-acc">.---.</span>       <span class="cli-acc">guest@MSL_OS</span>`);
-    cliPrint(`      <span class="cli-acc">/     \\</span>      <span class="cli-dim">------------</span>`);
-    cliPrint(`      <span class="cli-acc">\\.@ @./</span>      <span class="cli-acc">OS:</span> MSL_OS v2.0.4`);
-    cliPrint(`      <span class="cli-acc">/  _  \\</span>      <span class="cli-acc">Kernel:</span> 6.1.0-21-amd64`);
-    cliPrint(`     <span class="cli-acc">/|     |\\</span>     <span class="cli-acc">Uptime:</span> 24 days, 14 hours`);
-    cliPrint(`    <span class="cli-acc">/ \\___/ \\</span>    <span class="cli-acc">Shell:</span> portfolio-sh 5.1`);
-    cliPrint(`   <span class="cli-acc">/_________\\</span>   <span class="cli-acc">CPU:</span> ${cores} Continuous Processors`);
-    cliPrint(`   <span class="cli-acc">|         |</span>   <span class="cli-acc">GPU:</span> WebGL Accelerated`);
+    }, 7000);
     return;
   }
 
-  if (D[mapped]) { cliPrint(D[mapped]); cliPrint(``); }
-  else {
-    const matches = CMDS.filter(c => c.startsWith(cmd));
-    if (matches.length) cliPrint(`<span class="cli-dim">Did you mean: ${matches.join(", ")}?</span>`);
-    else cliPrint(`<span class="cli-err">command not found: "${cmd}" · type 'help' or press 1-15</span>`);
+  if (lower === "top") {
+    cliPrint(`<span class="cli-h">// LIVE SYSTEM MONITOR (MSL_KERNEL)</span>`);
+    cliPrint(`Tasks: 16 total, 2 running, 14 sleeping`);
+    cliPrint(`%Cpu(s): ${(Math.random() * 8 + 3).toFixed(1)}% us, 1.2% sy, 0.0% ni, 95.8% id`);
+    cliPrint(`MiB Mem : 65536 total, 41200 free, 14100 used, 10236 buff/cache`);
+    cliPrint(``);
+    cliPrint(`<span class="cli-dim">PID   USER    PR  NI    VIRT    RES    SHR S  %CPU  %MEM    COMMAND</span>`);
+    cliPrint(`1021  msl     20   0   18.4g   2.4g  12400 S   3.2   3.8    cisco_ospf_daemon`);
+    cliPrint(`1045  msl     20   0   12.1g   1.8g  10200 S   2.1   2.8    wazuh_agent_siem`);
+    cliPrint(`1082  msl     20   0    8.6g   1.1g   8400 S   1.4   1.7    hyperv_sync_engine`);
+    cliPrint(`1099  guest   20   0    4.2g   0.4g   4200 R   0.9   0.6    portfolio_cli_sh`);
+    return;
+  }
+
+  if (lower === "neofetch" || lower === "specs" || lower === "sysinfo") {
+    cliPrint(`
+<span class="cli-acc">         /\\         </span> <span class="cli-grn">mohamed@lotfy-core</span>
+<span class="cli-acc">        /  \\        </span> <span class="cli-dim">------------------</span>
+<span class="cli-acc">       / /\\ \\       </span> <span class="cli-ylw">OS:</span> MSL_OS v2.0 Enterprise Linux (amd64)
+<span class="cli-acc">      / ____ \\      </span> <span class="cli-ylw">Role:</span> Infrastructure & Security Engineer
+<span class="cli-acc">     /_/    \\_\\     </span> <span class="cli-ylw">Leadership:</span> IT Operations Manager (Viion · 5 Sites)
+<span class="cli-dim">    [CISCO CCNA]    </span> <span class="cli-ylw">Uptime:</span> 5+ Years Verified Industry Experience
+                     <span class="cli-ylw">Certs:</span> CCNA (CSCO15040282) · CCNP Core · MCSA
+                     <span class="cli-ylw">Nodes:</span> 200+ Cisco Switches & Routers (OSPF/L3)
+                     <span class="cli-ylw">Security:</span> FortiGate · pfSense · Wazuh SIEM · 0 Breaches
+                     <span class="cli-ylw">Hardware:</span> 64GB DDR4 · NVMe ZFS Mirror · Hyper-V HA
+                     <span class="cli-ylw">Shell:</span> zsh 5.9 / Cisco IOS XE (x86_64)`);
+    return;
+  }
+
+  const mapped = NUM_MAP[lower] || lower;
+  if (D[mapped]) {
+    cliPrint(D[mapped]);
+    cliPrint(``);
+  } else {
+    const matches = CMDS.filter(c => c.startsWith(lower));
+    if (matches.length) {
+      cliPrint(`<span class="cli-dim">Did you mean: ${matches.join(", ")}?</span>`);
+    } else {
+      cliPrint(`<span class="cli-err">command not found: "${cmd}" · type 'help', 'sh ip int br', or press 1-15</span>`);
+    }
   }
 }
 

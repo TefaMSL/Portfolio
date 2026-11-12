@@ -676,11 +676,11 @@
   <div class="pov" id="pg-skills">
     <div class="ph"><div class="ph-label">03 / Skills</div><div class="ph-h">Technical <span class="c">Arsenal</span></div><div class="ph-div"></div></div>
     <div class="skills-grid">
-      <div class="sg"><div class="sg-label">Network Administration</div><div class="chips"><span class="chip">LAN / WAN / VLAN</span><span class="chip">Firewall Config</span><span class="chip">Routers &amp; Switches</span><span class="chip">VPN</span><span class="chip">OSPF</span><span class="chip">Subnetting</span><span class="chip">Network Security</span></div></div>
-      <div class="sg"><div class="sg-label">System Administration</div><div class="chips"><span class="chip">Windows Server</span><span class="chip">Active Directory</span><span class="chip">DHCP / DNS</span><span class="chip">Group Policy</span><span class="chip">Hyper-V</span><span class="chip">VMware</span><span class="chip">Backup &amp; Recovery</span><span class="chip">SCCM/WSUS</span><span class="chip">Linux Essentials</span></div></div>
-      <div class="sg"><div class="sg-label">IT &amp; Security</div><div class="chips"><span class="chip">Troubleshooting</span><span class="chip">Cybersecurity</span><span class="chip">Cloud Services</span><span class="chip">Endpoint Protection</span><span class="chip">IT Documentation</span><span class="chip">Data Protection</span><span class="chip">Incident Response</span><span class="chip">SIEM/IDS</span><span class="chip">Zero-Trust Basics</span></div></div>
-      <div class="sg"><div class="sg-label">DevOps &amp; Automation</div><div class="chips"><span class="chip">Python</span><span class="chip">Ansible</span><span class="chip">Docker</span><span class="chip">Shell Scripting</span><span class="chip">Netmiko</span><span class="chip">Git / GitHub</span><span class="chip">Proxmox</span></div></div>
-      <div class="sg"><div class="sg-label">Soft Skills</div><div class="chips"><span class="chip">Leadership</span><span class="chip">Team Management</span><span class="chip">Communication</span><span class="chip">Problem-Solving</span><span class="chip">Negotiation</span><span class="chip">Customer Service</span><span class="chip">Agile Mindset</span></div></div>
+      <div class="sg"><div class="sg-label">Network Administration</div><div class="chips"><span class="chip">LAN / WAN / 802.1Q VLAN</span><span class="chip">Cisco Catalyst / IOS XE</span><span class="chip">OSPFv2/v3 &amp; EIGRP</span><span class="chip">LACP EtherChannel</span><span class="chip">HSRP / VRRP Redundancy</span><span class="chip">IPsec VPN Mesh</span><span class="chip">FortiGate &amp; pfSense</span><span class="chip">Port Security &amp; 802.1X</span></div></div>
+      <div class="sg"><div class="sg-label">System Administration</div><div class="chips"><span class="chip">Windows Server 2022/2019</span><span class="chip">Active Directory DS &amp; GPO</span><span class="chip">DNS / DHCP / IPAM</span><span class="chip">Hyper-V HA Clustering</span><span class="chip">VMware ESXi 8.0</span><span class="chip">Veeam BDR &amp; Immutable</span><span class="chip">WSUS Patch Mgmt</span><span class="chip">TrueNAS ZFS Storage</span><span class="chip">Linux (Ubuntu / Rocky)</span></div></div>
+      <div class="sg"><div class="sg-label">IT &amp; Security</div><div class="chips"><span class="chip">Wazuh SIEM &amp; Elastic</span><span class="chip">FortiOS UTM / IPS</span><span class="chip">Suricata IDS Engine</span><span class="chip">BitLocker / LAPS</span><span class="chip">802.1X / RADIUS NAC</span><span class="chip">Zero-Trust Access</span><span class="chip">Incident Response</span><span class="chip">SOC Log Analysis</span><span class="chip">Healthcare Compliance (HIPAA)</span></div></div>
+      <div class="sg"><div class="sg-label">DevOps &amp; Automation</div><div class="chips"><span class="chip">Python 3 (Netmiko, Paramiko)</span><span class="chip">Ansible Playbooks</span><span class="chip">PowerShell 7 &amp; Bash</span><span class="chip">Docker &amp; Portainer</span><span class="chip">EVE-NG Bare-Metal Labs</span><span class="chip">Git / GitHub CI</span><span class="chip">REST APIs &amp; JSON</span></div></div>
+      <div class="sg"><div class="sg-label">Soft Skills</div><div class="chips"><span class="chip">IT Leadership (5-Engineer Team)</span><span class="chip">Cross-Site Operations</span><span class="chip">Executive SLA Reporting</span><span class="chip">Vendor &amp; ISP Procurement</span><span class="chip">Crisis De-escalation</span><span class="chip">Root Cause Analysis</span><span class="chip">ITIL Service Desk</span></div></div>
     </div>
     <div class="skills-bars-wrap">
       <div class="bars-label">Proficiency Levels</div>
@@ -1102,6 +1102,74 @@
         </div>
       </div>
 
+      <!-- Case Study: Bank of Alexandria -->
+      <div class="cs-card">
+        <div class="cs-head">
+          <div class="cs-ico-wrap">🏦</div>
+          <div class="cs-meta">
+            <div class="cs-title">Financial Branch Infrastructure & ATM Isolation</div>
+            <div class="cs-client">Bank of Alexandria · Enterprise Project</div>
+          </div>
+          <span class="cs-badge cs-badge-sec">Banking IT</span>
+        </div>
+        <div class="cs-sections">
+          <div>
+            <div class="cs-block-label problem">Problem</div>
+            <p class="cs-text">A newly opened commercial branch required an ultra-secure, PCI-DSS compliant network setup. Financial teller workstations, guest Wi-Fi, and ATM banking terminals could not share broadcast domains or unauthenticated access ports.</p>
+          </div>
+          <div>
+            <div class="cs-block-label solution">Solution</div>
+            <p class="cs-text">Engineered a multi-tier Cisco Catalyst switching architecture. Segregated ATM terminals into a dedicated, air-gapped VLAN with static MAC binding and 802.1X port security. Implemented Cat6A structured cabling, dual redundant uplink trunks, and zero-loss failover power conditioning.</p>
+          </div>
+          <div>
+            <div class="cs-block-label results">Results</div>
+            <ul class="cs-results-list">
+              <li>100% strict isolation of financial ATM traffic (<strong style="color:var(--grn)">Zero Cross-Talk</strong>)</li>
+              <li>Unauthorized rogue device connections blocked instantly via Port Security</li>
+              <li>Branch delivered on-schedule and certified for live banking operations</li>
+              <li>Structured cabling certified with zero packet attenuation</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cs-tags">
+          <span class="tag tca">Cisco Catalyst</span><span class="tag tca">ATM Isolation</span><span class="tag tg">802.1X NAC</span><span class="tag tg">Port Security</span><span class="tag tm">PCI-DSS</span><span class="tag ty">Cat6A Cabling</span>
+        </div>
+      </div>
+
+      <!-- Case Study: Telecom Egypt (WE) -->
+      <div class="cs-card">
+        <div class="cs-head">
+          <div class="cs-ico-wrap">🏢</div>
+          <div class="cs-meta">
+            <div class="cs-title">Enterprise Datacenter Server Refresh & RAID Modernization</div>
+            <div class="cs-client">Telecom Egypt (WE) · Infrastructure Ops</div>
+          </div>
+          <span class="cs-badge cs-badge-win">Datacenter</span>
+        </div>
+        <div class="cs-sections">
+          <div>
+            <div class="cs-block-label problem">Problem</div>
+            <p class="cs-text">Core enterprise telecom nodes were operating on legacy storage arrays approaching MTBF limits with degrading read/write performance. High drive failure risks and aging firmware posed threats to daily operational metrics.</p>
+          </div>
+          <div>
+            <div class="cs-block-label solution">Solution</div>
+            <p class="cs-text">Executed an in-depth hardware overhaul and memory expansion. Installed enterprise-grade 15K SAS arrays configured in hardware RAID 10 with designated hot-spares, upgraded ECC RAM banks, and flashed validated firmware baselines during scheduled maintenance windows.</p>
+          </div>
+          <div>
+            <div class="cs-block-label results">Results</div>
+            <ul class="cs-results-list">
+              <li>Storage IOPS increased by <strong style="color:var(--grn)">300%</strong> with zero data loss</li>
+              <li>RAID 10 hardware redundancy with automatic hot-spare failover</li>
+              <li>Zero unplanned downtime during maintenance migration</li>
+              <li>Extended server hardware lifecycle by 4+ years</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cs-tags">
+          <span class="tag tca">RAID 10</span><span class="tag tca">SAS Storage</span><span class="tag tg">Hardware Refresh</span><span class="tag tg">Telecom Egypt</span><span class="tag tm">ECC Memory</span><span class="tag ty">Firmware Baseline</span>
+        </div>
+      </div>
+
       <!-- Typing Case Study Placeholder -->
       <div class="cs-card sp-tcard-typing" style="border-style: dashed; padding-bottom: 25px; transition: none; background: rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 280px;">
         <div class="sp-typing-dots" style="margin-bottom: 20px;">
@@ -1387,6 +1455,24 @@
         </div>
       </div>
 
+      <div class="proj-c">
+        <div class="proj-head"><div class="proj-ico">🏦</div></div>
+        <div class="pn">Bank Branch Structured Network & ATM Isolation</div>
+        <div class="pd">Engineered Layer 2/3 structured network rollout for Bank of Alexandria branch expansion. Deployed Cisco Catalyst 3850/9300 switches, segregated teller, administrative, guest, and financial ATM networks across isolated 802.1Q VLANs with 802.1X port security.</div>
+        <div class="ps">
+          <span class="pt">Cisco Catalyst</span><span class="pt">ATM Isolation</span><span class="pt">802.1X</span><span class="pt">Banking IT</span>
+        </div>
+      </div>
+
+      <div class="proj-c">
+        <div class="proj-head"><div class="proj-ico">🏢</div></div>
+        <div class="pn">Datacenter Server Refresh & Hardware RAID Modernization</div>
+        <div class="pd">Executed hardware overhaul for core mission-critical servers at Telecom Egypt (WE). Installed high-density SAS arrays, configured hardware RAID 10 with hot-spares, expanded ECC RAM, and verified firmware baselines with zero unscheduled downtime.</div>
+        <div class="ps">
+          <span class="pt">Telecom Egypt</span><span class="pt">RAID 10</span><span class="pt">SAS Enterprise</span><span class="pt">Server Refresh</span>
+        </div>
+      </div>
+
       <div class="proj-c" style="border-style: dashed; background: var(--surf2);">
         <div class="proj-head" style="opacity:0.8"><div class="proj-ico" style="background:var(--bar-bg);">⏳</div></div>
         <div class="pn" style="color: var(--acc);">Classified Deployment...</div>
@@ -1412,6 +1498,30 @@
   <div class="pov" id="pg-homelab">
     <div class="ph"><div class="ph-label">05 / Homelab</div><div class="ph-h">Lab &amp; <span class="c">Virtualization</span></div><div class="ph-div"></div></div>
     
+    <!-- Hardware Architecture Matrix -->
+    <div class="hl-specs-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-bottom:24px;">
+      <div class="dash-widget" style="padding:16px;">
+        <div class="dash-l" style="font-size:10px; color:var(--acc); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;"><span class="hl-spec-lbl">Host CPU</span> <span style="font-size:10px;">⚡</span></div>
+        <div style="font-size:14px; font-weight:700; color:var(--txt); margin-bottom:3px;" class="hl-spec-val">Intel® Core™ 8C / 16T @ 4.6GHz</div>
+        <div style="font-size:11px; color:var(--txt2); line-height:1.4;" class="hl-spec-desc">Hardware Virtualization VT-x &amp; VT-d IOMMU passthrough</div>
+      </div>
+      <div class="dash-widget" style="padding:16px;">
+        <div class="dash-l" style="font-size:10px; color:var(--grn); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;"><span class="hl-spec-lbl">Memory Matrix</span> <span style="font-size:10px;">🧠</span></div>
+        <div style="font-size:14px; font-weight:700; color:var(--txt); margin-bottom:3px;" class="hl-spec-val">64GB DDR4 High-Density RAM</div>
+        <div style="font-size:11px; color:var(--txt2); line-height:1.4;" class="hl-spec-desc">Dynamic allocation across 16 active VMs and container stacks</div>
+      </div>
+      <div class="dash-widget" style="padding:16px;">
+        <div class="dash-l" style="font-size:10px; color:var(--ylw); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;"><span class="hl-spec-lbl">Storage Matrix</span> <span style="font-size:10px;">💾</span></div>
+        <div style="font-size:14px; font-weight:700; color:var(--txt); margin-bottom:3px;" class="hl-spec-val">2x 1TB NVMe ZFS Mirror + 4TB SAS</div>
+        <div style="font-size:11px; color:var(--txt2); line-height:1.4;" class="hl-spec-desc">High-IOPS virtual disks + TrueNAS ZFS NFS/iSCSI backup pools</div>
+      </div>
+      <div class="dash-widget" style="padding:16px;">
+        <div class="dash-l" style="font-size:10px; color:#a855f7; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;"><span class="hl-spec-lbl">Emulated Network</span> <span style="font-size:10px;">🌐</span></div>
+        <div style="font-size:14px; font-weight:700; color:var(--txt); margin-bottom:3px;" class="hl-spec-val">EVE-NG Bare-Metal 50+ Cisco Nodes</div>
+        <div style="font-size:11px; color:var(--txt2); line-height:1.4;" class="hl-spec-desc">CCNP Enterprise labs, OSPFv3, BGP, MPLS &amp; pfSense Multi-VLAN</div>
+      </div>
+    </div>
+
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-bottom:30px;">
       <div class="dash-widget">
         <div class="dash-l"><span>Server Uptime</span> <div class="dash-dot"></div></div>
