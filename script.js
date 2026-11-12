@@ -272,15 +272,37 @@ const ldT = setInterval(() => {
     tEl.textContent = "SYSTEM_READY: TRUE";
     tEl.style.color = "var(--grn)";
     setTimeout(() => {
-      gsap.to("#loader", {
-        opacity: 0, duration: 0.6, onComplete: () => {
-          document.getElementById("loader").style.display = "none";
-          launchHero();
-        }
-      });
-    }, 800);
+      skipBoot();
+    }, 700);
   }
 }, 60);
+
+function skipBoot() {
+  if (window._bootDone) return;
+  window._bootDone = true;
+  if (ldT) clearInterval(ldT);
+  const loader = document.getElementById("loader");
+  if (loader) {
+    gsap.to(loader, {
+      opacity: 0,
+      duration: 0.35,
+      ease: "power2.out",
+      onComplete: () => {
+        loader.style.display = "none";
+        launchHero();
+      }
+    });
+  } else {
+    launchHero();
+  }
+}
+
+// Failsafe: automatically unveil hero if boot takes longer than 3.5s
+setTimeout(() => {
+  if (!window._bootDone) {
+    skipBoot();
+  }
+}, 3500);
 
 function launchHero() {
   setMode("normal");
