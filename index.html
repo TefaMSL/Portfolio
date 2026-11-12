@@ -1756,6 +1756,40 @@
       </div>
     </div>
 
+    <!-- Homelab Virtualization & Network Fabric Architecture -->
+    <div class="cs-arch-box" style="margin-bottom: 24px;">
+      <div class="cs-arch-hdr">
+        <span class="cs-arch-t">📐 Homelab Architecture: Dual Hypervisor Cluster, 10GbE SFP+ Trunk &amp; 802.1Q Segregation</span>
+        <span class="cs-arch-tag green">Zero-Trust Hybrid Mesh</span>
+      </div>
+      <svg class="cs-arch-svg" viewBox="0 0 540 90">
+        <rect x="15" y="15" width="130" height="60" rx="4" fill="#082236" stroke="#00c9ff" stroke-width="1.8"/>
+        <text x="80" y="37" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold" font-family="monospace">ESXi 8.0 &amp; Proxmox</text>
+        <text x="80" y="50" text-anchor="middle" fill="#00c9ff" font-size="7.5" font-family="monospace">Bare-Metal 64GB DDR4</text>
+        <text x="80" y="64" text-anchor="middle" fill="#74ebd5" font-size="7" font-family="monospace">Dual NVMe ZFS Mirrored Array</text>
+
+        <line x1="145" y1="45" x2="215" y2="45" stroke="#00ff9d" stroke-width="2"/>
+        <text x="180" y="38" text-anchor="middle" fill="#00ff9d" font-size="7.5" font-family="monospace">10G SFP+ Trunk</text>
+
+        <rect x="215" y="12" width="145" height="66" rx="4" fill="#061826" stroke="#00ff9d" stroke-width="2"/>
+        <text x="287" y="34" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="bold" font-family="monospace">pfSense &amp; WireGuard</text>
+        <text x="287" y="48" text-anchor="middle" fill="#00ff9d" font-size="8" font-family="monospace">VLAN 10 (Srv) · VLAN 20 (Lab)</text>
+        <text x="287" y="60" text-anchor="middle" fill="#74ebd5" font-size="7" font-family="monospace">VLAN 30 (DMZ) · Suricata IDS</text>
+        <text x="287" y="71" text-anchor="middle" fill="#f39c12" font-size="6.5" font-family="monospace">Tailscale Exit Node · Zero-Trust</text>
+
+        <line x1="360" y1="30" x2="415" y2="25" stroke="#4a90b8" stroke-width="1.5"/>
+        <line x1="360" y1="60" x2="415" y2="65" stroke="#f39c12" stroke-width="1.5"/>
+
+        <rect x="415" y="10" width="115" height="32" rx="4" fill="#061826" stroke="#4a90b8" stroke-width="1.5"/>
+        <text x="472" y="24" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="monospace">TrueNAS ZFS Core</text>
+        <text x="472" y="35" text-anchor="middle" fill="#4a90b8" font-size="7" font-family="monospace">NFS / iSCSI / SMB / S3</text>
+
+        <rect x="415" y="48" width="115" height="32" rx="4" fill="#061826" stroke="#f39c12" stroke-width="1.5"/>
+        <text x="472" y="62" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="monospace">EVE-NG &amp; Docker</text>
+        <text x="472" y="73" text-anchor="middle" fill="#f39c12" font-size="7" font-family="monospace">50+ Cisco Nodes · k3s Pods</text>
+      </svg>
+    </div>
+
     <div class="proj-grid">
       <div class="proj-c">
         <div class="proj-head"><div class="proj-ico">🖥️</div></div>
@@ -1767,7 +1801,7 @@
       <div class="proj-c">
         <div class="proj-head"><div class="proj-ico">☁️</div></div>
         <div class="pn">Proxmox / pfSense Firewall</div>
-        <div class="pd">Virtual firewall appliance configured with VLAN segregation, IDS/IPS, and VPN tunnels (IPsec & OpenVPN).</div>
+        <div class="pd">Virtual firewall appliance configured with VLAN segregation, IDS/IPS, and VPN tunnels (IPsec &amp; OpenVPN).</div>
         <div class="ps"><span class="pt">pfSense</span><span class="pt">Routing</span><span class="pt">Security</span></div>
       </div>
 
@@ -1787,7 +1821,7 @@
 
       <div class="proj-c">
         <div class="proj-head"><div class="proj-ico">🐳</div></div>
-        <div class="pn">Docker & Portainer Stack</div>
+        <div class="pn">Docker &amp; Portainer Stack</div>
         <div class="pd">Self-hosted microservices platform orchestrating containers for Nextcloud, Plex, Pi-hole, and Nginx Proxy Manager.</div>
         <div class="ps"><span class="pt">Docker</span><span class="pt">Containers</span><span class="pt">Apps</span></div>
       </div>
@@ -1811,6 +1845,48 @@
         <div class="pn">Ansible Provisioning</div>
         <div class="pd">Authored Ansible playbooks to completely automate the setup of newly spawned Linux VMs, covering base installations, SSH keys, and configurations.</div>
         <div class="ps"><span class="pt">Ansible</span><span class="pt">Linux</span><span class="pt">Automation</span></div>
+      </div>
+
+      <div class="proj-c">
+        <div class="proj-head"><div class="proj-ico">🔒</div></div>
+        <div class="pn">WireGuard &amp; Tailscale Mesh VPN</div>
+        <div class="pd">Point-to-point WireGuard encrypted mesh connecting remote laptops and mobile devices securely into the homelab subnet with exit-node routing and ACLs.</div>
+        <div class="ps"><span class="pt">WireGuard</span><span class="pt">Tailscale</span><span class="pt">Zero-Trust</span></div>
+      </div>
+
+      <div class="proj-c">
+        <div class="proj-head"><div class="proj-ico">🛡️</div></div>
+        <div class="pn">Pi-hole &amp; Unbound DNS Resolver</div>
+        <div class="pd">Self-hosted recursive DNS resolver with DNSSEC validation, encrypted DNS-over-HTTPS (DoH), and network-wide telemetry blocking across all homelab VLANs.</div>
+        <div class="ps"><span class="pt">Pi-hole</span><span class="pt">Unbound</span><span class="pt">DNSSEC</span></div>
+      </div>
+
+      <div class="proj-c">
+        <div class="proj-head"><div class="proj-ico">🔀</div></div>
+        <div class="pn">Nginx Reverse Proxy &amp; SSL</div>
+        <div class="pd">Centralized reverse proxy handling internal domain routing, HTTP/2, automated SSL/TLS wildcard certificate renewal via Cloudflare DNS challenge, and IP access whitelists.</div>
+        <div class="ps"><span class="pt">Nginx Proxy</span><span class="pt">Cloudflare</span><span class="pt">SSL/TLS</span></div>
+      </div>
+
+      <div class="proj-c">
+        <div class="proj-head"><div class="proj-ico">☸️</div></div>
+        <div class="pn">Kubernetes Cluster (k3s)</div>
+        <div class="pd">Lightweight multi-node Kubernetes cluster deploying containerized microservices with Helm charts, Traefik ingress controller, and persistent volume claims on ZFS.</div>
+        <div class="ps"><span class="pt">k3s</span><span class="pt">Kubernetes</span><span class="pt">Helm</span></div>
+      </div>
+
+      <div class="proj-c">
+        <div class="proj-head"><div class="proj-ico">🚨</div></div>
+        <div class="pn">Suricata Network IDS / SPAN Mirror</div>
+        <div class="pd">High-performance network threat detection analyzing mirrored switch SPAN traffic, detecting lateral movement, port scans, and anomalous protocol beacons in real-time.</div>
+        <div class="ps"><span class="pt">Suricata</span><span class="pt">SPAN Mirror</span><span class="pt">IDS/IPS</span></div>
+      </div>
+
+      <div class="proj-c">
+        <div class="proj-head"><div class="proj-ico">📼</div></div>
+        <div class="pn">Veeam Backup &amp; Immutable Storage</div>
+        <div class="pd">Automated daily image-level VM backups of ESXi and Proxmox workloads to an immutable Linux repository complying with the 3-2-1 backup rule and instant recovery testing.</div>
+        <div class="ps"><span class="pt">Veeam B&amp;R</span><span class="pt">Immutability</span><span class="pt">3-2-1 Backup</span></div>
       </div>
 
       <!-- Typing Project Placeholder -->

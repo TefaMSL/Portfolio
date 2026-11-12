@@ -264,6 +264,7 @@ const AR_PAGES_DATA = {
       { lbl: "الشبكة الافتراضية", val: "EVE-NG Bare-Metal 50+ Cisco Nodes", desc: "مختبرات CCNP Enterprise وبروتوكولات OSPFv3 و BGP و pfSense Multi-VLAN" }
     ],
     dashLabels: ["مدة التشغيل المتواصل", "متوسط التحميل", "زمن الاستجابة الحية", "الخوادم الافتراضية النشطة"],
+    archTitle: "📐 البنية المعمارية للمختبر: عنقود بيئات افتراضية مزدوج، خط ربط 10GbE وعزل شبكي 802.1Q",
     nodes: [
       { title: "عنقود VMware ESXi 8.0", desc: "خادم افتراضي بنظام Bare-Metal يستضيف العديد من خوادم ويندوز ولينكس لاختبار خدمات الشبكة والدليل النشط." },
       { title: "جدار ناري Proxmox / pfSense", desc: "جدار حماية افتراضي متطور مجهز بتقسيم الـ VLANs، ونظام كشف التسلل IDS/IPS، وأنفاق VPN مشفرة." },
@@ -272,7 +273,13 @@ const AR_PAGES_DATA = {
       { title: "بيئة Docker & Portainer", desc: "منصة حاويات ذاتية الاستضافة تدير خدمات Nextcloud و Pi-hole و Nginx Proxy Manager." },
       { title: "خادم المراقبة والتحليل PRTG & Grafana", desc: "لوحات تحكم فورية لمتابعة أداء البنية التحتية، استهلاك المعالج، والذاكرة، وحركة البيانات بالشبكة." },
       { title: "نظام الأمان Wazuh SIEM & IDS", desc: "نظام SIEM متكامل مع Elastic Stack لتجميع وتحليل السجلات واكتشاف محاولات الاختراق عبر Suricata." },
-      { title: "أتمتة الأنظمة عبر Ansible", desc: "كتب تشغيل برمجية (Playbooks) لأتمتة تجهيز خوادم لينكس الجديدة بالكامل والمفاتيح والإعدادات الأمنية." }
+      { title: "أتمتة الأنظمة عبر Ansible", desc: "كتب تشغيل برمجية (Playbooks) لأتمتة تجهيز خوادم لينكس الجديدة بالكامل والمفاتيح والإعدادات الأمنية." },
+      { title: "شبكة WireGuard & Tailscale المشفرة", desc: "شبكة Zero-Trust مشفرة من نقطة لنقطة لربط الأجهزة المحمولة واللابتوبات عن بُعد بشبكات المختبر بأمان مع توجيه حركة البيانات." },
+      { title: "خادم الأسماء Pi-hole & Unbound", desc: "خادم DNS عودي محلي مع تحقق DNSSEC وتشفير DoH وحجب الإعلانات وأجهزة التتبع على مستوى كافة شبكات الـ VLANs." },
+      { title: "بروكسي عكسي Nginx & Cloudflare SSL", desc: "إدارة المسارات وتوزيع نطاقات الدومين داخلياً مع تجديد تلقائي لشهادات SSL المشفرة عبر Cloudflare وقوائم الوصول المسموحة." },
+      { title: "عنقود Kubernetes المصغر (k3s)", desc: "بيئة تشغيل حاويات متعددة العقد لإدارة الخدمات الدقيقة مع Traefik Ingress Controller ومخازن بيانات دائمة على ZFS." },
+      { title: "نظام فحص الحزم Suricata IDS/IPS", desc: "كشف متقدم للتهديدات عبر تحليل حركة المرور المنسوخة (SPAN Mirror)، واكتشاف محاولات الفحص والحركات الجانبية المشبوهة." },
+      { title: "نظام النسخ الاحتياطي Veeam B&R", desc: "نسخ احتياطي يومي آلي للأجهزة الافتراضية مع مستودعات غير قابلة للتعديل (Immutable) مطابقة لقاعدة 3-2-1 واختبار استعادة فوري." }
     ]
   },
 
@@ -737,6 +744,7 @@ function applyAllPageTranslations(lang) {
     const d = AR_PAGES_DATA.homelab;
     const phLabel = elHl.querySelector(".ph-label"); if (phLabel) phLabel.textContent = d.label;
     const phH = elHl.querySelector(".ph-h"); if (phH) phH.innerHTML = d.title;
+    const archT = elHl.querySelector(".cs-arch-t"); if (archT && d.archTitle) archT.textContent = d.archTitle;
     if (d.specs) {
       const specCards = elHl.querySelectorAll(".hl-specs-grid .dash-widget");
       d.specs.forEach((s, idx) => {
