@@ -286,37 +286,78 @@ const AR_PAGES_DATA = {
   // 06 / SERVICES
   services: {
     label: "06 / الخدمات التقنية",
-    title: 'الخدمات <span class="c">والحلول</span>',
+    title: 'الخدمات <span class="c">والحلول الاستشارية</span>',
+    trackDidTitle: "سجل الإنجازات والمشاريع المنفذة",
+    trackDidBadge: "مشاريع تم تسليمها بنجاح",
+    trackDidItems: [
+      "<strong>المصرية للاتصالات (WE):</strong> تحديث خوادم مركز البيانات الرئيسي، مصفوفات أقراص RAID 10 SAS، والترحيل دون أي توقف.",
+      "<strong>بنك الإسكندرية:</strong> تجهيز شبكة الفرع التجاري وعزل ماكينات الصراف الآلي ATM هوائياً ومنطقياً بـ 802.1X (مطابقة لمعايير PCI-DSS).",
+      "<strong>مستشفى الشريعة الرئيسي:</strong> استقرار وتأمين بنية تقنية المستشفى، عزل أنظمة HIS/PACS خلف جدران حماية Fortinet، ونسبة جاهزية 99%+.",
+      "<strong>شركة Viion الدولية:</strong> إعادة بناء شبكة المؤسسة عبر سويتشات Layer 3، وتوجيه OSPF، وشبكة أنفاق IPsec مشفرة بين 5 فروع."
+    ],
+    trackDoingTitle: "العمليات التشغيلية والاستشارات الحالية",
+    trackDoingBadge: "مشاريع جارية ومباشرة",
+    trackDoingItems: [
+      "<strong>إدارة عمليات الـ IT:</strong> القيادة المباشرة لعمليات البنية التحتية والشبكات والأمن السيبراني لـ 5 مواقع تشغيلية مع إدارة فريق مهندسين.",
+      "<strong>أتمتة أكثر من 200 جهاز شبكي:</strong> أتمتة يومية لسحب النسخ الاحتياطية وتدقيق الامتثال الأمني لسويتشات وراوترات سيسكو عبر بايثون وAnsible.",
+      "<strong>التحصين الأمني الشامل:</strong> التطبيق المستمر لسياسات GPO وتشفير BitLocker AES-256 وتوزيع تحديثات WSUS وتدوير كلمات المرور LAPS.",
+      "<strong>مخازن نسخ احتياطي محصنة:</strong> بناء وإدارة مستودعات نسخ غير قابلة للتعديل (Veeam Immutable) مع TrueNAS ZFS وزمن استعادة RTO أقل من ساعتين."
+    ],
     items: [
       {
-        ico: "🌐",
-        title: "هندسة وتأمين شبكات المؤسسات",
-        desc: "تصميم وتنفيذ شبكات المؤسسات من الصفر (Layer 2/3 Switching, OSPF Routing, VLANs, VPNs) وحمايتها بجدران حماية متطورة."
-      },
-      {
-        ico: "🖥️",
-        title: "إدارة الخوادم والأنظمة الافتراضية",
-        desc: "تجهيز خوادم Windows Server و Active Directory والأنظمة الافتراضية (Hyper-V / VMware ESXi) وترحيل الأنظمة القديمة بلا توقف."
-      },
-      {
-        ico: "🏥",
-        title: "استشارات وحلول تقنية المستشفيات",
-        desc: "خبرة متخصصة في تأمين وعزل شبكات أنظمة الرعاية الصحية الحساسة (HIS, PACS, EMR) وضمان استمرارية عمل المنشآت الطبية."
-      },
-      {
-        ico: "💾",
-        title: "استراتيجيات النسخ والتعافي من الكوارث",
-        desc: "بناء مستودعات نسخ احتياطي محصنة ضد برمجيات الفدية (Veeam Immutable) مع خطط استعادة فورية (Disaster Recovery Plan)."
-      },
-      {
-        ico: "🤖",
-        title: "أتمتة مهام الشبكات والأنظمة",
-        desc: "برمجة أدوات أتمتة مخصصة عبر Python و Ansible لإدارة مئات الأجهزة وتدقيق الإعدادات وإصدار تقارير دورية آلياً."
+        ico: "🛠️",
+        title: "هندسة وتصميم شبكات المؤسسات Layer 2/3",
+        desc: "تصميم وتنفيذ شبكات المؤسسات من الصفر: تمديد الكابلات الهيكلية، تقسيم الـ VLANs، وضبط بروتوكولات التوجيه الديناميكي (OSPF/BGP) وتحديد أولويات حركة البيانات QoS."
       },
       {
         ico: "🛡️",
-        title: "تقييم الأمان وحماية نقاط النهاية",
-        desc: "تطبيق معايير التحصين الأمني (GPO Hardening, BitLocker, EDR, WSUS) ومراقبة التهديدات عبر أنظمة SIEM."
+        title: "جدران الحماية المحيطية وأمن Zero-Trust",
+        desc: "نشر وضبط جدران الحماية Fortinet FortiGate و Sophos و pfSense، وبناء أنفاق VPN مشفرة بين الفروع، وأنظمة كشف ومنع التسلل IPS/IDS وسياسات الأمان الصارمة."
+      },
+      {
+        ico: "☁️",
+        title: "البيئات الافتراضية وعناقيد التوفر العالي (HA Clusters)",
+        desc: "ترحيل الخوادم الفيزيائية إلى افتراضية (P2V)، بناء عناقيد Hyper-V Failover و VMware ESXi 8.0 مع تفعيل الترحيل الحي Live Migration دون توقف العمليات."
+      },
+      {
+        ico: "🚑",
+        title: "استشارات وتقنية معلومات المستشفيات والمنشآت الطبية",
+        desc: "خبرة متخصصة في دمج وتأمين أنظمة الرعاية الصحية (HIS, PACS, EMR)، عزل شبكات الأجهزة الطبية، وتتبع الامتثال لمعايير الأمان الطبية بنسبة جاهزية 99%+."
+      },
+      {
+        ico: "☁️",
+        title: "الترحيل إلى Microsoft 365 والبيئات السحابية الهجينة",
+        desc: "ترحيل سلس لرسائل البريد الإلكتروني والملفات إلى Microsoft 365، مزامنة بريد Exchange Online، ضبط Azure AD / Entra ID وبوابات Teams و SharePoint."
+      },
+      {
+        ico: "💾",
+        title: "مستودعات النسخ الاحتياطي المحصنة والتعافي من الكوارث",
+        desc: "بناء مستودعات نسخ احتياطي مقاومة لهجمات الفدية باستخدام Veeam B&R و TrueNAS ZFS مع النسخ المتماثل خارج الموقع وزمن تعافٍ RTO أقل من ساعتين."
+      },
+      {
+        ico: "🤖",
+        title: "أتمتة الشبكات وبرمجيات الـ DevOps (Python & Ansible)",
+        desc: "برمجة أدوات أتمتة مخصصة لسحب النسخ الاحتياطية آلياً، تدقيق الامتثال للإعدادات، وتحديث الفيرموير وفحص صحة الشبكات على نطاق مئات الأجهزة."
+      },
+      {
+        ico: "🔍",
+        title: "التدقيق الشامل للبنية التحتية وتقييم المخاطر الأمنية",
+        desc: "اكتشاف شامل لمكونات الشبكة، تحليل اختناقات الأداء، تقييم الثغرات ومطابقة السياسات الأمنية، وتقديم تقرير مفصل بخارطة طريق المعالجة والتطوير."
+      },
+      {
+        ico: "🏢",
+        title: "تحديث خوادم مراكز البيانات ومصفوفات الأقراص RAID",
+        desc: "فحص عتادي دقيق، توسيع الذاكرة العشوائية، تركيب مصفوفات أقراص SAS عالية السرعة بنظام RAID 10/50/60 مع أقراص Hot-Spare وتحديث الفيرموير المعتمد."
+      },
+      {
+        ico: "📞",
+        title: "الاتصالات الشبكية IP Telephony وتمديد كابلات الفايبر والشبكة",
+        desc: "تحديد أولويات مرور صوت الـ VoIP، حساب ميزانيات طاقة PoE، الإشراف على تمديدات كابلات Cat6A والفايبر واعتمادها، وترتيب كبائن الخوادم باحترافية."
+      },
+      {
+        ico: "🚨",
+        title: "الاستجابة الفورية لحوادث الطوارئ والأعطال الكبرى (Incident Response)",
+        desc: "تدخل سريع لحل الأعطال الحرجة، عواصف البث الشبكية، حلقات Spanning-Tree، انهيار الخوادم، وعزل حوادث الفدية مع إصدار تقارير الأسباب الجذرية (RCA)."
       }
     ]
   },
@@ -777,6 +818,22 @@ function applyAllPageTranslations(lang) {
     const d = AR_PAGES_DATA.services;
     const phLabel = elSvc.querySelector(".ph-label"); if (phLabel) phLabel.textContent = d.label;
     const phH = elSvc.querySelector(".ph-h"); if (phH) phH.innerHTML = d.title;
+    
+    // Track record banner
+    const didT = elSvc.querySelector(".svc-track-card.did .svc-track-t-text"); if (didT && d.trackDidTitle) didT.textContent = d.trackDidTitle;
+    const didB = elSvc.querySelector(".svc-track-card.did .svc-track-badge"); if (didB && d.trackDidBadge) didB.textContent = d.trackDidBadge;
+    const didUl = elSvc.querySelector(".svc-track-card.did .svc-track-list");
+    if (didUl && d.trackDidItems) {
+      didUl.innerHTML = d.trackDidItems.map(item => `<li>${item}</li>`).join("");
+    }
+    
+    const doingT = elSvc.querySelector(".svc-track-card.doing .svc-track-t-text"); if (doingT && d.trackDoingTitle) doingT.textContent = d.trackDoingTitle;
+    const doingB = elSvc.querySelector(".svc-track-card.doing .svc-track-badge"); if (doingB && d.trackDoingBadge) doingB.textContent = d.trackDoingBadge;
+    const doingUl = elSvc.querySelector(".svc-track-card.doing .svc-track-list");
+    if (doingUl && d.trackDoingItems) {
+      doingUl.innerHTML = d.trackDoingItems.map(item => `<li>${item}</li>`).join("");
+    }
+
     const cards = elSvc.querySelectorAll(".proj-c");
     d.items.forEach((item, idx) => {
       if (cards[idx]) {

@@ -323,6 +323,124 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
 .ps{display:flex;flex-wrap:wrap;gap:6px}
 .pt{font-size:11px;padding:3px 9px;background:var(--bar-bg);border:1px solid rgba(74,144,184,.15);color:var(--acc);border-radius:3px;letter-spacing:.04em;font-family:var(--mono);font-weight:600}
 
+/* ══ SERVICES CONSULTING TRACK RECORD BANNER ══ */
+.svc-overview-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+@media (max-width: 860px) {
+  .svc-overview-banner {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+.svc-track-card {
+  background: var(--surf);
+  border: 1px solid var(--brd);
+  border-radius: var(--r);
+  padding: 22px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all .3s;
+}
+.svc-track-card:hover {
+  border-color: rgba(74, 144, 184, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+.svc-track-card.did {
+  border-left: 3px solid var(--acc);
+}
+.svc-track-card.doing {
+  border-left: 3px solid var(--grn);
+}
+.svc-track-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  gap: 10px;
+}
+.svc-track-title {
+  font-family: var(--dis);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--txt);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.svc-track-badge {
+  font-size: 10px;
+  font-family: var(--mono);
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 3px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.svc-badge-blue {
+  background: rgba(74, 144, 184, 0.12);
+  color: var(--acc);
+  border: 1px solid rgba(74, 144, 184, 0.3);
+}
+.svc-badge-green {
+  background: rgba(46, 204, 113, 0.1);
+  color: var(--grn);
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+.svc-track-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+.svc-track-list li {
+  font-size: 13px;
+  font-family: var(--mono);
+  color: var(--txt2);
+  line-height: 1.65;
+  padding-left: 18px;
+  position: relative;
+}
+.svc-track-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-size: 12px;
+}
+.svc-track-card.did .svc-track-list li::before {
+  color: var(--acc);
+}
+.svc-track-card.doing .svc-track-list li::before {
+  color: var(--grn);
+}
+.svc-track-list strong {
+  color: var(--txt);
+}
+html[dir="rtl"] .svc-track-card.did {
+  border-left: 1px solid var(--brd);
+  border-right: 3px solid var(--acc);
+}
+html[dir="rtl"] .svc-track-card.doing {
+  border-left: 1px solid var(--brd);
+  border-right: 3px solid var(--grn);
+}
+html[dir="rtl"] .svc-track-list li {
+  padding-left: 0;
+  padding-right: 18px;
+}
+html[dir="rtl"] .svc-track-list li::before {
+  left: auto;
+  right: 0;
+  content: '◂';
+}
+
 /* ══ SKILLS ══ */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:44px}
 .sg{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r);padding:20px 22px;transition:border-color .25s,transform .25s,background .35s}
