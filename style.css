@@ -561,22 +561,23 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
 /* ══ RESPONSIVE ══ */
 @media(max-width:760px){
   #soc{display:none}
-  .sum-grid,.analysis-grid,.contact-layout{grid-template-columns:1fr;gap:20px}
+  .sum-grid,.analysis-grid,.contact-layout{grid-template-columns:1fr;gap:14px}
   .tl-line{left:0}.tli{grid-template-columns:1fr}
   .tl-date{text-align:left;padding:0 0 5px 14px}.tl-body{padding-left:14px}
-  #pg-home{padding:0 16px 60px 16px}.pov{padding:28px 16px 100px}
+  #pg-home{padding:0 12px 50px 12px}.pov{padding:18px 12px 60px}
   .hero-stats{grid-template-columns:repeat(2,1fr)}
   .bar-name{width:110px}
-  #bar{padding:0 12px}
-  .brand{font-size:12.5px}
-  .bar-right{gap:6px}
-  .bar-btn{font-size:11.5px;padding:5px 9px;letter-spacing:.06em}
-  .theme-btn{width:38px;height:38px;font-size:18px;border-radius:50%;border-color:rgba(74,144,184,.3) !important}
-  #page-title{font-size:11px;letter-spacing:.08em;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #bar{padding:0 8px;height:44px}
+  .brand{font-size:11px}
+  .brand span{font-size:8.5px;opacity:.75}
+  .bar-right{gap:3.5px}
+  .bar-btn{font-size:9.5px;padding:3.5px 6.5px;letter-spacing:.03em}
+  .theme-btn{width:26px;height:26px;font-size:12px;border-radius:50%;border-color:rgba(74,144,184,.3) !important;display:inline-flex;align-items:center;justify-content:center;padding:0}
+  #page-title{font-size:9.5px;letter-spacing:.06em;max-width:85px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   #back-btn{
     position:fixed !important;
-    top:60px !important;
-    right:16px !important;
+    top:50px !important;
+    right:12px !important;
     left:auto !important;
     transform:none !important;
     bottom:auto !important;
@@ -584,21 +585,26 @@ body{background:var(--bg);color:var(--txt);font-family:var(--mono);cursor:none;t
     background:var(--acc) !important;
     color:#fff !important;
     border:none !important;
-    border-radius:8px !important;
-    padding:8px 18px !important;
-    font-size:11px !important;
-    font-weight:700 !important;
-    letter-spacing:.12em !important;
-    box-shadow:0 4px 16px rgba(74,144,184,.4) !important;
+    border-radius:6px !important;
+    padding:5px 12px !important;
+    font-size:10px !important;
+    font-weight:800 !important;
+    letter-spacing:.08em !important;
+    box-shadow:0 3px 12px rgba(74,144,184,.35) !important;
     white-space:nowrap !important;
     z-index:9000 !important;
     cursor:pointer !important;
+    min-height:28px !important;
+  }
+  html[dir="rtl"] #back-btn{
+    right:auto !important;
+    left:12px !important;
   }
 }
 @media(max-width:480px){
   .nav-grid{grid-template-columns:1fr 1fr}
-  .home-h1{font-size:clamp(36px, 10vw, 44px)}
-  .home-sub{font-size:15.5px}
+  .home-h1{font-size:clamp(26px, 8vw, 34px)}
+  .home-sub{font-size:12px}
 }
 
 /* ══ ENTERPRISE TRUST BAR ══ */
@@ -1716,121 +1722,181 @@ html[dir="rtl"] .cmd-footer {
 }
 
 /* ══════════════════════════════════════════════════════════
-   MOBILE TYPOGRAPHY & TOUCH READABILITY ENHANCEMENTS (<= 768px)
+   MOBILE TYPOGRAPHY & TOUCH READABILITY (BALANCED ~62% GOLDEN RATIO)
    ══════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  /* ══ TOP BAR & BACK BUTTON ══ */
+  /* ══ TOP BAR & CONTROLS (ALL ON ONE LINE) ══ */
   #bar {
-    height: 56px !important;
-    padding: 0 14px !important;
+    height: 44px !important;
+    padding: 0 8px !important;
+  }
+  #prog {
+    top: 44px !important;
+  }
+  #app {
+    top: 44px !important;
   }
   .brand {
-    font-size: 13.5px !important;
+    font-size: 11px !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+  .brand span {
+    font-size: 8.5px !important;
+    opacity: 0.75 !important;
+  }
+  .bdot {
+    width: 6px !important;
+    height: 6px !important;
+    margin-right: 4px !important;
+  }
+  .bar-right {
+    gap: 3.5px !important;
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
   }
   .bar-btn {
-    font-size: 12.5px !important;
-    padding: 6px 11px !important;
+    font-size: 9.5px !important;
+    padding: 3.5px 6.5px !important;
     font-weight: 700 !important;
-    letter-spacing: .06em !important;
+    letter-spacing: .03em !important;
+    border-radius: 4px !important;
+    white-space: nowrap !important;
+    min-height: 26px !important;
+    line-height: 1 !important;
+  }
+  .theme-btn {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 12px !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
   }
   #page-title {
-    font-size: 12.5px !important;
+    font-size: 9.5px !important;
     font-weight: 700 !important;
+    max-width: 85px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    letter-spacing: .06em !important;
   }
   #back-btn {
-    font-size: 13.5px !important;
+    position: fixed !important;
+    top: 50px !important;
+    right: 12px !important;
+    left: auto !important;
+    transform: none !important;
+    bottom: auto !important;
+    width: auto !important;
+    background: var(--acc) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 5px 12px !important;
+    font-size: 10px !important;
     font-weight: 800 !important;
-    padding: 10px 22px !important;
-    min-height: 42px !important;
-    border-radius: 8px !important;
-    letter-spacing: .12em !important;
-    box-shadow: 0 4px 18px rgba(74,144,184,.5) !important;
+    letter-spacing: .08em !important;
+    box-shadow: 0 3px 12px rgba(74,144,184,.35) !important;
+    white-space: nowrap !important;
+    z-index: 9000 !important;
+    cursor: pointer !important;
+    min-height: 28px !important;
+  }
+  html[dir="rtl"] #back-btn {
+    right: auto !important;
+    left: 12px !important;
   }
 
   /* ══ HOME CONTAINER & COLUMNS ══ */
   #pg-home {
-    padding: 16px 16px 64px 16px !important;
+    padding: 12px 12px 50px 12px !important;
   }
   html[dir="rtl"] #pg-home {
-    padding: 16px 16px 64px 16px !important;
+    padding: 12px 12px 50px 12px !important;
   }
   .home-hero {
     flex-direction: column !important;
     align-items: stretch !important;
-    gap: 26px !important;
+    gap: 18px !important;
   }
   .home-bio-col, .home-actions-col {
     max-width: 100% !important;
     width: 100% !important;
   }
 
-  /* ══ HOME IDENTITY & BIO (SCALE UP) ══ */
+  /* ══ HOME IDENTITY & BIO ══ */
   .status-chip {
-    font-size: 14px !important;
-    padding: 9px 16px !important;
+    font-size: 10px !important;
+    padding: 5px 10px !important;
     font-weight: 700 !important;
-    letter-spacing: .08em !important;
-    line-height: 1.45 !important;
-    margin-bottom: 15px !important;
+    letter-spacing: .05em !important;
+    line-height: 1.4 !important;
+    margin-bottom: 10px !important;
     display: inline-flex !important;
   }
   .eyebrow {
-    margin-bottom: 12px !important;
+    margin-bottom: 8px !important;
   }
   .eyebrow .ey-txt {
-    font-size: 14px !important;
-    letter-spacing: .22em !important;
+    font-size: 10px !important;
+    letter-spacing: .16em !important;
     font-weight: 700 !important;
   }
   .home-h1 {
-    font-size: clamp(40px, 11.5vw, 56px) !important;
-    line-height: .96 !important;
-    margin-bottom: 14px !important;
+    font-size: clamp(26px, 8vw, 34px) !important;
+    line-height: 1.05 !important;
+    margin-bottom: 10px !important;
   }
   .home-role {
-    font-size: 16px !important;
-    line-height: 1.6 !important;
-    letter-spacing: .12em !important;
+    font-size: 11.5px !important;
+    line-height: 1.5 !important;
+    letter-spacing: .06em !important;
     color: #a0aec0 !important;
     font-weight: 600 !important;
-    margin-bottom: 18px !important;
+    margin-bottom: 12px !important;
   }
   .home-sub {
-    font-size: 18px !important;
-    line-height: 1.9 !important;
+    font-size: 12px !important;
+    line-height: 1.65 !important;
     color: #f1f5f9 !important;
     font-weight: 400 !important;
-    margin-bottom: 24px !important;
-    padding-left: 16px !important;
-    border-left: 3px solid var(--acc) !important;
+    margin-bottom: 16px !important;
+    padding-left: 12px !important;
+    border-left: 2.5px solid var(--acc) !important;
     max-width: 100% !important;
   }
   html[dir="rtl"] .home-sub {
     padding-left: 0 !important;
-    padding-right: 16px !important;
+    padding-right: 12px !important;
     border-left: none !important;
-    border-right: 3px solid var(--acc) !important;
+    border-right: 2.5px solid var(--acc) !important;
   }
 
   /* ══ CONTACT METADATA ══ */
   .home-meta {
     display: flex !important;
     flex-direction: column !important;
-    gap: 12px !important;
-    margin-bottom: 24px !important;
+    gap: 8px !important;
+    margin-bottom: 16px !important;
   }
   .home-meta .hm {
-    font-size: 16px !important;
-    gap: 11px !important;
+    font-size: 11.5px !important;
+    gap: 8px !important;
   }
   .home-meta .hml {
-    font-size: 13.5px !important;
+    font-size: 10px !important;
     font-weight: 800 !important;
-    min-width: 46px;
+    min-width: 36px;
     color: var(--acc) !important;
   }
   .home-meta .hm a, .home-meta .hm-v {
-    font-size: 16px !important;
+    font-size: 11.5px !important;
     color: #e2e8f0 !important;
   }
 
@@ -1838,189 +1904,189 @@ html[dir="rtl"] .cmd-footer {
   .hero-btns {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
+    gap: 8px !important;
     width: 100% !important;
-    margin-top: 20px !important;
-    margin-bottom: 24px !important;
+    margin-top: 14px !important;
+    margin-bottom: 18px !important;
     max-width: 100% !important;
   }
   .hbtn {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    padding: 14px 10px !important;
-    font-size: 14px !important;
-    font-weight: 800 !important;
-    border-radius: 8px !important;
+    padding: 8px 6px !important;
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
+    border-radius: 6px !important;
     text-align: center !important;
     white-space: nowrap !important;
-    min-height: 48px !important;
+    min-height: 34px !important;
   }
   .hbtn svg {
-    width: 17px !important;
-    height: 17px !important;
+    width: 13px !important;
+    height: 13px !important;
   }
 
-  /* ══ NOC MONITOR PANEL (SCALE UP) ══ */
+  /* ══ NOC MONITOR PANEL ══ */
   .home-noc-panel {
-    border-radius: 10px !important;
-    margin-top: 8px !important;
+    border-radius: 8px !important;
+    margin-top: 6px !important;
   }
   .noc-header {
-    padding: 14px 16px !important;
+    padding: 10px 12px !important;
     flex-wrap: wrap !important;
-    gap: 10px !important;
+    gap: 8px !important;
   }
   .noc-title {
-    font-size: 14.5px !important;
+    font-size: 11.5px !important;
     font-weight: 800 !important;
   }
   .noc-tab {
-    font-size: 13.5px !important;
-    padding: 8px 16px !important;
+    font-size: 10px !important;
+    padding: 5px 10px !important;
     font-weight: 700 !important;
   }
   .noc-grid {
     grid-template-columns: 1fr !important;
-    gap: 12px !important;
+    gap: 8px !important;
   }
   .noc-card {
-    padding: 14px 16px !important;
+    padding: 10px 12px !important;
   }
   .noc-kpi-lbl {
-    font-size: 14px !important;
-    font-weight: 800 !important;
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
   }
   .noc-badge {
-    font-size: 12px !important;
-    padding: 4px 9px !important;
-    font-weight: 800 !important;
+    font-size: 9.5px !important;
+    padding: 2px 6px !important;
+    font-weight: 700 !important;
   }
   .noc-val {
-    font-size: 20px !important;
+    font-size: 15px !important;
     font-weight: 800 !important;
-    margin: 6px 0 !important;
+    margin: 4px 0 !important;
   }
   .noc-sub {
-    font-size: 13.5px !important;
+    font-size: 10px !important;
     color: #94a3b8 !important;
   }
   .noc-console-wrap {
-    padding: 14px 16px !important;
+    padding: 10px 12px !important;
   }
   .noc-con-hdr {
-    font-size: 13.5px !important;
-    margin-bottom: 8px !important;
+    font-size: 10.5px !important;
+    margin-bottom: 6px !important;
     font-weight: 700 !important;
   }
   .noc-ping-btn {
-    font-size: 13px !important;
-    padding: 8px 13px !important;
+    font-size: 10px !important;
+    padding: 5px 9px !important;
     font-weight: 700 !important;
   }
   .noc-term-out {
-    font-size: 14px !important;
-    line-height: 1.7 !important;
-    padding: 12px 14px !important;
+    font-size: 10.5px !important;
+    line-height: 1.55 !important;
+    padding: 8px 10px !important;
   }
 
   /* ══ STATS & TRUST BAR ══ */
   .home-actions-col .hero-stats {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 14px !important;
-    padding-top: 18px !important;
-    margin-top: 16px !important;
+    gap: 8px !important;
+    padding-top: 12px !important;
+    margin-top: 12px !important;
   }
   .home-actions-col .hstat-n {
-    font-size: 34px !important;
+    font-size: 24px !important;
     font-weight: 800 !important;
   }
   .home-actions-col .hstat-l {
-    font-size: 13px !important;
+    font-size: 9.5px !important;
     font-weight: 700 !important;
-    letter-spacing: .1em !important;
-    margin-top: 6px !important;
+    letter-spacing: .06em !important;
+    margin-top: 4px !important;
   }
   .home-actions-col .enterprise-trust-bar {
-    padding: 14px 16px !important;
-    margin-top: 14px !important;
+    padding: 10px 12px !important;
+    margin-top: 10px !important;
   }
   .home-actions-col .etrust-label {
-    font-size: 13px !important;
+    font-size: 10px !important;
     font-weight: 800 !important;
-    letter-spacing: .1em !important;
-    margin-bottom: 9px !important;
+    letter-spacing: .08em !important;
+    margin-bottom: 6px !important;
   }
   .home-actions-col .et-badge {
-    font-size: 13.5px !important;
-    padding: 9px 14px !important;
+    font-size: 10px !important;
+    padding: 6px 10px !important;
   }
   .home-actions-col .et-ico {
-    font-size: 17px !important;
+    font-size: 13px !important;
   }
   .home-actions-col .et-sub {
-    font-size: 12.5px !important;
+    font-size: 9px !important;
   }
 
   /* ══ NAV CARDS ══ */
   .nav-grid {
     grid-template-columns: 1fr 1fr !important;
-    gap: 12px !important;
-    margin-top: 24px !important;
+    gap: 8px !important;
+    margin-top: 16px !important;
   }
   .nc {
-    padding: 18px 16px !important;
+    padding: 12px 10px !important;
   }
   .nc-ico {
-    font-size: 26px !important;
+    font-size: 20px !important;
   }
   .nc-num {
-    font-size: 12.5px !important;
+    font-size: 9.5px !important;
     font-weight: 700 !important;
   }
   .nc-name {
-    font-size: 17.5px !important;
+    font-size: 13px !important;
     font-weight: 800 !important;
-    margin: 6px 0 !important;
+    margin: 4px 0 !important;
   }
   .nc-hint {
-    font-size: 13.5px !important;
-    line-height: 1.6 !important;
+    font-size: 10px !important;
+    line-height: 1.45 !important;
   }
 
   /* ══════════════════════════════════════════════════════════
-     ALL INTERNAL PAGES TYPOGRAPHY (SCALE UP SPECIFICALLY FOR MOBILE)
+     ALL INTERNAL PAGES TYPOGRAPHY (BALANCED MEDIUM SCALE)
      ══════════════════════════════════════════════════════════ */
   .pov {
-    padding: 24px 16px 80px 16px !important;
+    padding: 18px 12px 60px 12px !important;
   }
   .ph {
-    margin-bottom: 24px !important;
+    margin-bottom: 16px !important;
   }
   .ph-label {
-    font-size: 13.5px !important;
+    font-size: 10px !important;
     font-weight: 700 !important;
-    letter-spacing: .18em !important;
+    letter-spacing: .15em !important;
     color: var(--acc) !important;
-    margin-bottom: 8px !important;
+    margin-bottom: 4px !important;
   }
   .ph-h {
-    font-size: clamp(30px, 8vw, 42px) !important;
+    font-size: clamp(22px, 6vw, 28px) !important;
     font-weight: 800 !important;
-    line-height: 1.1 !important;
+    line-height: 1.15 !important;
   }
 
   /* Summary Page ("About Me") */
   .sum-grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 20px !important;
+    gap: 14px !important;
   }
   .sum-box {
-    font-size: 17px !important;
-    line-height: 1.95 !important;
+    font-size: 12px !important;
+    line-height: 1.68 !important;
     color: #f1f5f9 !important;
-    padding: 24px 20px !important;
+    padding: 16px 14px !important;
     border-radius: 8px !important;
   }
   .sum-box strong, .sum-box .hl {
@@ -2031,38 +2097,38 @@ html[dir="rtl"] .cmd-footer {
     font-weight: 700 !important;
   }
   .sum-box::after {
-    font-size: 11px !important;
+    font-size: 9.5px !important;
   }
   .sum-aside {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
+    gap: 8px !important;
   }
   .stat-card {
-    padding: 16px 14px !important;
+    padding: 12px 10px !important;
   }
   .stat-n {
-    font-size: 32px !important;
+    font-size: 24px !important;
     font-weight: 800 !important;
     line-height: 1.1 !important;
   }
   .stat-l {
-    font-size: 13px !important;
+    font-size: 9.5px !important;
     font-weight: 700 !important;
-    letter-spacing: .08em !important;
+    letter-spacing: .06em !important;
     color: #cbd5e1 !important;
-    margin-top: 6px !important;
-    line-height: 1.4 !important;
+    margin-top: 4px !important;
+    line-height: 1.35 !important;
   }
   .dash-widget {
-    padding: 16px 18px !important;
+    padding: 12px 10px !important;
   }
   .dash-l {
-    font-size: 13px !important;
+    font-size: 10px !important;
     font-weight: 700 !important;
   }
   .dash-n {
-    font-size: 22px !important;
+    font-size: 16px !important;
     font-weight: 800 !important;
   }
 
@@ -2072,262 +2138,274 @@ html[dir="rtl"] .cmd-footer {
   }
   .tli {
     grid-template-columns: 1fr !important;
-    padding-bottom: 32px !important;
+    padding-bottom: 22px !important;
   }
   .tl-date {
     text-align: left !important;
-    font-size: 13.5px !important;
+    font-size: 10.5px !important;
     font-weight: 700 !important;
-    padding: 0 0 8px 18px !important;
+    padding: 0 0 6px 14px !important;
     color: var(--acc) !important;
   }
+  html[dir="rtl"] .tl-date {
+    text-align: right !important;
+    padding: 0 14px 6px 0 !important;
+  }
   .tl-badge {
-    font-size: 12px !important;
+    font-size: 9.5px !important;
     font-weight: 700 !important;
-    padding: 3px 8px !important;
-    margin-bottom: 6px !important;
-  }
-  .tl-body {
-    padding-left: 18px !important;
-  }
-  .tl-role {
-    font-size: 18px !important;
-    font-weight: 800 !important;
-    line-height: 1.3 !important;
+    padding: 2px 6px !important;
     margin-bottom: 4px !important;
   }
-  .tl-comp {
-    font-size: 15px !important;
-    font-weight: 700 !important;
-    margin-bottom: 12px !important;
+  .tl-body {
+    padding-left: 14px !important;
   }
-  .tl-ul li {
-    font-size: 15.5px !important;
-    line-height: 1.8 !important;
-    color: #e2e8f0 !important;
+  html[dir="rtl"] .tl-body {
+    padding-left: 0 !important;
+    padding-right: 14px !important;
+  }
+  .tl-role {
+    font-size: 13.5px !important;
+    font-weight: 800 !important;
+    line-height: 1.3 !important;
+    margin-bottom: 3px !important;
+  }
+  .tl-comp {
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
     margin-bottom: 8px !important;
   }
+  .tl-ul li {
+    font-size: 11.5px !important;
+    line-height: 1.62 !important;
+    color: #e2e8f0 !important;
+    margin-bottom: 6px !important;
+  }
   .tl-ul li::before {
-    font-size: 14px !important;
+    font-size: 11px !important;
   }
 
   /* Skills & Certifications */
   .skills-grid {
     grid-template-columns: 1fr !important;
-    gap: 14px !important;
+    gap: 10px !important;
   }
   .sg {
-    padding: 20px 18px !important;
+    padding: 14px 12px !important;
   }
   .sg-label {
-    font-size: 13.5px !important;
+    font-size: 11px !important;
     font-weight: 800 !important;
-    margin-bottom: 14px !important;
+    margin-bottom: 8px !important;
   }
   .chips {
-    gap: 8px !important;
+    gap: 6px !important;
   }
   .chip {
-    font-size: 13.5px !important;
+    font-size: 10px !important;
     font-weight: 600 !important;
-    padding: 6px 14px !important;
+    padding: 4px 9px !important;
   }
   .bars-label, .certs-label {
-    font-size: 13.5px !important;
+    font-size: 11px !important;
     font-weight: 800 !important;
   }
   .bar-name {
-    font-size: 14.5px !important;
+    font-size: 10.5px !important;
     font-weight: 600 !important;
-    width: 140px !important;
+    width: 115px !important;
   }
   .bar-pct {
-    font-size: 13.5px !important;
+    font-size: 10px !important;
     font-weight: 700 !important;
   }
   .certs-grid {
     grid-template-columns: 1fr !important;
-    gap: 10px !important;
+    gap: 8px !important;
   }
   .cci {
-    padding: 14px 16px !important;
+    padding: 10px 12px !important;
   }
   .ci {
-    width: 36px !important;
-    height: 36px !important;
-    font-size: 16px !important;
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 13px !important;
   }
   .cn {
-    font-size: 14.5px !important;
+    font-size: 11px !important;
     font-weight: 600 !important;
-    line-height: 1.5 !important;
+    line-height: 1.45 !important;
   }
 
   /* Education */
   .edu-c {
-    padding: 22px 20px !important;
+    padding: 16px 14px !important;
   }
   .edu-deg {
-    font-size: 18px !important;
+    font-size: 13.5px !important;
     font-weight: 800 !important;
   }
   .edu-sch {
-    font-size: 15px !important;
+    font-size: 11.5px !important;
     font-weight: 700 !important;
   }
   .edu-yr {
-    font-size: 13.5px !important;
+    font-size: 10.5px !important;
     font-weight: 700 !important;
   }
   .tag {
-    font-size: 12px !important;
+    font-size: 9.5px !important;
     font-weight: 700 !important;
-    padding: 4px 10px !important;
+    padding: 3px 8px !important;
   }
   .edu-note {
-    font-size: 15px !important;
-    line-height: 1.75 !important;
+    font-size: 11.5px !important;
+    line-height: 1.6 !important;
     color: #cbd5e1 !important;
   }
   .courses-grid {
     grid-template-columns: 1fr !important;
   }
   .course-c {
-    padding: 14px 16px !important;
+    padding: 10px 12px !important;
   }
   .c-ico {
-    width: 34px !important;
-    height: 34px !important;
-    font-size: 16px !important;
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 13px !important;
   }
   .c-name {
-    font-size: 14.5px !important;
+    font-size: 11.5px !important;
     font-weight: 700 !important;
   }
   .c-org {
-    font-size: 13px !important;
+    font-size: 10px !important;
   }
 
   /* Projects & Achievements */
   .proj-grid {
     grid-template-columns: 1fr !important;
-    gap: 16px !important;
+    gap: 10px !important;
   }
   .proj-c {
-    padding: 22px 20px !important;
+    padding: 14px 12px !important;
   }
   .pn {
-    font-size: 18px !important;
+    font-size: 13.5px !important;
     font-weight: 800 !important;
   }
   .pd {
-    font-size: 15px !important;
-    line-height: 1.8 !important;
+    font-size: 11.5px !important;
+    line-height: 1.6 !important;
     color: #e2e8f0 !important;
   }
   .pt {
-    font-size: 12px !important;
+    font-size: 9.5px !important;
     font-weight: 700 !important;
-    padding: 4px 10px !important;
+    padding: 3px 7px !important;
   }
 
   /* Case Studies */
   .cs-card {
-    padding: 22px 20px !important;
+    padding: 14px 12px !important;
   }
   .cs-title {
-    font-size: 19px !important;
+    font-size: 13.5px !important;
     font-weight: 800 !important;
   }
   .cs-client {
-    font-size: 13.5px !important;
+    font-size: 10.5px !important;
     font-weight: 700 !important;
   }
   .cs-badge {
-    font-size: 12px !important;
-    padding: 4px 10px !important;
+    font-size: 9.5px !important;
+    padding: 3px 7px !important;
   }
   .cs-block-label {
-    font-size: 13px !important;
+    font-size: 10px !important;
     font-weight: 800 !important;
   }
   .cs-text {
-    font-size: 15px !important;
-    line-height: 1.8 !important;
+    font-size: 11.5px !important;
+    line-height: 1.6 !important;
     color: #e2e8f0 !important;
   }
   .cs-results-list li {
-    font-size: 15px !important;
-    line-height: 1.75 !important;
+    font-size: 11px !important;
+    line-height: 1.55 !important;
     color: #e2e8f0 !important;
   }
 
-  /* Homelab */
-  .hl-name {
-    font-size: 19px !important;
-    font-weight: 800 !important;
+  /* Homelab Specs Matrix */
+  .hl-specs-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
   }
-  .hl-desc {
-    font-size: 15px !important;
-    line-height: 1.8 !important;
-    color: #e2e8f0 !important;
+  .hl-spec-lbl {
+    font-size: 9.5px !important;
+  }
+  .hl-spec-val {
+    font-size: 12px !important;
+  }
+  .hl-spec-desc {
+    font-size: 10px !important;
   }
 
   /* Social Proof & Testimonials */
   .sp-trust-bar {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
+    gap: 8px !important;
   }
   .sp-trust-n {
-    font-size: 32px !important;
+    font-size: 24px !important;
     font-weight: 800 !important;
   }
   .sp-trust-l {
-    font-size: 13px !important;
+    font-size: 9.5px !important;
     font-weight: 700 !important;
   }
   .sp-tgrid {
     grid-template-columns: 1fr !important;
   }
   .sp-tcard {
-    padding: 22px 20px !important;
+    padding: 14px 12px !important;
   }
   .sp-quote {
-    font-size: 16px !important;
-    line-height: 1.9 !important;
+    font-size: 12px !important;
+    line-height: 1.65 !important;
     color: #f1f5f9 !important;
   }
   .sp-author-name {
-    font-size: 15px !important;
+    font-size: 11.5px !important;
     font-weight: 700 !important;
   }
   .sp-author-role {
-    font-size: 13.5px !important;
+    font-size: 10px !important;
     color: #94a3b8 !important;
   }
   .sp-cred-name {
-    font-size: 14.5px !important;
+    font-size: 11px !important;
     font-weight: 700 !important;
   }
   .sp-cred-sub {
-    font-size: 13px !important;
+    font-size: 9.5px !important;
   }
 
   /* IT Services */
   .svc-card {
-    padding: 22px 20px !important;
+    padding: 14px 12px !important;
   }
   .svc-h3 {
-    font-size: 19px !important;
+    font-size: 13.5px !important;
     font-weight: 800 !important;
   }
   .svc-card p, .svc-li {
-    font-size: 15.5px !important;
-    line-height: 1.8 !important;
+    font-size: 11.5px !important;
+    line-height: 1.6 !important;
     color: #e2e8f0 !important;
   }
   .svc-price {
-    font-size: 24px !important;
+    font-size: 18px !important;
     font-weight: 800 !important;
   }
 
@@ -2336,80 +2414,93 @@ html[dir="rtl"] .cmd-footer {
     grid-template-columns: 1fr !important;
   }
   .an-card {
-    padding: 20px 18px !important;
+    padding: 14px 12px !important;
   }
   .an-title {
-    font-size: 14px !important;
+    font-size: 11px !important;
     font-weight: 800 !important;
   }
   .tm-yr {
-    font-size: 13.5px !important;
+    font-size: 10.5px !important;
     font-weight: 700 !important;
   }
   .tm-txt {
-    font-size: 15px !important;
-    line-height: 1.7 !important;
+    font-size: 11.5px !important;
+    line-height: 1.55 !important;
   }
   .domain-name {
-    font-size: 14.5px !important;
+    font-size: 11px !important;
     font-weight: 600 !important;
   }
   .domain-pct {
-    font-size: 13.5px !important;
+    font-size: 10px !important;
     font-weight: 700 !important;
   }
   .tb {
-    font-size: 13.5px !important;
-    padding: 6px 13px !important;
+    font-size: 10px !important;
+    padding: 4px 9px !important;
   }
 
   /* Contact Page */
   .contact-layout {
     grid-template-columns: 1fr !important;
-    gap: 28px !important;
+    gap: 18px !important;
   }
   .contact-l h3 {
-    font-size: clamp(26px, 7vw, 34px) !important;
+    font-size: clamp(20px, 6vw, 26px) !important;
     font-weight: 800 !important;
   }
   .contact-l p {
-    font-size: 15.5px !important;
-    line-height: 1.8 !important;
+    font-size: 11.5px !important;
+    line-height: 1.6 !important;
   }
   .cta {
-    font-size: 14px !important;
+    font-size: 10.5px !important;
     font-weight: 700 !important;
-    padding: 13px 18px !important;
-    min-height: 46px !important;
+    padding: 9px 14px !important;
+    min-height: 36px !important;
   }
   .ci-row {
-    font-size: 15px !important;
+    font-size: 11.5px !important;
   }
   .ci-lbl {
-    font-size: 13.5px !important;
+    font-size: 10px !important;
     font-weight: 800 !important;
   }
   .inp-g input, .inp-g textarea {
-    font-size: 15.5px !important;
-    padding: 15px 16px !important;
+    font-size: 11.5px !important;
+    padding: 10px 12px !important;
   }
   .f-btn {
-    font-size: 14.5px !important;
+    font-size: 11px !important;
     font-weight: 800 !important;
-    padding: 16px !important;
-    min-height: 48px !important;
+    padding: 10px !important;
+    min-height: 36px !important;
   }
 
   /* Certificate Gallery */
   .cert-gallery {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
+    gap: 8px !important;
   }
   .cert-name {
-    font-size: 12.5px !important;
+    font-size: 10px !important;
     font-weight: 600 !important;
-    line-height: 1.45 !important;
-    padding: 10px !important;
+    line-height: 1.35 !important;
+    padding: 7px !important;
+  }
+
+  /* Floating AI Assistant Chip */
+  #ai-assistant-btn {
+    bottom: 12px !important;
+    right: 12px !important;
+    padding: 6px 12px !important;
+    font-size: 10.5px !important;
+    gap: 5px !important;
+  }
+  html[dir="rtl"] #ai-assistant-btn {
+    right: auto !important;
+    left: 12px !important;
   }
 }
 
