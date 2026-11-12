@@ -1469,6 +1469,13 @@ function setLang(lang) {
       `;
     }
     
+    // Command Palette
+    const cmdInp = document.getElementById("cmd-input");
+    if (cmdInp) cmdInp.placeholder = "ابحث عن قسم أو أمر (مثل 'ccna', 'cv', 'skills', 'ping')...";
+    const cmdNav = document.getElementById("txt-cmd-nav"); if (cmdNav) cmdNav.textContent = "تنقل";
+    const cmdSel = document.getElementById("txt-cmd-sel"); if (cmdSel) cmdSel.textContent = "اختيار";
+    const cmdCls = document.getElementById("txt-cmd-cls"); if (cmdCls) cmdCls.textContent = "إغلاق";
+    
     // Nav cards
     const cards = document.querySelectorAll(".nc");
     cards.forEach((card, idx) => {
@@ -1596,7 +1603,12 @@ function setLang(lang) {
         <button class="ai-chip" onclick="askAIClick('Key enterprise projects and clients')">🏢 Projects</button>
         <button class="ai-chip" onclick="askAIClick('How can I contact or hire Mohamed?')">📞 Contact & Hire</button>
       `;
-    }
+    // Command Palette
+    const cmdInp = document.getElementById("cmd-input");
+    if (cmdInp) cmdInp.placeholder = "Type a command or section (e.g. 'ccna', 'cv', 'skills', 'ping')...";
+    const cmdNav = document.getElementById("txt-cmd-nav"); if (cmdNav) cmdNav.textContent = "Navigate";
+    const cmdSel = document.getElementById("txt-cmd-sel"); if (cmdSel) cmdSel.textContent = "Select";
+    const cmdCls = document.getElementById("txt-cmd-cls"); if (cmdCls) cmdCls.textContent = "Close";
 
     const cards = document.querySelectorAll(".nc");
     const EN_NAV = [
@@ -1800,6 +1812,11 @@ function openCmdPalette() {
   backdrop.style.display = "flex";
   input.value = "";
   selectedCmdIndex = 0;
+  if (currentLang === "ar") {
+    input.placeholder = "ابحث عن قسم أو أمر (مثل 'ccna', 'cv', 'skills', 'ping')...";
+  } else {
+    input.placeholder = "Type a command or section (e.g. 'ccna', 'cv', 'skills', 'ping')...";
+  }
   renderCmdItems(CMD_ITEMS);
   setTimeout(() => input.focus(), 50);
 }
@@ -1823,7 +1840,7 @@ function renderCmdItems(items) {
   if (!list) return;
   const isAr = (currentLang === "ar");
   if (items.length === 0) {
-    list.innerHTML = `<div style="padding: 16px; text-align: center; color: var(--mut); font-family: var(--mono); font-size: 11px;">${isAr ? "لم يتم العثور على نتائج..." : "No commands found..."}</div>`;
+    list.innerHTML = `<div style="padding: 24px; text-align: center; color: var(--txt2); font-family: var(--mono); font-size: 13.5px;">${isAr ? "لم يتم العثور على نتائج..." : "No commands found..."}</div>`;
     return;
   }
   list.innerHTML = items.map((item, idx) => `
@@ -1832,7 +1849,7 @@ function renderCmdItems(items) {
         <span class="cmd-item-ico">${item.ico}</span>
         <span class="cmd-item-name">${isAr ? item.nameAr : item.nameEn}</span>
       </div>
-      <span class="cmd-item-badge">ENTER ↵</span>
+      <span class="cmd-item-badge">${isAr ? "اختيار ↵" : "ENTER ↵"}</span>
     </div>
   `).join("");
 }
