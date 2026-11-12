@@ -1603,6 +1603,8 @@ function setLang(lang) {
         <button class="ai-chip" onclick="askAIClick('Key enterprise projects and clients')">🏢 Projects</button>
         <button class="ai-chip" onclick="askAIClick('How can I contact or hire Mohamed?')">📞 Contact & Hire</button>
       `;
+    }
+
     // Command Palette
     const cmdInp = document.getElementById("cmd-input");
     if (cmdInp) cmdInp.placeholder = "Type a command or section (e.g. 'ccna', 'cv', 'skills', 'ping')...";
