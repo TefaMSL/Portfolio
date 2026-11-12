@@ -280,7 +280,7 @@ const ldT = setInterval(() => {
 function skipBoot() {
   if (window._bootDone) return;
   window._bootDone = true;
-  if (ldT) clearInterval(ldT);
+  if (typeof ldT !== "undefined" && ldT) clearInterval(ldT);
   const loader = document.getElementById("loader");
   if (loader) {
     gsap.to(loader, {
@@ -305,6 +305,8 @@ setTimeout(() => {
 }, 3500);
 
 function launchHero() {
+  if (window._heroLaunched) return;
+  window._heroLaunched = true;
   setMode("normal");
   const tl = gsap.timeline();
   tl.to("#schip", { opacity: 1, duration: .5, ease: "power3.out" })
@@ -1503,13 +1505,6 @@ const EMAILJS_AUTOREPLY_TEMPLATE_ID = "template_qe4l2ug"; // ID الخاص بق�
 })();
 
 
-
-function skipBoot() {
-  if (typeof ldT !== 'undefined') clearInterval(ldT);
-  const loader = document.getElementById("loader");
-  if (loader) loader.style.display = "none";
-  launchHero();
-}
 
 
 /* ══ AI ASSISTANT CONVERSATIONAL ENGINE ══ */
