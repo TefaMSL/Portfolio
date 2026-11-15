@@ -859,23 +859,25 @@ html[dir="rtl"] .cli-input-row{direction:ltr !important}
   position: fixed;
   bottom: 84px;
   right: 24px;
-  width: 400px;
+  width: 440px;
   max-width: calc(100vw - 32px);
-  height: 520px;
-  max-height: calc(100vh - 120px);
+  height: 580px;
+  max-height: calc(100vh - 110px);
   z-index: 9100;
   background: rgba(8, 15, 24, 0.96);
-  border: 1px solid var(--brd);
-  border-radius: 12px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 30px rgba(74,144,184,0.2);
+  border: 1px solid rgba(74,144,184,0.3);
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.8), 0 0 35px rgba(0,201,255,0.15);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(24px);
   animation: aiSlideUp 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 [data-theme="light"] #ai-modal {
   background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(30,106,154,0.3);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.15), 0 0 25px rgba(30,106,154,0.15);
 }
 @keyframes aiSlideUp {
   from { opacity: 0; transform: translateY(20px) scale(0.97); }
@@ -885,120 +887,190 @@ html[dir="rtl"] .cli-input-row{direction:ltr !important}
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
+  padding: 13px 18px;
   background: rgba(74,144,184,0.08);
   border-bottom: 1px solid var(--brd);
 }
 .ai-header-left {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+}
+.ai-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--grn);
+  box-shadow: 0 0 8px var(--grn);
+  animation: pulse 1.8s infinite;
+  flex-shrink: 0;
 }
 .ai-title {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--acc);
+  letter-spacing: 0.06em;
+}
+.ai-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: rgba(46,204,113,0.12);
+  border: 1px solid rgba(46,204,113,0.3);
+  font-size: 9.5px;
+  font-family: var(--mono);
+  color: var(--grn);
   letter-spacing: 0.05em;
+  font-weight: 600;
 }
 .ai-close-btn {
   background: transparent;
   border: none;
   color: var(--mut);
   cursor: pointer;
-  font-size: 14px;
-  padding: 4px;
-  transition: color 0.2s;
+  font-size: 15px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: all 0.2s;
 }
-.ai-close-btn:hover { color: var(--red); }
+.ai-close-btn:hover { color: var(--red); background: rgba(231,76,60,0.12); }
 .ai-body {
   flex: 1;
-  padding: 14px;
+  padding: 16px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  font-family: var(--mono);
-  font-size: 12px;
-  line-height: 1.5;
+  gap: 12px;
+  font-family: var(--mono), -apple-system, sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+}
+html[dir="rtl"] .ai-body {
+  font-family: 'Cairo', 'IBM Plex Mono', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.65;
 }
 .ai-msg {
-  padding: 10px 14px;
-  border-radius: 8px;
+  padding: 12px 16px;
+  border-radius: 10px;
   max-width: 90%;
   word-break: break-word;
+  font-size: 13px;
+  line-height: 1.6;
+  position: relative;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+}
+html[dir="rtl"] .ai-msg {
+  font-size: 13.5px;
+  line-height: 1.65;
 }
 .ai-msg-bot {
   align-self: flex-start;
   background: var(--surf2);
-  border: 1px solid var(--brd);
+  border: 1px solid rgba(74,144,184,0.22);
   color: var(--txt);
+  border-left: 3px solid var(--acc);
+}
+html[dir="rtl"] .ai-msg-bot {
+  border-left: 1px solid rgba(74,144,184,0.22);
+  border-right: 3px solid var(--acc);
 }
 .ai-msg-user {
   align-self: flex-end;
   background: linear-gradient(135deg, var(--acc), var(--acc2));
   color: #fff;
-  border: 1px solid var(--acc);
+  border: 1px solid rgba(255,255,255,0.2);
+  font-weight: 500;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
 }
 .ai-chips {
   display: flex;
-  gap: 6px;
-  padding: 8px 12px;
+  gap: 7px;
+  padding: 10px 14px;
   overflow-x: auto;
-  border-top: 1px solid rgba(74,144,184,0.1);
-  background: rgba(0,0,0,0.1);
-  scrollbar-width: none;
+  border-top: 1px solid var(--brd);
+  background: rgba(0,0,0,0.18);
+  scrollbar-width: thin;
+  scrollbar-color: var(--acc) transparent;
 }
-.ai-chips::-webkit-scrollbar { display: none; }
+.ai-chips::-webkit-scrollbar { height: 3px; }
+.ai-chips::-webkit-scrollbar-thumb { background: var(--acc); border-radius: 2px; }
 .ai-chip {
-  background: transparent;
+  background: var(--surf2);
   border: 1px solid var(--brd);
-  color: var(--txt2);
-  padding: 4px 10px;
-  border-radius: 12px;
+  color: var(--txt);
+  padding: 6px 12px;
+  border-radius: 14px;
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.2s;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+html[dir="rtl"] .ai-chip {
+  font-family: 'Cairo', 'IBM Plex Mono', sans-serif;
+  font-size: 11.5px;
 }
 .ai-chip:hover {
   border-color: var(--acc);
   color: var(--acc);
   background: var(--bar-bg);
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 12px rgba(0,201,255,0.15);
 }
 .ai-input-row {
   display: flex;
-  padding: 10px;
+  padding: 12px 14px;
   border-top: 1px solid var(--brd);
-  gap: 6px;
+  gap: 8px;
   background: var(--surf);
 }
 #ai-input {
   flex: 1;
   background: var(--surf2);
   border: 1px solid var(--brd);
-  border-radius: 4px;
-  padding: 8px 12px;
+  border-radius: 6px;
+  padding: 10px 14px;
   color: var(--txt);
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12.5px;
   outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
-#ai-input:focus { border-color: var(--acc); }
+html[dir="rtl"] #ai-input {
+  font-family: 'Cairo', 'IBM Plex Mono', sans-serif;
+  font-size: 13px;
+}
+#ai-input:focus {
+  border-color: var(--acc);
+  box-shadow: 0 0 10px rgba(0,201,255,0.15);
+}
 .ai-send-btn {
   background: var(--acc);
   color: #fff;
   border: none;
-  padding: 8px 14px;
-  border-radius: 4px;
+  padding: 10px 18px;
+  border-radius: 6px;
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   cursor: pointer;
   font-weight: 700;
-  transition: background 0.2s;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
 }
-.ai-send-btn:hover { background: var(--acc2); }
+.ai-send-btn:hover {
+  filter: brightness(1.15);
+  box-shadow: 0 0 12px var(--acc);
+}
 
 
 /* ══ GLOBAL NO-SELECT & NO HAND CURSOR (Pure Cyber Custom Cursor) ══ */

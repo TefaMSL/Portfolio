@@ -717,12 +717,12 @@
     <div class="analysis-grid">
       <div class="an-card">
         <style>
-          #chart-toggle-btn { cursor: none !important; transition: all 0.3s; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; }
-          #chart-toggle-btn:hover { background: rgba(74,144,184,0.15) !important; color: var(--acc) !important; border-color: var(--acc) !important; cursor: none !important; }
+          #chart-toggle-btn { cursor: pointer !important; transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; position: relative; z-index: 10; }
+          #chart-toggle-btn:hover { background: rgba(255,106,0,0.15) !important; color: #ff6a00 !important; border-color: #ff6a00 !important; transform: translateY(-1px); box-shadow: 0 0 12px rgba(255,106,0,0.25) !important; }
         </style>
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
           <div class="an-title" style="margin-bottom: 0; flex: 1; padding-bottom: 0px; border-bottom: none;">Domain Expertise</div>
-          <button id="chart-toggle-btn" class="bar-btn" style="font-size: 11px; padding: 4px 10px; border: 1px solid var(--brd); background: transparent; color: var(--txt); border-radius: var(--r); margin-left: 10px; cursor: none !important;">CLASSIC VIEW</button>
+          <button id="chart-toggle-btn" class="bar-btn" onclick="toggleDomainView(event)" style="font-size: 11px; padding: 4px 10px; border: 1px solid var(--brd); background: transparent; color: var(--txt); border-radius: var(--r); margin-left: 10px; cursor: pointer !important;">CLASSIC VIEW</button>
         </div>
         <div id="domain-bars-view" style="display: none;">
           <div class="domain-row"><div class="domain-head"><span class="domain-name">Network Administration</span><span class="domain-pct">92%</span></div><div class="domain-bar"><div class="domain-fill" data-pct="92" style="background:linear-gradient(90deg,#4a90b8,#2a7aaa)"></div></div></div>
@@ -2232,22 +2232,29 @@
 <div id="ai-modal" style="display:none">
   <div class="ai-header">
     <div class="ai-header-left">
-      <div class="bdot"></div>
-      <span class="ai-title">MSL_AI // SysAdmin &amp; IT Knowledge Base</span>
+      <div class="ai-live-dot"></div>
+      <span class="ai-title">MSL_AI // Enterprise IT Copilot</span>
+      <div class="ai-status-pill"><span>ONLINE</span></div>
     </div>
-    <button class="ai-close-btn" onclick="toggleAIAssistant()">✕</button>
+    <button class="ai-close-btn" onclick="toggleAIAssistant(false)" title="Close Assistant (Esc)">✕</button>
   </div>
   <div class="ai-body" id="ai-messages">
     <div class="ai-msg ai-msg-bot">
-      Hello! I am Mohamed's AI Assistant. Ask me anything about his 5 years of IT experience, Cisco CCNA, Viion management, homelab setup, or enterprise projects!
-      <br><span style="font-size:10px; color:var(--mut);">يمكنك سؤالي أيضاً بالعربية عن خبرات محمد ومشاريعه.</span>
+      <strong>Hello! I am Mohamed's AI Assistant.</strong><br>
+      Ask me anything about his 5 years of IT experience, Cisco CCNA, Viion multi-site management, homelab architecture, or enterprise projects for WE and Bank of Alexandria!
+      <div style="margin-top:8px; padding-top:6px; border-top:1px dashed rgba(255,255,255,0.12); font-size:12px; color:var(--txt2);">
+        مرحباً بك! يمكنك سؤالي بالعربية عن خبرات محمد، شهاداته، أو مشاريعه مع كبرى الشركات.
+      </div>
     </div>
   </div>
-  <div class="ai-chips">
+  <div class="ai-chips" id="ai-chips-bar">
     <button class="ai-chip" onclick="askAIClick('Tell me about Mohamed background and current role')">💼 Background</button>
     <button class="ai-chip" onclick="askAIClick('Has he worked with banks or telecom like WE and Bank of Alexandria?')">🏦 Banks &amp; Telecom</button>
-    <button class="ai-chip" onclick="askAIClick('What certifications does he hold?')">📜 Certifications</button>
-    <button class="ai-chip" onclick="askAIClick('What is his Homelab and Automation setup?')">🖥️ Homelab</button>
+    <button class="ai-chip" onclick="askAIClick('What certifications does he hold?')">📜 Cisco CCNA &amp; Certs</button>
+    <button class="ai-chip" onclick="askAIClick('What is his Homelab and Automation setup?')">🖥️ Homelab Setup</button>
+    <button class="ai-chip" onclick="askAIClick('What did he achieve at Viion managing 5 branch sites?')">🏢 Viion 5 Sites</button>
+    <button class="ai-chip" onclick="askAIClick('How does he approach enterprise security and GPO hardening?')">🛡️ Security &amp; GPO</button>
+    <button class="ai-chip" onclick="askAIClick('Tell me about his work with international clients in Canada and Argentina')">🌐 Canada &amp; Global</button>
     <button class="ai-chip" onclick="askAIClick('How can I contact or hire him?')">📞 Contact / Hire</button>
   </div>
   <form class="ai-input-row" onsubmit="handleAISubmit(event)">

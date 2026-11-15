@@ -1332,11 +1332,13 @@ function initSkillsChart() {
 
   const isLight = document.documentElement.getAttribute('data-theme') === 'light';
 
+  // Analysis section hot coral-orange theme (#ff6a00) to match page title
+  const orangeAccent = '#ff6a00';
   const textColor = isLight ? '#1e3a52' : '#c0d8e8';
-  const gridColor = isLight ? 'rgba(30,106,154,0.16)' : 'rgba(74,144,184,0.18)';
-  const angleLineColor = isLight ? 'rgba(30,106,154,0.24)' : 'rgba(74,144,184,0.26)';
-  const primaryColor = isLight ? 'rgba(30, 106, 154, 0.28)' : 'rgba(74, 144, 184, 0.28)';
-  const primaryBorder = isLight ? '#1e6a9a' : '#4a90b8';
+  const gridColor = isLight ? 'rgba(255, 106, 0, 0.16)' : 'rgba(255, 106, 0, 0.20)';
+  const angleLineColor = isLight ? 'rgba(255, 106, 0, 0.24)' : 'rgba(255, 106, 0, 0.28)';
+  const primaryColor = isLight ? 'rgba(255, 106, 0, 0.22)' : 'rgba(255, 106, 0, 0.30)';
+  const primaryBorder = orangeAccent;
 
   skillsChart = new Chart(ctx, {
     type: 'radar',
@@ -1348,10 +1350,12 @@ function initSkillsChart() {
         backgroundColor: primaryColor,
         borderColor: primaryBorder,
         pointBackgroundColor: primaryBorder,
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
+        pointBorderColor: '#ffffff',
+        pointHoverBackgroundColor: '#ffffff',
         pointHoverBorderColor: primaryBorder,
-        borderWidth: 2,
+        pointRadius: 4.5,
+        pointHoverRadius: 7,
+        borderWidth: 2.5,
       }]
     },
     options: {
@@ -1386,8 +1390,8 @@ function initSkillsChart() {
           backgroundColor: isLight ? 'rgba(255,255,255,0.96)' : 'rgba(8,15,24,0.96)',
           titleColor: isLight ? '#0a1a28' : '#d8e8f0',
           bodyColor: isLight ? '#1e3a52' : '#c0d8e8',
-          borderColor: primaryBorder,
-          borderWidth: 1,
+          borderColor: orangeAccent,
+          borderWidth: 1.5,
           titleFont: { family: 'IBM Plex Mono', weight: '600', size: 12 },
           bodyFont: { family: 'IBM Plex Mono', size: 12 },
           displayColors: false,
@@ -1418,33 +1422,44 @@ window.addEventListener('resize', () => {
   }
 });
 
-// View toggle logic
+// Robust View toggle logic for Domain Expertise (Radar vs Classic Bars)
+window.toggleDomainView = function (e) {
+  if (e) {
+    if (typeof e.preventDefault === 'function') e.preventDefault();
+    if (typeof e.stopPropagation === 'function') e.stopPropagation();
+  }
+  const barsView = document.getElementById('domain-bars-view');
+  const chartView = document.getElementById('domain-chart-view');
+  const btn = document.getElementById('chart-toggle-btn');
+  if (!barsView || !chartView) return;
+
+  const isHidden = barsView.style.display === 'none' || window.getComputedStyle(barsView).display === 'none';
+  const isAr = (typeof currentLang !== 'undefined' && currentLang === 'ar') || document.documentElement.getAttribute('dir') === 'rtl';
+
+  if (isHidden) {
+    barsView.style.display = 'block';
+    chartView.style.display = 'none';
+    if (btn) btn.textContent = isAr ? 'عرض راداري' : 'RADAR VIEW';
+    // Trigger animated bar fill
+    document.querySelectorAll('#domain-bars-view .domain-fill').forEach(el => {
+      let p = el.getAttribute('data-pct') || '85';
+      el.style.width = '0%';
+      setTimeout(() => { el.style.width = p + '%'; }, 60);
+    });
+  } else {
+    barsView.style.display = 'none';
+    chartView.style.display = 'block';
+    if (btn) btn.textContent = isAr ? 'عرض تقليدي' : 'CLASSIC VIEW';
+    setTimeout(() => {
+      initSkillsChart();
+      if (skillsChart) skillsChart.resize();
+    }, 60);
+  }
+};
+
 const chartToggleBtn = document.getElementById('chart-toggle-btn');
 if (chartToggleBtn) {
-  chartToggleBtn.addEventListener('click', function () {
-    const barsView = document.getElementById('domain-bars-view');
-    const chartView = document.getElementById('domain-chart-view');
-
-    if (barsView.style.display === 'none') {
-      barsView.style.display = 'block';
-      chartView.style.display = 'none';
-      chartToggleBtn.textContent = 'RADAR VIEW';
-      // Trigger bar animation
-      document.querySelectorAll('#domain-bars-view .domain-fill').forEach(el => {
-        let p = el.getAttribute('data-pct');
-        el.style.width = '0%';
-        setTimeout(() => el.style.width = p + '%', 50);
-      });
-    } else {
-      barsView.style.display = 'none';
-      chartView.style.display = 'block';
-      chartToggleBtn.textContent = 'CLASSIC VIEW';
-      setTimeout(() => {
-        initSkillsChart();
-        if (skillsChart) skillsChart.resize();
-      }, 50);
-    }
-  });
+  chartToggleBtn.onclick = window.toggleDomainView;
 }
 
 
@@ -1597,18 +1612,57 @@ const EMAILJS_AUTOREPLY_TEMPLATE_ID = "template_qe4l2ug"; // ID الخاص بق�
 
 
 /* ══ AI ASSISTANT CONVERSATIONAL ENGINE ══ */
+// Sound feedback synthesizer using Web Audio API
+function playCyberBeep(freq = 880, dur = 0.04) {
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0.025, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + dur);
+  } catch (e) {}
+}
+
 let aiOpen = false;
 
-function toggleAIAssistant() {
-  aiOpen = !aiOpen;
+function toggleAIAssistant(forceState) {
+  aiOpen = (typeof forceState === "boolean") ? forceState : !aiOpen;
   const modal = document.getElementById("ai-modal");
   if (!modal) return;
   modal.style.display = aiOpen ? "flex" : "none";
   if (aiOpen) {
     const inp = document.getElementById("ai-input");
     if (inp) inp.focus();
+    playCyberBeep(650, 0.05);
   }
 }
+
+// Close AI modal when clicking outside anywhere on document
+document.addEventListener("click", function (e) {
+  if (!aiOpen) return;
+  const modal = document.getElementById("ai-modal");
+  const btn = document.getElementById("ai-assistant-btn");
+  if (!modal) return;
+  if (modal.contains(e.target) || (btn && btn.contains(e.target))) {
+    return;
+  }
+  toggleAIAssistant(false);
+});
+
+// Close AI modal on ESC key
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && aiOpen) {
+    toggleAIAssistant(false);
+  }
+});
 
 function askAIClick(query) {
   const inp = document.getElementById("ai-input");
@@ -1629,6 +1683,8 @@ function handleAISubmit(e) {
   const box = document.getElementById("ai-messages");
   if (!box) return;
   
+  playCyberBeep(700, 0.04);
+
   // User bubble
   const uMsg = document.createElement("div");
   uMsg.className = "ai-msg ai-msg-user";
@@ -1636,33 +1692,50 @@ function handleAISubmit(e) {
   box.appendChild(uMsg);
   box.scrollTop = box.scrollHeight;
   
-  // Thinking bubble
+  // Thinking bubble with animated dots
   const bMsg = document.createElement("div");
   bMsg.className = "ai-msg ai-msg-bot";
-  bMsg.innerHTML = '<span style="opacity:0.6; font-style:italic;">Querying MSL knowledge base...</span>';
+  const isAr = /[؀-ۿ]/.test(query) || (typeof currentLang !== 'undefined' && currentLang === 'ar');
+  bMsg.innerHTML = `
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span style="opacity:0.75; font-style:italic; font-size:12px;">${isAr ? 'جاري تحليل واستدعاء السجل التقني...' : 'Analyzing MSL neural knowledge graph...'}</span>
+      <div class="sp-typing-dots" style="margin:0; transform:scale(0.85);">
+        <div class="sp-typing-dot"></div>
+        <div class="sp-typing-dot"></div>
+        <div class="sp-typing-dot"></div>
+      </div>
+    </div>
+  `;
   box.appendChild(bMsg);
   box.scrollTop = box.scrollHeight;
   
   setTimeout(() => {
     bMsg.innerHTML = generateAIAnswer(query);
+    playCyberBeep(1050, 0.05);
     box.scrollTop = box.scrollHeight;
-  }, 350);
+  }, 420);
 }
 
 function generateAIAnswer(q) {
   const lq = q.toLowerCase();
-  const isAr = /[؀-ۿ]/.test(q);
+  const isAr = /[؀-ۿ]/.test(q) || (typeof currentLang !== 'undefined' && currentLang === 'ar');
   
-  if (lq.includes("bank") || lq.includes("we") || lq.includes("telecom") || lq.includes("بنك") || lq.includes("اتصالات") || lq.includes("عملاء") || lq.includes("client") || lq.includes("canada") || lq.includes("كندا")) {
+  if (lq.includes("viion") || lq.includes("branch") || lq.includes("sites") || lq.includes("فروع") || lq.includes("مواقع") || lq.includes("إدارة") || lq.includes("فريق")) {
     return isAr ?
-      "<strong>أبرز المشاريع المؤسسية لمحمد:</strong><br>• <strong>المصرية للاتصالات (WE):</strong> مشروع تحديث وتطوير خوادم السيرفرات (Server Refresh).<br>• <strong>بنك الإسكندرية (فرع القاهرة):</strong> بناء البنية التحتية للفرع، وتركيب السويتشات والكابلات واختبار الاتصال.<br>• <strong>Art Topia (كندا) + 4 شركات دولية:</strong> دعم فني عن بعد للبنية التحتية والأنظمة.<br>• <strong>شركة بالأرجنتين:</strong> دعم فني للأنظمة عن بعد." :
-      "<strong>Key Enterprise & Global Projects:</strong><br>• <strong>Telecom Egypt (WE):</strong> Server refresh and infrastructure modernization.<br>• <strong>Bank of Alexandria (Cairo Branch):</strong> Built branch IT infrastructure, switch deployment, and cabling connectivity.<br>• <strong>Art Topia (Canada) + 4 Global Companies:</strong> Remote infrastructure, systems & network technical support.<br>• <strong>Argentina Enterprise:</strong> Remote IT systems and server support.";
+      "<strong>إدارة العمليات والبنية التحتية في شركة Viion (فبراير 2025 – حتى الآن):</strong><br>• <strong>نطاق المسؤولية:</strong> قيادة عمليات البنية التحتية لـ 5 مواقع وفروع مؤسسية وإدارة فريق عمل مكون من 5 مهندسين وفنيين.<br>• <strong>هندسة الشبكات:</strong> إعادة تصميم شبكة الفروع باستخدام سويتشات Layer 3 Core، تفعيل بروتوكول التوجيه الديناميكي OSPF Area 0، وتقسيم الـ VLANs.<br>• <strong>الربط الآمن:</strong> شبكة Redundant IPsec VPN Mesh لربط الفروع الخمسة بالمركز الرئيسي، وحل مشاكل Broadcast Storms.<br>• <strong>النتائج:</strong> رفع كفاءة الشبكة بنسبة <strong>75%</strong> وتقليص فترات التوقف الأسبوعية إلى الصفر تقريباً." :
+      "<strong>IT Operations & Infrastructure Leadership at Viion (Feb 2025 – Present):</strong><br>• <strong>Scope of Role:</strong> Directing IT infrastructure operations across 5 branch sites and managing a 5-member engineering team.<br>• <strong>Network Architecture:</strong> Redesigned core network with Layer 3 switching, dynamic OSPF Area 0 routing, and departmental VLAN segmentation.<br>• <strong>Secure Interconnectivity:</strong> Deployed a redundant IPsec VPN mesh interconnecting all 5 branch sites with sub-second failover.<br>• <strong>Results:</strong> Network throughput improved by <strong>75%</strong> with weekly downtime reduced to near zero.";
+  }
+
+  if (lq.includes("bank") || lq.includes("we") || lq.includes("telecom") || lq.includes("بنك") || lq.includes("اتصالات") || lq.includes("عملاء") || lq.includes("client")) {
+    return isAr ?
+      "<strong>أبرز المشاريع المؤسسية لمحمد:</strong><br>• <strong>المصرية للاتصالات (Telecom Egypt - WE):</strong> مشروع شامل لتحديث خوادم الداتا سنتر (Server Refresh) ومصفوفات RAID 10 وذاكرة ECC مع انعدام فترات التوقف.<br>• <strong>بنك الإسكندرية (Bank of Alexandria):</strong> تأسيس البنية التحتية المتوافقة مع PCI-DSS لفرع تجاري جديد، عزل أجهزة الصراف الآلي (ATM) على VLAN منفصل ومحمي بـ 802.1X Port Security.<br>• <strong>Art Topia (كندا) + 4 شركات عالمية:</strong> دعم فني وهندسي عن بعد للبنية التحتية والأنظمة والشبكات.<br>• <strong>شركة في الأرجنتين:</strong> دعم وإدارة خوادم ومتابعة كفاءة التشغيل عن بعد." :
+      "<strong>Key Enterprise & Global Projects:</strong><br>• <strong>Telecom Egypt (WE):</strong> Enterprise datacenter server refresh, RAID 10 storage modernizing, and memory upgrades with zero downtime.<br>• <strong>Bank of Alexandria (Cairo Branch):</strong> Built PCI-DSS compliant branch infrastructure, air-gapped ATM VLAN isolation, and 802.1X Port Security.<br>• <strong>Art Topia (Canada) + 4 Global Companies:</strong> Remote infrastructure, systems & network technical support.<br>• <strong>Argentina Enterprise:</strong> Remote IT systems and server operational support.";
   }
   
   if (lq.includes("cert") || lq.includes("ccna") || lq.includes("ccnp") || lq.includes("شهادات") || lq.includes("شهادة") || lq.includes("course") || lq.includes("كورس") || lq.includes("devops") || lq.includes("ansible")) {
     return isAr ?
-      "<strong>الشهادات والكورسات الرسمية لمحمد:</strong><br>• <strong>Cisco CCNA معتمدة:</strong> برقم رسمي (CSCO15040282) صالحة حتى نوفمبر 2028.<br>• <strong>دبلومة DevOps (120 ساعة):</strong> من SCAL Academy.<br>• <strong>CCNP Enterprise Core (ENCOR) & CCNP Security (SCOR):</strong> إتمام المسارات المتقدمة لسيسكو.<br>• <strong>Ansible RH294:</strong> أتمتة الشبكات والأنظمة.<br>• <strong>Linux Administration I & II (64 ساعة):</strong> إدارة خوادم لينكس.<br>• <strong>MCSA 2016 (60 ساعة):</strong> إدارة خوادم ويندوز." :
-      "<strong>Certifications & Verified Courses:</strong><br>• <strong>Cisco Certified Network Associate (CCNA):</strong> Official ID CSCO15040282, valid through Nov 2028.<br>• <strong>DevOps Diploma (120 Hours):</strong> SCAL Academy.<br>• <strong>CCNP Core (ENCOR) & CCNP Security (SCOR):</strong> Advanced enterprise routing, switching & security.<br>• <strong>Ansible RH294 (40 Hours):</strong> Enterprise infrastructure automation.<br>• <strong>Linux Administration I & II (64 Hours):</strong> Enterprise Linux server operations.<br>• <strong>MCSA 2016 (60 Hours):</strong> Windows Server administration.";
+      "<strong>الشهادات والكورسات الرسمية المعتمدة لمحمد:</strong><br>• <strong>Cisco CCNA معتمدة رسمياً:</strong> كود التحقق (CSCO15040282) صالحة حتى نوفمبر 2028.<br>• <strong>دبلومة DevOps الشاملة (120 ساعة):</strong> من SCAL Academy (Docker, CI/CD, Kubernetes, Cloud).<br>• <strong>CCNP Enterprise Core (ENCOR 350-401):</strong> إتمام كورس التوجيه والتبديل المتقدم للمؤسسات.<br>• <strong>CCNP Security (SCOR 350-701):</strong> تأمين شبكات المؤسسات ومكافحة التهديدات.<br>• <strong>Red Hat Ansible RH294 (40 ساعة):</strong> أتمتة الشبكات وإدارة التكوينات.<br>• <strong>Linux Administration I & II (64 ساعة):</strong> إدارة وتأمين سيرفرات Red Hat / CentOS.<br>• <strong>Windows Server MCSA 2016 (60 ساعة):</strong> Active Directory, DNS, DHCP, Hyper-V." :
+      "<strong>Certifications & Verified Courses:</strong><br>• <strong>Cisco Certified Network Associate (CCNA):</strong> Official Cisco ID CSCO15040282, valid through Nov 2028.<br>• <strong>DevOps Diploma (120 Hours):</strong> SCAL Academy (Docker, Kubernetes, CI/CD pipelines).<br>• <strong>CCNP Enterprise Core (ENCOR 350-401):</strong> Advanced enterprise routing, switching & architecture.<br>• <strong>CCNP Security (SCOR 350-701):</strong> Enterprise perimeter security and threat defense.<br>• <strong>Ansible Automation RH294 (40 Hours):</strong> Infrastructure as Code and automated playbook configuration.<br>• <strong>Linux Administration I & II (64 Hours):</strong> Enterprise Linux server operations.<br>• <strong>MCSA Windows Server 2016 (60 Hours):</strong> Active Directory, Group Policy, and Hyper-V.";
   }
   
   if (lq.includes("lab") || lq.includes("homelab") || lq.includes("wazuh") || lq.includes("هوملاب") || lq.includes("لاب") || lq.includes("proxmox") || lq.includes("vmware")) {
@@ -1670,16 +1743,28 @@ function generateAIAnswer(q) {
       "<strong>مختبر الـ Homelab الخاص بمحمد:</strong><br>• <strong>الافتراضية:</strong> عنقود VMware ESXi 8.0 و Proxmox يضم 14 نظاماً وهمياً (Active Directory, Linux services).<br>• <strong>مختبر الأمن السيبراني:</strong> Wazuh SIEM مدمج مع Elastic Stack، وفايروول pfSense مع Suricata IDS/IPS و OpenVPN.<br>• <strong>محاكاة الشبكات:</strong> EVE-NG و GNS3 لاختبار بروتوكولات OSPF و EIGRP و BGP و STP على مستوى CCNP.<br>• <strong>التخزين والأتمتة:</strong> خادم TrueNAS ZFS للنسخ الاحتياطي، وحاويات Docker/Portainer مع Ansible playbooks." :
       "<strong>Mohamed's Homelab Architecture:</strong><br>• <strong>Virtualization:</strong> VMware ESXi 8.0 cluster & Proxmox running 14 active production-like VMs.<br>• <strong>Cybersecurity Lab:</strong> Wazuh SIEM integrated with Elastic Stack, pfSense IDS/IPS, Suricata alerts, and OpenVPN.<br>• <strong>Network Simulation:</strong> EVE-NG and GNS3 environments for testing enterprise OSPF, EIGRP, BGP, and RSTP topologies.<br>• <strong>Storage & Automation:</strong> TrueNAS ZFS pool for immutable VM backups, Ansible playbooks, and Docker/Portainer stacks.";
   }
-  
-  if (lq.includes("contact") || lq.includes("hire") || lq.includes("email") || lq.includes("phone") || lq.includes("تواصل") || lq.includes("ايميل") || lq.includes("تليفون") || lq.includes("واتس") || lq.includes("شغل")) {
+
+  if (lq.includes("sec") || lq.includes("gpo") || lq.includes("hardening") || lq.includes("حماية") || lq.includes("أمن") || lq.includes("تأمين") || lq.includes("bitlocker") || lq.includes("wsus")) {
     return isAr ?
-      "<strong>بيانات التواصل المباشرة مع محمد:</strong><br>• <strong>الهاتف / واتساب:</strong> <a href='https://wa.me/201503333155' target='_blank' style='color:var(--grn); font-weight:bold;'>+20 150 333 3155</a><br>• <strong>البريد الإلكتروني:</strong> <a href='mailto:mohamed-sayid@outlook.com' style='color:var(--acc); font-weight:bold;'>mohamed-sayid@outlook.com</a><br>• <strong>لينكد إن:</strong> <a href='https://www.linkedin.com/in/mohamedelsayid' target='_blank' style='color:var(--acc); font-weight:bold;'>linkedin.com/in/mohamedelsayid</a><br>• <strong>الموقع:</strong> القاهرة، مصر (معافى نهائياً من التجنيد ومتاح للأدوار القيادية والاستشارات)." :
-      "<strong>Direct Contact & Hiring Information:</strong><br>• <strong>Phone / WhatsApp:</strong> <a href='https://wa.me/201503333155' target='_blank' style='color:var(--grn); font-weight:bold;'>+20 150 333 3155</a><br>• <strong>Email:</strong> <a href='mailto:mohamed-sayid@outlook.com' style='color:var(--acc); font-weight:bold;'>mohamed-sayid@outlook.com</a><br>• <strong>LinkedIn:</strong> <a href='https://www.linkedin.com/in/mohamedelsayid' target='_blank' style='color:var(--acc); font-weight:bold;'>linkedin.com/in/mohamedelsayid</a><br>• <strong>Location:</strong> Cairo, Egypt · Permanently Exempt from Military Service · Open to Senior Roles & Consulting.";
+      "<strong>منهجية محمد في الأمن وتصليد الأجهزة (Hardening & GPO):</strong><br>• <strong>تطبيق معايير GPO المركزية:</strong> تعطيل منافذ USB لمنع تسريب البيانات، وفرض تشفير BitLocker AES-256، وإلغاء صلاحيات الـ Local Admin.<br>• <strong>إدارة التحديثات (WSUS):</strong> رفع نسبة التوافق وسد الثغرات الأمنية من 40% إلى <strong>98%</strong> عبر Ring Patching.<br>• <strong>جدران الحماية والـ UTM:</strong> نشر Fortinet FortiGate و pfSense مع تفعيل Deep Packet Inspection و IPS.<br>• <strong>بيئات الرعاية الصحية:</strong> عزل أجهزة الـ PACS ونظام المستشفيات (HIS) على شبكات VLAN معزولة عن شبكة الزوار بنسبة 100%." :
+      "<strong>Enterprise Security Hardening & GPO Strategy:</strong><br>• <strong>Central Active Directory GPO Baselines:</strong> Blocked unauthorized USB storage to prevent data leaks, enforced BitLocker AES-256 disk encryption, and removed local admin rights.<br>• <strong>Patch Governance (WSUS):</strong> Elevated enterprise patch compliance from ~40% to <strong>98%</strong> using automated phased ring updates.<br>• <strong>Perimeter & UTM Defense:</strong> Deployed Fortinet FortiGate and pfSense firewalls with Intrusion Prevention (IPS) and SSL inspection.<br>• <strong>Healthcare Compliance:</strong> Complete air-gapped isolation of medical imaging (PACS) and HIS databases from guest Wi-Fi subnets.";
+  }
+
+  if (lq.includes("canada") || lq.includes("argentina") || lq.includes("global") || lq.includes("كندا") || lq.includes("أرجنتين") || lq.includes("دولي") || lq.includes("عالمي")) {
+    return isAr ?
+      "<strong>الخبرات الدولية والعمل عن بعد (International Operations):</strong><br>• <strong>Art Topia (كندا):</strong> تقديم الاستشارات والدعم الفني للبنية التحتية والشبكات والخوادم عن بعد.<br>• <strong>4 شركات عالمية إضافية:</strong> إدارة الأنظمة وضمان استمرارية الأعمال وفق اتفاقيات مستوى الخدمة (SLA).<br>• <strong>شركة بالأرجنتين:</strong> مراقبة وإدارة البنية التحتية وحل المشكلات الفنية الطارئة عن بعد بكفاءة عالية." :
+      "<strong>International Remote Infrastructure Support:</strong><br>• <strong>Art Topia (Canada):</strong> Delivered end-to-end remote infrastructure engineering, network support, and server maintenance.<br>• <strong>4 Additional Global Companies:</strong> Managed hybrid cloud environments and ensured high availability SLAs.<br>• <strong>Argentina Enterprise:</strong> Managed remote Linux/Windows servers, backup schedules, and critical troubleshooting.";
+  }
+
+  if (lq.includes("contact") || lq.includes("hire") || lq.includes("email") || lq.includes("phone") || lq.includes("تواصل") || lq.includes("ايميل") || lq.includes("تليفون") || lq.includes("واتس") || lq.includes("شغل") || lq.includes("توظيف")) {
+    return isAr ?
+      "<strong>بيانات التواصل والتوظيف المباشر:</strong><br>• <strong>الهاتف / واتساب:</strong> <a href='https://wa.me/201503333155' target='_blank' style='color:var(--grn); font-weight:bold;'>+20 150 333 3155</a><br>• <strong>البريد الإلكتروني:</strong> <a href='mailto:mohamed-sayid@outlook.com' style='color:var(--acc); font-weight:bold;'>mohamed-sayid@outlook.com</a><br>• <strong>لينكد إن:</strong> <a href='https://www.linkedin.com/in/mohamedelsayid' target='_blank' style='color:var(--acc); font-weight:bold;'>linkedin.com/in/mohamedelsayid</a><br>• <strong>الموقع الجغرافي:</strong> القاهرة، مصر (معافى نهائياً من التجنيد ومتاح للأدوار القيادية المؤسسية والاستشارات)." :
+      "<strong>Direct Contact & Hiring Information:</strong><br>• <strong>Phone / WhatsApp:</strong> <a href='https://wa.me/201503333155' target='_blank' style='color:var(--grn); font-weight:bold;'>+20 150 333 3155</a><br>• <strong>Email:</strong> <a href='mailto:mohamed-sayid@outlook.com' style='color:var(--acc); font-weight:bold;'>mohamed-sayid@outlook.com</a><br>• <strong>LinkedIn:</strong> <a href='https://www.linkedin.com/in/mohamedelsayid' target='_blank' style='color:var(--acc); font-weight:bold;'>linkedin.com/in/mohamedelsayid</a><br>• <strong>Location:</strong> Cairo, Egypt · Permanently Exempt from Military Service · Ready for Senior Roles & Consulting.";
   }
 
   return isAr ?
-    "<strong>محمد سيد لطفي</strong> هو مهندس بنية تحتية وأمن معلومات (Infrastructure & Security Engineer) ومدير عمليات تقنية المعلومات في شركة Viion (يدير 5 مواقع وفريقاً من 5 مهندسين)، ولديه 5 سنوات خبرة عملية في شبكات Cisco (حاصل على CCNA)، وأنظمة Windows Server و AD، وبيئات المستشفيات (HIS/PACS)، ومشاريع مع كبرى المؤسسات مثل المصرية للاتصالات WE وبنك الإسكندرية وشركات في كندا.<br><br>هل تود الاستفسار عن شهاداته، أو مشاريعه، أو طريقة التواصل معه؟" :
-    "<strong>Mohamed Sayid Lotfy</strong> is an Infrastructure & Security Engineer and IT Operations Manager at Viion (managing 5 branch sites with a 5-person technical team). He has 5 years of hands-on experience in enterprise Cisco networking (CCNA certified), Windows Server/Active Directory, Hyper-V/VMware, and Fortinet/pfSense security, alongside projects for Telecom Egypt (WE), Bank of Alexandria, and international clients in Canada and Argentina.<br><br>What would you like to know more about? You can ask about his certifications, projects, or direct contact info!";
+    "<strong>محمد سيد لطفي</strong> هو مهندس بنية تحتية وأمن معلومات (Infrastructure & Security Engineer) ومدير عمليات تقنية المعلومات في شركة Viion (يدير 5 مواقع وفريقاً من 5 مهندسين)، ولديه 5 سنوات خبرة عملية متخصصة في شبكات Cisco (حاصل على CCNA)، وأنظمة Windows Server و Active Directory، والافتراضية Hyper-V/VMware، وبيئات المستشفيات (HIS/PACS)، ومشاريع كبرى مع المصرية للاتصالات WE وبنك الإسكندرية وشركات عالمية في كندا والأرجنتين.<br><br>يمكنك الضغط على الأزرار السريعة أدناه أو السؤال عن أي تفاصيل محددة!" :
+    "<strong>Mohamed Sayid Lotfy</strong> is an Infrastructure & Security Engineer and IT Operations Manager at Viion (managing 5 branch sites with a 5-person technical team). He has 5 years of hands-on enterprise experience in Cisco networking (CCNA certified), Windows Server/Active Directory, Hyper-V/VMware virtualization, and Fortinet/pfSense security, alongside high-stakes projects for Telecom Egypt (WE), Bank of Alexandria, and international clients in Canada and Argentina.<br><br>Feel free to click any of the quick suggestion chips below or ask me any technical question!";
 }
 
 
@@ -1735,7 +1820,7 @@ function setLang(lang) {
   const aiBtnLabel = document.querySelector(".ai-btn-label");
   const aiInput = document.getElementById("ai-input");
   const aiTitle = document.querySelector(".ai-title");
-  const aiChips = document.getElementById("ai-chips");
+  const aiChips = document.getElementById("ai-chips-bar") || document.getElementById("ai-chips");
   const backBtn = document.getElementById("back-btn");
 
   if (lang === "ar") {
@@ -1846,10 +1931,14 @@ function setLang(lang) {
     if (aiInput) aiInput.placeholder = "اسأل عن خبرات، شهادات، أو مشاريع محمد...";
     if (aiChips) {
       aiChips.innerHTML = `
-        <button class="ai-chip" onclick="askAIClick('نبذة عن محمد سيد وخبراته')">💼 نبذة مهنية</button>
-        <button class="ai-chip" onclick="askAIClick('ما هي شهادات محمد المعتمدة؟')">📜 الشهادات</button>
-        <button class="ai-chip" onclick="askAIClick('أبرز مشاريع المؤسسات والبنوك')">🏢 المشاريع</button>
-        <button class="ai-chip" onclick="askAIClick('معلومات التواصل والتوظيف')">📞 تواصل معي</button>
+        <button class="ai-chip" onclick="askAIClick('نبذة عن محمد سيد ودوره الحالي')">💼 نبذة وخبرات</button>
+        <button class="ai-chip" onclick="askAIClick('مشاريعه مع البنوك والمصرية للاتصالات WE')">🏦 بنوك واتصالات (WE)</button>
+        <button class="ai-chip" onclick="askAIClick('ما هي شهاداته وكورساته الرسمية مثل سيسكو؟')">📜 شهادات CCNA والكورسات</button>
+        <button class="ai-chip" onclick="askAIClick('تفاصيل مختبر الهوملاب والأمن والافتراضية')">🖥️ الهوملاب والأنظمة</button>
+        <button class="ai-chip" onclick="askAIClick('إنجازاته في إدارة فروع Viion الخمسة')">🏢 إدارة فروع Viion</button>
+        <button class="ai-chip" onclick="askAIClick('الحماية والأمن السيبراني وتأمين بيئات العمل GPO')">🛡️ الحماية والـ GPO</button>
+        <button class="ai-chip" onclick="askAIClick('العمل مع الشركات الدولية في كندا والأرجنتين')">🌐 عملاء كندا والدوليين</button>
+        <button class="ai-chip" onclick="askAIClick('طرق التواصل والتوظيف المباشر')">📞 التواصل والتوظيف</button>
       `;
     }
     
@@ -1978,14 +2067,18 @@ function setLang(lang) {
 
     // AI Assistant widget
     if (aiBtnLabel) aiBtnLabel.textContent = "Ask MSL AI";
-    if (aiTitle) aiTitle.textContent = "MSL_AI // SysAdmin & IT Knowledge Base";
+    if (aiTitle) aiTitle.textContent = "MSL_AI // Enterprise IT Copilot";
     if (aiInput) aiInput.placeholder = "Ask about Mohamed's experience, certs, projects...";
     if (aiChips) {
       aiChips.innerHTML = `
         <button class="ai-chip" onclick="askAIClick('Tell me about Mohamed background and current role')">💼 Background</button>
-        <button class="ai-chip" onclick="askAIClick('What certifications does Mohamed hold?')">📜 Certifications</button>
-        <button class="ai-chip" onclick="askAIClick('Key enterprise projects and clients')">🏢 Projects</button>
-        <button class="ai-chip" onclick="askAIClick('How can I contact or hire Mohamed?')">📞 Contact & Hire</button>
+        <button class="ai-chip" onclick="askAIClick('Has he worked with banks or telecom like WE and Bank of Alexandria?')">🏦 Banks &amp; Telecom</button>
+        <button class="ai-chip" onclick="askAIClick('What certifications does he hold?')">📜 Cisco CCNA &amp; Certs</button>
+        <button class="ai-chip" onclick="askAIClick('What is his Homelab and Automation setup?')">🖥️ Homelab Setup</button>
+        <button class="ai-chip" onclick="askAIClick('What did he achieve at Viion managing 5 branch sites?')">🏢 Viion 5 Sites</button>
+        <button class="ai-chip" onclick="askAIClick('How does he approach enterprise security and GPO hardening?')">🛡️ Security &amp; GPO</button>
+        <button class="ai-chip" onclick="askAIClick('Tell me about his work with international clients in Canada and Argentina')">🌐 Canada &amp; Global</button>
+        <button class="ai-chip" onclick="askAIClick('How can I contact or hire him?')">📞 Contact / Hire</button>
       `;
     }
 

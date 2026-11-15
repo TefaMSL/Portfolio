@@ -961,6 +961,12 @@ function applyAllPageTranslations(lang) {
         if (txt) txt.innerHTML = `<strong style="color:var(--acc)">${st.tag}</strong> — ${st.text}`;
       }
     });
+    const cBtn = document.getElementById("chart-toggle-btn");
+    if (cBtn) {
+      const barsView = document.getElementById("domain-bars-view");
+      const isBars = barsView && (barsView.style.display === "block" || window.getComputedStyle(barsView).display === "block");
+      cBtn.textContent = isBars ? "عرض راداري" : "عرض تقليدي";
+    }
   }
 
   // 13 / SOCIAL PROOF
