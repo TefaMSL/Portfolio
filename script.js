@@ -2082,6 +2082,21 @@ function setLang(lang) {
       `;
     }
 
+    // Domain Architectural KPIs & Telemetry Audit (English)
+    const dk1Lbl = document.getElementById("dkpi-1-lbl"); if (dk1Lbl) dk1Lbl.textContent = "Cisco L3 Core";
+    const dk1Sub = document.getElementById("dkpi-1-sub"); if (dk1Sub) dk1Sub.textContent = "OSPFv2 · RSTP · LACP";
+    const dk2Lbl = document.getElementById("dkpi-2-lbl"); if (dk2Lbl) dk2Lbl.textContent = "Active Directory";
+    const dk2Sub = document.getElementById("dkpi-2-sub"); if (dk2Sub) dk2Sub.textContent = "GPO · Hyper-V · WSUS";
+    const dk3Lbl = document.getElementById("dkpi-3-lbl"); if (dk3Lbl) dk3Lbl.textContent = "Perimeter Guard";
+    const dk3Sub = document.getElementById("dkpi-3-sub"); if (dk3Sub) dk3Sub.textContent = "Fortinet · pfSense · 802.1X";
+
+    const da1Tag = document.getElementById("daudit-1-tag"); if (da1Tag) da1Tag.textContent = "⚡ TOPOLOGY:";
+    const da1Txt = document.getElementById("daudit-1-txt"); if (da1Txt) da1Txt.textContent = "5 Branch Sites Linked via Redundant IPsec Mesh";
+    const da2Tag = document.getElementById("daudit-2-tag"); if (da2Tag) da2Tag.textContent = "🛡️ SECURITY:";
+    const da2Txt = document.getElementById("daudit-2-txt"); if (da2Txt) da2Txt.textContent = "PCI-DSS & Medical HIS/PACS Air-Gapped Subnets";
+    const da3Tag = document.getElementById("daudit-3-tag"); if (da3Tag) da3Tag.textContent = "📊 AVAILABILITY:";
+    const da3Txt = document.getElementById("daudit-3-txt"); if (da3Txt) da3Txt.textContent = "99.98% Core Uptime · Sub-Second Gateway Failover";
+
     // Command Palette
     const cmdInp = document.getElementById("cmd-input");
     if (cmdInp) cmdInp.placeholder = "Type a command or section (e.g. 'ccna', 'cv', 'skills', 'ping')...";

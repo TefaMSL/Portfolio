@@ -967,6 +967,21 @@ function applyAllPageTranslations(lang) {
       const isBars = barsView && (barsView.style.display === "block" || window.getComputedStyle(barsView).display === "block");
       cBtn.textContent = isBars ? "عرض راداري" : "عرض تقليدي";
     }
+
+    // Domain Architectural KPIs & Telemetry Audit
+    const dk1Lbl = document.getElementById("dkpi-1-lbl"); if (dk1Lbl) dk1Lbl.textContent = "شبكات سيسكو L3 Core";
+    const dk1Sub = document.getElementById("dkpi-1-sub"); if (dk1Sub) dk1Sub.textContent = "OSPFv2 · RSTP · LACP";
+    const dk2Lbl = document.getElementById("dkpi-2-lbl"); if (dk2Lbl) dk2Lbl.textContent = "الخوادم والـ Active Directory";
+    const dk2Sub = document.getElementById("dkpi-2-sub"); if (dk2Sub) dk2Sub.textContent = "GPO · Hyper-V · WSUS";
+    const dk3Lbl = document.getElementById("dkpi-3-lbl"); if (dk3Lbl) dk3Lbl.textContent = "جدران الحماية Zero-Trust";
+    const dk3Sub = document.getElementById("dkpi-3-sub"); if (dk3Sub) dk3Sub.textContent = "Fortinet · pfSense · 802.1X";
+
+    const da1Tag = document.getElementById("daudit-1-tag"); if (da1Tag) da1Tag.textContent = "⚡ الربط المؤسسي:";
+    const da1Txt = document.getElementById("daudit-1-txt"); if (da1Txt) da1Txt.textContent = "ربط 5 فروع عبر شبكة Redundant IPsec VPN";
+    const da2Tag = document.getElementById("daudit-2-tag"); if (da2Tag) da2Tag.textContent = "🛡️ الحماية والامتثال:";
+    const da2Txt = document.getElementById("daudit-2-txt"); if (da2Txt) da2Txt.textContent = "عزل شبكات البنوك PCI-DSS وأنظمة المستشفيات PACS";
+    const da3Tag = document.getElementById("daudit-3-tag"); if (da3Tag) da3Tag.textContent = "📊 كفاءة التشغيل:";
+    const da3Txt = document.getElementById("daudit-3-txt"); if (da3Txt) da3Txt.textContent = "استقرار 99.98% وتعافي فوري من الأعطال";
   }
 
   // 13 / SOCIAL PROOF

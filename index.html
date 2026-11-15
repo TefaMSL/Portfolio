@@ -732,8 +732,43 @@
           <div class="domain-row"><div class="domain-head"><span class="domain-name">Virtualization</span><span class="domain-pct">82%</span></div><div class="domain-bar"><div class="domain-fill" data-pct="82" style="background:linear-gradient(90deg,#e67e22,#e74c3c)"></div></div></div>
           <div class="domain-row"><div class="domain-head"><span class="domain-name">Cloud Services</span><span class="domain-pct">75%</span></div><div class="domain-bar"><div class="domain-fill" data-pct="75" style="background:linear-gradient(90deg,#4a90b8,#2a5c7a)"></div></div></div>
         </div>
-        <div id="domain-chart-view" style="width: 100%; height: 280px; margin-top: 15px; display: block; position: relative;">
+        <div id="domain-chart-view" style="width: 100%; height: 260px; margin-top: 10px; margin-bottom: 8px; display: block; position: relative;">
           <canvas id="skillsChart"></canvas>
+        </div>
+
+        <!-- Architectural Metrics & Live Telemetry Summary -->
+        <div class="domain-metrics-section">
+          <div class="domain-kpi-grid">
+            <div class="domain-kpi-item">
+              <div class="domain-kpi-val" id="dkpi-1-val">92%</div>
+              <div class="domain-kpi-lbl" id="dkpi-1-lbl">Cisco L3 Core</div>
+              <div class="domain-kpi-sub" id="dkpi-1-sub">OSPFv2 · RSTP · LACP</div>
+            </div>
+            <div class="domain-kpi-item">
+              <div class="domain-kpi-val" id="dkpi-2-val">88%</div>
+              <div class="domain-kpi-lbl" id="dkpi-2-lbl">Active Directory</div>
+              <div class="domain-kpi-sub" id="dkpi-2-sub">GPO · Hyper-V · WSUS</div>
+            </div>
+            <div class="domain-kpi-item">
+              <div class="domain-kpi-val" id="dkpi-3-val">85%</div>
+              <div class="domain-kpi-lbl" id="dkpi-3-lbl">Perimeter Guard</div>
+              <div class="domain-kpi-sub" id="dkpi-3-sub">Fortinet · pfSense · 802.1X</div>
+            </div>
+          </div>
+          <div class="domain-audit-box">
+            <div class="domain-audit-row">
+              <span class="domain-audit-tag" id="daudit-1-tag">⚡ TOPOLOGY:</span>
+              <span id="daudit-1-txt">5 Branch Sites Linked via Redundant IPsec Mesh</span>
+            </div>
+            <div class="domain-audit-row">
+              <span class="domain-audit-tag" id="daudit-2-tag">🛡️ SECURITY:</span>
+              <span id="daudit-2-txt">PCI-DSS &amp; Medical HIS/PACS Air-Gapped Subnets</span>
+            </div>
+            <div class="domain-audit-row">
+              <span class="domain-audit-tag" id="daudit-3-tag">📊 AVAILABILITY:</span>
+              <span id="daudit-3-txt">99.98% Core Uptime · Sub-Second Gateway Failover</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="an-card">
